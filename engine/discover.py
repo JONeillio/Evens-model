@@ -22,6 +22,12 @@ def dump(path: Path, obj) -> None:
     path.write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=str))
 
 
+def usage_only(account: dict) -> dict:
+    """Never store the raw account payload: it contains the API key and email."""
+    sub = (account or {}).get("subscriptions", [{}])[0]
+    return {k: sub.get(k) for k in ("plan", "request_limit", "request_count")}
+
+
 def summarise_odds(payload) -> dict:
     fixtures = payload if isinstance(payload, list) else payload.get("data", payload)
     if not isinstance(fixtures, list):
@@ -59,7 +65,7 @@ def main() -> None:
 
     acct = step("account", api.account)
     if acct is not None:
-        dump(OUT / "account.json", acct)
+        report["account_before"] = usage_only(acct)
 
     books = step("bookmakers", api.bookmakers)
     if books is not None:
@@ -97,7 +103,7 @@ def main() -> None:
 
     acct2 = step("account_after", api.account)
     if acct2 is not None:
-        report["account_after"] = acct2
+        report["account_after"] = usage_only(acct2)
 
     report["calls"] = [c.__dict__ for c in api.calls]
     dump(OUT / "report.json", report)
