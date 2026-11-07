@@ -323,7 +323,11 @@ def run(now: datetime, root: Path = ROOT, mock_dir: Path | None = None, force: b
 
     scores = state.setdefault("scores", {})
     links = state.setdefault("links", {})
-    for fid in want:
+    targets = list(want)
+    if force:  # manual check: also try to match everything kicking off on the days fetched
+        targets += [f for f in fixtures if f not in want and fixtures[f]["kickoff"][:10] in days[-2:]]
+    cover = {"checked": len(targets), "api_football": 0, "football_data": 0, "unmatched": []}
+    for fid in targets:
         fx = fixtures[fid]
         link = links.setdefault(fid, {})
         best = None
@@ -334,9 +338,12 @@ def run(now: datetime, root: Path = ROOT, mock_dir: Path | None = None, force: b
             if not m:
                 continue
             link[src] = m["feed_id"]
+            cover["api_football" if src == "af" else "football_data"] += 1
             # API-Football is quicker; football-data.org fills gaps and confirms finals.
             if best is None or (best["s"] not in ("FT",) and m["s"] == "FT" and m["h"] is not None):
                 best = dict(m, src=src)
+        if not best:
+            cover["unmatched"].append(f'{fx["home"]} v {fx["away"]} ({fx.get("league")})')
         if not best or best["s"] == "NS" and fid not in scores:
             continue
         new = {"s": best["s"], "min": best.get("min"), "h": best["h"], "a": best["a"], "src": best["src"]}
@@ -346,6 +353,7 @@ def run(now: datetime, root: Path = ROOT, mock_dir: Path | None = None, force: b
             scores[fid] = new
             log["changed"] += 1
     log["calls"] = feeds.calls
+    log["coverage"] = cover
 
     # Re-settle the model's record when a full-time result is new.
     results = final_results(state)
