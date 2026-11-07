@@ -2,40 +2,58 @@
  "slips": [
   {
    "key": "2026-11-07T15:00:00Z",
-   "slip_id": "f11736c02bc1",
-   "published_at": "2026-11-07T00:11:47Z",
+   "slip_id": "92079f5f8857",
+   "published_at": "2026-11-07T08:02:55Z",
    "label": "Sat 15:00",
    "start": "2026-11-07T15:00:00Z",
    "book": "unibet",
-   "odds": 2.171,
-   "hit_p": 0.4437,
-   "ev": -0.0369,
+   "odds": 2.28,
+   "hit_p": 0.4559,
+   "ev": 0.0396,
    "legs": [
     {
-     "id": "id1000001975837138|ou:1.5:over",
-     "key": "ou:1.5:over",
-     "label": "Over 1.5 goals",
-     "match": "Barnsley FC v Aldershot Town FC",
+     "id": "id1000001975802968|ou:4.5:under",
+     "key": "ou:4.5:under",
+     "label": "Under 4.5 goals",
+     "match": "Guiseley FC v Sutton United",
      "league": "FA Cup",
      "kickoff": "2026-11-07T15:00:00Z",
-     "price": 1.1,
-     "p_win": 0.89,
+     "price": 1.15,
+     "p_win": 0.871,
      "p_void": 0.0,
      "fd": null,
      "result": null,
      "score": null
     },
     {
-     "id": "id1000001975802950|ou:4.5:under",
-     "key": "ou:4.5:under",
-     "label": "Under 4.5 goals",
-     "match": "Crewe Alexandra v AFC Wimbledon",
+     "id": "id1000001975837150|1x2:1",
+     "key": "1x2:1",
+     "label": "Plymouth Argyle to win",
+     "match": "Plymouth Argyle v Alvechurch",
      "league": "FA Cup",
      "kickoff": "2026-11-07T15:00:00Z",
-     "price": 1.1,
-     "p_win": 0.8895,
+     "price": 1.23,
+     "p_win": 0.83,
      "p_void": 0.0,
      "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001872340028|ah:2:+1.5",
+     "key": "ah:2:+1.5",
+     "label": "Millwall FC +1.5 (handicap)",
+     "match": "West Bromwich Albion v Millwall FC",
+     "league": "Championship",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.24,
+     "p_win": 0.8227,
+     "p_void": 0.0,
+     "fd": {
+      "div": "E1",
+      "home": "West Brom",
+      "away": "Millwall"
+     },
      "result": null,
      "score": null
     },
@@ -47,23 +65,337 @@
      "league": "FA Cup",
      "kickoff": "2026-11-07T15:00:00Z",
      "price": 1.3,
-     "p_win": 0.7675,
+     "p_win": 0.7666,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    }
+   ],
+   "status": "pending",
+   "settled_odds": null,
+   "profit_per_10": null
+  },
+  {
+   "key": "2026-11-07T12:30:00Z",
+   "slip_id": "d4a20605ea89",
+   "published_at": "2026-11-07T08:02:55Z",
+   "label": "Sat 12:30–15:00",
+   "start": "2026-11-07T12:30:00Z",
+   "book": "unibet",
+   "odds": 2.017,
+   "hit_p": 0.5077,
+   "ev": 0.024,
+   "legs": [
+    {
+     "id": "id1000001975802968|ou:4.5:under",
+     "key": "ou:4.5:under",
+     "label": "Under 4.5 goals",
+     "match": "Guiseley FC v Sutton United",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.15,
+     "p_win": 0.871,
      "p_void": 0.0,
      "fd": null,
      "result": null,
      "score": null
     },
     {
-     "id": "id1000001975837136|ou:4.5:under",
+     "id": "id1000001872340012|ou:4.5:under",
      "key": "ou:4.5:under",
      "label": "Under 4.5 goals",
-     "match": "Luton Town v Forest Green Rovers",
+     "match": "Bristol City v Norwich City",
+     "league": "Championship",
+     "kickoff": "2026-11-07T12:30:00Z",
+     "price": 1.15,
+     "p_win": 0.8536,
+     "p_void": 0.0,
+     "fd": {
+      "div": "E1",
+      "home": "Bristol City",
+      "away": "Norwich"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001975837150|1x2:1",
+     "key": "1x2:1",
+     "label": "Plymouth Argyle to win",
+     "match": "Plymouth Argyle v Alvechurch",
      "league": "FA Cup",
      "kickoff": "2026-11-07T15:00:00Z",
-     "price": 1.38,
-     "p_win": 0.7302,
+     "price": 1.23,
+     "p_win": 0.83,
      "p_void": 0.0,
      "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001872340028|ah:2:+1.5",
+     "key": "ah:2:+1.5",
+     "label": "Millwall FC +1.5 (handicap)",
+     "match": "West Bromwich Albion v Millwall FC",
+     "league": "Championship",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.24,
+     "p_win": 0.8227,
+     "p_void": 0.0,
+     "fd": {
+      "div": "E1",
+      "home": "West Brom",
+      "away": "Millwall"
+     },
+     "result": null,
+     "score": null
+    }
+   ],
+   "status": "pending",
+   "settled_odds": null,
+   "profit_per_10": null
+  },
+  {
+   "key": "2026-11-07T13:00:00Z",
+   "slip_id": "b3f6603bf7dc",
+   "published_at": "2026-11-07T08:02:55Z",
+   "label": "Sat 13:00–15:00",
+   "start": "2026-11-07T13:00:00Z",
+   "book": "unibet",
+   "odds": 2.175,
+   "hit_p": 0.4718,
+   "ev": 0.026,
+   "legs": [
+    {
+     "id": "id1000001975802968|ou:4.5:under",
+     "key": "ou:4.5:under",
+     "label": "Under 4.5 goals",
+     "match": "Guiseley FC v Sutton United",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.15,
+     "p_win": 0.871,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001975837150|1x2:1",
+     "key": "1x2:1",
+     "label": "Plymouth Argyle to win",
+     "match": "Plymouth Argyle v Alvechurch",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.23,
+     "p_win": 0.83,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001872340028|ah:2:+1.5",
+     "key": "ah:2:+1.5",
+     "label": "Millwall FC +1.5 (handicap)",
+     "match": "West Bromwich Albion v Millwall FC",
+     "league": "Championship",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.24,
+     "p_win": 0.8227,
+     "p_void": 0.0,
+     "fd": {
+      "div": "E1",
+      "home": "West Brom",
+      "away": "Millwall"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000005272723320|ts:1:yes",
+     "key": "ts:1:yes",
+     "label": "Samsunspor to score",
+     "match": "Samsunspor v Konyaspor",
+     "league": "Super Lig",
+     "kickoff": "2026-11-07T13:00:00Z",
+     "price": 1.24,
+     "p_win": 0.7932,
+     "p_void": 0.0,
+     "fd": {
+      "div": "T1",
+      "home": "Samsunspor",
+      "away": "Konyaspor"
+     },
+     "result": null,
+     "score": null
+    }
+   ],
+   "status": "pending",
+   "settled_odds": null,
+   "profit_per_10": null
+  },
+  {
+   "key": "2026-11-08T14:00:00Z",
+   "slip_id": "0e23c9f65d75",
+   "published_at": "2026-11-07T08:02:55Z",
+   "label": "Sun 14:00–15:45",
+   "start": "2026-11-08T14:00:00Z",
+   "book": "betmgm.co.uk",
+   "odds": 1.858,
+   "hit_p": 0.5366,
+   "ev": -0.0028,
+   "legs": [
+    {
+     "id": "id1000003772041236|ou:1.5:over",
+     "key": "ou:1.5:over",
+     "label": "Over 1.5 goals",
+     "match": "SC Cambuur v PSV Eindhoven",
+     "league": "Eredivisie",
+     "kickoff": "2026-11-08T15:45:00Z",
+     "price": 1.04,
+     "p_win": 0.9643,
+     "p_void": 0.0,
+     "fd": {
+      "div": "N1",
+      "home": "Cambuur",
+      "away": "PSV Eindhoven"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001772221390|ou:0.5:over",
+     "key": "ou:0.5:over",
+     "label": "Over 0.5 goals",
+     "match": "Sunderland AFC v Chelsea FC",
+     "league": "Premier League",
+     "kickoff": "2026-11-08T14:00:00Z",
+     "price": 1.04,
+     "p_win": 0.9396,
+     "p_void": 0.0,
+     "fd": {
+      "div": "E0",
+      "home": "Sunderland",
+      "away": "Chelsea"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000018572936122|1x2:1",
+     "key": "1x2:1",
+     "label": "AEK Athens to win",
+     "match": "AEK Athens v APO Levadiakos FC",
+     "league": "Super League",
+     "kickoff": "2026-11-08T15:00:00Z",
+     "price": 1.21,
+     "p_win": 0.8429,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000023872531004|ts:2:yes",
+     "key": "ts:2:yes",
+     "label": "Maritimo Madeira to score",
+     "match": "Estoril Praia v Maritimo Madeira",
+     "league": "Liga Portugal",
+     "kickoff": "2026-11-08T15:30:00Z",
+     "price": 1.42,
+     "p_win": 0.7026,
+     "p_void": 0.0,
+     "fd": {
+      "div": "P1",
+      "home": "Estoril",
+      "away": "Maritimo"
+     },
+     "result": null,
+     "score": null
+    }
+   ],
+   "status": "pending",
+   "settled_odds": null,
+   "profit_per_10": null
+  },
+  {
+   "key": "2026-11-08T15:00:00Z",
+   "slip_id": "a8435e1f5f96",
+   "published_at": "2026-11-07T08:02:55Z",
+   "label": "Sun 15:00–15:45",
+   "start": "2026-11-08T15:00:00Z",
+   "book": "unibet",
+   "odds": 2.291,
+   "hit_p": 0.4393,
+   "ev": 0.0065,
+   "legs": [
+    {
+     "id": "id1000003772041236|ou:1.5:over",
+     "key": "ou:1.5:over",
+     "label": "Over 1.5 goals",
+     "match": "SC Cambuur v PSV Eindhoven",
+     "league": "Eredivisie",
+     "kickoff": "2026-11-08T15:45:00Z",
+     "price": 1.05,
+     "p_win": 0.9643,
+     "p_void": 0.0,
+     "fd": {
+      "div": "N1",
+      "home": "Cambuur",
+      "away": "PSV Eindhoven"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000018572936122|1x2:1",
+     "key": "1x2:1",
+     "label": "AEK Athens to win",
+     "match": "AEK Athens v APO Levadiakos FC",
+     "league": "Super League",
+     "kickoff": "2026-11-08T15:00:00Z",
+     "price": 1.21,
+     "p_win": 0.8429,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000023872531004|ou:1.5:over",
+     "key": "ou:1.5:over",
+     "label": "Over 1.5 goals",
+     "match": "Estoril Praia v Maritimo Madeira",
+     "league": "Liga Portugal",
+     "kickoff": "2026-11-08T15:30:00Z",
+     "price": 1.27,
+     "p_win": 0.7722,
+     "p_void": 0.0,
+     "fd": {
+      "div": "P1",
+      "home": "Estoril",
+      "away": "Maritimo"
+     },
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000005472477570|ou:3.5:under",
+     "key": "ou:3.5:under",
+     "label": "Under 3.5 goals",
+     "match": "Girona FC v UD Almeria",
+     "league": "LaLiga 2",
+     "kickoff": "2026-11-08T15:15:00Z",
+     "price": 1.42,
+     "p_win": 0.6999,
+     "p_void": 0.0,
+     "fd": {
+      "div": "SP2",
+      "home": "Girona",
+      "away": "Almeria"
+     },
      "result": null,
      "score": null
     }
@@ -82,7 +414,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.07,
+   "price": 1.35,
    "p_win": 0.8924,
    "p_void": 0.0,
    "fd": {
@@ -101,7 +433,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.32,
-   "p_win": 0.7606,
+   "p_win": 0.7617,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -118,8 +450,8 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.39,
-   "p_win": 0.7205,
+   "price": 1.37,
+   "p_win": 0.7178,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -137,7 +469,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.14,
-   "p_win": 0.8715,
+   "p_win": 0.8694,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -154,7 +486,7 @@
    "match": "St. Johnstone FC v Dundee FC",
    "league": "Premiership",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.04,
+   "price": 1.06,
    "p_win": 0.9354,
    "p_void": 0.0,
    "fd": {
@@ -172,8 +504,8 @@
    "match": "St. Johnstone FC v Dundee FC",
    "league": "Premiership",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.19,
-   "p_win": 0.7903,
+   "price": 1.27,
+   "p_win": 0.7881,
    "p_void": 0.0,
    "fd": {
     "div": "SC0",
@@ -190,8 +522,8 @@
    "match": "St. Johnstone FC v Dundee FC",
    "league": "Premiership",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.41,
-   "p_win": 0.682,
+   "price": 1.45,
+   "p_win": 0.6829,
    "p_void": 0.0,
    "fd": {
     "div": "SC0",
@@ -208,8 +540,8 @@
    "match": "St. Johnstone FC v Dundee FC",
    "league": "Premiership",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.13,
-   "p_win": 0.8467,
+   "price": 1.17,
+   "p_win": 0.8481,
    "p_void": 0.0,
    "fd": {
     "div": "SC0",
@@ -1072,7 +1404,7 @@
    "match": "Wrexham AFC v Wolverhampton Wanderers",
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
-   "price": 1.25,
+   "price": 1.27,
    "p_win": 0.7904,
    "p_void": 0.0,
    "fd": {
@@ -1090,7 +1422,7 @@
    "match": "Wrexham AFC v Wolverhampton Wanderers",
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
-   "price": 1.11,
+   "price": 1.1,
    "p_win": 0.8637,
    "p_void": 0.0,
    "fd": {
@@ -1108,7 +1440,7 @@
    "match": "Wrexham AFC v Wolverhampton Wanderers",
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
-   "price": 1.07,
+   "price": 1.22,
    "p_win": 0.9312,
    "p_void": 0.0,
    "fd": {
@@ -1145,7 +1477,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
    "price": 1.37,
-   "p_win": 0.7262,
+   "p_win": 0.73,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1163,7 +1495,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
    "price": 1.14,
-   "p_win": 0.8747,
+   "p_win": 0.8761,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1181,7 +1513,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
    "price": 1.36,
-   "p_win": 0.7007,
+   "p_win": 0.6895,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1199,7 +1531,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T12:30:00Z",
    "price": 1.22,
-   "p_win": 0.7957,
+   "p_win": 0.7967,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1216,7 +1548,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.26,
+   "price": 1.29,
    "p_win": 0.7766,
    "p_void": 0.0,
    "fd": {
@@ -1234,7 +1566,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.11,
+   "price": 1.1,
    "p_win": 0.9125,
    "p_void": 0.0,
    "fd": {
@@ -1253,7 +1585,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.37,
-   "p_win": 0.7004,
+   "p_win": 0.6948,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1271,7 +1603,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.22,
-   "p_win": 0.7998,
+   "p_win": 0.8028,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1307,7 +1639,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.29,
-   "p_win": 0.7678,
+   "p_win": 0.8227,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1342,8 +1674,8 @@
    "match": "West Bromwich Albion v Millwall FC",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.29,
-   "p_win": 0.7852,
+   "price": 1.28,
+   "p_win": 0.7798,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1360,8 +1692,8 @@
    "match": "West Bromwich Albion v Millwall FC",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.43,
-   "p_win": 0.6984,
+   "price": 1.42,
+   "p_win": 0.7026,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1379,7 +1711,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.16,
-   "p_win": 0.8601,
+   "p_win": 0.8629,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1397,7 +1729,7 @@
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
    "price": 1.2,
-   "p_win": 0.8189,
+   "p_win": 0.8126,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
@@ -1414,13 +1746,1165 @@
    "match": "West Bromwich Albion v Millwall FC",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.37,
-   "p_win": 0.7107,
+   "price": 1.35,
+   "p_win": 0.7109,
    "p_void": 0.0,
    "fd": {
     "div": "E1",
     "home": "West Brom",
     "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ah:1:+1.5": {
+   "id": "id1000001872340012|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Bristol City +1.5 (handicap)",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.21,
+   "p_win": 0.8025,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ah:2:+1.5": {
+   "id": "id1000001872340012|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Norwich City +1.5 (handicap)",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.16,
+   "p_win": 0.8472,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ou:0.5:over": {
+   "id": "id1000001872340012|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.06,
+   "p_win": 0.9361,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ou:3.5:under": {
+   "id": "id1000001872340012|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.44,
+   "p_win": 0.6974,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ou:4.5:under": {
+   "id": "id1000001872340012|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.16,
+   "p_win": 0.8536,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ts:1:yes": {
+   "id": "id1000001872340012|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Bristol City to score",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.28,
+   "p_win": 0.7568,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340012|ts:2:yes": {
+   "id": "id1000001872340012|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Norwich City to score",
+   "match": "Bristol City v Norwich City",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.22,
+   "p_win": 0.7819,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Bristol City",
+    "away": "Norwich"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ah:1:+1.5": {
+   "id": "id1000003672201712|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "St. Johnstone FC +1.5 (handicap)",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.16,
+   "p_win": 0.8511,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ah:2:+1.5": {
+   "id": "id1000003672201712|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Dundee FC +1.5 (handicap)",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.21,
+   "p_win": 0.81,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ts:1:yes": {
+   "id": "id1000003672201712|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "St. Johnstone FC to score",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.22,
+   "p_win": 0.7848,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ts:2:yes": {
+   "id": "id1000003672201712|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Dundee FC to score",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.25,
+   "p_win": 0.7587,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ah:1:+1.5": {
+   "id": "id1000001772221390|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Sunderland AFC +1.5 (handicap)",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.32,
+   "p_win": 0.7529,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ah:2:+1.5": {
+   "id": "id1000001772221390|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Chelsea FC +1.5 (handicap)",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.11,
+   "p_win": 0.8771,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ou:0.5:over": {
+   "id": "id1000001772221390|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.42,
+   "p_win": 0.9396,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ou:3.5:under": {
+   "id": "id1000001772221390|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.44,
+   "p_win": 0.6857,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ou:4.5:under": {
+   "id": "id1000001772221390|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.17,
+   "p_win": 0.8162,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ts:1:yes": {
+   "id": "id1000001772221390|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Sunderland AFC to score",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.42,
+   "p_win": 0.7038,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001772221390|ts:2:yes": {
+   "id": "id1000001772221390|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Chelsea FC to score",
+   "match": "Sunderland AFC v Chelsea FC",
+   "league": "Premier League",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.21,
+   "p_win": 0.8263,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E0",
+    "home": "Sunderland",
+    "away": "Chelsea"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ah:1:+1.5": {
+   "id": "id1000023872531004|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Estoril Praia +1.5 (handicap)",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.1,
+   "p_win": 0.8977,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ah:2:+1.5": {
+   "id": "id1000023872531004|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Maritimo Madeira +1.5 (handicap)",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.27,
+   "p_win": 0.7,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ou:0.5:over": {
+   "id": "id1000023872531004|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.06,
+   "p_win": 0.9654,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ou:1.5:over": {
+   "id": "id1000023872531004|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.29,
+   "p_win": 0.7722,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ou:3.5:under": {
+   "id": "id1000023872531004|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.37,
+   "p_win": 0.7093,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ou:4.5:under": {
+   "id": "id1000023872531004|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.13,
+   "p_win": 0.8652,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ts:1:yes": {
+   "id": "id1000023872531004|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Estoril Praia to score",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.2,
+   "p_win": 0.8089,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531004|ts:2:yes": {
+   "id": "id1000023872531004|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Maritimo Madeira to score",
+   "match": "Estoril Praia v Maritimo Madeira",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.42,
+   "p_win": 0.7026,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Estoril",
+    "away": "Maritimo"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|1x2:2": {
+   "id": "id1000003772041236|1x2:2",
+   "key": "1x2:2",
+   "label": "PSV Eindhoven to win",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.42,
+   "p_win": 0.7082,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|ah:2:+1.5": {
+   "id": "id1000003772041236|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "PSV Eindhoven +1.5 (handicap)",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.05,
+   "p_win": 0.9329,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|dnb:2": {
+   "id": "id1000003772041236|dnb:2",
+   "key": "dnb:2",
+   "label": "PSV Eindhoven (draw no bet)",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.19,
+   "p_win": 0.7145,
+   "p_void": 0.1508,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|ou:1.5:over": {
+   "id": "id1000003772041236|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.1,
+   "p_win": 0.9643,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|ou:4.5:under": {
+   "id": "id1000003772041236|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.55,
+   "p_win": 0.6441,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|ts:1:yes": {
+   "id": "id1000003772041236|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "SC Cambuur to score",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.36,
+   "p_win": 0.7173,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003772041236|ts:2:yes": {
+   "id": "id1000003772041236|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "PSV Eindhoven to score",
+   "match": "SC Cambuur v PSV Eindhoven",
+   "league": "Eredivisie",
+   "kickoff": "2026-11-08T15:45:00Z",
+   "price": 1.04,
+   "p_win": 0.9491,
+   "p_void": 0.0,
+   "fd": {
+    "div": "N1",
+    "home": "Cambuur",
+    "away": "PSV Eindhoven"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ah:1:+1.5": {
+   "id": "id1000005272723320|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Samsunspor +1.5 (handicap)",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.12,
+   "p_win": 0.8731,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ah:2:+1.5": {
+   "id": "id1000005272723320|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Konyaspor +1.5 (handicap)",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.24,
+   "p_win": 0.8022,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ou:0.5:over": {
+   "id": "id1000005272723320|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.07,
+   "p_win": 0.9105,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ou:1.5:over": {
+   "id": "id1000005272723320|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.33,
+   "p_win": 0.7577,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ou:3.5:under": {
+   "id": "id1000005272723320|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.37,
+   "p_win": 0.7248,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ou:4.5:under": {
+   "id": "id1000005272723320|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.14,
+   "p_win": 0.8754,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ts:1:yes": {
+   "id": "id1000005272723320|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Samsunspor to score",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.24,
+   "p_win": 0.7932,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005272723320|ts:2:yes": {
+   "id": "id1000005272723320|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Konyaspor to score",
+   "match": "Samsunspor v Konyaspor",
+   "league": "Super Lig",
+   "kickoff": "2026-11-07T13:00:00Z",
+   "price": 1.34,
+   "p_win": 0.7046,
+   "p_void": 0.0,
+   "fd": {
+    "div": "T1",
+    "home": "Samsunspor",
+    "away": "Konyaspor"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ah:1:+1.5": {
+   "id": "id1000018572936126|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Volos NPS +1.5 (handicap)",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.24,
+   "p_win": 0.8429,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ah:2:+1.5": {
+   "id": "id1000018572936126|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "AE Kifisia FC +1.5 (handicap)",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.12,
+   "p_win": 0.839,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ou:0.5:over": {
+   "id": "id1000018572936126|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.07,
+   "p_win": 0.8852,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ou:1.5:over": {
+   "id": "id1000018572936126|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.32,
+   "p_win": 0.77,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ou:3.5:under": {
+   "id": "id1000018572936126|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.38,
+   "p_win": 0.7141,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ou:4.5:under": {
+   "id": "id1000018572936126|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.14,
+   "p_win": 0.8666,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ts:1:yes": {
+   "id": "id1000018572936126|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Volos NPS to score",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.33,
+   "p_win": 0.7213,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000018572936126|ts:2:yes": {
+   "id": "id1000018572936126|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "AE Kifisia FC to score",
+   "match": "Volos NPS v AE Kifisia FC",
+   "league": "Super League",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.22,
+   "p_win": 0.7936,
+   "p_void": 0.0,
+   "fd": {
+    "div": "G1",
+    "home": "Volos NFC",
+    "away": "Kifisia"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ah:1:+1.5": {
+   "id": "id1000005472477570|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Girona FC +1.5 (handicap)",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.08,
+   "p_win": 0.9122,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ah:2:+1.5": {
+   "id": "id1000005472477570|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "UD Almeria +1.5 (handicap)",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.26,
+   "p_win": 0.7744,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ou:0.5:over": {
+   "id": "id1000005472477570|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.05,
+   "p_win": 0.9529,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ou:1.5:over": {
+   "id": "id1000005472477570|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.27,
+   "p_win": 0.7828,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ou:3.5:under": {
+   "id": "id1000005472477570|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.42,
+   "p_win": 0.6999,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ou:4.5:under": {
+   "id": "id1000005472477570|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.15,
+   "p_win": 0.8564,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ts:1:yes": {
+   "id": "id1000005472477570|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Girona FC to score",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.18,
+   "p_win": 0.8189,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005472477570|ts:2:yes": {
+   "id": "id1000005472477570|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "UD Almeria to score",
+   "match": "Girona FC v UD Almeria",
+   "league": "LaLiga 2",
+   "kickoff": "2026-11-08T15:15:00Z",
+   "price": 1.33,
+   "p_win": 0.7126,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SP2",
+    "home": "Girona",
+    "away": "Almeria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ah:1:+1.5": {
+   "id": "id1000005373093056|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Carrarese Calcio +1.5 (handicap)",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.14,
+   "p_win": 0.9238,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ah:2:+1.5": {
+   "id": "id1000005373093056|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Sampdoria Genoa +1.5 (handicap)",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.19,
+   "p_win": 0.7751,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ou:0.5:over": {
+   "id": "id1000005373093056|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.25,
+   "p_win": 0.8671,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ou:3.5:under": {
+   "id": "id1000005373093056|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.35,
+   "p_win": 0.7326,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ou:4.5:under": {
+   "id": "id1000005373093056|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.13,
+   "p_win": 0.8802,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ts:1:yes": {
+   "id": "id1000005373093056|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Carrarese Calcio to score",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.26,
+   "p_win": 0.7673,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000005373093056|ts:2:yes": {
+   "id": "id1000005373093056|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Sampdoria Genoa to score",
+   "match": "Carrarese Calcio v Sampdoria Genoa",
+   "league": "Serie B",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.31,
+   "p_win": 0.7301,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I2",
+    "home": "Carrarese",
+    "away": "Sampdoria"
    },
    "result": null,
    "score": null

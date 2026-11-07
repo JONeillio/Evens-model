@@ -1,38 +1,41 @@
 {
- "started_at": "2026-11-07T00:11:47Z",
- "mode": "manual",
+ "started_at": "2026-11-07T08:02:55Z",
+ "mode": "scheduled",
  "errors": [],
  "notes": [],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 21,
-  "remaining": 229
+  "used": 33,
+  "remaining": 217
  },
  "plan": {
-  "allowance": 12,
-  "remaining": 229,
-  "share": 12.3,
-  "weekday_weight": 4,
+  "allowance": 27,
+  "remaining": 217,
+  "share": 27.1,
+  "weekday_weight": 5,
   "fetch": true,
   "leagues_with_games": 20,
   "chunks_needed": 4,
   "chunks_fetched": 4,
-  "matches_priced": 7,
-  "planned_calls": 12
+  "matches_priced": 22,
+  "planned_calls": 27
  },
- "builder_seconds": 0.01,
- "fixtures": 7,
- "legs": 53,
- "slips": 5,
+ "builder_seconds": 0.19,
+ "fixtures": 22,
+ "legs": 165,
+ "slips": 48,
  "books": [
   "bet365",
   "paddypower",
+  "betfred",
   "ladbrokes",
   "coral",
+  "888sport",
   "unibet",
   "betmgm.co.uk",
   "livescorebet",
+  "midnite",
   "virginbet",
   "betuk",
   "grosvenor",
@@ -40,14 +43,14 @@
   "betfair-ex",
   "matchbook"
  ],
- "model_fixtures": 3,
+ "model_fixtures": 12,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.57,
+   "seconds": 0.36,
    "billable": false,
    "note": ""
   },
@@ -55,11 +58,11 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-07T00:11:47Z",
-    "to": "2026-11-08T23:11:47Z"
+    "from": "2026-11-07T08:02:55Z",
+    "to": "2026-11-09T07:02:55Z"
    },
    "status": 200,
-   "seconds": 0.57,
+   "seconds": 0.75,
    "billable": true,
    "note": ""
   },
@@ -71,7 +74,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.7,
+   "seconds": 0.67,
    "billable": true,
    "note": ""
   },
@@ -95,7 +98,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.56,
+   "seconds": 0.53,
    "billable": true,
    "note": ""
   },
@@ -107,7 +110,17 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.43,
+   "seconds": 0.5,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001872340012"
+   },
+   "status": 200,
+   "seconds": 1.18,
    "billable": true,
    "note": ""
   },
@@ -117,7 +130,7 @@
     "fixtureId": "id1000001872340030"
    },
    "status": 200,
-   "seconds": 1.07,
+   "seconds": 1.04,
    "billable": true,
    "note": ""
   },
@@ -127,7 +140,7 @@
     "fixtureId": "id1000001872340016"
    },
    "status": 200,
-   "seconds": 1.09,
+   "seconds": 1.04,
    "billable": true,
    "note": ""
   },
@@ -137,7 +150,7 @@
     "fixtureId": "id1000001872340028"
    },
    "status": 200,
-   "seconds": 1.33,
+   "seconds": 1.27,
    "billable": true,
    "note": ""
   },
@@ -147,7 +160,7 @@
     "fixtureId": "id1000001975802940"
    },
    "status": 200,
-   "seconds": 0.95,
+   "seconds": 0.89,
    "billable": true,
    "note": ""
   },
@@ -157,7 +170,27 @@
     "fixtureId": "id1000001975802950"
    },
    "status": 200,
+   "seconds": 0.88,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975802960"
+   },
+   "status": 200,
    "seconds": 0.84,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975802968"
+   },
+   "status": 200,
+   "seconds": 0.9,
    "billable": true,
    "note": ""
   },
@@ -167,7 +200,7 @@
     "fixtureId": "id1000001975837136"
    },
    "status": 200,
-   "seconds": 0.79,
+   "seconds": 0.95,
    "billable": true,
    "note": ""
   },
@@ -177,10 +210,130 @@
     "fixtureId": "id1000001975837138"
    },
    "status": 200,
+   "seconds": 0.92,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975837142"
+   },
+   "status": 200,
+   "seconds": 0.77,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975837150"
+   },
+   "status": 200,
+   "seconds": 0.85,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000003672201712"
+   },
+   "status": 200,
+   "seconds": 1.25,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000005272723320"
+   },
+   "status": 200,
+   "seconds": 1.04,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000018572936126"
+   },
+   "status": 200,
+   "seconds": 0.78,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000020672202724"
+   },
+   "status": 200,
+   "seconds": 1.18,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000003772041236"
+   },
+   "status": 200,
+   "seconds": 1.0,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000005472477570"
+   },
+   "status": 200,
    "seconds": 0.94,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000005373093056"
+   },
+   "status": 200,
+   "seconds": 1.11,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001772221390"
+   },
+   "status": 200,
+   "seconds": 1.14,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000023872531004"
+   },
+   "status": 200,
+   "seconds": 0.9,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000018572936122"
+   },
+   "status": 200,
+   "seconds": 1.0,
    "billable": true,
    "note": ""
   }
  ],
- "finished_at": "2026-11-07T00:12:15Z"
+ "finished_at": "2026-11-07T08:04:14Z"
 }
