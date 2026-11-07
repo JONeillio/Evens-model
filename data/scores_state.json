@@ -1177,10 +1177,10 @@
   "id1000023872531008": {
    "s": "PST",
    "min": null,
-   "h": 0,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T18:59:53Z"
+   "h": null,
+   "a": null,
+   "src": "af",
+   "at": "2026-11-07T19:04:56Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1192,39 +1192,39 @@
   },
   "id1000001975837154": {
    "s": "LIVE",
-   "min": 68,
+   "min": 79,
    "h": 2,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T18:54:50Z"
+   "at": "2026-11-07T19:04:56Z"
   },
   "id1000001772221388": {
    "s": "LIVE",
-   "min": 64,
-   "h": 2,
+   "min": 75,
+   "h": 3,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T18:54:50Z"
+   "at": "2026-11-07T19:04:56Z"
   }
  },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 39,
+  "api_football": 40,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T18:54:50Z"
+   "at": "2026-11-07T19:04:56Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T18:59:53Z"
+   "at": "2026-11-07T19:04:56Z"
   }
  },
- "last_called_at": "2026-11-07T18:59:53Z",
+ "last_called_at": "2026-11-07T19:04:56Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1446,11 +1446,19 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T18:59:53Z",
+  "at": "2026-11-07T19:04:56Z",
   "want": 3,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1448
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1461,15 +1469,13 @@
     "results": 36
    }
   ],
-  "changed": 1,
+  "changed": 3,
   "coverage": {
    "checked": 3,
-   "api_football": 0,
+   "api_football": 3,
    "football_data": 2,
-   "unmatched": [
-    "Altrincham FC v Notts County (FA Cup)"
-   ]
+   "unmatched": []
   }
  },
- "af_last_at": "2026-11-07T18:54:50Z"
+ "af_last_at": "2026-11-07T19:04:56Z"
 }
