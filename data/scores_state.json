@@ -832,11 +832,11 @@
   },
   "id1000001975802968": {
    "s": "LIVE",
-   "min": 84,
+   "min": 90,
    "h": 0,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T17:03:01Z"
+   "at": "2026-11-07T17:13:07Z"
   },
   "id1000001975837136": {
    "s": "FT",
@@ -887,12 +887,12 @@
    "at": "2026-11-07T17:03:01Z"
   },
   "id1000001872340008": {
-   "s": "LIVE",
+   "s": "FT",
    "min": 90,
    "h": 2,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T17:03:01Z"
+   "at": "2026-11-07T17:13:07Z"
   },
   "id1000001872340010": {
    "s": "FT",
@@ -903,12 +903,12 @@
    "at": "2026-11-07T17:03:01Z"
   },
   "id1000001872340014": {
-   "s": "LIVE",
+   "s": "FT",
    "min": 90,
    "h": 5,
    "a": 4,
    "src": "af",
-   "at": "2026-11-07T17:03:01Z"
+   "at": "2026-11-07T17:13:07Z"
   },
   "id1000001872340022": {
    "s": "FT",
@@ -1160,11 +1160,11 @@
   },
   "id1000005472477564": {
    "s": "LIVE",
-   "min": 81,
-   "h": 0,
+   "min": 90,
+   "h": 1,
    "a": 2,
    "src": "af",
-   "at": "2026-11-07T17:03:01Z"
+   "at": "2026-11-07T17:13:07Z"
   },
   "id1000000872478692": {
    "s": "LIVE",
@@ -1177,30 +1177,30 @@
   "id1000023872531008": {
    "s": "PST",
    "min": null,
-   "h": 0,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T17:08:05Z"
+   "h": null,
+   "a": null,
+   "src": "af",
+   "at": "2026-11-07T17:13:07Z"
   }
  },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 28,
+  "api_football": 29,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T17:03:01Z"
+   "at": "2026-11-07T17:13:07Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T17:08:05Z"
+   "at": "2026-11-07T17:13:07Z"
   }
  },
- "last_called_at": "2026-11-07T17:08:05Z",
+ "last_called_at": "2026-11-07T17:13:07Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1422,11 +1422,19 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T17:08:05Z",
+  "at": "2026-11-07T17:13:07Z",
   "want": 7,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1448
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1437,17 +1445,13 @@
     "results": 36
    }
   ],
-  "changed": 1,
+  "changed": 5,
   "coverage": {
    "checked": 7,
-   "api_football": 0,
+   "api_football": 6,
    "football_data": 4,
-   "unmatched": [
-    "Guiseley FC v Sutton United (FA Cup)",
-    "Barnet FC v Tranmere Rovers FC (FA Cup)",
-    "Cadiz CF v Real Oviedo (LaLiga 2)"
-   ]
+   "unmatched": []
   }
  },
- "af_last_at": "2026-11-07T17:03:01Z"
+ "af_last_at": "2026-11-07T17:13:07Z"
 }
