@@ -701,25 +701,58 @@
    "kickoff": "2026-11-10T01:15:00Z"
   }
  },
- "scores": {},
+ "scores": {
+  "id1000001872340012": {
+   "s": "LIVE",
+   "min": 21,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T12:51:26Z"
+  },
+  "id1000001872340030": {
+   "s": "LIVE",
+   "min": 21,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T12:51:26Z"
+  },
+  "id1000001872340020": {
+   "s": "LIVE",
+   "min": 22,
+   "h": 1,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T12:51:26Z"
+  },
+  "id1000001772221384": {
+   "s": "LIVE",
+   "min": 21,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T12:51:26Z"
+  }
+ },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 2,
+  "api_football": 3,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T08:19:44Z"
+   "at": "2026-11-07T12:51:26Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T08:19:44Z"
+   "at": "2026-11-07T12:51:26Z"
   }
  },
- "last_called_at": "2026-11-07T08:19:44Z",
+ "last_called_at": "2026-11-07T12:51:26Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -779,27 +812,32 @@
   },
   "id1000018572936126": {
    "af": "1593358"
+  },
+  "id1000001872340020": {
+   "af": "1563257",
+   "fd": "561938"
+  },
+  "id1000001772221384": {
+   "af": "1557463",
+   "fd": "560632"
+  },
+  "id1000018272037436": {
+   "af": "1552523"
   }
  },
  "last_log": {
-  "at": "2026-11-07T08:19:44Z",
-  "want": 0,
-  "live": false,
+  "at": "2026-11-07T12:51:26Z",
+  "want": 6,
+  "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "status",
-    "status": 200,
-    "error": ""
-   },
    {
     "feed": "api_football",
     "endpoint": "fixtures",
     "date": "2026-11-07",
     "status": 200,
     "error": "",
-    "results": 1449
+    "results": 1448
    },
    {
     "feed": "football_data",
@@ -811,10 +849,10 @@
     "results": 36
    }
   ],
-  "changed": 0,
+  "changed": 4,
   "coverage": {
-   "checked": 16,
-   "api_football": 16,
+   "checked": 6,
+   "api_football": 6,
    "football_data": 4,
    "unmatched": []
   }
