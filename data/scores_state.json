@@ -713,10 +713,10 @@
   "id1000001872340030": {
    "s": "LIVE",
    "min": 27,
-   "h": 0,
+   "h": 1,
    "a": 1,
-   "src": "af",
-   "at": "2026-11-07T12:57:08Z"
+   "src": "fd",
+   "at": "2026-11-07T13:02:12Z"
   },
   "id1000001872340020": {
    "s": "LIVE",
@@ -749,10 +749,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T12:57:08Z"
+   "at": "2026-11-07T13:02:12Z"
   }
  },
- "last_called_at": "2026-11-07T12:57:08Z",
+ "last_called_at": "2026-11-07T13:02:12Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -974,25 +974,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T12:57:08Z",
+  "at": "2026-11-07T13:02:12Z",
   "want": 6,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "status",
-    "status": 200,
-    "error": ""
-   },
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1003,13 +989,14 @@
     "results": 36
    }
   ],
-  "changed": 4,
+  "changed": 1,
   "coverage": {
-   "checked": 65,
-   "api_football": 63,
-   "football_data": 19,
+   "checked": 6,
+   "api_football": 0,
+   "football_data": 4,
    "unmatched": [
-    "Indiana Pacers v Denver Nuggets (NBA)"
+    "Samsunspor v Konyaspor (Super Lig)",
+    "Clermont Foot 63 v Rodez Aveyron Football (Ligue 2)"
    ]
   }
  },
