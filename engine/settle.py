@@ -86,18 +86,27 @@ def track_legs(history: dict, legs, fixtures_by_id, now: datetime):
     pending = history.setdefault("legs_pending", {})
     for leg in legs:
         fx = fixtures_by_id[leg["fixture_id"]]
-        if _ts(fx["kickoff"]) <= now or not fx.get("fd"):
+        if _ts(fx["kickoff"]) <= now:
             continue
         pending[leg["id"]] = leg_snapshot(leg, fx)
 
 
-def settle(history: dict, fd, now: datetime, give_up_days: int = 10):
-    """Settle pending slips and legs whose matches have results published."""
+def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: dict | None = None):
+    """Settle pending slips and legs whose matches have results published.
+
+    `results` maps fixture id -> (home goals, away goals) after 90 minutes, from
+    the live-scores feeds (engine/scores.py). It settles the same evening and
+    covers cups too. football-data.co.uk (`fd`) is the fallback.
+    """
     cache = {}
+    results = results or {}
 
     def result_for(leg):
+        fid = leg["id"].split("|")[0]
+        if fid in results:
+            return tuple(results[fid])
         fd_ref = leg.get("fd")
-        if not fd_ref:
+        if not fd_ref or fd is None:
             return None
         k = (fd_ref["div"], fd_ref["home"], fd_ref["away"], leg["kickoff"][:10])
         if k not in cache:
@@ -150,6 +159,16 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10):
             del pending[lid]
         elif _ts(leg["kickoff"]) < now - timedelta(days=give_up_days):
             del pending[lid]
+
+
+def public_history(history: dict, generated_at: str) -> dict:
+    """What the app reads (docs/data/history.json)."""
+    return {
+        "generated_at": generated_at,
+        "summary": summary(history),
+        "calibration": history.get("calibration", {}),
+        "slips": list(reversed(history["slips"][-150:])),
+    }
 
 
 def summary(history: dict) -> dict:

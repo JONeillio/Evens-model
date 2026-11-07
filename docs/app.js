@@ -1,6 +1,7 @@
 /* Evens Bandit: a pub fruit machine for near-evens football accumulators.
    Data: data/latest.json (fixtures, legs, published slips, and leg pools per
-   kick-off window and bookie) + data/history.json (the model's record).
+   kick-off window and bookie) + data/history.json (the model's record)
+   + data/live.json (scores during and after matches, every ~10 minutes).
    Your slip, bets and settings live on this phone only (localStorage). */
 "use strict";
 
@@ -44,7 +45,7 @@ const saveBets = () => store.set("bets", bets);
 const saveSlip = () => store.set("slip", slip);
 
 // ---------- data ----------
-let DATA = null, HIST = null, FIX = {}, LEGS = {}, BOOKS = {}, SLIP_BOOKS = [], WINDOWS = [];
+let DATA = null, HIST = null, LIVE = null, FIX = {}, LEGS = {}, BOOKS = {}, SLIP_BOOKS = [], WINDOWS = [];
 const EXCHANGES = ["betfair-ex", "matchbook"];
 const myBooks = () => { const m = (settings.myBooks || SLIP_BOOKS).filter((b) => SLIP_BOOKS.includes(b)); return m.length ? m : SLIP_BOOKS; };
 const bookName = (b) => BOOKS[b] || b;
@@ -57,7 +58,8 @@ async function loadJSON(url) {
 
 async function load() {
   try {
-    [DATA, HIST] = await Promise.all([loadJSON("data/latest.json"), loadJSON("data/history.json").catch(() => null)]);
+    [DATA, HIST, LIVE] = await Promise.all([loadJSON("data/latest.json"), loadJSON("data/history.json").catch(() => null),
+      loadJSON("data/live.json").catch(() => null)]);
   } catch {
     $("#machineWhere").textContent = "Couldn't load the odds. Check your signal and reopen.";
     return;
@@ -69,8 +71,116 @@ async function load() {
   WINDOWS = (DATA.windows || []).slice().sort((a, b) => a.start_utc.localeCompare(b.start_utc));
   $("#oddsStamp").textContent = `Odds checked ${fmtTime(DATA.odds_taken_at)}`;
   autoSettleBets();
+  liveSettleBets();
   ensureSlip();
   route();
+}
+
+// ---------- live scores ----------
+// The scores job updates data/live.json every ~10 minutes while matches are on.
+// While the app is open we re-check it every 90 seconds (a tiny static file).
+async function refreshLive() {
+  if (document.hidden || !DATA) return;
+  const fresh = await loadJSON("data/live.json").catch(() => null);
+  if (!fresh || fresh.updated_at === LIVE?.updated_at) return;
+  LIVE = fresh;
+  liveSettleBets();
+  const page = location.hash.slice(1) || "home";
+  if (page === "winnings") renderBets();
+  if (page === "home" || page === "") renderLiveStrip();
+}
+setInterval(refreshLive, 90 * 1000);
+document.addEventListener("visibilitychange", refreshLive);
+
+// One leg against the current score. Mirrors engine/catalog.py outcome().
+function settleKey(key, hg, ag) {
+  const p = key.split(":"), g = { 1: hg, 2: ag }, o = { 1: ag, 2: hg };
+  const res = hg > ag ? "1" : ag > hg ? "2" : "X";
+  switch (p[0]) {
+    case "1x2": return res === p[1] ? "won" : "lost";
+    case "dc": return p[1].includes(res) ? "won" : "lost";
+    case "dnb": return hg === ag ? "void" : g[p[1]] > o[p[1]] ? "won" : "lost";
+    case "ou": { const over = hg + ag > +p[1]; return (p[2] === "over" ? over : !over) ? "won" : "lost"; }
+    case "tt": return g[p[1]] > +p[2] ? "won" : "lost";
+    case "ts": return g[p[1]] > 0 ? "won" : "lost";
+    case "btts": { const both = hg > 0 && ag > 0; return (p[1] === "yes" ? both : !both) ? "won" : "lost"; }
+    case "ah": return g[p[1]] - o[p[1]] + +p[2] > 0 ? "won" : "lost";
+    default: return null;
+  }
+}
+// st: won / lost / void (decided), ahead / behind / level (in play), wait, off (postponed etc.)
+function legNow(legId) {
+  const [fid, ...rest] = String(legId).split("|");
+  const key = rest.join("|");
+  const sc = LIVE?.fixtures?.[fid];
+  if (!sc || sc.s === "NS") return { st: "wait", sc };
+  if (["PST", "ABD", "CANC"].includes(sc.s)) return { st: "off", sc };
+  if (sc.h == null || sc.a == null) return { st: "wait", sc };
+  const res = settleKey(key, sc.h, sc.a);
+  if (sc.s === "FT") return { st: res, sc };
+  // In play, some legs are already decided whatever happens next.
+  const p = key.split(":"), tot = sc.h + sc.a, g = { 1: sc.h, 2: sc.a };
+  if (p[0] === "ou" && tot > +p[1]) return { st: p[2] === "over" ? "won" : "lost", sc };
+  if ((p[0] === "tt" && g[p[1]] > +p[2]) || (p[0] === "ts" && g[p[1]] > 0)) return { st: "won", sc };
+  if (p[0] === "btts" && sc.h > 0 && sc.a > 0) return { st: p[1] === "yes" ? "won" : "lost", sc };
+  return { st: res === "won" ? "ahead" : res === "void" ? "level" : "behind", sc };
+}
+const OFF_TEXT = { PST: "Postponed", ABD: "Abandoned", CANC: "Called off" };
+function legChip(legId, kickoff) {
+  const { st, sc } = legNow(legId);
+  const score = sc && sc.h != null ? `${sc.h}–${sc.a}` : "";
+  const clock = !sc ? "" : sc.s === "HT" ? "HT" : sc.s === "FT" ? "FT" : sc.min ? `${sc.min}′` : "";
+  const txt = {
+    won: `✓ Landed ${score}`, lost: `✗ Gone ${score}`, void: `Void ${score}`,
+    ahead: `▲ On track ${score} ${clock}`, behind: `▼ Behind ${score} ${clock}`, level: `● Level ${score} ${clock}`,
+    off: OFF_TEXT[sc?.s] || "Off", wait: kickoff ? `Kicks off ${fmtTime(kickoff)}` : "Not started",
+  }[st] || "";
+  return `<span class="ls ${st}">${esc(txt.trim())}</span>`;
+}
+function betProgress(b) {
+  const states = (b.legIds || []).map((id) => legNow(id).st);
+  const n = (k) => states.filter((s) => k.includes(s)).length;
+  return { states, landed: n(["won"]), gone: n(["lost"]), live: n(["ahead", "behind", "level"]), waiting: n(["wait", "off"]), voids: n(["void"]) };
+}
+
+// Settle placed bets from the scores, unless you've set the result yourself.
+function liveSettleBets() {
+  if (!LIVE) return;
+  let changed = false;
+  bets.forEach((b) => {
+    if (b.status !== "pending" || b.manual || !b.legIds?.length) return;
+    const pr = betProgress(b);
+    let status = null;
+    if (pr.gone) status = "lost";
+    else if (pr.landed + pr.voids === pr.states.length) status = pr.landed ? "won" : "void";
+    if (!status) return;
+    // Void legs come out of the odds you got (assumes the bookie's leg price was about ours).
+    let o = b.odds;
+    b.legIds.forEach((id, i) => { if (pr.states[i] === "void" && b.legs[i]?.price) o /= b.legs[i].price; });
+    b.status = status;
+    b.returns = status === "won" ? b.stake * Math.max(1, o) : status === "void" ? b.stake : 0;
+    b.settledAt = new Date().toISOString(); b.settledBy = "scores"; changed = true;
+  });
+  if (changed) saveBets();
+}
+
+// On the machine: how your placed bets are doing right now.
+function renderLiveStrip() {
+  const el = $("#liveStrip");
+  if (!el) return;
+  const today = new Date().toISOString().slice(0, 10);
+  const active = bets.filter((b) => b.status === "pending" && b.legIds?.length && (b.legs || []).some((l) => (l.kickoff || "").slice(0, 10) <= today));
+  if (!active.length || !LIVE) { el.hidden = true; return; }
+  const parts = active.slice(0, 2).map((b) => {
+    const pr = betProgress(b);
+    const bits = [`✓ ${pr.landed} landed`];
+    if (pr.gone) bits.push(`✗ ${pr.gone} gone`);
+    if (pr.live) bits.push(`${pr.live} in play`);
+    if (pr.waiting) bits.push(`${pr.waiting} to go`);
+    return `<span><b>${esc(b.bookName)}</b> ${esc(bits.join(" · "))}</span>`;
+  });
+  el.innerHTML = `<span class="ls-title">Your bets live</span>${parts.join("")}<span class="ls-more">Scores ›</span>`;
+  el.hidden = false;
 }
 
 // ---------- pools ----------
@@ -258,6 +368,7 @@ function renderMachine() {
     $("#mOdds").textContent = odds(nums.odds);
     $("#mStats").innerHTML = `Real chance ${pct(nums.chance)} · edge ${edgeTag(nums.ev)}<br>£${slip.stake} pays £${nums.ret.toFixed(2)}`;
   }
+  renderLiveStrip();
   const st = betStats();
   $("#doorWins").textContent = st.settled.length ? `My bets · ${signedMoney(st.pl)}` : "My bets";
   const led = $("#led");
@@ -577,6 +688,7 @@ function renderBets() {
     <div class="legend"><span><i style="background:rgba(255,210,63,.12)"></i>8 in 10 runs</span><span><i style="background:rgba(255,210,63,.24)"></i>Middle half</span><span><i style="background:var(--jackpot);height:3px"></i>Typical</span></div>
     <p class="hint num">At £10 a slip you'd be ahead after 50 in ${pct(sim.pAhead)} of runs. Typical result ${signedMoney(sim.median)}; a bad run (1 in 10) ${signedMoney(sim.p10)}.</p>
     <h3 class="sec">Waiting on results</h3>
+    ${pending.length && LIVE ? `<p class="hint">${esc(liveNote())}</p>` : ""}
     ${pending.length ? pending.map(betCard).join("") : `<p class="hint">Copy a slip in Build a bet, then tap "Placed it" to log it here.</p>`}
     ${st.settled.length ? `<h3 class="sec">Settled</h3>${bets.filter((b) => b.status !== "pending").slice(0, 30).map(betCard).join("")}` : ""}
     <h3 class="sec">Backup</h3>
@@ -589,7 +701,7 @@ function renderBets() {
     card.querySelectorAll("[data-set]").forEach((btn) => btn.addEventListener("click", () => {
       const s = btn.dataset.set;
       if (s === "delete") bets = bets.filter((x) => x !== b);
-      else { b.status = s; b.returns = s === "won" ? b.stake * b.odds : s === "void" ? b.stake : 0; b.settledAt = new Date().toISOString(); }
+      else { b.status = s; b.returns = s === "won" ? b.stake * b.odds : s === "void" ? b.stake : 0; b.settledAt = new Date().toISOString(); b.manual = true; b.settledBy = "you"; }
       saveBets(); renderBets();
     }));
   });
@@ -607,6 +719,13 @@ function renderBets() {
   });
 }
 
+function liveNote() {
+  const f = LIVE.feeds || {};
+  const quick = f.api_football?.ok;
+  const when = LIVE.updated_at ? fmtTime(LIVE.updated_at, false) : "";
+  return `Scores checked ${when}${quick === false ? " (a few minutes behind for now)" : ""}. They update about every 10 minutes while matches are on.`;
+}
+
 function betCard(b) {
   const settled = b.status !== "pending";
   const profit = b.status === "void" ? 0 : (b.returns ?? 0) - b.stake;
@@ -614,7 +733,8 @@ function betCard(b) {
   return `<div class="card bet" data-bet="${esc(b.id)}">
     <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span></div><span class="status ${b.status}">${esc(tag)}</span></div>
     <div class="sub num">£${b.stake.toFixed(2)} at ${odds(b.odds)}, real chance ${pct(b.hit_p)}</div>
-    ${b.legs.map((l) => `<div class="sub">${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</div>`).join("")}
+    ${b.legs.map((l, i) => `<div class="sub bet-leg"><span>${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</span>${b.legIds?.[i] && LIVE ? legChip(b.legIds[i], l.kickoff) : ""}</div>`).join("")}
+    ${settled && b.settledBy === "scores" ? `<div class="sub">Settled from the scores. Tap Undo if your bookie disagrees.</div>` : ""}
     <div class="card-actions" style="padding:8px 0 0">${settled ? `<button class="cbtn plain" data-set="pending">Undo result</button>` :
       `<button class="cbtn green" data-set="won">Won</button><button class="cbtn red" data-set="lost">Lost</button><button class="cbtn plain" data-set="void">Void</button>`}
       <button class="cbtn plain" data-set="delete">Delete</button></div>

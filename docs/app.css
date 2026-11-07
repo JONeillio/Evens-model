@@ -197,6 +197,14 @@ h3.sec { font-family: var(--font-display); font-weight: 400; color: var(--jackpo
 .bet { padding: 10px 12px; }
 .bet-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .bet .sub { font-size: 14px; color: #7A3A2A; }
+.bet-leg { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+/* Live leg status: always a symbol and words, never colour alone */
+.ls { flex: none; font-size: 13px; font-weight: 700; padding: 1px 6px; border-radius: 5px; white-space: nowrap; font-variant-numeric: tabular-nums; background: var(--reel-dim); color: var(--ink); }
+.ls.won, .ls.ahead { background: #D6F2D0; color: var(--good-on-reel); }
+.ls.lost, .ls.behind { background: #F3C9C9; color: var(--bad-on-reel); }
+.live-strip { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; background: #0D0204; border: 2px solid var(--green); border-radius: 8px; padding: 8px 12px; color: var(--reel); text-decoration: none; font-size: 15px; font-variant-numeric: tabular-nums; min-height: var(--tap); }
+.live-strip .ls-title { font-family: var(--font-display); font-size: 13px; color: var(--green); width: 100%; }
+.live-strip .ls-more { margin-left: auto; color: var(--jackpot); font-weight: 700; }
 .card + .card, .bet.card { margin-top: 8px; }
 .chart { position: relative; background: var(--cabinet); border: 2px solid var(--gold); border-radius: 10px; padding: 10px 6px 4px; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }

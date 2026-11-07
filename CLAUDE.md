@@ -11,11 +11,13 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
   - `goals_model.py` Dixon-Coles on football-data.co.uk; `names.py` team-name matching
   - `builder.py` slips: one bookie, different matches, kick-off window, odds band
   - `settle.py` track record + calibration; `run.py` orchestrates
-- `docs/`: static PWA on GitHub Pages (`index.html`, `app.css` tokens in `:root`, `app.js`). Reads `docs/data/latest.json` and `history.json`.
+  - `scores.py` live scores + 90-minute results, run every 10 min (11:00–23:59 UTC) by `.github/workflows/scores.yml`. Calls nothing unless a tracked fixture is live or awaiting a result. Feeds: API-Football (secret `API_FOOTBALL_KEY`, 100/day, `/status` free; free plan may refuse the current season, in which case it stops for the day and notes it in `live.json` `feeds`) and football-data.org (secret `FOOTBALL_DATA_API`, 10/min, 12 big competitions, slightly delayed). NEVER write the API-Football `/status` account block (it has the email). Writes `docs/data/live.json` and `data/scores_state.json`, and re-settles `history.json`; the morning run also settles from `scores_state.json` before falling back to football-data.co.uk.
+- `docs/`: static PWA on GitHub Pages (`index.html`, `app.css` tokens in `:root`, `app.js`). Reads `docs/data/latest.json`, `history.json` and `live.json` (re-checked every 90s while open).
   - Look: **The Bandit** (pub fruit machine), chosen 7 Nov 2026. Spec: project doc `claude/evens-bandit-handoff.md`; designs on the canvas artifact (TheBandit.dc.html, BuildABet.dc.html). Fonts self-hosted in `docs/fonts/` (Bungee, Barlow Condensed, Share Tech Mono; OFL).
   - Pages are hash routes: `#home` (the machine), `#play` (today's slips), `#build` (Build a bet), `#winnings` (my bets), `#payout` (the model's record). No tab bar.
   - Shared slip state in localStorage `evens.slip`: `{window_id, bookie, stake, legs: [{fixture_id, leg_id, held}]}`, written by both the machine and Build a bet.
   - Reels spin on the phone from `latest.json` `windows[]` leg pools (built by `engine/pools.py`): evens zone 1.90–2.30, one leg per match, one bookie, weighted towards higher edge.
+  - Winnings shows each placed leg's live state (✓ landed / ✗ gone / ▲ on track / ▼ behind) and settles placed bets from the scores unless Joseph set the result himself (`bet.manual`). A "Your bets live" strip sits above the doors on the machine.
 - `config/settings.json`: leagues (with priority tiers), UK bookies, slip rules, budget weights.
 - `data/`: state, snapshot, run log, reference caches (participants, markets, tournaments).
 
@@ -26,6 +28,7 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
 
 ## Working rules
 - Test before pushing: `python -m pytest -q tests`; offline run with `tests/make_mock.py` + `engine.run --mock` (writes to /tmp).
+- Scores check by hand: `gh workflow run scores.yml -R JONeillio/evens-model` (calls both feeds once). Offline: `python -m engine.scores --mock DIR --root OUT --now ...` (see `tests/test_scores.py`).
 - Live runs cost requests. Trigger with `gh workflow run refresh.yml -R JONeillio/evens-model` only when needed; `-f task=probe` costs 1.
 - Rebuild the app's data offline with no API calls: copy `data/snapshot.json` to `OUT/data/` and run `python -m engine.run --reuse-snapshot --out OUT`.
 - Joseph asked to be consulted before switching odds provider.

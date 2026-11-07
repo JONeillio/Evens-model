@@ -1,0 +1,48 @@
+name: Live scores
+
+# Every 10 minutes from 11:00 to 23:59 UTC. Most runs find nothing kicking off and
+# finish in seconds without calling either feed or committing anything.
+# GitHub may start scheduled runs a few minutes late on busy days.
+# Run it by hand from the Actions tab: "Live scores" -> "Run workflow" (calls both feeds once).
+on:
+  schedule:
+    - cron: "*/10 11-23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writes
+  cancel-in-progress: false
+
+jobs:
+  scores:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Check scores
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_API: ${{ secrets.FOOTBALL_DATA_API }}
+        run: python -m engine.scores ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+
+      - name: Save results
+        run: |
+          git config user.name "evens-bot"
+          git config user.email "evens-bot@users.noreply.github.com"
+          git add data docs/data
+          git diff --cached --quiet && exit 0
+          git commit -m "Scores $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull --rebase
+          git push

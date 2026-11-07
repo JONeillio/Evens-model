@@ -29,6 +29,7 @@ from .goals_model import fit
 from .legs import build_legs, ALIAS_OF
 from .names import Participants, best_match
 from .parse import add_payload
+from .scores import final_results
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -299,18 +300,12 @@ class Run:
         settle.publish(hist, slips, legs_by_id, fixtures, self.now)
         settle.track_legs(hist, legs, fixtures, self.now)
         try:
-            settle.settle(hist, fd, self.now)
+            settle.settle(hist, fd, self.now, results=final_results(load_json(DATA / "scores_state.json", {})))
         except Exception as exc:
             self.log["errors"].append(f"settlement: {exc}")
         hist["slips"] = hist["slips"][-400:]
         save_json(DATA / "history_state.json", hist)
-        public_hist = {
-            "generated_at": iso(self.now),
-            "summary": settle.summary(hist),
-            "calibration": hist.get("calibration", {}),
-            "slips": list(reversed(hist["slips"][-150:])),
-        }
-        save_json(DOCS_DATA / "history.json", public_hist, compact=True)
+        save_json(DOCS_DATA / "history.json", settle.public_history(hist, iso(self.now)), compact=True)
 
         # Snapshot for reuse (only fixtures we care about)
         if fetched:
