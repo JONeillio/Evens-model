@@ -27,7 +27,7 @@ from .catalog import prob_from_matrix, LEG_DEFS
 from .footballdata import FootballData
 from .goals_model import fit
 from .legs import build_legs, ALIAS_OF
-from .names import Participants, best_match
+from .names import Participants, assign_short_codes, best_match
 from .parse import add_payload
 from .scores import final_results
 
@@ -278,6 +278,8 @@ class Run:
             away = fn[1] or parts.name(m.get("participant2Id")) or f"Team {m.get('participant2Id')}"
             fixtures[fid] = {"id": fid, "league_id": lg["id"], "league": lg["name"], "country": lg["country"],
                              "home": home, "away": away, "kickoff": iso(ko), "fd": None, "model": None}
+
+        assign_short_codes(fixtures)
 
         # Goals model and football-data name matching.
         fd = FootballData(DATA / "cache" / "fd", offline=bool(self.mock_dir))

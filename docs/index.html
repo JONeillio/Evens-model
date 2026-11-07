@@ -15,9 +15,10 @@
 <main id="app">
   <!-- The machine (home) -->
   <section class="page" id="home" aria-label="The machine">
-    <div class="cabinet">
+    <div class="cabinet" id="cabinet">
       <div class="bulbs" aria-hidden="true" data-bulbs="12"></div>
       <div class="marquee">
+        <button class="speaker" id="soundBtn" aria-label="Sound on. Tap to mute" aria-pressed="true"></button>
         <h1 class="blink">Evens jackpot</h1>
         <button class="subline" id="machineWhere" aria-label="Change kick-off time or bookie">Loading odds…</button>
       </div>
@@ -25,31 +26,39 @@
       <div class="reel-bay">
         <div class="reel-box">
           <div class="reels" id="reels"></div>
+          <div class="nudges" id="nudges"></div>
           <div class="holds" id="holds"></div>
+          <div class="evens-banner" id="evensBanner" aria-hidden="true">Evens!</div>
         </div>
-        <button class="lever-btn" id="lever" aria-label="Pull the lever for new slips">
-          <svg id="leverSvg" class="lever" width="24" height="120" viewBox="0 0 24 120" aria-hidden="true"><rect x="10" y="22" width="4" height="92" rx="2" fill="#C9C9C9"/><circle cx="12" cy="14" r="11" fill="#E2364A"/><circle cx="8" cy="10" r="3" fill="#FF9AA6"/></svg>
-        </button>
+        <div class="lever-col">
+          <div class="lever-track" id="lever" role="button" tabindex="0" aria-label="Pull the lever for new slips">
+            <span class="lever-slot" aria-hidden="true"></span>
+            <span class="lever-rod" aria-hidden="true"></span>
+            <span class="lever-knob" id="leverKnob" aria-hidden="true"></span>
+          </div>
+          <div class="nudge-led" aria-live="polite"><span>Nudges</span><b id="nudgeCount">3</b></div>
+        </div>
       </div>
       <div class="payline">
-        <span class="big num" id="mOdds">–</span>
+        <span class="big num" id="mOdds" title="Hold to switch fractions and decimals">–</span>
         <span class="right num" id="mStats"></span>
       </div>
       <p class="flash-msg" id="mMsg" role="status" aria-live="polite"></p>
+      <div class="ticket-slot">
+        <div class="ticket" id="ticket" aria-label="Your slip"></div>
+      </div>
       <div class="cab-actions">
         <button class="btn-pull" id="pullBtn">Pull for new slips</button>
         <a class="btn-edit" href="#build">Edit this<br>slip</a>
       </div>
     </div>
-
-    <a class="live-strip" id="liveStrip" href="#winnings" hidden></a>
     <nav class="doors" aria-label="Doors">
       <a class="door play" href="#play"><b>Play</b><span>Today's slips</span></a>
       <a class="door build" href="#build"><b>Build a bet</b><span>Edit any leg</span></a>
-      <a class="door wins" href="#winnings"><b>Winnings</b><span id="doorWins">My bets</span></a>
+      <a class="door wins" href="#winnings" id="winsDoor"><b>Winnings</b><span id="doorWins">My bets</span></a>
       <a class="door payout" href="#payout"><b>Payout table</b><span>The model's record</span></a>
     </nav>
-
+    <a class="live-strip" id="liveStrip" href="#winnings" hidden></a>
     <div class="led">
       <span>Credits used this month</span>
       <span class="led-digits" id="led">£000 / £100</span>
@@ -59,7 +68,6 @@
       <button class="link" id="settingsBtn">Settings</button>
     </div>
   </section>
-
   <!-- Play: today's slips -->
   <section class="page" id="play" hidden aria-labelledby="playTitle">
     <header class="page-head"><a class="back" href="#home">‹ Slots</a><h2 id="playTitle">Play</h2><span></span></header>
@@ -80,8 +88,9 @@
     <button class="add-leg" id="addLeg">+ Add a leg from another match</button>
     <div class="meter-panel">
       <div class="meter" aria-hidden="true"><div class="zone"></div><div class="needle" id="needle"></div></div>
-      <div class="meter-scale"><span>1.50</span><span>Evens zone 1.90–2.30</span><span>3.00</span></div>
+      <div class="meter-scale" id="meterScale"><span>1.50</span><span>Evens zone 1.90–2.30</span><span>3.00</span></div>
       <div class="meter-row"><span class="big num" id="bOdds">–</span><span id="bStatus"></span></div>
+      <div class="meter-row fairline num" id="bFair"></div>
       <div class="meter-row num"><span id="bChance"></span><span id="bEdge"></span></div>
       <div class="meter-row">
         <div class="stake">

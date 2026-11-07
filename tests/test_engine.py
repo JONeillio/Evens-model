@@ -221,3 +221,22 @@ def test_pools_shape_and_filters():
     leg = w[0]["bookies"][0]["fixtures"][0]["legs"][0]
     assert set(leg) >= {"leg_id", "label", "market_type", "price", "fair_p", "edge", "fair_source"}
     assert abs(leg["edge"] - (1.15 * 0.85 - 1)) < 1e-4
+
+
+# ---------- round 2: slip shape and reel codes ----------
+def test_band_fit_shape():
+    assert builder.band_fit(1.20) == 1.0 and builder.band_fit(1.14) == 1.0 and builder.band_fit(1.26) == 1.0
+    assert math.isclose(builder.band_fit(1.08), 0.3) and math.isclose(builder.band_fit(1.35), 0.3)
+    assert builder.band_fit(1.40) == 0.1 and builder.band_fit(1.04) == 0.1
+    assert 0.3 < builder.band_fit(1.30) < 1.0
+
+
+def test_short_codes_and_clashes():
+    from engine.names import assign_short_codes, short_code
+    assert short_code("Manchester United FC") == "MUN" and short_code("Samsunspor") == "SAM"
+    fx = {"a": {"home": "Bristol City", "away": "Hull City", "kickoff": "2026-11-07T15:00:00Z"},
+          "b": {"home": "Bristol Rovers", "away": "Barnet", "kickoff": "2026-11-07T15:00:00Z"},
+          "c": {"home": "Barnsley", "away": "Bradford City", "kickoff": "2026-11-07T15:00:00Z"}}
+    assign_short_codes(fx)
+    assert fx["a"]["home_short"] == "BRC" and fx["b"]["home_short"] == "BRR"
+    assert fx["b"]["away_short"] != fx["c"]["home_short"]  # Barnet v Barnsley both BAR -> told apart

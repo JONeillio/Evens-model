@@ -6,8 +6,10 @@ Rules:
   * all legs kick off within `kickoff_spread_hours` of each other
   * combined odds land inside [target_min, target_max]
 
-Slips are ranked by expected value: product of (price * p_win + p_void) minus 1.
-Legs are independent (different matches), so that product is exact.
+Slips are ranked by expected value: product of (price * p_win + p_void) minus 1,
+less a small penalty when legs sit outside the short-price sweet spot (Joseph
+wants 4-5 legs of about 1/7 to 1/4 each). Legs are independent (different
+matches), so that product is exact.
 """
 from __future__ import annotations
 
@@ -32,6 +34,18 @@ def window_label(start: datetime, end: datetime, tz: str) -> str:
     return f"{day} {a:%H:%M} – {b:%a %H:%M}"
 
 
+def band_fit(price: float, lo: float = 1.14, hi: float = 1.26) -> float:
+    """1.0 inside the sweet spot, tapering to 0.3 at lo-0.06 and hi+0.09, 0.1 beyond.
+    Mirrored in docs/app.js bandFit()."""
+    if lo <= price <= hi:
+        return 1.0
+    if price < lo:
+        edge = lo - 0.06
+        return 0.1 if price < edge else 0.3 + 0.7 * (price - edge) / (lo - edge)
+    edge = hi + 0.09
+    return 0.1 if price > edge else 0.3 + 0.7 * (edge - price) / (edge - hi)
+
+
 def slip_id(book: str, leg_ids) -> str:
     raw = book + "|" + "|".join(sorted(leg_ids))
     return hashlib.sha1(raw.encode()).hexdigest()[:12]
@@ -54,9 +68,11 @@ def _eligible(legs, book, cfg):
     return out
 
 
-def _pool(eligible, size, per_fixture=3):
-    """Best legs by edge, at most `per_fixture` per match, `size` in total."""
-    eligible = sorted(eligible, key=lambda t: (t[2], t[0]["p_win"]), reverse=True)
+def _pool(eligible, size, per_fixture=3, sweet=(1.14, 1.26), penalty=0.03):
+    """Best legs by edge (nudged towards the sweet spot), at most `per_fixture`
+    per match, `size` in total."""
+    eligible = sorted(eligible, key=lambda t: (t[2] - penalty * (1 - band_fit(t[1], *sweet)), t[0]["p_win"]),
+                      reverse=True)
     seen: dict[str, int] = {}
     pool = []
     for leg, price, e in eligible:
@@ -70,8 +86,9 @@ def _pool(eligible, size, per_fixture=3):
     return pool
 
 
-def search(pool, n_legs_options, target_min, target_max, keep=40):
-    """Depth-first search over leg combinations, pruned on combined odds."""
+def search(pool, n_legs_options, target_min, target_max, keep=40, sweet=(1.14, 1.26), penalty=0.03):
+    """Depth-first search over leg combinations, pruned on combined odds.
+    Ranked by EV less `penalty` x (1 - average sweet-spot fit)."""
     best: list = []  # min-heap of (ev, tiebreak, combo)
     tie = count()
     # Sort by price so we can stop extending once the odds overshoot the target.
@@ -84,10 +101,12 @@ def search(pool, n_legs_options, target_min, target_max, keep=40):
         k = len(chosen)
         if k in ks and target_min <= odds <= target_max:
             ev = value - 1
-            entry = (ev, next(tie), list(chosen), odds, hit)
+            fit = sum(band_fit(c[1], *sweet) for c in chosen) / k
+            score = ev - penalty * (1 - fit)
+            entry = (score, next(tie), list(chosen), odds, hit, ev)
             if len(best) < keep:
                 heapq.heappush(best, entry)
-            elif ev > best[0][0]:
+            elif score > best[0][0]:
                 heapq.heapreplace(best, entry)
         if k == max_k:
             return
@@ -121,9 +140,15 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
         in_window = [l for l in legs if anchor <= kickoff[l["fixture_id"]] <= anchor + spread]
         if len({l["fixture_id"] for l in in_window}) < min(cfg["legs_options"]):
             continue
+        sweet = tuple(cfg.get("sweet_spot", (1.14, 1.26)))
+        penalty = cfg.get("fit_penalty", 0.03)
         for book in books:
-            pool = _pool(_eligible(in_window, book, cfg), cfg["pool_size"])
-            for ev, _, combo, odds, hit in search(pool, cfg["legs_options"], cfg["target_min"], cfg["target_max"]):
+            pool = _pool(_eligible(in_window, book, cfg), cfg["pool_size"], sweet=sweet, penalty=penalty)
+            results = search(pool, cfg["legs_options"], cfg["target_min"], cfg["target_max"], sweet=sweet, penalty=penalty)
+            if not results and cfg.get("fallback_legs_options"):  # 3 or 6 legs only when 4-5 can't be done
+                results = search(pool, cfg["fallback_legs_options"], cfg["target_min"], cfg["target_max"],
+                                 sweet=sweet, penalty=penalty)
+            for score, _, combo, odds, hit, ev in results:
                 if ev < cfg["slip_min_ev"]:
                     continue
                 leg_ids = [c[0]["id"] for c in combo]
@@ -139,6 +164,7 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
                     "odds": round(odds, 3),
                     "hit_p": round(hit, 4),
                     "ev": round(ev, 4),
+                    "score": round(score, 4),
                     "n_legs": len(combo),
                     "start": times[0].isoformat().replace("+00:00", "Z"),
                     "end": times[-1].isoformat().replace("+00:00", "Z"),
@@ -152,7 +178,7 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
 
 def select(slips, top_per_group):
     """Keep the best few slips per (start time, bookie), avoiding near-duplicates."""
-    slips.sort(key=lambda s: (s["ev"], s["hit_p"]), reverse=True)
+    slips.sort(key=lambda s: (s.get("score", s["ev"]), s["hit_p"]), reverse=True)
     chosen, per_group = [], {}
     for s in slips:
         group = (s["start"], s["book"])

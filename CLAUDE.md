@@ -13,11 +13,12 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
   - `settle.py` track record + calibration; `run.py` orchestrates
   - `scores.py` live scores + 90-minute results, run every 10 min (11:00–23:59 UTC) by `.github/workflows/scores.yml`. Calls nothing unless a tracked fixture is live or awaiting a result. Feeds: API-Football (secret `API_FOOTBALL_KEY`, 100/day, `/status` free; free plan may refuse the current season, in which case it stops for the day and notes it in `live.json` `feeds`) and football-data.org (secret `FOOTBALL_DATA_API`, 10/min, 12 big competitions, slightly delayed). NEVER write the API-Football `/status` account block (it has the email). Writes `docs/data/live.json` and `data/scores_state.json`, and re-settles `history.json`; the morning run also settles from `scores_state.json` before falling back to football-data.co.uk.
 - `docs/`: static PWA on GitHub Pages (`index.html`, `app.css` tokens in `:root`, `app.js`). Reads `docs/data/latest.json`, `history.json` and `live.json` (re-checked every 90s while open).
+  - Round 2 (7 Nov 2026, project doc `claude/evens-bandit-handoff.md` items 0–10) is built: 4–5 short legs (sweet spot 1.14–1.26, `bandFit` in app.js mirrors `builder.band_fit`), fixture line + label fitting on reels, printed ticket (Copy/Share/Placed it), fractional odds by default (`toFraction`, ≈ when not an exact ladder price), Held state, draggable lever, staggered stops + Web Audio sound + jackpot, nudges (3 per pull), fair-price line, min edge +1% with "Thin pickings", shorter doors. Prefs in localStorage `evens.prefs` `{odds_format, sound, vibration, min_edge, legs_per_slip, sweet_spot}`. Item 11 (live sweat mode on the reels) waits for Joseph's go-ahead.
   - Look: **The Bandit** (pub fruit machine), chosen 7 Nov 2026. Spec: project doc `claude/evens-bandit-handoff.md`; designs on the canvas artifact (TheBandit.dc.html, BuildABet.dc.html). Fonts self-hosted in `docs/fonts/` (Bungee, Barlow Condensed, Share Tech Mono; OFL).
   - Pages are hash routes: `#home` (the machine), `#play` (today's slips), `#build` (Build a bet), `#winnings` (my bets), `#payout` (the model's record). No tab bar.
   - Shared slip state in localStorage `evens.slip`: `{window_id, bookie, stake, legs: [{fixture_id, leg_id, held}]}`, written by both the machine and Build a bet.
   - Reels spin on the phone from `latest.json` `windows[]` leg pools (built by `engine/pools.py`): evens zone 1.90–2.30, one leg per match, one bookie, weighted towards higher edge.
-  - Winnings shows each placed leg's live state (✓ landed / ✗ gone / ▲ on track / ▼ behind) and settles placed bets from the scores unless Joseph set the result himself (`bet.manual`). A "Your bets live" strip sits above the doors on the machine.
+  - Winnings shows each placed leg's live state (✓ landed / ✗ gone / ▲ on track / ▼ behind) and settles placed bets from the scores unless Joseph set the result himself (`bet.manual`). A "Your bets live" LED ticker sits below the doors on the machine.
 - `config/settings.json`: leagues (with priority tiers), UK bookies, slip rules, budget weights.
 - `data/`: state, snapshot, run log, reference caches (participants, markets, tournaments).
 
@@ -30,6 +31,7 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
 - Test before pushing: `python -m pytest -q tests`; offline run with `tests/make_mock.py` + `engine.run --mock` (writes to /tmp).
 - Scores check by hand: `gh workflow run scores.yml -R JONeillio/evens-model` (calls both feeds once). Offline: `python -m engine.scores --mock DIR --root OUT --now ...` (see `tests/test_scores.py`).
 - Live runs cost requests. Trigger with `gh workflow run refresh.yml -R JONeillio/evens-model` only when needed; `-f task=probe` costs 1.
+- Rebuild on GitHub with no odds requests (e.g. after engine changes): `gh api -X POST repos/JONeillio/evens-model/actions/workflows/refresh.yml/dispatches -f ref=main -f 'inputs[task]=rebuild'`. (`gh workflow run` fails here: no GraphQL.)
 - Rebuild the app's data offline with no API calls: copy `data/snapshot.json` to `OUT/data/` and run `python -m engine.run --reuse-snapshot --out OUT`.
 - Joseph asked to be consulted before switching odds provider.
 - Bump `VERSION` in `docs/sw.js` whenever app files change so phones pick up the update.

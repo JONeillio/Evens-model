@@ -5,7 +5,7 @@ every usable leg, not just finished slips:
 
   windows[]: {id, label, start_utc, end_utc,
     bookies[]: {bookie,
-      fixtures[]: {fixture_id, home, away, league, kickoff_utc,
+      fixtures[]: {fixture_id, home, away, home_short, away_short, league, kickoff_utc,
         legs[]: {leg_id, label, market_type, price, fair_p, p_void, edge, fair_source}}}}
 
 A window starts at a kick-off time and takes every match kicking off within
@@ -63,6 +63,7 @@ def build_pools(legs, fixtures_by_id, books, settings) -> list[dict]:
                 if pool:
                     pool.sort(key=lambda l: (-l["edge"], l["price"]))
                     fx_out.append({"fixture_id": fid, "home": fx["home"], "away": fx["away"],
+                                   "home_short": fx.get("home_short"), "away_short": fx.get("away_short"),
                                    "league": fx["league"], "kickoff_utc": fx["kickoff"], "legs": pool})
             if len(fx_out) >= cfg["min_fixtures"]:
                 bookies.append({"bookie": book, "fixtures": fx_out})

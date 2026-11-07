@@ -21,23 +21,39 @@ const fmtTime = (iso, withDay = true) => new Intl.DateTimeFormat("en-GB", withDa
   ? { weekday: "short", hour: "2-digit", minute: "2-digit", timeZone: TZ }
   : { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
 
-const FRACS = ["1/100","1/50","1/33","1/25","1/20","1/16","1/14","1/12","1/10","1/9","1/8","2/15","1/7","2/13","1/6","2/11","1/5","2/9","1/4","2/7","3/10","1/3","4/11","2/5","4/9","1/2","8/15","4/7","8/13","4/6","8/11","4/5","5/6","10/11","1/1","21/20","11/10","6/5","5/4","11/8","6/4","13/8","7/4","15/8","2/1","9/4","5/2","11/4","3/1","10/3","7/2","4/1"]
-  .map((f) => { const [a, b] = f.split("/").map(Number); return { f, d: 1 + a / b }; });
+// Fractional odds (display only: every sum uses the decimal price).
+// UK ladder of the fractional part; Evens = 1/1.
+const LADDER = ["1/50","1/33","1/25","1/20","1/16","1/14","1/12","1/10","1/9","1/8","2/15","1/7","2/13","1/6","2/11","1/5","2/9","1/4","2/7","3/10","1/3","4/11","2/5","4/9","1/2","8/15","4/7","8/13","4/6","8/11","4/5","5/6","10/11","1/1","11/10","6/5","5/4","11/8","7/5","6/4","8/5","13/8","7/4","15/8","2/1","9/4","5/2","11/4","3/1","10/3","7/2","4/1","9/2","5/1"]
+  .map((f) => { const [a, b] = f.split("/").map(Number); return { f: f === "1/1" ? "Evens" : f, d: 1 + a / b }; });
+const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+function toFraction(price) {
+  if (price == null || !isFinite(price)) return "–";
+  let near = LADDER[0];
+  for (const x of LADDER) if (Math.abs(x.d - price) < Math.abs(near.d - price)) near = x;
+  if (Math.abs(near.d - price) <= 0.005) return near.f;
+  const hund = Math.round((price - 1) * 100), g = gcd(hund, 100);
+  if (hund > 0 && 100 / g <= 20) return `${hund / g}/${100 / g}`;
+  return `≈${near.f}`;
+}
 function odds(dec) {
   if (dec == null) return "–";
-  if (settings.oddsFormat !== "fraction") return dec.toFixed(2);
-  let best = FRACS[0];
-  for (const x of FRACS) if (Math.abs(x.d - dec) < Math.abs(best.d - dec)) best = x;
-  return best.f === "1/1" ? "Evens" : best.f;
+  return prefs.odds_format === "decimal" ? dec.toFixed(2) : toFraction(dec);
 }
+// Odds as HTML: the ≈ is kept visible but quieter.
+const oddsH = (dec) => { const t = odds(dec); return t.startsWith("≈") ? `<span class="approx">≈</span>${esc(t.slice(1))}` : esc(t); };
+const zoneLabel = () => (prefs.odds_format === "decimal" ? "Evens zone 1.90–2.30" : "9/10 – 13/10 · around evens");
 
 // ---------- storage (this phone only) ----------
 const store = {
   get(k, d) { try { const v = localStorage.getItem("evens." + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem("evens." + k, JSON.stringify(v)); } catch { /* storage unavailable: keep in memory */ } },
 };
-const DEFAULTS = { oddsFormat: "decimal", monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45, minEdge: -0.06 };
+const DEFAULTS = { monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45 };
 let settings = Object.assign({}, DEFAULTS, store.get("settings", {}));
+// Round 2 preferences live in evens.prefs.
+const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26] };
+let prefs = Object.assign({}, PREF_DEFAULTS, store.get("prefs", {}));
+const savePrefs = () => store.set("prefs", prefs);
 let bets = store.get("bets", []);
 let slip = store.get("slip", null); // shared by the machine and Build a bet
 const saveSettings = () => store.set("settings", settings);
@@ -164,23 +180,42 @@ function liveSettleBets() {
   if (changed) saveBets();
 }
 
-// On the machine: how your placed bets are doing right now.
+// On the machine: an LED ticker of how your placed bets are doing right now.
 function renderLiveStrip() {
   const el = $("#liveStrip");
   if (!el) return;
   const today = new Date().toISOString().slice(0, 10);
   const active = bets.filter((b) => b.status === "pending" && b.legIds?.length && (b.legs || []).some((l) => (l.kickoff || "").slice(0, 10) <= today));
   if (!active.length || !LIVE) { el.hidden = true; return; }
-  const parts = active.slice(0, 2).map((b) => {
+  const short = (fid, i, b) => {
+    const f = FIX[fid];
+    if (f) return `${f.home_short || f.home.slice(0, 3).toUpperCase()} v ${f.away_short || f.away.slice(0, 3).toUpperCase()}`;
+    return (b.legs[i]?.match || "").split(" v ").map((t) => t.slice(0, 3).toUpperCase()).join(" v ");
+  };
+  const items = active.slice(0, 3).map((b) => {
     const pr = betProgress(b);
-    const bits = [`✓ ${pr.landed} landed`];
-    if (pr.gone) bits.push(`✗ ${pr.gone} gone`);
-    if (pr.live) bits.push(`${pr.live} in play`);
-    if (pr.waiting) bits.push(`${pr.waiting} to go`);
-    return `<span><b>${esc(b.bookName)}</b> ${esc(bits.join(" · "))}</span>`;
+    const head = `${b.bookName.toUpperCase()} ${b.legIds.length}-FOLD: ✓${pr.landed} IN${pr.gone ? ` ✗${pr.gone} OUT` : ""}${pr.live ? ` ▶${pr.live} PLAYING` : ""}${pr.waiting ? ` ·${pr.waiting} TO GO` : ""}`;
+    const scores = b.legIds.map((id, i) => {
+      const { st, sc } = legNow(id);
+      if (!sc || sc.h == null || st === "wait") return null;
+      const mark = { won: "✓", lost: "✗", ahead: "▲", behind: "▼", level: "●", void: "–" }[st] || "";
+      const clock = sc.s === "HT" ? "HT" : sc.s === "FT" ? "FT" : sc.min ? `${sc.min}′` : "";
+      return `${mark} ${short(id.split("|")[0], i, b)} ${sc.h}–${sc.a} ${clock}`.trim();
+    }).filter(Boolean);
+    return [head, ...scores].join("   ");
   });
-  el.innerHTML = `<span class="ls-title">Your bets live</span>${parts.join("")}<span class="ls-more">Scores ›</span>`;
+  const text = items.join("   ★   ");
+  el.setAttribute("aria-label", `Your bets live. ${text}. Open Winnings for the scores.`);
+  el.innerHTML = `<span class="lt-head"><span>Your bets</span><span class="lt-live">● Live</span></span>
+    <span class="lt-window" aria-hidden="true"><span class="lt-text">${esc(text)}</span></span>`;
   el.hidden = false;
+  el.classList.add("scrolling"); // measure on one line
+  requestAnimationFrame(() => {
+    const win = el.querySelector(".lt-window"), t = el.querySelector(".lt-text");
+    const scroll = t.scrollWidth > win.clientWidth && !reducedMotion();
+    el.classList.toggle("scrolling", scroll);
+    if (scroll) { t.textContent = `${text}   ★   ${text}   ★   `; t.style.setProperty("--lt-dur", `${Math.max(8, text.length / 6)}s`); }
+  });
 }
 
 // ---------- pools ----------
@@ -218,6 +253,81 @@ function numbers(s = slip) {
   return { legs: rs, odds: o, ev: v - 1, chance: h, ret: (s?.stake || 10) * o };
 }
 
+// ---------- slip shape: 4–5 short legs (round 2, item 0) ----------
+// Legs inside the sweet spot (1/7 to 1/4 by default) fit best; a 1.40 leg is only
+// used when nothing else works. Mirrors engine/builder.py band_fit().
+function bandFit(price) {
+  const [lo, hi] = prefs.sweet_spot || PREF_DEFAULTS.sweet_spot;
+  if (price >= lo && price <= hi) return 1;
+  if (price < lo) { const e = lo - 0.06; return price < e ? 0.1 : 0.3 + (0.7 * (price - e)) / (lo - e); }
+  const e = hi + 0.09; return price > e ? 0.1 : 0.3 + (0.7 * (e - price)) / (e - hi);
+}
+const legWeight = (leg) => Math.max(leg.edge, 0.001) * bandFit(leg.price);
+const sizeOptions = () => (prefs.legs_per_slip === 4 ? [4] : prefs.legs_per_slip === 5 ? [5] : [4, 5]);
+const FIT_PENALTY = 0.03;
+
+/* Every combination of legs from unused matches (plus the held legs) that lands
+   in the evens zone with `sizes` legs in total. Returns [{picks, ev, odds, fit, score}]. */
+function searchCombos(windowId, bookie, heldLegs, sizes, nodeCap = 120000) {
+  const heldR = heldLegs.map((l) => findLeg(windowId, bookie, l.leg_id)).filter(Boolean);
+  const heldFx = new Set(heldLegs.map((l) => l.fixture_id));
+  let o0 = 1, v0 = 1, f0 = 0;
+  heldR.forEach(({ leg }) => { o0 *= leg.price; v0 *= leg.price * leg.fair_p + (leg.p_void || 0); f0 += bandFit(leg.price); });
+  const ks = new Set(sizes.map((n) => n - heldR.length).filter((k) => k >= 0));
+  if (!ks.size) return [];
+  const maxK = Math.max(...ks);
+  const perFx = {}, items = [];
+  pool(windowId, bookie).filter((f) => !heldFx.has(f.fixture_id)).forEach((fx) => fx.legs.forEach((leg) => items.push({ fx, leg, w: legWeight(leg) })));
+  items.sort((a, b) => b.w - a.w || b.leg.edge - a.leg.edge);
+  const top = items.filter((it) => (perFx[it.fx.fixture_id] = (perFx[it.fx.fixture_id] || 0) + 1) <= 3).slice(0, 28)
+    .sort((a, b) => a.leg.price - b.leg.price);
+  const found = [], chosen = [], used = new Set();
+  let nodes = 0;
+  (function dfs(start, o, v, f) {
+    if (++nodes > nodeCap) return;
+    const k = chosen.length;
+    if (ks.has(k) && o >= ZONE[0] && o <= ZONE[1]) {
+      const fit = (f0 + f) / (k + heldR.length), ev = v - 1;
+      found.push({ picks: chosen.slice(), ev, odds: o, fit, score: ev - FIT_PENALTY * (1 - fit) });
+    }
+    if (k === maxK) return;
+    for (let i = start; i < top.length; i++) {
+      const it = top[i], no = o * it.leg.price;
+      if (no > ZONE[1]) break;
+      if (used.has(it.fx.fixture_id)) continue;
+      chosen.push(it); used.add(it.fx.fixture_id);
+      dfs(i + 1, no, v * (it.leg.price * it.leg.fair_p + (it.leg.p_void || 0)), f + bandFit(it.leg.price));
+      chosen.pop(); used.delete(it.fx.fixture_id);
+    }
+  })(0, o0, v0, 0);
+  return found;
+}
+function combosWithFallback(windowId, bookie, held) {
+  let found = searchCombos(windowId, bookie, held, sizeOptions());
+  if (!found.length) found = searchCombos(windowId, bookie, held, [3, 6]); // only when 4–5 can't be done
+  return found;
+}
+function applyCombo(choice, held) {
+  const legs = held.map((l) => Object.assign({}, l)).concat(choice.picks.map((p) => ({ fixture_id: p.fx.fixture_id, leg_id: p.leg.leg_id, held: false })));
+  slip.legs = legs;
+  sortSlip();
+  saveSlip();
+}
+
+// The best-scoring slip for a window: highest edge among 4–5 short legs (item 8).
+function bestSlipFor(w) {
+  let best = null;
+  for (const bk of booksFor(w)) {
+    const found = combosWithFallback(w.id, bk, []);
+    for (const c of found) {
+      const meets = c.ev >= prefs.min_edge;
+      const rank = (meets ? 1 : 0) * 10 + c.score;
+      if (!best || rank > best.rank) best = { rank, bookie: bk, combo: c, meets };
+    }
+  }
+  return best;
+}
+
 function ensureSlip() {
   const valid = slip && windowById(slip.window_id) && Date.parse(windowById(slip.window_id).start_utc) > Date.now()
     && myBooks().includes(slip.bookie) && resolve().length >= MIN_LEGS;
@@ -228,18 +338,10 @@ function ensureSlip() {
   }
   const w = upcoming().find((x) => booksFor(x).length);
   if (!w) { slip = null; saveSlip(); return; }
-  // Start from the model's best published slip for this window at your bookies.
-  const best = DATA.slips.filter((s) => s.start === w.id && myBooks().includes(s.book)).sort((a, b) => b.ev - a.ev)[0];
-  if (best && best.legs.every((id) => findLeg(w.id, best.book, id))) {
-    slip = { window_id: w.id, bookie: best.book, stake: slip?.stake || 10,
-      legs: best.legs.map((id) => ({ fixture_id: LEGS[id]?.fixture_id || id.split("|")[0], leg_id: id, held: false })) };
-  } else {
-    const bk = booksFor(w).sort((a, b) => pool(w.id, b).length - pool(w.id, a).length)[0];
-    slip = { window_id: w.id, bookie: bk, stake: slip?.stake || 10, legs: [] };
-    fillTo(4);
-  }
-  sortSlip();
-  saveSlip();
+  const best = bestSlipFor(w);
+  slip = { window_id: w.id, bookie: best ? best.bookie : booksFor(w)[0], stake: slip?.stake || 10, legs: [] };
+  if (best) applyCombo(best.combo, []);
+  else { fillTo(4); sortSlip(); saveSlip(); }
 }
 
 function sortSlip() {
@@ -247,14 +349,16 @@ function sortSlip() {
   slip.legs.sort((a, b) => ko(a).localeCompare(ko(b)));
 }
 
-// Best leg from a match not already used (for "+ Add a leg" and topping up).
+// Best-weighted leg from a match not already used (for "+ Add a leg" and topping up).
 function bestFreeLeg() {
   const used = new Set(slip.legs.map((l) => l.fixture_id));
   let best = null;
   for (const fx of pool(slip.window_id, slip.bookie)) {
     if (used.has(fx.fixture_id)) continue;
-    const leg = fx.legs[0]; // pools arrive sorted by edge
-    if (!best || leg.edge > best.leg.edge || (leg.edge === best.leg.edge && leg.fair_p > best.leg.fair_p)) best = { fx, leg };
+    for (const leg of fx.legs) {
+      const w = legWeight(leg);
+      if (!best || w > best.w || (w === best.w && leg.fair_p > best.leg.fair_p)) best = { fx, leg, w };
+    }
   }
   return best;
 }
@@ -266,58 +370,34 @@ function fillTo(n) {
   }
 }
 
-/* Re-spin the reels that aren't held. Searches every combination of legs from
-   unused matches that lands the slip in the evens zone with edge at or above your
-   minimum, then picks one at random, weighted towards higher edge. */
+/* Pull: re-spin the reels that aren't held. Finds every 4–5-leg combination in the
+   evens zone with edge at or above your minimum, then picks one at random, weighted
+   towards higher edge and towards legs in the sweet spot. If nothing meets the
+   minimum edge, takes the best available and says so ("Thin pickings"). */
 function spin() {
-  const n = slip.legs.length;
   const held = slip.legs.filter((l) => l.held);
-  const k = n - held.length;
-  if (k === 0) return { ok: false, why: "Every reel is held. Release one to spin it." };
-  const heldR = held.map((l) => findLeg(slip.window_id, slip.bookie, l.leg_id)).filter(Boolean);
-  const heldFx = new Set(held.map((l) => l.fixture_id));
-  let o0 = 1, v0 = 1;
-  heldR.forEach(({ leg }) => { o0 *= leg.price; v0 *= leg.price * leg.fair_p + (leg.p_void || 0); });
-
-  const perFx = {};
-  const items = [];
-  pool(slip.window_id, slip.bookie).filter((f) => !heldFx.has(f.fixture_id)).forEach((fx) => fx.legs.forEach((leg) => items.push({ fx, leg })));
-  items.sort((a, b) => b.leg.edge - a.leg.edge);
-  const top = items.filter((it) => (perFx[it.fx.fixture_id] = (perFx[it.fx.fixture_id] || 0) + 1) <= 3).slice(0, 30)
-    .sort((a, b) => a.leg.price - b.leg.price);
-
-  const found = [];
-  let nodes = 0;
-  const chosen = [], used = new Set();
-  (function dfs(start, o, v) {
-    if (++nodes > 150000) return;
-    if (chosen.length === k) {
-      if (o >= ZONE[0] && o <= ZONE[1] && v - 1 >= settings.minEdge) found.push({ picks: chosen.slice(), ev: v - 1 });
-      return;
-    }
-    for (let i = start; i < top.length; i++) {
-      const it = top[i], no = o * it.leg.price;
-      if (no > ZONE[1]) break;
-      if (used.has(it.fx.fixture_id)) continue;
-      chosen.push(it); used.add(it.fx.fixture_id);
-      dfs(i + 1, no, v * (it.leg.price * it.leg.fair_p + (it.leg.p_void || 0)));
-      chosen.pop(); used.delete(it.fx.fixture_id);
-    }
-  })(0, o0, v0);
-
+  if (held.length >= Math.max(...sizeOptions(), 6)) return { ok: false, why: "Every reel is held. Release one to spin it." };
+  const found = combosWithFallback(slip.window_id, slip.bookie, held);
   if (!found.length) return { ok: false, why: "Nothing fits the evens zone with those reels. Release a hold, change the bookie, or loosen Settings." };
   const current = slip.legs.filter((l) => !l.held).map((l) => l.leg_id).sort().join("|");
-  let pickFrom = found.sort((a, b) => b.ev - a.ev).slice(0, 60);
-  if (pickFrom.length > 1) pickFrom = pickFrom.filter((c) => c.picks.map((p) => p.leg.leg_id).sort().join("|") !== current);
-  const weights = pickFrom.map((c) => Math.exp(30 * c.ev));
+  const key = (c) => c.picks.map((p) => p.leg.leg_id).sort().join("|");
+  let pickFrom = found.filter((c) => c.ev >= prefs.min_edge);
+  let thin = null;
+  if (!pickFrom.length) {
+    const best = found.slice().sort((a, b) => b.score - a.score)[0];
+    thin = best.ev;
+    pickFrom = [best];
+  } else {
+    pickFrom = pickFrom.sort((a, b) => b.score - a.score).slice(0, 60);
+    if (pickFrom.length > 1) pickFrom = pickFrom.filter((c) => key(c) !== current);
+  }
+  // Weight: edge (exp) times each leg's sweet-spot fit.
+  const weights = pickFrom.map((c) => Math.exp(30 * c.ev) * c.picks.reduce((m, p) => m * bandFit(p.leg.price), 1));
   let r = Math.random() * weights.reduce((a, b) => a + b, 0), choice = pickFrom[0];
   for (let i = 0; i < pickFrom.length; i++) { r -= weights[i]; if (r <= 0) { choice = pickFrom[i]; break; } }
-  const same = choice.picks.map((p) => p.leg.leg_id).sort().join("|") === current;
-  const fresh = choice.picks.slice().sort((a, b) => a.fx.kickoff_utc.localeCompare(b.fx.kickoff_utc));
-  let j = 0;
-  slip.legs = slip.legs.map((l) => (l.held ? l : { fixture_id: fresh[j].fx.fixture_id, leg_id: fresh[j++].leg.leg_id, held: false }));
-  saveSlip();
-  return { ok: true, same };
+  const same = key(choice) === current;
+  applyCombo(choice, held);
+  return { ok: true, same, thin };
 }
 
 // ---------- router ----------
@@ -330,6 +410,50 @@ function route() {
   window.scrollTo({ top: 0 });
 }
 window.addEventListener("hashchange", route);
+
+// ---------- sound and haptics (round 2, item 5) ----------
+// Synthesised with the Web Audio API: no files, works offline. Android plays it
+// on the media volume, so the speaker button in the marquee is the mute.
+const Sound = (() => {
+  let ctx;
+  const on = () => prefs.sound !== false;
+  const ac = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(freq, start, dur, type = "square", vol = 0.15) {
+    try {
+      const c = ac(), t = c.currentTime + start;
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type; o.frequency.setValueAtTime(freq, t);
+      g.gain.setValueAtTime(vol, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      o.connect(g).connect(c.destination);
+      o.start(t); o.stop(t + dur + 0.02);
+    } catch { /* no audio on this device */ }
+  }
+  return {
+    unlock() { if (on() && (window.AudioContext || window.webkitAudioContext)) ac().resume?.(); },
+    lever() { if (on()) { tone(220, 0, 0.08, "sawtooth"); tone(110, 0.06, 0.14, "sawtooth"); } },
+    spin() { if (on()) for (let i = 0; i < 14; i++) tone(600 + (i % 2) * 200, i * 0.06, 0.04, "square", 0.05); },
+    stop() { if (on()) tone(1800, 0, 0.03, "square", 0.08); },
+    hold() { if (on()) tone(880, 0, 0.06, "triangle", 0.1); },
+    nudge() { if (on()) { tone(660, 0, 0.04, "square", 0.08); tone(990, 0.04, 0.05, "square", 0.08); } },
+    jackpot() { if (on()) [523, 659, 784, 1047, 784, 1047].forEach((f, i) => tone(f, i * 0.11, 0.14, "square", 0.12)); },
+    placed() { if (on()) [784, 1047].forEach((f, i) => tone(f, i * 0.09, 0.12, "triangle", 0.12)); },
+  };
+})();
+document.addEventListener("pointerdown", () => Sound.unlock(), { once: true });
+const buzz = (ms) => { if (prefs.vibration !== false && navigator.vibrate) try { navigator.vibrate(ms); } catch { /* not allowed */ } };
+const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function renderSoundBtn() {
+  const b = $("#soundBtn"), on = prefs.sound !== false;
+  b.setAttribute("aria-pressed", on);
+  b.setAttribute("aria-label", on ? "Sound on. Tap to mute" : "Sound off. Tap to turn on");
+  b.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>${on
+    ? `<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
+    : `<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>`}</svg>`;
+}
+$("#soundBtn").addEventListener("click", () => { prefs.sound = prefs.sound === false; savePrefs(); renderSoundBtn(); Sound.unlock(); Sound.hold(); });
+renderSoundBtn();
 
 // ---------- the machine ----------
 document.querySelectorAll("[data-bulbs]").forEach((el) => {
@@ -344,29 +468,65 @@ function countdown(iso) {
   return `kicks off in ${h ? `${h}h ` : ""}${m}m`;
 }
 
-let spinning = false;
-function renderMachine() {
+// Three-letter codes come from the morning job; derive them if missing.
+const code = (fx, side) => fx[`${side}_short`] || String(fx[side] || "").replace(/^(AFC|FC|1\.?\s*FC)\s+/i, "").slice(0, 3).toUpperCase();
+const fixtureLine = (fx) => `${code(fx, "home")} v ${code(fx, "away")} · ${fmtTime(fx.kickoff_utc, false)}`;
+const shortLabel = (fx, label) => label.split(fx.home).join(code(fx, "home")).split(fx.away).join(code(fx, "away"));
+
+function reelFace({ fx, leg }) {
+  return `<div class="face"><span class="fxl" aria-label="${esc(`${fx.home} v ${fx.away}, ${fmtTime(fx.kickoff_utc, false)}`)}"><span>${esc(code(fx, "home"))} v ${esc(code(fx, "away"))}</span><span>${esc(fmtTime(fx.kickoff_utc, false))}</span></span><span class="lbl" data-short="${esc(shortLabel(fx, leg.label))}"><span class="t">${esc(leg.label)}</span></span><span class="px num">${oddsH(leg.price)}</span></div>`;
+}
+// Shrink a reel label in steps (to 12px), up to 3 lines, never clipped sideways;
+// if it still won't fit, swap team names for their codes ("SAM to score").
+function fitLabels(root = document) {
+  root.querySelectorAll(".reel .lbl").forEach((el) => {
+    const t = el.querySelector(".t");
+    if (!t) return;
+    const max = parseFloat(getComputedStyle(el).getPropertyValue("--lbl-max")) || 14;
+    const fits = () => t.scrollWidth <= el.clientWidth + 1 && t.offsetHeight <= Math.ceil(parseFloat(getComputedStyle(t).lineHeight) * 3) + 1;
+    const tryAll = () => { for (let size = max; size >= 12; size--) { t.style.fontSize = `${size}px`; if (fits()) return true; } return false; };
+    if (tryAll()) return;
+    if (el.dataset.short && t.textContent !== el.dataset.short) { t.textContent = el.dataset.short; tryAll(); }
+  });
+}
+
+let spinning = false, nudgesLeft = 3, lastJackpotKey = null;
+function renderMachine(opts = {}) {
   const where = $("#machineWhere");
+  const ticket = $("#ticket");
   if (!slip) {
     where.textContent = "No kick-offs with prices in the next two days";
-    $("#reels").innerHTML = ""; $("#holds").innerHTML = "";
+    $("#reels").innerHTML = ""; $("#holds").innerHTML = ""; $("#nudges").innerHTML = "";
     $("#mOdds").textContent = "–"; $("#mStats").textContent = "";
+    ticket.innerHTML = ""; ticket.hidden = true;
   } else {
     const w = windowById(slip.window_id);
     where.textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`;
     const nums = numbers();
     const n = nums.legs.length;
-    const reels = $("#reels"), holds = $("#holds");
-    reels.style.setProperty("--n", n); holds.style.setProperty("--n", n);
+    const reels = $("#reels"), holds = $("#holds"), nudges = $("#nudges");
+    [reels, holds, nudges].forEach((el) => el.style.setProperty("--n", n));
     reels.classList.toggle("many", n > 4);
-    reels.innerHTML = nums.legs.map(({ leg, held }, i) => `<div class="reel${held ? " held" : ""}" data-i="${i}">
-      <div class="face"><span class="lbl">${esc(leg.label)}</span><span class="px num">${odds(leg.price)}</span></div></div>`).join("");
+    if (!opts.keepReels) {
+      reels.innerHTML = nums.legs.map((r, i) => `<div class="reel${r.held ? " held" : ""}" data-i="${i}">${reelFace(r)}${r.held ? `<span class="lock" aria-hidden="true"></span>` : ""}</div>`).join("");
+      fitLabels(reels);
+    }
     holds.innerHTML = nums.legs.map(({ held }, i) => `<button class="hold-btn" data-i="${i}" aria-pressed="${held}" aria-label="Hold reel ${i + 1}">${held ? "Held" : "Hold"}</button>`).join("");
     holds.querySelectorAll(".hold-btn").forEach((b) => b.addEventListener("click", () => {
-      const l = slip.legs[+b.dataset.i]; l.held = !l.held; saveSlip(); renderMachine();
+      if (spinning) return;
+      const l = slip.legs[+b.dataset.i]; l.held = !l.held; saveSlip(); Sound.hold(); buzz(10); renderMachine();
     }));
-    $("#mOdds").textContent = odds(nums.odds);
-    $("#mStats").innerHTML = `Real chance ${pct(nums.chance)} · edge ${edgeTag(nums.ev)}<br>£${slip.stake} pays £${nums.ret.toFixed(2)}`;
+    nudges.innerHTML = nums.legs.map(({ held, fx }, i) => {
+      const choices = rawPool(slip.window_id, slip.bookie)?.fixtures.find((f) => f.fixture_id === fx.fixture_id)?.legs.length || 0;
+      const off = held || !nudgesLeft || choices < 2 ? "disabled" : "";
+      return `<div class="nudge-pair"><button class="nudge" data-i="${i}" data-d="-1" aria-label="Nudge reel ${i + 1} to the previous market" ${off}>‹</button><button class="nudge" data-i="${i}" data-d="1" aria-label="Nudge reel ${i + 1} to the next market" ${off}>›</button></div>`;
+    }).join("");
+    nudges.querySelectorAll(".nudge").forEach((b) => b.addEventListener("click", () => nudge(+b.dataset.i, +b.dataset.d)));
+    $("#nudgeCount").textContent = nudgesLeft;
+
+    $("#mOdds").innerHTML = oddsH(nums.odds);
+    $("#mStats").innerHTML = fairLine(nums).replace(" · ", "<br>");
+    renderTicket(opts.print);
   }
   renderLiveStrip();
   const st = betStats();
@@ -375,42 +535,261 @@ function renderMachine() {
   led.textContent = `£${String(Math.round(st.monthStaked)).padStart(3, "0")} / £${settings.monthlyLimit}`;
   led.classList.toggle("over", st.monthStaked > settings.monthlyLimit);
 }
+// Edge in plain English (item 8): what it should pay vs what you're getting.
+function fairLine(nums) {
+  if (!nums.legs.length) return "";
+  // Decimals here even in fraction mode: fractions round away the difference.
+  return `Fair price ${(1 / nums.chance).toFixed(2)} · you're getting ${nums.odds.toFixed(2)} (${signedPct(nums.ev)})`;
+}
 
+// ---------- the printed ticket (item 1) ----------
+// The ticket is the source of truth: Copy sends exactly what it shows.
+let ticketState = { copied: false };
+function ticketRows() {
+  return numbers().legs.map(({ fx, leg }) => ({ time: fmtTime(fx.kickoff_utc, false), match: `${fx.home} v ${fx.away}`, league: fx.league || "", label: leg.label, price: leg.price }));
+}
+function renderTicket(print) {
+  const t = $("#ticket");
+  const nums = numbers();
+  t.hidden = !nums.legs.length;
+  t.innerHTML = `${ticketRows().map((r) => `<div class="tk-row"><span class="tk-fx">${esc(r.time)} · ${esc(r.match)}${r.league ? ` · ${esc(r.league)}` : ""}</span>
+      <span class="tk-leg"><span>${esc(r.label)}</span><b class="num">${oddsH(r.price)}</b></span></div>`).join("")}
+    <div class="tk-foot num"><b>${oddsH(nums.odds)}</b><span>real chance ${pct(nums.chance)}</span><span>£${slip.stake} pays £${nums.ret.toFixed(2)}</span></div>
+    <div class="tk-actions">
+      <button class="tk-btn" id="tkCopy">${ticketState.copied ? "Copied ✓" : `Copy to ${esc(bookName(slip.bookie))}`}</button>
+      <button class="tk-btn" id="tkShare">Share</button>
+      ${ticketState.copied ? `<button class="tk-btn placed" id="tkPlaced">Placed it</button>` : ""}
+    </div>`;
+  $("#tkCopy").addEventListener("click", async () => { await copyText(ticketText()); ticketState.copied = true; buzz(10); renderTicket(); });
+  $("#tkShare").addEventListener("click", shareTicket);
+  $("#tkPlaced")?.addEventListener("click", () => openPlaceSheet(currentSlipAsBet(), { onSaved: fileTicket }));
+  if (print && !reducedMotion()) {
+    t.classList.remove("printing"); void t.offsetWidth;
+    t.style.setProperty("--tk-h", `${t.scrollHeight}px`);
+    t.classList.add("printing");
+    setTimeout(() => t.classList.remove("printing"), 700);
+  }
+}
+function ticketText() {
+  const nums = numbers();
+  const rows = ticketRows().map((r) => `${r.time} · ${r.match}${r.league ? ` · ${r.league}` : ""}\n${r.label}  ${odds(r.price)}`);
+  return `${bookName(slip.bookie)} · ${nums.legs.length}-fold · ${windowById(slip.window_id).label}\n\n${rows.join("\n\n")}\n\n`
+    + `Combined odds ${odds(nums.odds)}${prefs.odds_format === "decimal" ? "" : ` (${nums.odds.toFixed(2)})`} · real chance ${pct(nums.chance)} · £${slip.stake} pays £${nums.ret.toFixed(2)}`;
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); }
+  catch {
+    const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch { /* nothing else to try */ }
+    ta.remove();
+  }
+}
+
+// Share (item 10): draw the ticket on a canvas, text only, and hand it to WhatsApp etc.
+async function shareTicket() {
+  const nums = numbers(), rows = ticketRows();
+  try { await Promise.all(["400 26px Bungee", "600 20px 'Barlow Condensed'", "700 20px 'Barlow Condensed'"].map((f) => document.fonts.load(f))); } catch { /* fallback fonts */ }
+  const S = 2, Wd = 400, rowH = 52, Hd = 118 + rows.length * rowH + 44;
+  const c = document.createElement("canvas"); c.width = Wd * S; c.height = Hd * S;
+  const g = c.getContext("2d"); g.scale(S, S);
+  g.fillStyle = "#5C0F1B"; g.fillRect(0, 0, Wd, Hd);
+  g.fillStyle = "#FFD23F"; g.font = "400 28px Bungee, sans-serif"; g.textAlign = "center"; g.fillText("EVENS JACKPOT", Wd / 2, 44);
+  g.fillStyle = "#F2C9A8"; g.font = "600 17px 'Barlow Condensed', sans-serif";
+  g.fillText(`${bookName(slip.bookie)} · ${rows.length} legs · ${windowById(slip.window_id).label}`, Wd / 2, 70);
+  const top = 86;
+  g.fillStyle = "#FFF6E0"; g.fillRect(16, top, Wd - 32, Hd - top - 24);
+  for (let x = 16; x < Wd - 16; x += 12) { g.beginPath(); g.moveTo(x, Hd - 24); g.lineTo(x + 6, Hd - 16); g.lineTo(x + 12, Hd - 24); g.fill(); }
+  g.textAlign = "left";
+  rows.forEach((r, i) => {
+    const y = top + 26 + i * rowH;
+    g.fillStyle = "#7A3A2A"; g.font = "600 14px 'Barlow Condensed', sans-serif";
+    g.fillText(`${r.time} · ${r.match}${r.league ? ` · ${r.league}` : ""}`.slice(0, 60), 30, y);
+    g.fillStyle = "#2B0A10"; g.font = "700 19px 'Barlow Condensed', sans-serif";
+    g.fillText(r.label.slice(0, 40), 30, y + 22);
+    g.textAlign = "right"; g.fillText(odds(r.price), Wd - 30, y + 22); g.textAlign = "left";
+  });
+  const fy = top + 26 + rows.length * rowH;
+  g.strokeStyle = "#5C0F1B"; g.lineWidth = 2; g.beginPath(); g.moveTo(30, fy - 12); g.lineTo(Wd - 30, fy - 12); g.stroke();
+  g.fillStyle = "#5C0F1B"; g.font = "400 22px Bungee, sans-serif"; g.fillText(odds(nums.odds), 30, fy + 14);
+  g.textAlign = "right"; g.font = "700 17px 'Barlow Condensed', sans-serif"; g.fillStyle = "#2B0A10";
+  g.fillText(`real chance ${pct(nums.chance)} · £${slip.stake} pays £${nums.ret.toFixed(2)}`, Wd - 30, fy + 12);
+  const blob = await new Promise((res) => c.toBlob(res, "image/png"));
+  const file = new File([blob], "evens-slip.png", { type: "image/png" });
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: ticketText() }); return; }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "evens-slip.png"; a.click();
+}
+
+// "Placed it" (item 7): stamp the ticket, tear it off into the Winnings door.
+function fileTicket() {
+  const t = $("#ticket");
+  const now = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date());
+  Sound.placed(); buzz(30);
+  ticketState.copied = false;
+  if (reducedMotion()) { renderMachine({ print: true }); return; }
+  const rect = t.getBoundingClientRect(), door = $("#winsDoor").getBoundingClientRect();
+  const ghost = t.cloneNode(true);
+  ghost.removeAttribute("id"); ghost.classList.add("ghost");
+  ghost.querySelector(".tk-actions")?.remove();
+  ghost.insertAdjacentHTML("beforeend", `<span class="stamp">Placed ${esc(now)}</span>`);
+  Object.assign(ghost.style, { position: "fixed", left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, margin: 0, zIndex: 20 });
+  document.body.appendChild(ghost);
+  t.style.visibility = "hidden";
+  setTimeout(() => {
+    const dx = door.left + door.width / 2 - (rect.left + rect.width / 2), dy = door.top + door.height / 2 - (rect.top + rect.height / 2);
+    ghost.style.transition = "transform .5s ease-in, opacity .5s ease-in";
+    ghost.style.transform = `translate(${dx}px, ${dy}px) scale(.18) rotate(-6deg)`;
+    ghost.style.opacity = ".2";
+  }, 450);
+  setTimeout(() => {
+    ghost.remove();
+    t.style.visibility = "";
+    const d = $("#winsDoor"); d.classList.remove("bounce"); void d.offsetWidth; d.classList.add("bounce");
+    renderMachine({ print: true });
+  }, 1000);
+}
+
+// ---------- the lever (item 4) ----------
+(function lever() {
+  const track = $("#lever"), knob = $("#leverKnob");
+  let startY = null, travel = 0, dy = 0, moved = false;
+  const set = (y) => { track.style.setProperty("--pull", y); };
+  const springBack = () => {
+    track.classList.add("spring"); set(0);
+    setTimeout(() => track.classList.remove("spring"), 320);
+  };
+  knob.addEventListener("pointerdown", (e) => {
+    if (spinning) return;
+    startY = e.clientY; dy = 0; moved = false;
+    travel = track.clientHeight - knob.offsetHeight - 8;
+    knob.setPointerCapture(e.pointerId);
+    track.classList.remove("spring");
+    e.preventDefault();
+  });
+  knob.addEventListener("pointermove", (e) => {
+    if (startY == null) return;
+    dy = Math.max(0, Math.min(travel, e.clientY - startY));
+    if (dy > 4) moved = true;
+    set(dy / travel);
+  });
+  const release = () => {
+    if (startY == null) return;
+    const frac = travel ? dy / travel : 0;
+    startY = null;
+    springBack();
+    if (!moved || frac >= 0.7) pull();
+  };
+  knob.addEventListener("pointerup", release);
+  knob.addEventListener("pointercancel", () => { startY = null; springBack(); });
+  track.addEventListener("click", (e) => { if (e.target === track || e.target.classList.contains("lever-slot")) pull(); });
+  track.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pull(); } });
+})();
+function leverDrop() {
+  const track = $("#lever");
+  if (reducedMotion()) return;
+  track.classList.remove("spring"); track.classList.add("drop"); track.style.setProperty("--pull", 1);
+  setTimeout(() => { track.classList.remove("drop"); track.classList.add("spring"); track.style.setProperty("--pull", 0); setTimeout(() => track.classList.remove("spring"), 320); }, 160);
+}
+
+// ---------- pull: staggered stops, sound, jackpot (item 5) ----------
 function pull() {
   if (spinning || !slip) return;
+  Sound.unlock();
   const msg = $("#mMsg");
   msg.textContent = "";
-  const before = slip.legs.map((l) => l.leg_id);
   const res = spin();
-  const lever = $("#leverSvg");
-  lever.classList.add("pulled");
+  Sound.lever(); buzz(30);
+  if ($("#leverKnob") && !document.querySelector(".lever-track.spring")) leverDrop();
   if (!res.ok) {
     msg.textContent = res.why;
-    document.querySelectorAll("#reels .reel").forEach((r, i) => { if (!slip.legs[i].held) { r.classList.remove("fail"); void r.offsetWidth; r.classList.add("fail"); } });
-    setTimeout(() => lever.classList.remove("pulled"), 300);
+    document.querySelectorAll("#reels .reel").forEach((r, i) => { if (!slip.legs[i]?.held) { r.classList.remove("fail"); void r.offsetWidth; r.classList.add("fail"); } });
     return;
   }
-  if (res.same) msg.textContent = "Same again: that's the only slip in the evens zone with those holds. Release a reel or change the bookie.";
+  nudgesLeft = 3;
+  ticketState.copied = false;
+  if (res.thin != null) msg.textContent = `Thin pickings — best edge is ${signedPct(res.thin)}`;
+  else if (res.same) msg.textContent = "Same again: that's the only slip in the evens zone with those holds. Release a reel or change the bookie.";
   spinning = true;
   $("#pullBtn").disabled = true; $("#pullBtn").textContent = "Spinning…";
+  renderMachine({ print: false });
+  const reduced = reducedMotion();
+  const legs = numbers().legs;
   const prices = pool(slip.window_id, slip.bookie).flatMap((f) => f.legs.map((l) => odds(l.price))).slice(0, 8);
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll("#reels .reel").forEach((r, i) => {
-    if (slip.legs[i].held || before[i] === undefined) return;
-    const col = prices.concat(prices).map((p) => `<span>${esc(p)}</span>`).join("");
-    r.innerHTML = `<div class="strip-spin num">${col}</div>`;
-  });
+  const reelEls = [...document.querySelectorAll("#reels .reel")];
+  const spinners = reelEls.filter((_, i) => !legs[i].held);
+  spinners.forEach((r) => { r.innerHTML = `<div class="strip-spin num">${prices.concat(prices).map((p) => `<span>${esc(p)}</span>`).join("")}</div>`; });
+  if (!reduced) Sound.spin();
+  const first = reduced ? 120 : 600, step = reduced ? 0 : 250;
+  spinners.forEach((r, j) => setTimeout(() => {
+    const i = +r.dataset.i;
+    r.innerHTML = reelFace(legs[i]);
+    fitLabels(r);
+    if (!reduced) { r.classList.remove("stop"); void r.offsetWidth; r.classList.add("stop"); }
+    Sound.stop(); buzz(12);
+  }, first + j * step));
   setTimeout(() => {
     spinning = false;
-    lever.classList.remove("pulled");
     $("#pullBtn").disabled = false; $("#pullBtn").textContent = "Pull for new slips";
-    renderMachine();
-  }, reduced ? 150 : 900);
+    renderMachine({ print: true, keepReels: true });
+    const nums = numbers();
+    if (res.thin == null && nums.odds >= ZONE[0] && nums.odds <= ZONE[1] && nums.ev >= prefs.min_edge) jackpot();
+  }, first + Math.max(0, spinners.length - 1) * step + 200);
 }
+function jackpot() {
+  Sound.jackpot();
+  const cab = $("#cabinet"), banner = $("#evensBanner");
+  if (reducedMotion()) { banner.classList.add("show-static"); setTimeout(() => banner.classList.remove("show-static"), 1200); return; }
+  cab.classList.remove("jackpot"); banner.classList.remove("stamp-in"); void cab.offsetWidth;
+  cab.classList.add("jackpot"); banner.classList.add("stamp-in");
+  setTimeout(() => { cab.classList.remove("jackpot"); banner.classList.remove("stamp-in"); }, 2500);
+}
+
+// ---------- nudges (item 6) ----------
+// Cosmetic fruit-machine flavour: 3 per pull. Build a bet still has unlimited swaps.
+function nudge(i, dir) {
+  const l = slip?.legs[i];
+  if (spinning || !l || l.held || nudgesLeft <= 0) return;
+  const fx = rawPool(slip.window_id, slip.bookie)?.fixtures.find((f) => f.fixture_id === l.fixture_id);
+  if (!fx || fx.legs.length < 2) return;
+  const was = numbers();
+  const wasJackpot = was.odds >= ZONE[0] && was.odds <= ZONE[1] && was.ev >= prefs.min_edge;
+  const list = fx.legs.slice().sort((a, c) => a.price - c.price);
+  const at = list.findIndex((x) => x.leg_id === l.leg_id);
+  l.leg_id = list[(at + dir + list.length) % list.length].leg_id;
+  nudgesLeft--; ticketState.copied = false; saveSlip();
+  Sound.nudge(); buzz(12);
+  renderMachine({ print: true });
+  const r = document.querySelector(`#reels .reel[data-i="${i}"]`);
+  if (r && !reducedMotion()) { r.classList.remove("nudged"); void r.offsetWidth; r.classList.add("nudged"); r.dataset.dir = dir; }
+  const now = numbers();
+  if (!wasJackpot && now.odds >= ZONE[0] && now.odds <= ZONE[1] && now.ev >= prefs.min_edge) jackpot();
+  if (!nudgesLeft) $("#mMsg").textContent = "Out of nudges. Pull to refill, or edit the slip in Build a bet.";
+}
+// Swipe up or down on a reel to nudge it.
+(function swipes() {
+  let y0 = null, idx = null;
+  $("#reels").addEventListener("pointerdown", (e) => { const r = e.target.closest(".reel"); if (r) { y0 = e.clientY; idx = +r.dataset.i; } });
+  $("#reels").addEventListener("pointerup", (e) => {
+    if (y0 == null) return;
+    const d = e.clientY - y0; y0 = null;
+    if (Math.abs(d) > 28) nudge(idx, d < 0 ? 1 : -1);
+  });
+})();
+
+// Long-press the big odds to flip fractions and decimals (item 2).
+(function oddsFlip() {
+  let timer = null;
+  const el = $("#mOdds");
+  el.addEventListener("pointerdown", () => { timer = setTimeout(() => { prefs.odds_format = prefs.odds_format === "decimal" ? "fraction" : "decimal"; savePrefs(); buzz(15); route(); }, 550); });
+  ["pointerup", "pointerleave", "pointercancel"].forEach((ev) => el.addEventListener(ev, () => clearTimeout(timer)));
+  el.addEventListener("contextmenu", (e) => e.preventDefault());
+})();
+
 $("#pullBtn").addEventListener("click", pull);
-$("#lever").addEventListener("click", pull);
 $("#machineWhere").addEventListener("click", () => slip && openWhereSheet());
-setInterval(() => { if (!$("#home").hidden && slip && !spinning) renderMachine(); }, 30000);
+setInterval(() => { if (!$("#home").hidden && slip && !spinning) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`; } }, 30000);
+window.addEventListener("resize", () => fitLabels($("#reels")));
 
 // ---------- Build a bet ----------
 let copied = false;
@@ -429,7 +808,7 @@ function renderBuild() {
       <button class="hold-btn" data-act="hold" aria-pressed="${held}" aria-label="Hold this leg">${held ? "Held" : "Hold"}</button>
       <div class="info"><span class="match">${esc(fx.home)} v ${esc(fx.away)} · ${esc(fmtTime(fx.kickoff_utc, false))}</span>
         <span class="sel">${esc(leg.label)}</span>
-        <span class="meta num">${odds(leg.price)} · ${pct(leg.fair_p)} chance · edge ${edgeTag(leg.edge)}</span></div>
+        <span class="meta num">${oddsH(leg.price)} · ${pct(leg.fair_p)} chance · edge ${edgeTag(leg.edge)}${bandFit(leg.price) < 1 ? ` · <span class="offspot">outside sweet spot</span>` : ""}</span></div>
       <button class="ibtn" data-act="prev" aria-label="Previous market for this match" ${choices < 2 ? "disabled" : ""}><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 L6 10 L12 16" fill="none" stroke="#5C0F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="ibtn" data-act="next" aria-label="Next market for this match" ${choices < 2 ? "disabled" : ""}><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4 L14 10 L8 16" fill="none" stroke="#5C0F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="ibtn x" data-act="remove" aria-label="Remove this leg" ${n <= MIN_LEGS || held ? "disabled" : ""}><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 L13 13 M13 3 L3 13" stroke="#8C1D2C" stroke-width="2.5" stroke-linecap="round"/></svg></button>
@@ -437,7 +816,7 @@ function renderBuild() {
   }).join("");
   $("#buildLegs").querySelectorAll(".bleg").forEach((row) => row.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
     const i = +row.dataset.i, l = slip.legs[i];
-    if (b.dataset.act === "hold") l.held = !l.held;
+    if (b.dataset.act === "hold") { l.held = !l.held; Sound.hold(); }
     if (b.dataset.act === "remove" && slip.legs.length > MIN_LEGS && !l.held) slip.legs.splice(i, 1);
     if (b.dataset.act === "prev" || b.dataset.act === "next") {
       const fx = rawPool(slip.window_id, slip.bookie).fixtures.find((f) => f.fixture_id === l.fixture_id);
@@ -454,11 +833,13 @@ function renderBuild() {
   add.textContent = full ? "Six legs is the max" : free ? "+ Add a leg from another match" : "No other matches in this window";
 
   $("#needle").style.left = `${Math.max(0, Math.min(100, ((nums.odds - 1.5) / 1.5) * 100))}%`;
-  $("#bOdds").textContent = odds(nums.odds);
+  $("#bOdds").innerHTML = oddsH(nums.odds);
+  $("#meterScale").innerHTML = `<span>${esc(odds(1.5))}</span><span>${esc(zoneLabel())}</span><span>${esc(odds(3))}</span>`;
+  $("#bFair").innerHTML = fairLine(nums);
   const st = $("#bStatus");
   if (nums.odds < ZONE[0]) { st.textContent = "A bit short — add a leg"; st.style.color = "var(--jackpot)"; }
   else if (nums.odds > ZONE[1]) { st.textContent = "Getting long — drop one"; st.style.color = "var(--bad-on-dark)"; }
-  else { st.textContent = "Bang on evens"; st.style.color = "var(--good-on-dark)"; }
+  else { st.textContent = "✓ Bang on evens"; st.style.color = "var(--good-on-dark)"; }
   $("#bChance").textContent = `Real chance ${pct(nums.chance)}`;
   $("#bEdge").innerHTML = `Edge ${edgeTag(nums.ev)}`;
   $("#stake").textContent = `£${slip.stake}`;
@@ -473,7 +854,7 @@ function renderPool() {
   const p = pool(slip.window_id, slip.bookie);
   $("#pool").innerHTML = p.map((fx) => `<div class="pool-match"><div class="pm-head"><span>${esc(fx.home)} v ${esc(fx.away)}</span><small>${esc(fmtTime(fx.kickoff_utc, false))} ${esc(fx.league)}</small></div>
     ${fx.legs.map((l) => `<button class="pool-leg${inSlip[fx.fixture_id] === l.leg_id ? " in" : ""}" data-fx="${esc(fx.fixture_id)}" data-leg="${esc(l.leg_id)}">
-      <span>${esc(l.label)}<br><small class="num">real chance ${pct(l.fair_p)}</small></span><span class="p num">${odds(l.price)}</span>${edgeTag(l.edge)}</button>`).join("")}</div>`).join("")
+      <span>${esc(l.label)}<br><small class="num">real chance ${pct(l.fair_p)}${bandFit(l.price) === 1 ? " · sweet spot" : ""}</small></span><span class="p num">${oddsH(l.price)}</span>${edgeTag(l.edge)}</button>`).join("")}</div>`).join("")
     || `<p class="hint">No legs match your filters. Loosen them in Settings.</p>`;
   $("#pool").querySelectorAll(".pool-leg").forEach((b) => b.addEventListener("click", () => {
     const at = slip.legs.findIndex((l) => l.fixture_id === b.dataset.fx);
@@ -494,19 +875,8 @@ $("#stakeDown").addEventListener("click", () => { slip.stake = Math.max(5, slip.
 $("#stakeUp").addEventListener("click", () => { slip.stake = Math.min(20, slip.stake + 5); saveSlip(); renderBuild(); });
 $("#buildWhere").addEventListener("click", () => slip && openWhereSheet());
 
-function slipText() {
-  const nums = numbers();
-  const lines = nums.legs.map(({ fx, leg }, i) => `${i + 1}. ${fx.home} v ${fx.away} (${fmtTime(fx.kickoff_utc, false)}): ${leg.label} @ ${leg.price.toFixed(2)}`);
-  return `${bookName(slip.bookie)}: ${nums.legs.length}-fold, ${windowById(slip.window_id).label}\n${lines.join("\n")}\nCombined odds ${nums.odds.toFixed(2)}. Stake £${slip.stake}, returns £${nums.ret.toFixed(2)}.`;
-}
 $("#copyBtn").addEventListener("click", async () => {
-  const text = slipText();
-  try { await navigator.clipboard.writeText(text); }
-  catch {
-    const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); } catch { /* nothing else to try */ }
-    ta.remove();
-  }
+  await copyText(ticketText());
   copied = true; renderBuild();
 });
 $("#placedBtn").addEventListener("click", () => openPlaceSheet(currentSlipAsBet()));
@@ -586,7 +956,7 @@ function loadPublished(s) {
 function slipCard(s) {
   const rows = s.legs.map((id) => {
     const l = LEGS[id], f = FIX[l.fixture_id];
-    return `<div class="cleg"><span class="sel">${esc(l.label)}</span><span class="p num">${odds(s.prices[id])}<small>${pct(l.p_win)} likely</small></span>
+    return `<div class="cleg"><span class="sel">${esc(l.label)}</span><span class="p num">${oddsH(s.prices[id])}<small>${pct(l.p_win)} likely</small></span>
       <span class="m">${esc(f.home)} v ${esc(f.away)}, ${esc(fmtTime(f.kickoff, false))} ${esc(f.league)}</span></div>`;
   }).join("");
   return `<article class="card" data-slip="${esc(s.id)}">
@@ -594,7 +964,7 @@ function slipCard(s) {
     ${s.alsoAt.length ? `<div class="also">Same prices at ${s.alsoAt.map((b) => esc(bookName(b))).join(", ")}</div>` : ""}
     ${rows}
     <div class="card-foot">
-      <div><b class="num">${odds(s.odds)}</b><span>Combined odds</span></div>
+      <div><b class="num">${oddsH(s.odds)}</b><span>Combined odds</span></div>
       <div><b class="num">${pct(s.hit_p)}</b><span>Real chance it lands</span></div>
       <div><b class="num">£${(10 * s.odds).toFixed(2)}</b><span>£10 returns</span></div>
       <div><b>${edgeTag(s.ev)}</b><span>Edge</span></div>
@@ -615,11 +985,11 @@ $("#sheet").addEventListener("click", (e) => { if (e.target.id === "sheet") clos
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
 
 // ---------- Winnings (my bets) ----------
-function openPlaceSheet(b) {
+function openPlaceSheet(b, opts = {}) {
   openSheet(`<h3 id="sheetTitle">Log this bet</h3>
     <p class="hint">${esc(bookName(b.book))}, ${b.legs.length} legs, ${esc(b.label)}</p>
     <div class="field"><label for="pStake">Stake (£)</label><input id="pStake" type="number" inputmode="decimal" min="0.1" step="0.5" value="${b.stake}"></div>
-    <div class="field"><label for="pOdds">Odds you got (decimal)</label><input id="pOdds" type="number" inputmode="decimal" min="1.01" step="0.01" value="${b.odds.toFixed(2)}"></div>
+    <div class="field"><label for="pOdds">Odds you got (decimal${prefs.odds_format === "decimal" ? "" : `, about ${esc(odds(b.odds))}`})</label><input id="pOdds" type="number" inputmode="decimal" min="1.01" step="0.01" value="${b.odds.toFixed(2)}"></div>
     <div class="err" id="pErr"></div>
     <div class="sheet-actions"><button class="cbtn plain" id="pCancel">Cancel</button><button class="cbtn green" id="pSave">Save bet</button></div>`, (s) => {
     s.querySelector("#pCancel").addEventListener("click", closeSheet);
@@ -631,7 +1001,8 @@ function openPlaceSheet(b) {
       bets.unshift({ id: `${Date.now()}`, placedAt: new Date().toISOString(), book: b.book, bookName: bookName(b.book), label: b.label, start: b.start,
         stake, odds: o, hit_p: b.hit_p, ev: b.ev, legIds: b.legIds, legs: b.legs, status: "pending", returns: null });
       saveBets(); closeSheet(); copied = false;
-      location.hash = "#winnings";
+      if (opts.onSaved) opts.onSaved();
+      else { Sound.placed(); location.hash = "#winnings"; }
     });
   });
 }
@@ -855,23 +1226,44 @@ function calibrationChart(el, bins) {
 }
 
 // ---------- settings ----------
+const SWEET_SPOTS = [
+  { id: "short", range: [1.1, 1.2], label: "1/10 – 1/5" },
+  { id: "default", range: [1.14, 1.26], label: "1/7 – 1/4" },
+  { id: "long", range: [1.2, 1.33], label: "1/5 – 1/3" },
+];
 $("#settingsBtn").addEventListener("click", () => {
   const draft = Object.assign({}, settings, { myBooks: myBooks().slice() });
+  const p = JSON.parse(JSON.stringify(prefs));
+  const chipRow = (name, opts, cur) => `<div class="chips">${opts.map(([v, txt]) => `<button class="chip" data-${name}="${v}" aria-pressed="${String(v) === String(cur)}">${txt}</button>`).join("")}</div>`;
   openSheet("", (s) => {
+    const spot = SWEET_SPOTS.find((x) => x.range[0] === p.sweet_spot[0] && x.range[1] === p.sweet_spot[1])?.id || "default";
     s.innerHTML = `<h3 id="sheetTitle">Settings</h3>
+      <div class="field"><span class="lbl">Show odds as</span>${chipRow("fmt", [["fraction", "Fractions (6/5)"], ["decimal", "Decimal (2.20)"]], p.odds_format)}
+        <p class="hint">Or hold the big odds number on the machine to flip.</p></div>
+      <div class="field"><span class="lbl">Legs per slip</span>${chipRow("legs", [["mix", "4 or 5"], [4, "4"], [5, "5"]], p.legs_per_slip)}</div>
+      <div class="field"><span class="lbl">Leg price sweet spot</span>${chipRow("spot", SWEET_SPOTS.map((x) => [x.id, x.label]), spot)}
+        <p class="hint">A slip around evens lands about half the time however many legs it has. Short legs make each one safer and the sweat more fun, but don't lower the overall risk. Bookie margin adds up with every leg, so the edge filter matters.</p></div>
+      <div class="field"><label for="sEdge">Lowest edge a spin can land on <output id="oEdge">${signedPct(p.min_edge)}</output></label><input id="sEdge" type="range" min="-0.05" max="0.05" step="0.005" value="${p.min_edge}"></div>
+      <div class="field"><label for="sMinP">Each leg at least this likely <output id="oMinP">${pct(draft.minP)}</output></label><input id="sMinP" type="range" min="0.6" max="0.95" step="0.01" value="${draft.minP}"></div>
+      <div class="field"><label for="sMax">Highest price per leg <output id="oMax">${esc(odds(draft.maxLeg))}</output></label><input id="sMax" type="range" min="1.1" max="1.5" step="0.01" value="${draft.maxLeg}"></div>
+      <div class="field"><span class="lbl">Sound</span>${chipRow("snd", [["on", "On"], ["off", "Off"]], p.sound === false ? "off" : "on")}</div>
+      <div class="field"><span class="lbl">Vibration</span>${chipRow("vib", [["on", "On"], ["off", "Off"]], p.vibration === false ? "off" : "on")}</div>
       <div class="field"><span class="lbl">Bookies you have accounts with</span><div class="chips">
         ${SLIP_BOOKS.map((b) => `<button class="chip" data-mybook="${b}" aria-pressed="${draft.myBooks.includes(b)}">${esc(bookName(b))}</button>`).join("")}</div>
         <p class="hint">Sky Bet and William Hill aren't in the odds feed, so they can't be shown.</p></div>
-      <div class="field"><label for="sMinP">Each leg at least this likely <output id="oMinP">${pct(draft.minP)}</output></label><input id="sMinP" type="range" min="0.6" max="0.95" step="0.01" value="${draft.minP}"></div>
-      <div class="field"><label for="sMax">Highest price per leg <output id="oMax">${draft.maxLeg.toFixed(2)}</output></label><input id="sMax" type="range" min="1.1" max="1.5" step="0.01" value="${draft.maxLeg}"></div>
-      <div class="field"><label for="sEdge">Lowest edge a spin can land on <output id="oEdge">${signedPct(draft.minEdge)}</output></label><input id="sEdge" type="range" min="-0.15" max="0.05" step="0.005" value="${draft.minEdge}"></div>
-      <div class="field"><span class="lbl">Show odds as</span><div class="chips">
-        <button class="chip" data-fmt="decimal" aria-pressed="${draft.oddsFormat !== "fraction"}">Decimal (2.10)</button>
-        <button class="chip" data-fmt="fraction" aria-pressed="${draft.oddsFormat === "fraction"}">Fractions (11/10)</button></div></div>
       <div class="field"><label for="sLimit">Monthly limit (£)</label><input id="sLimit" type="number" inputmode="decimal" min="1" step="5" value="${draft.monthlyLimit}"></div>
       <div class="err" id="sErr"></div>
       <div class="sheet-actions"><button class="cbtn plain" id="sCancel">Cancel</button><button class="cbtn yellow" id="sSave">Save settings</button></div>
-      <p class="hint" style="margin-top:16px">Odds refresh every morning at about 07:15${DATA?.budget?.remaining_after != null ? `; ${DATA.budget.remaining_after} free requests left this month` : ""}.</p>`;
+      <p class="hint" style="margin-top:16px">Odds refresh every morning at about 07:15${DATA?.budget?.remaining_after != null ? `; ${DATA.budget.remaining_after} free requests left this month` : ""}. Scores update about every 10 minutes while matches are on.</p>`;
+    const group = (name, apply) => s.querySelectorAll(`[data-${name}]`).forEach((b) => b.addEventListener("click", () => {
+      apply(b.dataset[name]);
+      s.querySelectorAll(`[data-${name}]`).forEach((x) => x.setAttribute("aria-pressed", x === b));
+    }));
+    group("fmt", (v) => { p.odds_format = v; });
+    group("legs", (v) => { p.legs_per_slip = v === "mix" ? "mix" : +v; });
+    group("spot", (v) => { p.sweet_spot = SWEET_SPOTS.find((x) => x.id === v).range.slice(); });
+    group("snd", (v) => { p.sound = v === "on"; });
+    group("vib", (v) => { p.vibration = v === "on"; });
     s.querySelectorAll("[data-mybook]").forEach((b) => b.addEventListener("click", () => {
       const v = b.dataset.mybook, set = new Set(draft.myBooks);
       set.has(v) ? set.delete(v) : set.add(v);
@@ -879,20 +1271,24 @@ $("#settingsBtn").addEventListener("click", () => {
       draft.myBooks = [...set];
       s.querySelectorAll("[data-mybook]").forEach((x) => x.setAttribute("aria-pressed", set.has(x.dataset.mybook)));
     }));
-    s.querySelectorAll("[data-fmt]").forEach((b) => b.addEventListener("click", () => {
-      draft.oddsFormat = b.dataset.fmt;
-      s.querySelectorAll("[data-fmt]").forEach((x) => x.setAttribute("aria-pressed", x.dataset.fmt === draft.oddsFormat));
-    }));
-    const slide = (id, key, out, fmt) => s.querySelector(id).addEventListener("input", (e) => { draft[key] = +e.target.value; s.querySelector(out).textContent = fmt(draft[key]); });
-    slide("#sMinP", "minP", "#oMinP", pct);
-    slide("#sMax", "maxLeg", "#oMax", (v) => v.toFixed(2));
-    slide("#sEdge", "minEdge", "#oEdge", (v) => signedPct(v));
+    s.querySelector("#sEdge").addEventListener("input", (e) => { p.min_edge = +e.target.value; s.querySelector("#oEdge").textContent = signedPct(p.min_edge); });
+    s.querySelector("#sMinP").addEventListener("input", (e) => { draft.minP = +e.target.value; s.querySelector("#oMinP").textContent = pct(draft.minP); });
+    s.querySelector("#sMax").addEventListener("input", (e) => { draft.maxLeg = +e.target.value; s.querySelector("#oMax").textContent = odds(draft.maxLeg); });
     s.querySelector("#sCancel").addEventListener("click", closeSheet);
     s.querySelector("#sSave").addEventListener("click", () => {
       const lim = parseFloat(s.querySelector("#sLimit").value);
       if (!(lim > 0)) { s.querySelector("#sErr").textContent = "Enter a monthly limit above £0."; return; }
       draft.monthlyLimit = lim;
-      settings = draft; saveSettings(); closeSheet(); ensureSlip(); route();
+      const shapeChanged = p.legs_per_slip !== prefs.legs_per_slip || p.sweet_spot.join() !== prefs.sweet_spot.join() || p.min_edge !== prefs.min_edge;
+      settings = draft; saveSettings();
+      prefs = p; savePrefs(); renderSoundBtn();
+      closeSheet();
+      if (shapeChanged && slip && windowById(slip.window_id)) {
+        slip.legs = slip.legs.filter((l) => l.held);
+        if (!spin().ok) { fillTo(4); sortSlip(); saveSlip(); }
+      }
+      ensureSlip();
+      route();
     });
   });
 });
