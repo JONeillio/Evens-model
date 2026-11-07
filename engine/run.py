@@ -321,7 +321,7 @@ class Run:
             "generated_at": iso(self.now),
             "odds_taken_at": odds_time,
             "timezone": s["timezone"],
-            "books": [{"slug": b, "name": book_names.get(b, b)} for b in books],
+            "books": [{"slug": b, "name": book_names.get(b, b), "slips": b not in s.get("not_for_slips", [])} for b in books],
             "sharp_book": s["sharp_book"],
             "defaults": s["slips"],
             "fixtures": sorted(fixtures.values(), key=lambda f: (f["kickoff"], f["league"])),
