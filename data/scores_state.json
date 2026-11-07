@@ -1177,10 +1177,10 @@
   "id1000023872531008": {
    "s": "PST",
    "min": null,
-   "h": null,
-   "a": null,
-   "src": "af",
-   "at": "2026-11-07T19:25:33Z"
+   "h": 0,
+   "a": 0,
+   "src": "fd",
+   "at": "2026-11-07T19:30:35Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1221,10 +1221,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T19:25:33Z"
+   "at": "2026-11-07T19:30:35Z"
   }
  },
- "last_called_at": "2026-11-07T19:25:33Z",
+ "last_called_at": "2026-11-07T19:30:35Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1446,19 +1446,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T19:25:33Z",
-  "want": 3,
+  "at": "2026-11-07T19:30:35Z",
+  "want": 2,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1469,10 +1461,10 @@
     "results": 36
    }
   ],
-  "changed": 3,
+  "changed": 1,
   "coverage": {
-   "checked": 3,
-   "api_football": 3,
+   "checked": 2,
+   "api_football": 0,
    "football_data": 2,
    "unmatched": []
   }
