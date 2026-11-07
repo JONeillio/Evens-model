@@ -1,0 +1,102 @@
+{
+ "started_at": "2026-11-07T00:01:27Z",
+ "mode": "manual",
+ "errors": [
+  "pinnacle: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
+  "bet365: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
+  "skybet: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
+  "williamhill: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+ ],
+ "notes": [
+  "Too many leagues per call; will use 10 next time.",
+  "Too many leagues per call; will use 10 next time.",
+  "Too many leagues per call; will use 10 next time.",
+  "Too many leagues per call; will use 10 next time."
+ ],
+ "usage_before": {
+  "plan": "free",
+  "limit": 250,
+  "used": 6,
+  "remaining": 244
+ },
+ "plan": {
+  "fetch": true,
+  "books": [
+   "bet365",
+   "skybet",
+   "williamhill"
+  ],
+  "chunks": 1,
+  "planned_calls": 4,
+  "allowance": 8,
+  "remaining": 244,
+  "runs_left": 27.4,
+  "reason": "ok"
+ },
+ "builder_seconds": 0.0,
+ "fixtures": 0,
+ "legs": 0,
+ "slips": 0,
+ "books": [],
+ "model_fixtures": 0,
+ "fd_errors": [],
+ "calls": [
+  {
+   "endpoint": "account",
+   "params": {},
+   "status": 200,
+   "seconds": 0.41,
+   "billable": false,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 400,
+   "seconds": 0.29,
+   "billable": true,
+   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "bookmaker": "bet365",
+    "oddsFormat": "decimal"
+   },
+   "status": 400,
+   "seconds": 0.26,
+   "billable": true,
+   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "bookmaker": "skybet",
+    "oddsFormat": "decimal"
+   },
+   "status": 400,
+   "seconds": 0.45,
+   "billable": true,
+   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "bookmaker": "williamhill",
+    "oddsFormat": "decimal"
+   },
+   "status": 400,
+   "seconds": 0.22,
+   "billable": true,
+   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+  }
+ ],
+ "finished_at": "2026-11-07T00:01:34Z"
+}
