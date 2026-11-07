@@ -9,10 +9,14 @@ on:
   workflow_dispatch:
     inputs:
       task:
-        description: "refresh (normal), probe (check which bookies have data, 1 request) or rebuild (re-run the engine on the last odds snapshot, 0 requests)"
+        description: "refresh (normal), probe (check which bookies have data, 1 request), sports (NFL/NBA discovery, ~9 requests) or rebuild (re-run the engine on the last odds snapshot, 0 requests)"
         default: refresh
         type: choice
-        options: [refresh, probe, rebuild]
+        options: [refresh, probe, sports, rebuild]
+      calls:
+        description: "refresh only: spend up to this many requests (blank = the normal daily share)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -42,10 +46,13 @@ jobs:
       - name: Pull odds, price legs, build slips
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          CALLS: ${{ inputs.calls }}
         run: |
           if [ "${{ inputs.task }}" = "probe" ]; then python -m engine.probe;
+          elif [ "${{ inputs.task }}" = "sports" ]; then python -m engine.probe_sports;
           elif [ "${{ inputs.task }}" = "rebuild" ]; then python -m engine.run --reuse-snapshot;
-          else python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}; fi
+          else python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }} ${CALLS:+--calls "$CALLS"}; fi
 
       - name: Save results
         if: always()

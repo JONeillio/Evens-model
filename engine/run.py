@@ -66,7 +66,7 @@ def days_since(stamp: str | None, now: datetime) -> float:
 
 class Run:
     def __init__(self, settings: dict, now: datetime, mock_dir: Path | None = None, manual: bool = False,
-                 out_dir: Path | None = None):
+                 out_dir: Path | None = None, calls: int | None = None):
         global DATA, DOCS_DATA
         if out_dir:  # test runs write somewhere harmless
             DATA, DOCS_DATA = out_dir / "data", out_dir / "docs" / "data"
@@ -74,6 +74,7 @@ class Run:
         self.now = now
         self.mock_dir = mock_dir
         self.manual = manual
+        self.calls_override = calls  # a by-hand run that's allowed to spend exactly this many requests
         self.log = {"started_at": iso(now), "mode": "mock" if mock_dir else ("manual" if manual else "scheduled"),
                     "errors": [], "notes": []}
         self.state = load_json(DATA / "state.json", {})
@@ -106,6 +107,10 @@ class Run:
         plan = budget.allowance(usage, self.now, cfg, manual=self.manual)
         self.log["usage_before"] = usage
         self.log["plan"] = plan
+        if self.calls_override:
+            spendable = max(0, usage["remaining"] - cfg["reserve"])
+            plan["allowance"] = min(int(self.calls_override), spendable)
+            plan["override"] = int(self.calls_override)
         allow = plan["allowance"]
         if allow < 4:  # fixtures + Pinnacle + at least two matches
             plan["fetch"] = False
@@ -194,7 +199,18 @@ class Run:
             if good:
                 scored.append((fid, ko, min(len(good), 8)))
         picks: list[str] = []
-        remaining = {fid: (ko, sc) for fid, ko, sc in scored}
+        # Joseph's must-haves first: every match in the priority leagues (Prem, then Championship),
+        # soonest first, as long as it has at least one short-priced leg.
+        tid_of = {fid: index[fid]["meta"].get("tournamentId") for fid, _, _ in scored}
+        for tier in self.s.get("priority", []):
+            ids = set(tier.get("leagues", []))
+            for fid, ko, _ in sorted((x for x in scored if tid_of[x[0]] in ids), key=lambda x: x[1]):
+                if len(picks) >= budget_calls:
+                    break
+                if fid not in picks:
+                    picks.append(fid)
+        self.log["priority_picks"] = len(picks)
+        remaining = {fid: (ko, sc) for fid, ko, sc in scored if fid not in picks}
         while remaining and len(picks) < budget_calls:
             # The kick-off window with the most promising matches still unpicked.
             best_anchor, best_set = None, []
@@ -393,13 +409,14 @@ def main():
     ap.add_argument("--mock", type=Path)
     ap.add_argument("--now")
     ap.add_argument("--manual", action="store_true")
+    ap.add_argument("--calls", type=int, help="by-hand run: spend up to this many requests (still keeps the reserve)")
     ap.add_argument("--out", type=Path, help="write outputs here instead of the repo (for tests)")
     ap.add_argument("--reuse-snapshot", action="store_true", help="no API calls: rebuild from data/snapshot.json")
     args = ap.parse_args()
     settings = load_json(ROOT / "config" / "settings.json", None)
     now = parse_ts(args.now) if args.now else datetime.now(timezone.utc).replace(microsecond=0)
     out = args.out or (Path("/tmp/evens_mock_out") if args.mock else None)
-    run = Run(settings, now, mock_dir=args.mock, manual=args.manual, out_dir=out)
+    run = Run(settings, now, mock_dir=args.mock, manual=args.manual, out_dir=out, calls=args.calls)
     if args.reuse_snapshot:
         run.fetch_odds = lambda: (None, [], False)
     try:

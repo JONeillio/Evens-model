@@ -328,5 +328,20 @@
   "max_price": 1.5,
   "min_fair_prob": 0.6,
   "min_fixtures": 2
- }
+ },
+ "priority": [
+  {
+   "label": "Premier League",
+   "leagues": [
+    17
+   ]
+  },
+  {
+   "label": "Championship",
+   "leagues": [
+    18
+   ]
+  }
+ ],
+ "_priority_readme": "Joseph's must-haves: every match in these leagues gets full UK bookie prices first, in this order, before the rest of the shortlist."
 }
