@@ -390,7 +390,8 @@ class Run:
         for fid, fx in fixtures.items():
             legs.extend(build_legs(fx, index[fid]["books"], s["sharp_book"], books, s, model_probs.get(fid)))
         # NFL player yards: stats-first projections lined up with the prop prices (engine/nfl).
-        nfl_proj, nfl_map = [], load_json(ROOT / "data" / "nfl_model" / "fixture_map.json", {})
+        fmap_path = DATA / "nfl_fixture_map.json" if DATA != ROOT / "data" else ROOT / "data" / "nfl_model" / "fixture_map.json"
+        nfl_proj, nfl_map = [], load_json(fmap_path, {}) or load_json(ROOT / "data" / "nfl_model" / "fixture_map.json", {})
         try:
             from .nfl import live as nfl_live
             nl, nfl_proj, fmap = nfl_live.build(index, fixtures, s, self.now, offline=bool(self.mock_dir))
@@ -399,7 +400,7 @@ class Run:
                 nfl_map.update({k: dict(v, seen=iso(self.now)) for k, v in fmap.items()})
                 cutoff = iso(self.now - timedelta(days=21))
                 nfl_map = {k: v for k, v in nfl_map.items() if v.get("seen", "") >= cutoff}
-                save_json(ROOT / "data" / "nfl_model" / "fixture_map.json", nfl_map)
+                save_json(fmap_path, nfl_map)
             self.log["nfl"] = {"prop_legs": len(nl), "projections": len(nfl_proj)}
         except Exception as exc:
             self.log["errors"].append(f"nfl model: {str(exc)[:300]}")
