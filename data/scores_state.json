@@ -1177,10 +1177,10 @@
   "id1000023872531008": {
    "s": "PST",
    "min": null,
-   "h": null,
-   "a": null,
-   "src": "af",
-   "at": "2026-11-07T18:44:44Z"
+   "h": 0,
+   "a": 0,
+   "src": "fd",
+   "at": "2026-11-07T18:49:47Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1221,10 +1221,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T18:44:44Z"
+   "at": "2026-11-07T18:49:47Z"
   }
  },
- "last_called_at": "2026-11-07T18:44:44Z",
+ "last_called_at": "2026-11-07T18:49:47Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1446,19 +1446,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T18:44:44Z",
+  "at": "2026-11-07T18:49:47Z",
   "want": 3,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1469,12 +1461,14 @@
     "results": 36
    }
   ],
-  "changed": 3,
+  "changed": 1,
   "coverage": {
    "checked": 3,
-   "api_football": 3,
+   "api_football": 0,
    "football_data": 2,
-   "unmatched": []
+   "unmatched": [
+    "Altrincham FC v Notts County (FA Cup)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T18:44:44Z"
