@@ -768,67 +768,67 @@
   },
   "id1000003572513292": {
    "s": "LIVE",
-   "min": 71,
+   "min": 81,
    "h": 2,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:06:43Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000003572513294": {
    "s": "LIVE",
-   "min": 71,
+   "min": 81,
    "h": 5,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340016": {
    "s": "LIVE",
-   "min": null,
+   "min": 52,
    "h": 1,
    "a": 1,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340028": {
    "s": "LIVE",
-   "min": null,
-   "h": 0,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
-  },
-  "id1000020672202724": {
-   "s": "HT",
-   "min": 45,
-   "h": 0,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T15:50:53Z"
-  },
-  "id1000001975802940": {
-   "s": "HT",
-   "min": 45,
-   "h": 2,
-   "a": 1,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
-  },
-  "id1000001975802950": {
-   "s": "HT",
-   "min": 45,
+   "min": 54,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
+  },
+  "id1000020672202724": {
+   "s": "LIVE",
+   "min": 54,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
+  },
+  "id1000001975802940": {
+   "s": "LIVE",
+   "min": 50,
+   "h": 2,
+   "a": 1,
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
+  },
+  "id1000001975802950": {
+   "s": "LIVE",
+   "min": 54,
+   "h": 1,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802960": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 0,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802968": {
    "s": "HT",
@@ -839,164 +839,164 @@
    "at": "2026-11-07T15:50:53Z"
   },
   "id1000001975837136": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 49,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837138": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 51,
    "h": 4,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837142": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 51,
    "h": 0,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837150": {
-   "s": "HT",
-   "min": 45,
-   "h": 0,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T15:50:53Z"
-  },
-  "id1000003672201712": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
-  "id1000018572936126": {
-   "s": "HT",
-   "min": 45,
+  "id1000003672201712": {
+   "s": "LIVE",
+   "min": 52,
    "h": 1,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
+  },
+  "id1000018572936126": {
+   "s": "LIVE",
+   "min": 51,
+   "h": 1,
+   "a": 1,
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340008": {
    "s": "LIVE",
-   "min": null,
+   "min": 47,
    "h": 1,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340010": {
    "s": "LIVE",
-   "min": null,
+   "min": 54,
    "h": 0,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340014": {
    "s": "LIVE",
-   "min": null,
+   "min": 51,
    "h": 1,
    "a": 2,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340022": {
    "s": "LIVE",
-   "min": null,
+   "min": 47,
    "h": 1,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340024": {
    "s": "LIVE",
-   "min": null,
+   "min": 52,
    "h": 1,
    "a": 1,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001872340026": {
    "s": "LIVE",
-   "min": null,
+   "min": 51,
    "h": 0,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000020672202720": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000020672202722": {
-   "s": "HT",
-   "min": 45,
-   "h": 2,
-   "a": 2,
+   "s": "LIVE",
+   "min": 52,
+   "h": 3,
+   "a": 3,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802924": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 50,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802926": {
-   "s": "HT",
-   "min": 45,
-   "h": 0,
+   "s": "LIVE",
+   "min": 53,
+   "h": 1,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802932": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 54,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802934": {
-   "s": "HT",
-   "min": 45,
-   "h": 2,
+   "s": "LIVE",
+   "min": 54,
+   "h": 3,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802936": {
    "s": "LIVE",
-   "min": 45,
+   "min": 54,
    "h": 0,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802938": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 2,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802942": {
    "s": "HT",
@@ -1007,164 +1007,164 @@
    "at": "2026-11-07T16:01:02Z"
   },
   "id1000001975802946": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 55,
    "h": 0,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802952": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 54,
    "h": 0,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802954": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802956": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802958": {
    "s": "LIVE",
-   "min": 45,
+   "min": 54,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802966": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 50,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802972": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 49,
    "h": 4,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802974": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 52,
    "h": 3,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802976": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 55,
    "h": 0,
    "a": 2,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802978": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975802980": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 49,
    "h": 3,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837134": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 55,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837140": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 51,
    "h": 2,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837144": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 54,
    "h": 1,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001975837148": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 53,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001772221372": {
    "s": "LIVE",
-   "min": null,
+   "min": 51,
    "h": 0,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000001772221380": {
    "s": "LIVE",
-   "min": null,
+   "min": 53,
    "h": 0,
    "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000003672201710": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 50,
    "h": 1,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T15:50:53Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000003872366442": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": 48,
    "h": 0,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000005472477564": {
-   "s": "LIVE",
-   "min": 41,
+   "s": "HT",
+   "min": 45,
    "h": 0,
    "a": 2,
    "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "id1000000872478692": {
    "s": "LIVE",
@@ -1175,32 +1175,32 @@
    "at": "2026-11-07T15:55:58Z"
   },
   "id1000023872531008": {
-   "s": "LIVE",
+   "s": "PST",
    "min": null,
-   "h": 0,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-07T16:01:39Z"
+   "h": null,
+   "a": null,
+   "src": "af",
+   "at": "2026-11-07T16:11:47Z"
   }
  },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 22,
+  "api_football": 23,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:11:47Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T16:06:43Z"
+   "at": "2026-11-07T16:11:47Z"
   }
  },
- "last_called_at": "2026-11-07T16:06:43Z",
+ "last_called_at": "2026-11-07T16:11:47Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1422,11 +1422,19 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T16:06:43Z",
+  "at": "2026-11-07T16:11:47Z",
   "want": 53,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1448
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1437,53 +1445,13 @@
     "results": 36
    }
   ],
-  "changed": 1,
+  "changed": 49,
   "coverage": {
    "checked": 53,
-   "api_football": 0,
+   "api_football": 52,
    "football_data": 14,
-   "unmatched": [
-    "Inverness Caledonian Thistle FC v Livingston FC (Championship)",
-    "Newport County v Walsall FC (FA Cup)",
-    "Crewe Alexandra v AFC Wimbledon (FA Cup)",
-    "Eastleigh FC v Shrewsbury Town (FA Cup)",
-    "Guiseley FC v Sutton United (FA Cup)",
-    "Luton Town v Forest Green Rovers (FA Cup)",
-    "Barnsley FC v Aldershot Town FC (FA Cup)",
-    "Gillingham FC v Barrow AFC (FA Cup)",
-    "Plymouth Argyle v Alvechurch (FA Cup)",
-    "St. Johnstone FC v Dundee FC (Premiership)",
-    "Volos NPS v AE Kifisia FC (Super League)",
-    "Arbroath FC v Ayr United FC (Championship)",
-    "Greenock Morton FC v Stenhousemuir FC (Championship)",
-    "Dover Athletic FC v Wealdstone FC (FA Cup)",
-    "Huddersfield Town v Exeter City (FA Cup)",
-    "Kidderminster Harriers FC v Doncaster Rovers (FA Cup)",
-    "Leyton Orient London v Harborough Town FC (FA Cup)",
-    "Accrington Stanley v Wycombe Wanderers (FA Cup)",
-    "Milton Keynes Dons v Swindon Town (FA Cup)",
-    "Bromley FC v Rotherham United (FA Cup)",
-    "Barnet FC v Tranmere Rovers FC (FA Cup)",
-    "Fleetwood Town v Rochdale AFC (FA Cup)",
-    "Oxford United v Stevenage FC (FA Cup)",
-    "Burton Albion v AFC Rushden And Diamonds (FA Cup)",
-    "Port Vale v Scunthorpe United (FA Cup)",
-    "Cheltenham Town v FC Halifax Town (FA Cup)",
-    "Hornchurch FC v Blackpool FC (FA Cup)",
-    "Bradford City FC v Marine FC (FA Cup)",
-    "York City FC v Northampton Town (FA Cup)",
-    "Boreham Wood FC v Wigan Athletic (FA Cup)",
-    "Carlisle United v Salford City (FA Cup)",
-    "Salisbury FC v Sholing FC (FA Cup)",
-    "Mansfield Town v Macclesfield FC (FA Cup)",
-    "Chesterfield FC v Yeovil Town (FA Cup)",
-    "Harrogate Town v AFC Fylde (FA Cup)",
-    "Colchester United v Worcester City (FA Cup)",
-    "Dundee United v Motherwell FC (Premiership)",
-    "KVC Westerlo v Royal Charleroi SC (Pro League)",
-    "Cadiz CF v Real Oviedo (LaLiga 2)"
-   ]
+   "unmatched": []
   }
  },
- "af_last_at": "2026-11-07T16:01:02Z"
+ "af_last_at": "2026-11-07T16:11:47Z"
 }
