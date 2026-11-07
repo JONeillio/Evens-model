@@ -47,3 +47,6 @@ Must-haves: Premier League and NFL whenever they're on; then Championship; then 
 - Rebuild the app's data offline with no API calls: copy `data/snapshot.json` to `OUT/data/` and run `python -m engine.run --reuse-snapshot --out OUT`.
 - Joseph asked to be consulted before switching odds provider.
 - Bump `VERSION` in `docs/sw.js` whenever app files change so phones pick up the update.
+
+## Skills
+Reusable learnings for future apps live in `skills/` (see `skills/README.md`). Add to them when a project teaches something new; keep them factual.
