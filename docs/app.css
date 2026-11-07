@@ -54,6 +54,25 @@ a { color: inherit; }
 .marquee h1 { font-family: var(--font-display); font-weight: 400; font-size: 27px; line-height: 1; margin: 0; color: var(--jackpot); text-shadow: 3px 3px 0 var(--ink); }
 .subline { background: none; border: 0; color: var(--blush); font-size: 16px; margin-top: 2px; min-height: 30px; padding: 0 6px; text-decoration: underline dotted rgba(242, 201, 168, .5); text-underline-offset: 4px; }
 
+/* Where row: kick-off time + a bookie pill you can see is tappable */
+.where-row { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+.where-row .subline { margin-top: 0; }
+.book-pill { min-height: 32px; padding: 2px 10px 2px 12px; border-radius: 999px; border: 2px solid var(--gold); background: var(--ink); color: var(--reel); font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; }
+.book-pill::after { content: ""; border: 5px solid transparent; border-top-color: var(--jackpot); border-bottom: 0; margin-top: 2px; }
+.book-pill .star { color: var(--jackpot); }
+
+/* Game select: which competitions go on the reels (lit fruit-machine feature buttons) */
+.game-select { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 8px 2px 2px; margin: 0 -4px; scroll-snap-type: x proximity; }
+.game-select::-webkit-scrollbar { display: none; }
+.game-chip { flex: none; scroll-snap-align: start; min-height: 36px; padding: 3px 10px; border-radius: 8px; border: 2px solid var(--off); border-bottom-width: 4px; background: var(--ink); color: var(--blush); font-family: var(--font-display); font-size: 12px; letter-spacing: .3px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.game-chip small { font-family: var(--font); font-size: 13px; font-weight: 700; opacity: .8; }
+.game-chip[aria-pressed="true"] { background: var(--jackpot); color: var(--yellow-ink); border-color: var(--yellow-edge); box-shadow: 0 0 10px rgba(255, 210, 63, .45); }
+.game-chip[aria-pressed="true"]::before { content: "●"; font-size: 9px; }
+.game-chip[aria-disabled="true"] { opacity: .4; }
+.cabinet.sweating .book-pill, .cabinet.sweating .game-select { display: none; }
+.star-btn { width: 100%; min-height: var(--tap); margin-top: 8px; border-radius: 10px; border: 2px dashed var(--gold); background: none; color: var(--reel); font-weight: 700; font-size: 16px; }
+.star-btn[aria-pressed="true"] { border-style: solid; background: var(--ink); color: var(--jackpot); }
+
 /* ---------- The cabinet ---------- */
 .cabinet { background: var(--cabinet); border: 4px solid var(--gold); border-radius: 18px 18px 8px 8px; padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 7px; position: relative; }
 .reel-bay { display: flex; gap: 6px; align-items: stretch; }

@@ -51,7 +51,8 @@ const store = {
 const DEFAULTS = { monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45 };
 let settings = Object.assign({}, DEFAULTS, store.get("settings", {}));
 // Round 2 preferences live in evens.prefs.
-const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26] };
+// comps: which competitions go on the reels ([] = all). fav_book: your main bookie (null = any).
+const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26], comps: [], fav_book: null };
 let prefs = Object.assign({}, PREF_DEFAULTS, store.get("prefs", {}));
 const savePrefs = () => store.set("prefs", prefs);
 let bets = store.get("bets", []);
@@ -230,13 +231,37 @@ function rawPool(windowId, bookie) {
   const w = windowById(windowId);
   return w ? (w.bookies.find((b) => b.bookie === bookie) || null) : null;
 }
+// ---------- game select: which competitions go on the reels ----------
+// Grouped by OddsPapi tournament id (config/settings.json leagues).
+const COMPS = [
+  { id: "prem", name: "Prem", long: "Premier League", ids: [17] },
+  { id: "efl", name: "EFL", long: "EFL", ids: [18, 24, 25] },
+  { id: "cups", name: "Cups", long: "cup", ids: [19, 21, 347] },
+  { id: "scot", name: "Scotland", long: "Scottish", ids: [36, 206, 207, 209] },
+  { id: "euro", name: "Euro nights", long: "European", ids: [7, 679, 34480] },
+  { id: "abroad", name: "Abroad", long: "overseas league", ids: [35, 8, 23, 34, 37, 238, 38, 52, 185, 44, 54, 53, 182] },
+  { id: "other", name: "Others", long: "other", ids: [] },
+];
+const compOf = (fid) => { const lid = FIX[fid]?.league_id; return (COMPS.find((c) => c.ids.includes(lid)) || COMPS[COMPS.length - 1]).id; };
+const inComps = (fid) => !prefs.comps?.length || prefs.comps.includes(compOf(fid));
+const legOk = (l) => l.fair_p >= settings.minP && l.price <= settings.maxLeg;
+
 // The pool with your filters applied (used for spins and adding legs).
 function pool(windowId, bookie) {
   const p = rawPool(windowId, bookie);
   if (!p) return [];
-  return p.fixtures.map((f) => Object.assign({}, f, {
-    legs: f.legs.filter((l) => l.fair_p >= settings.minP && l.price <= settings.maxLeg),
+  return p.fixtures.filter((f) => inComps(f.fixture_id)).map((f) => Object.assign({}, f, {
+    legs: f.legs.filter(legOk),
   })).filter((f) => f.legs.length);
+}
+// Matches with usable legs in the next two days, per competition group (your bookies only).
+function compCounts() {
+  const seen = {};
+  for (const w of upcoming()) for (const b of w.bookies) {
+    if (!myBooks().includes(b.bookie)) continue;
+    for (const f of b.fixtures) if (f.legs.some(legOk)) (seen[compOf(f.fixture_id)] ||= new Set()).add(f.fixture_id);
+  }
+  return Object.fromEntries(Object.entries(seen).map(([k, v]) => [k, v.size]));
 }
 function findLeg(windowId, bookie, legId) {
   const p = rawPool(windowId, bookie);
@@ -321,9 +346,11 @@ function applyCombo(choice, held) {
 }
 
 // The best-scoring slip for a window: highest edge among 4–5 short legs (item 8).
-function bestSlipFor(w) {
+function bestSlipFor(w, favOnly = false) {
   let best = null;
-  for (const bk of booksFor(w)) {
+  const fav = prefs.fav_book;
+  const books = favOnly && fav ? booksFor(w).filter((b) => b === fav) : booksFor(w);
+  for (const bk of books) {
     const found = combosWithFallback(w.id, bk, []);
     for (const c of found) {
       const meets = c.ev >= prefs.min_edge;
@@ -342,12 +369,34 @@ function ensureSlip() {
     saveSlip();
     return;
   }
+  if (rebuildSlip()) return;
   const w = upcoming().find((x) => booksFor(x).length);
   if (!w) { slip = null; saveSlip(); return; }
-  const best = bestSlipFor(w);
-  slip = { window_id: w.id, bookie: best ? best.bookie : booksFor(w)[0], stake: slip?.stake || 10, legs: [] };
-  if (best) applyCombo(best.combo, []);
-  else { fillTo(4); sortSlip(); saveSlip(); }
+  slip = { window_id: w.id, bookie: booksFor(w)[0], stake: slip?.stake || 10, legs: [] };
+  fillTo(4); sortSlip(); saveSlip();
+}
+
+/* A fresh slip for the current filters: the next kick-off where your main bookie
+   can make one, else the next kick-off where any of your bookies can. */
+function pickFresh() {
+  const passes = prefs.fav_book ? [true, false] : [false];
+  for (const favOnly of passes) for (const w of upcoming()) {
+    if (!booksFor(w).length) continue;
+    const best = bestSlipFor(w, favOnly);
+    if (best) return { w, best };
+  }
+  return null;
+}
+let fallbackNote = null; // shown once on the machine when your bookie couldn't make a slip
+function rebuildSlip() {
+  const found = pickFresh();
+  if (!found) return false;
+  const fav = prefs.fav_book;
+  fallbackNote = fav && found.best.bookie !== fav && myBooks().includes(fav)
+    ? `${bookName(fav)} hasn't priced enough matches to make a slip near evens, so this one's at ${bookName(found.best.bookie)}.` : null;
+  slip = { window_id: found.w.id, bookie: found.best.bookie, stake: slip?.stake || 10, legs: [] };
+  applyCombo(found.best.combo, []);
+  return true;
 }
 
 function sortSlip() {
@@ -575,6 +624,8 @@ function renderMachine(opts = {}) {
     return;
   }
   leaveSweat();
+  renderGameSelect(); renderBookPill();
+  if (fallbackNote && !spinning) { $("#mMsg").textContent = fallbackNote; fallbackNote = null; }
   const cand = sweatCandidate();
   const wb = $("#watchBtn");
   wb.hidden = !cand;
@@ -586,7 +637,7 @@ function renderMachine(opts = {}) {
     ticket.innerHTML = ""; ticket.hidden = true;
   } else {
     const w = windowById(slip.window_id);
-    where.textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`;
+    where.textContent = `${w.label} · ${countdown(w.start_utc)}`;
     const nums = numbers();
     const n = nums.legs.length;
     const reels = $("#reels"), holds = $("#holds"), nudges = $("#nudges");
@@ -793,10 +844,14 @@ function pull() {
     document.querySelectorAll("#reels .reel").forEach((r, i) => { if (!slip.legs[i]?.held) { r.classList.remove("fail"); void r.offsetWidth; r.classList.add("fail"); } });
     return;
   }
-  nudgesLeft = 3;
-  ticketState.copied = false;
   if (res.thin != null) msg.textContent = `Thin pickings — best edge is ${signedPct(res.thin)}`;
   else if (res.same) msg.textContent = "Same again: that's the only slip in the evens zone with those holds. Release a reel or change the bookie.";
+  playSpin(res);
+}
+// The reel animation for a slip that's already been chosen (Pull, game select, bookie change).
+function playSpin(res = { ok: true }) {
+  nudgesLeft = 3;
+  ticketState.copied = false;
   spinning = true;
   $("#pullBtn").disabled = true; $("#pullBtn").textContent = "Spinning…";
   renderMachine({ print: false });
@@ -876,7 +931,57 @@ function nudge(i, dir) {
 
 $("#pullBtn").addEventListener("click", pull);
 $("#machineWhere").addEventListener("click", () => slip && openWhereSheet());
-setInterval(() => { if (!$("#home").hidden && slip && !spinning && !$("#cabinet").classList.contains("sweating")) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`; } }, 30000);
+$("#bookPill").addEventListener("click", () => slip && openWhereSheet());
+setInterval(() => { if (!$("#home").hidden && slip && !spinning && !$("#cabinet").classList.contains("sweating")) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${countdown(w.start_utc)}`; } }, 30000);
+
+// ---------- game select (competitions) and bookie pill ----------
+function renderGameSelect() {
+  const el = $("#gameSelect");
+  if (!DATA) { el.innerHTML = ""; return; }
+  const counts = compCounts();
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+  const sel = prefs.comps || [];
+  const chips = [{ id: "all", name: "All", n: total }]
+    .concat(COMPS.map((c) => ({ id: c.id, name: c.name, n: counts[c.id] || 0 })))
+    .filter((c) => c.id !== "other" || c.n || sel.includes("other"));
+  el.innerHTML = chips.map((c) => {
+    const on = c.id === "all" ? !sel.length : sel.includes(c.id);
+    return `<button class="game-chip" data-comp="${c.id}" aria-pressed="${on}"${c.n || on ? "" : ' aria-disabled="true"'}>${esc(c.name)}<small class="num">${c.n}</small></button>`;
+  }).join("");
+}
+function renderBookPill() {
+  const b = $("#bookPill");
+  b.hidden = !slip;
+  if (!slip) return;
+  const fav = prefs.fav_book === slip.bookie;
+  b.innerHTML = `${fav ? '<span class="star" aria-hidden="true">★</span>' : ""}${esc(bookName(slip.bookie))}`;
+  b.setAttribute("aria-label", `Bookie: ${bookName(slip.bookie)}${fav ? " (your bookie)" : ""}. Tap to change`);
+}
+$("#gameSelect").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-comp]");
+  if (!b || spinning || !DATA) return;
+  const id = b.dataset.comp, msg = $("#mMsg");
+  const name = COMPS.find((c) => c.id === id)?.long;
+  if (b.getAttribute("aria-disabled") === "true") {
+    msg.textContent = `No ${name} matches have prices in the next two days.`;
+    buzz(10);
+    return;
+  }
+  const cur = prefs.comps || [];
+  // First tap focuses on one competition; more taps add or remove; All clears.
+  const next = id === "all" ? [] : !cur.length ? [id] : cur.includes(id) ? cur.filter((x) => x !== id) : cur.concat(id);
+  prefs.comps = next; savePrefs();
+  Sound.unlock(); Sound.hold(); buzz(10);
+  msg.textContent = "";
+  renderGameSelect();
+  if (!slip || $("#cabinet").classList.contains("sweating")) return;
+  if (rebuildSlip()) { sortSlip(); saveSlip(); playSpin(); return; }
+  const counts = compCounts();
+  const n = next.length ? next.reduce((a, c) => a + (counts[c] || 0), 0) : Object.values(counts).reduce((a, b) => a + b, 0);
+  msg.textContent = n < 3
+    ? `Only ${n} ${n === 1 ? "match has" : "matches have"} prices there in the next two days — not enough for a slip. Tap another to add it.`
+    : "Those matches don't kick off close enough together for a slip near evens. Tap another to add it.";
+});
 window.addEventListener("resize", () => fitLabels($("#reels")));
 
 // ---------- Build a bet ----------
@@ -982,28 +1087,44 @@ function openWhereSheet() {
   let wid = slip.window_id, bk = slip.bookie;
   const draw = (s) => {
     const w = windowById(wid);
-    const books = booksFor(w);
+    const fav = prefs.fav_book;
+    const books = booksFor(w).slice().sort((a, b) => (b === fav) - (a === fav));
     if (!books.includes(bk)) bk = books[0];
+    const favMissing = fav && !books.includes(fav);
     s.innerHTML = `<h3 id="sheetTitle">Which kick-off and bookie?</h3>
       <div class="field"><span class="lbl">Kick-off</span><div class="chips">${upcoming().filter((x) => booksFor(x).length).map((x) => `<button class="chip" data-w="${x.id}" aria-pressed="${x.id === wid}">${esc(x.label)}</button>`).join("")}</div></div>
-      <div class="field"><span class="lbl">Bookie</span><div class="chips">${books.map((b) => `<button class="chip" data-b="${b}" aria-pressed="${b === bk}">${esc(bookName(b))} <small>${pool(wid, b).length}</small></button>`).join("")}</div></div>
-      <p class="hint">The number is how many matches that bookie has priced in this window.</p>
+      <div class="field"><span class="lbl">Bookie</span><div class="chips">${books.map((b) => `<button class="chip" data-b="${b}" aria-pressed="${b === bk}">${b === fav ? "★ " : ""}${esc(bookName(b))} <small>${pool(wid, b).length}</small></button>`).join("")}</div>
+        <button class="star-btn" id="wStar" aria-pressed="${fav === bk}">${fav === bk ? `★ ${esc(bookName(bk))} is your bookie` : `☆ Make ${esc(bookName(bk))} my bookie`}</button></div>
+      <p class="hint">The number is how many matches that bookie has priced at this kick-off${prefs.comps?.length ? " (in the competitions you picked)" : ""}. Your bookie is the one the machine loads first, whenever it has prices.${favMissing ? ` ${esc(bookName(fav))} hasn't priced this kick-off.` : ""}</p>
+      ${pool(wid, bk).length < 3 ? `<div class="notice">${esc(bookName(bk))} has only priced ${pool(wid, bk).length} ${pool(wid, bk).length === 1 ? "match" : "matches"} here, so the reels can't get near evens with it.</div>` : ""}
       <div class="sheet-actions"><button class="cbtn plain" id="wCancel">Cancel</button><button class="cbtn yellow" id="wGo">Load the reels</button></div>`;
     s.querySelectorAll("[data-w]").forEach((b) => b.addEventListener("click", () => { wid = b.dataset.w; draw(s); }));
     s.querySelectorAll("[data-b]").forEach((b) => b.addEventListener("click", () => { bk = b.dataset.b; draw(s); }));
-    s.querySelector("#wCancel").addEventListener("click", closeSheet);
-    s.querySelector("#wGo").addEventListener("click", () => { changeWhere(wid, bk); closeSheet(); route(); });
+    s.querySelector("#wStar").addEventListener("click", () => {
+      prefs.fav_book = prefs.fav_book === bk ? null : bk; savePrefs(); buzz(10); draw(s);
+    });
+    s.querySelector("#wCancel").addEventListener("click", () => { closeSheet(); route(); });
+    s.querySelector("#wGo").addEventListener("click", () => {
+      const changed = changeWhere(wid, bk);
+      closeSheet(); route();
+      if (changed && !$("#home").hidden && !$("#cabinet").classList.contains("sweating")) {
+        playSpin();
+        const o = numbers().odds;
+        if (o < ZONE[0] || o > ZONE[1]) $("#mMsg").textContent = `${bookName(bk)} hasn't priced enough matches here to reach evens. Try another bookie or kick-off.`;
+      }
+    });
   };
   openSheet("", draw);
 }
 function changeWhere(wid, bk) {
-  if (wid === slip.window_id && bk === slip.bookie) return;
+  if (wid === slip.window_id && bk === slip.bookie) return false;
   const n = Math.max(4, Math.min(slip.legs.length, MAX_LEGS));
   const keep = slip.legs.filter((l) => l.held && findLeg(wid, bk, l.leg_id));
   slip = { window_id: wid, bookie: bk, stake: slip.stake, legs: keep };
   fillTo(n);
   if (slip.legs.length >= MIN_LEGS) spin();
   sortSlip(); copied = false; saveSlip();
+  return true;
 }
 
 // ---------- Play (today's slips) ----------
@@ -1019,13 +1140,18 @@ function mergeTwins(slips) {
 }
 function renderPlay() {
   const mine = new Set(myBooks());
-  const slips = mergeTwins(DATA.slips.filter((s) => Date.parse(s.start) > Date.now() && mine.has(s.book)).sort((a, b) => b.ev - a.ev))
+  const fav = prefs.fav_book;
+  const slips = mergeTwins(DATA.slips.filter((s) => Date.parse(s.start) > Date.now() && mine.has(s.book)
+      && s.legs.every((id) => inComps(LEGS[id]?.fixture_id)))
+    .sort((a, b) => (b.book === fav) - (a.book === fav) || b.ev - a.ev))
     .filter((s, i, arr) => arr.filter((x) => x.start === s.start).indexOf(s) < 3);
   const starts = [...new Set(slips.map((s) => s.start))].sort();
   if (!starts.includes(playWindow)) playWindow = starts[0] || null;
   $("#windows").innerHTML = starts.map((st) => `<button class="chip num" data-start="${st}" aria-pressed="${st === playWindow}">${esc(fmtTime(st))}</button>`).join("");
   $("#windows").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { playWindow = c.dataset.start; renderPlay(); }));
-  $("#playNotes").innerHTML = (DATA.notes || []).filter((n) => !/^Refreshed/.test(n)).map((n) => `<div class="notice">${esc(n)}</div>`).join("");
+  const picked = (prefs.comps || []).map((c) => COMPS.find((x) => x.id === c)?.name).filter(Boolean);
+  $("#playNotes").innerHTML = (picked.length ? `<div class="notice">Showing ${esc(picked.join(" + "))} only. Change it with the game buttons on the machine.</div>` : "")
+    + (DATA.notes || []).filter((n) => !/^Refreshed/.test(n)).map((n) => `<div class="notice">${esc(n)}</div>`).join("");
   const shown = slips.filter((s) => s.start === playWindow);
   $("#slips").innerHTML = shown.length ? shown.map(slipCard).join("") +
     `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets.</p>`
@@ -1336,6 +1462,7 @@ $("#settingsBtn").addEventListener("click", () => {
       <div class="field"><label for="sMax">Highest price per leg <output id="oMax">${esc(odds(draft.maxLeg))}</output></label><input id="sMax" type="range" min="1.1" max="1.5" step="0.01" value="${draft.maxLeg}"></div>
       <div class="field"><span class="lbl">Sound</span>${chipRow("snd", [["on", "On"], ["off", "Off"]], p.sound === false ? "off" : "on")}</div>
       <div class="field"><span class="lbl">Vibration</span>${chipRow("vib", [["on", "On"], ["off", "Off"]], p.vibration === false ? "off" : "on")}</div>
+      <div class="field"><span class="lbl">Your bookie (the machine loads it first)</span>${chipRow("fav", [["", "Any"]].concat(SLIP_BOOKS.map((b) => [b, esc(bookName(b))])), p.fav_book || "")}</div>
       <div class="field"><span class="lbl">Bookies you have accounts with</span><div class="chips">
         ${SLIP_BOOKS.map((b) => `<button class="chip" data-mybook="${b}" aria-pressed="${draft.myBooks.includes(b)}">${esc(bookName(b))}</button>`).join("")}</div>
         <p class="hint">Sky Bet and William Hill aren't in the odds feed, so they can't be shown.</p></div>
@@ -1352,6 +1479,7 @@ $("#settingsBtn").addEventListener("click", () => {
     group("spot", (v) => { p.sweet_spot = SWEET_SPOTS.find((x) => x.id === v).range.slice(); });
     group("snd", (v) => { p.sound = v === "on"; });
     group("vib", (v) => { p.vibration = v === "on"; });
+    group("fav", (v) => { p.fav_book = v || null; });
     s.querySelectorAll("[data-mybook]").forEach((b) => b.addEventListener("click", () => {
       const v = b.dataset.mybook, set = new Set(draft.myBooks);
       set.has(v) ? set.delete(v) : set.add(v);
@@ -1368,10 +1496,13 @@ $("#settingsBtn").addEventListener("click", () => {
       if (!(lim > 0)) { s.querySelector("#sErr").textContent = "Enter a monthly limit above £0."; return; }
       draft.monthlyLimit = lim;
       const shapeChanged = p.legs_per_slip !== prefs.legs_per_slip || p.sweet_spot.join() !== prefs.sweet_spot.join() || p.min_edge !== prefs.min_edge;
+      const favChanged = p.fav_book && p.fav_book !== prefs.fav_book;
+      if (p.fav_book && !draft.myBooks.includes(p.fav_book)) draft.myBooks.push(p.fav_book);
       settings = draft; saveSettings();
       prefs = p; savePrefs(); renderSoundBtn();
       closeSheet();
-      if (shapeChanged && slip && windowById(slip.window_id)) {
+      if (favChanged && slip && rebuildSlip()) { /* reels now show your bookie */ }
+      else if (shapeChanged && slip && windowById(slip.window_id)) {
         slip.legs = slip.legs.filter((l) => l.held);
         if (!spin().ok) { fillTo(4); sortSlip(); saveSlip(); }
       }

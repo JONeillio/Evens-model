@@ -20,7 +20,11 @@
       <div class="marquee">
         <button class="speaker" id="soundBtn" aria-label="Sound on. Tap to mute" aria-pressed="true"></button>
         <h1 class="blink" id="marqueeTitle">Evens jackpot</h1>
-        <button class="subline" id="machineWhere" aria-label="Change kick-off time or bookie">Loading odds…</button>
+        <div class="where-row">
+          <button class="subline" id="machineWhere" aria-label="Change kick-off time">Loading odds…</button>
+          <button class="book-pill" id="bookPill" aria-label="Change bookie" hidden></button>
+        </div>
+        <div class="game-select" id="gameSelect" role="group" aria-label="Which competitions go on the reels"></div>
       </div>
       <div class="bulbs" aria-hidden="true" data-bulbs="12" data-offset="1"></div>
       <div class="reel-bay">
