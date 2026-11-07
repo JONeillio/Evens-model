@@ -1175,12 +1175,12 @@
    "at": "2026-11-07T17:18:10Z"
   },
   "id1000023872531008": {
-   "s": "PST",
+   "s": "NS",
    "min": null,
-   "h": 0,
-   "a": 0,
+   "h": null,
+   "a": null,
    "src": "fd",
-   "at": "2026-11-07T22:04:02Z"
+   "at": "2026-11-07T23:40:41Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1229,10 +1229,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T23:35:39Z"
+   "at": "2026-11-07T23:40:41Z"
   }
  },
- "last_called_at": "2026-11-07T23:35:39Z",
+ "last_called_at": "2026-11-07T23:40:41Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1454,7 +1454,7 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T23:35:39Z",
+  "at": "2026-11-07T23:40:41Z",
   "want": 2,
   "live": true,
   "called": true,
@@ -1469,13 +1469,12 @@
     "results": 36
    }
   ],
-  "changed": 0,
+  "changed": 1,
   "coverage": {
    "checked": 2,
    "api_football": 0,
-   "football_data": 0,
+   "football_data": 1,
    "unmatched": [
-    "Nacional da Madeira v Academico de Viseu FC (Liga Portugal)",
     "Indiana Pacers v Denver Nuggets (NBA)"
    ]
   }
