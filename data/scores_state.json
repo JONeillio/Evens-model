@@ -765,10 +765,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T13:42:40Z"
+   "at": "2026-11-07T13:43:11Z"
   }
  },
- "last_called_at": "2026-11-07T13:42:40Z",
+ "last_called_at": "2026-11-07T13:43:11Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -990,7 +990,7 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T13:42:40Z",
+  "at": "2026-11-07T13:43:11Z",
   "want": 6,
   "live": true,
   "called": true,
@@ -1005,7 +1005,7 @@
     "results": 36
    }
   ],
-  "changed": 1,
+  "changed": 0,
   "coverage": {
    "checked": 6,
    "api_football": 0,
