@@ -478,3 +478,4 @@ body.on-felt { background: var(--felt-deep); }
   .t-mark { transition: none; }
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.t-mark[hidden] { display: none; }

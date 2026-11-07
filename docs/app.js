@@ -1746,6 +1746,7 @@ function renderTable(opts = {}) {
   const pos = (o) => `${Math.max(0, Math.min(100, ((o - 1) / (T_MAX - 1)) * 100))}%`;
   $("#tMark").style.left = pos(nums.odds);
   $("#tMark").className = `t-mark ${st}`;
+  $("#tMark").hidden = !nums.cards.length;
   $("#tScale").innerHTML = `<span>Short</span><span class="z">Evens ${esc(prefs.odds_format === "decimal" ? "1.90–2.30" : "9/10–13/10")}</span><span>Bust</span>`;
   $("#tOdds").innerHTML = nums.cards.length ? oddsH(nums.odds) : "–";
   $("#tStatus").textContent = { empty: "", short: "Short · deal another card", evens: table.stood ? "✓ Stood on evens" : "✓ Evens · stand, or risk another", bust: "✗ Bust · over 13/10" }[st];
