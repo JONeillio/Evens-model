@@ -19,7 +19,7 @@
       <div class="bulbs" aria-hidden="true" data-bulbs="12"></div>
       <div class="marquee">
         <button class="speaker" id="soundBtn" aria-label="Sound on. Tap to mute" aria-pressed="true"></button>
-        <h1 class="blink">Evens jackpot</h1>
+        <h1 class="blink" id="marqueeTitle">Evens jackpot</h1>
         <button class="subline" id="machineWhere" aria-label="Change kick-off time or bookie">Loading odds…</button>
       </div>
       <div class="bulbs" aria-hidden="true" data-bulbs="12" data-offset="1"></div>
@@ -47,9 +47,14 @@
       <div class="ticket-slot">
         <div class="ticket" id="ticket" aria-label="Your slip"></div>
       </div>
-      <div class="cab-actions">
+      <button class="watch-btn" id="watchBtn" hidden></button>
+      <div class="cab-actions spin-actions">
         <button class="btn-pull" id="pullBtn">Pull for new slips</button>
         <a class="btn-edit" href="#build">Edit this<br>slip</a>
+      </div>
+      <div class="cab-actions sweat-actions">
+        <button class="btn-pull" id="unsweatBtn">Spin a new slip</button>
+        <a class="btn-edit" href="#winnings">All the<br>scores</a>
       </div>
     </div>
     <nav class="doors" aria-label="Doors">

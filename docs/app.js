@@ -100,10 +100,13 @@ async function refreshLive() {
   const fresh = await loadJSON("data/live.json").catch(() => null);
   if (!fresh || fresh.updated_at === LIVE?.updated_at) return;
   LIVE = fresh;
-  liveSettleBets();
+  const won = liveSettleBets();
   const page = location.hash.slice(1) || "home";
   if (page === "winnings") renderBets();
-  if (page === "home" || page === "") renderLiveStrip();
+  if ((page === "home" || page === "") && !spinning) {
+    renderMachine();
+    if (watchingId && won.includes(watchingId)) jackpot();
+  }
 }
 setInterval(refreshLive, 90 * 1000);
 document.addEventListener("visibilitychange", refreshLive);
@@ -161,8 +164,9 @@ function betProgress(b) {
 
 // Settle placed bets from the scores, unless you've set the result yourself.
 function liveSettleBets() {
-  if (!LIVE) return;
+  if (!LIVE) return [];
   let changed = false;
+  const newlyWon = [];
   bets.forEach((b) => {
     if (b.status !== "pending" || b.manual || !b.legIds?.length) return;
     const pr = betProgress(b);
@@ -176,8 +180,10 @@ function liveSettleBets() {
     b.status = status;
     b.returns = status === "won" ? b.stake * Math.max(1, o) : status === "void" ? b.stake : 0;
     b.settledAt = new Date().toISOString(); b.settledBy = "scores"; changed = true;
+    if (status === "won") newlyWon.push(b.id);
   });
   if (changed) saveBets();
+  return newlyWon;
 }
 
 // On the machine: an LED ticker of how your placed bets are doing right now.
@@ -455,6 +461,73 @@ function renderSoundBtn() {
 $("#soundBtn").addEventListener("click", () => { prefs.sound = prefs.sound === false; savePrefs(); renderSoundBtn(); Sound.unlock(); Sound.hold(); });
 renderSoundBtn();
 
+// ---------- live sweat mode (item 11) ----------
+// While a placed slip's games are on, the reels show its legs live. Tap
+// "Spin a new slip" to go back to the machine; "Watch your bet live" returns.
+let watchingId = null;            // the bet shown on the reels
+const sweatOptOut = new Set();    // bets you've switched away from this session
+function sweatCandidate() {
+  if (!LIVE) return null;
+  const started = (b) => (b.legs || []).some((l) => l.kickoff && Date.parse(l.kickoff) <= Date.now())
+    || (b.legIds || []).some((id) => !["wait"].includes(legNow(id).st));
+  const kept = watchingId && bets.find((b) => b.id === watchingId);
+  if (kept && !sweatOptOut.has(kept.id) && (kept.status === "pending" || Date.now() - Date.parse(kept.settledAt || 0) < 3 * 3600e3)) return kept;
+  return bets.find((b) => b.status === "pending" && b.legIds?.length && started(b)) || null;
+}
+const sweatBet = () => { const b = sweatCandidate(); return b && !sweatOptOut.has(b.id) ? b : null; };
+function sweatReel(b, i) {
+  const id = b.legIds[i], l = b.legs[i] || {};
+  const fid = id.split("|")[0], f = FIX[fid];
+  const codes = f ? `${code({ ...f }, "home")} v ${code({ ...f }, "away")}` : (l.match || "").split(" v ").map((x) => x.replace(/^(AFC|FC)\s+/i, "").slice(0, 3).toUpperCase()).join(" v ");
+  const { st, sc } = legNow(id);
+  const started = sc && sc.h != null && st !== "wait";
+  const clock = !sc ? "" : sc.s === "HT" ? "HT" : sc.s === "FT" ? "FT" : sc.min ? `${sc.min}′` : sc.s === "LIVE" ? "Live" : "";
+  const cls = st === "won" ? "in" : st === "lost" ? "out" : st === "void" ? "void" : ["ahead", "behind", "level"].includes(st) ? "live" : st === "off" ? "void" : "wait";
+  const badge = { in: "✓ IN", out: "✗ OUT", void: st === "off" ? OFF_TEXT[sc?.s] || "Off" : "– VOID", wait: l.kickoff ? fmtTime(l.kickoff, false) : "Soon",
+    live: st === "ahead" ? "▲ ON TRACK" : st === "behind" ? "▼ NEEDS IT" : "● LEVEL" }[cls];
+  const label = l.label || "";
+  const short = f ? shortLabel({ ...f, kickoff_utc: f.kickoff }, label) : label;
+  return `<div class="reel sweat ${cls}" data-i="${i}"><div class="face">
+    <span class="fxl"><span>${esc(codes)}</span><span>${esc(started ? clock : l.kickoff ? fmtTime(l.kickoff, false) : "")}</span></span>
+    <span class="lbl" data-short="${esc(short)}"><span class="t">${esc(label)}</span></span>
+    ${started ? `<span class="sw-score num">${sc.h}–${sc.a}</span>` : ""}
+    <span class="sw-badge">${esc(badge)}</span></div></div>`;
+}
+function renderSweat(b) {
+  const pr = betProgress(b), n = b.legIds.length;
+  const cab = $("#cabinet");
+  cab.classList.add("sweating");
+  const title = $("#marqueeTitle");
+  title.textContent = b.status === "won" ? "Paid out!" : b.status === "lost" || pr.gone ? "Bust" : `${pr.landed} of ${n} in`;
+  const when = LIVE?.updated_at ? fmtTime(LIVE.updated_at, false) : "";
+  $("#machineWhere").textContent = `Your ${b.bookName} ${n}-fold · scores ${when}`;
+  const reels = $("#reels");
+  reels.style.setProperty("--n", n); reels.classList.toggle("many", n > 4);
+  reels.innerHTML = b.legIds.map((_, i) => sweatReel(b, i)).join("");
+  fitLabels(reels);
+  $("#holds").innerHTML = ""; $("#nudges").innerHTML = "";
+  $("#mOdds").innerHTML = oddsH(b.odds);
+  const toGo = pr.live + pr.waiting;
+  const ret = b.status === "won" ? `Returned £${(b.returns ?? 0).toFixed(2)}` : b.status === "lost" || pr.gone ? `£${b.stake.toFixed(2)} gone` : `£${b.stake.toFixed(2)} returns £${(b.stake * b.odds).toFixed(2)}`;
+  $("#mStats").innerHTML = `${esc(ret)}<br>${b.status !== "pending" || pr.gone ? "Settled from the scores" : `${toGo} to go · ${pr.landed} in`}`;
+  $("#mMsg").textContent = "";
+  $("#ticket").hidden = true;
+  $("#watchBtn").hidden = true;
+}
+function leaveSweat() {
+  $("#cabinet").classList.remove("sweating");
+  $("#marqueeTitle").textContent = "Evens jackpot";
+}
+$("#unsweatBtn").addEventListener("click", () => {
+  if (watchingId) sweatOptOut.add(watchingId);
+  watchingId = null; leaveSweat(); renderMachine({ print: true });
+});
+$("#watchBtn").addEventListener("click", () => {
+  const b = sweatCandidate();
+  if (!b) return;
+  sweatOptOut.delete(b.id); watchingId = b.id; renderMachine(); window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 // ---------- the machine ----------
 document.querySelectorAll("[data-bulbs]").forEach((el) => {
   const n = +el.dataset.bulbs, off = +(el.dataset.offset || 0);
@@ -490,10 +563,22 @@ function fitLabels(root = document) {
   });
 }
 
-let spinning = false, nudgesLeft = 3, lastJackpotKey = null;
+let spinning = false, nudgesLeft = 3;
 function renderMachine(opts = {}) {
   const where = $("#machineWhere");
   const ticket = $("#ticket");
+  const sb = !spinning && sweatBet();
+  if (sb) {
+    watchingId = sb.id;
+    renderSweat(sb);
+    renderLiveStrip(); renderFooter();
+    return;
+  }
+  leaveSweat();
+  const cand = sweatCandidate();
+  const wb = $("#watchBtn");
+  wb.hidden = !cand;
+  if (cand) { const pr = betProgress(cand); wb.textContent = `▶ Watch your ${cand.bookName} bet live · ${pr.landed} of ${cand.legIds.length} in`; }
   if (!slip) {
     where.textContent = "No kick-offs with prices in the next two days";
     $("#reels").innerHTML = ""; $("#holds").innerHTML = ""; $("#nudges").innerHTML = "";
@@ -528,7 +613,9 @@ function renderMachine(opts = {}) {
     $("#mStats").innerHTML = fairLine(nums).replace(" · ", "<br>");
     renderTicket(opts.print);
   }
-  renderLiveStrip();
+  renderLiveStrip(); renderFooter();
+}
+function renderFooter() {
   const st = betStats();
   $("#doorWins").textContent = st.settled.length ? `My bets · ${signedMoney(st.pl)}` : "My bets";
   const led = $("#led");
@@ -694,7 +781,7 @@ function leverDrop() {
 
 // ---------- pull: staggered stops, sound, jackpot (item 5) ----------
 function pull() {
-  if (spinning || !slip) return;
+  if (spinning || !slip || $("#cabinet").classList.contains("sweating")) return;
   Sound.unlock();
   const msg = $("#mMsg");
   msg.textContent = "";
@@ -748,6 +835,7 @@ function jackpot() {
 // ---------- nudges (item 6) ----------
 // Cosmetic fruit-machine flavour: 3 per pull. Build a bet still has unlimited swaps.
 function nudge(i, dir) {
+  if ($("#cabinet").classList.contains("sweating")) return;
   const l = slip?.legs[i];
   if (spinning || !l || l.held || nudgesLeft <= 0) return;
   const fx = rawPool(slip.window_id, slip.bookie)?.fixtures.find((f) => f.fixture_id === l.fixture_id);
@@ -788,7 +876,7 @@ function nudge(i, dir) {
 
 $("#pullBtn").addEventListener("click", pull);
 $("#machineWhere").addEventListener("click", () => slip && openWhereSheet());
-setInterval(() => { if (!$("#home").hidden && slip && !spinning) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`; } }, 30000);
+setInterval(() => { if (!$("#home").hidden && slip && !spinning && !$("#cabinet").classList.contains("sweating")) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`; } }, 30000);
 window.addEventListener("resize", () => fitLabels($("#reels")));
 
 // ---------- Build a bet ----------

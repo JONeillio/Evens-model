@@ -108,6 +108,24 @@ a { color: inherit; }
 .btn-pull:disabled { opacity: .7; cursor: wait; }
 .btn-edit { width: 112px; min-height: 48px; border-radius: 10px; background: var(--cyan); color: var(--cyan-ink); font-family: var(--font-display); font-size: 13px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.1; text-decoration: none; }
 
+/* ---------- Live sweat mode: the reels follow your placed slip ---------- */
+.sweat-actions { display: none; }
+.cabinet.sweating .spin-actions, .cabinet.sweating .nudges, .cabinet.sweating .holds, .cabinet.sweating .ticket-slot, .cabinet.sweating .nudge-led { display: none; }
+.cabinet.sweating .sweat-actions { display: flex; }
+.cabinet.sweating .lever-track { opacity: .35; pointer-events: none; }
+.cabinet.sweating .reel { height: 132px; }
+.reel.sweat .face { justify-content: space-between; }
+.reel.sweat .sw-score { font-family: var(--font-display); font-size: 20px; line-height: 1; }
+.reel.sweat .sw-badge { font-size: 12px; font-weight: 700; letter-spacing: .3px; white-space: nowrap; padding: 1px 4px; border-radius: 4px; background: var(--reel-dim); }
+.reel.sweat.in { box-shadow: inset 0 0 0 3px var(--good-on-reel); }
+.reel.sweat.in .sw-badge { background: var(--green); color: var(--green-ink); }
+.reel.sweat.out { opacity: .55; filter: grayscale(.6); }
+.reel.sweat.out .sw-badge { background: #F3C9C9; color: var(--bad-on-reel); }
+.reel.sweat.live { box-shadow: inset 0 0 0 3px var(--jackpot); }
+.reel.sweat.void .sw-badge, .reel.sweat.wait .sw-badge { background: var(--reel-dim); color: var(--ink); }
+.watch-btn { min-height: var(--tap); border: 2px solid var(--green); border-radius: 10px; background: #0D0204; color: var(--good-on-dark); font-weight: 700; font-size: 15px; }
+.watch-btn[hidden] { display: none; }
+
 /* ---------- The printed ticket ---------- */
 .ticket-slot { background: #0D0204; border-radius: 6px 6px 0 0; padding: 4px 8px 0; margin-top: -2px; }
 .ticket { position: relative; background: var(--reel); color: var(--ink); padding: 3px 10px 6px; margin-bottom: 9px; overflow: visible; }
@@ -315,6 +333,8 @@ h3.sec { font-family: var(--font-display); font-weight: 400; color: var(--jackpo
   .reel.nudged[data-dir="-1"] { animation-name: nudge-down; }
   @keyframes nudge-up { from { transform: translateY(18px); } to { transform: none; } }
   @keyframes nudge-down { from { transform: translateY(-18px); } to { transform: none; } }
+  .reel.sweat.live { animation: sweat-pulse 1.2s ease-in-out infinite; }
+  @keyframes sweat-pulse { 50% { box-shadow: inset 0 0 0 3px var(--jackpot), 0 0 12px 3px rgba(255, 210, 63, .7); } }
   .cabinet.jackpot .bulb { animation-duration: .5s; }
   .cabinet.jackpot .bulb.alt { animation-delay: -.25s; }
   .cabinet.jackpot .marquee h1 { animation: jackflash .2s steps(1) infinite; }
