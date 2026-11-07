@@ -7,6 +7,12 @@ on:
   schedule:
     - cron: "15 7 * * *"
   workflow_dispatch:
+    inputs:
+      task:
+        description: "refresh (normal) or probe (check which bookies have data, 1 request)"
+        default: refresh
+        type: choice
+        options: [refresh, probe]
 
 permissions:
   contents: write
@@ -36,7 +42,9 @@ jobs:
       - name: Pull odds, price legs, build slips
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
-        run: python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}
+        run: |
+          if [ "${{ inputs.task }}" = "probe" ]; then python -m engine.probe;
+          else python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}; fi
 
       - name: Save results
         if: always()
