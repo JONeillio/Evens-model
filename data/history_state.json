@@ -752,8 +752,8 @@
       "home": "Barcelona",
       "away": "La Coruna"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "0-0"
     },
     {
      "id": "id1000001772221388|ou:4.5:under",
@@ -770,8 +770,8 @@
       "home": "Nott'm Forest",
       "away": "Man City"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-1"
     },
     {
      "id": "id1000001975837154|ou:4.5:under",
@@ -784,8 +784,8 @@
      "p_win": 0.8502,
      "p_void": 0.0,
      "fd": null,
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-2"
     },
     {
      "id": "id1000023872531008|ou:3.5:under",
