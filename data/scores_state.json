@@ -783,20 +783,20 @@
    "at": "2026-11-07T16:01:02Z"
   },
   "id1000001872340016": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 1,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340028": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000020672202724": {
    "s": "HT",
@@ -887,52 +887,52 @@
    "at": "2026-11-07T15:50:53Z"
   },
   "id1000001872340008": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340010": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340014": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 2,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340022": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340024": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 1,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001872340026": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000020672202720": {
    "s": "HT",
@@ -1127,20 +1127,20 @@
    "at": "2026-11-07T15:50:53Z"
   },
   "id1000001772221372": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000001772221380": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   },
   "id1000003672201710": {
    "s": "HT",
@@ -1175,12 +1175,12 @@
    "at": "2026-11-07T15:55:58Z"
   },
   "id1000023872531008": {
-   "s": "PST",
+   "s": "LIVE",
    "min": null,
-   "h": null,
-   "a": null,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
+   "h": 0,
+   "a": 0,
+   "src": "fd",
+   "at": "2026-11-07T16:01:39Z"
   }
  },
  "budget": {
@@ -1197,10 +1197,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T16:01:02Z"
+   "at": "2026-11-07T16:01:39Z"
   }
  },
- "last_called_at": "2026-11-07T16:01:02Z",
+ "last_called_at": "2026-11-07T16:01:39Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1422,19 +1422,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T16:01:02Z",
-  "want": 55,
+  "at": "2026-11-07T16:01:39Z",
+  "want": 53,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1445,12 +1437,52 @@
     "results": 36
    }
   ],
-  "changed": 23,
+  "changed": 11,
   "coverage": {
-   "checked": 55,
-   "api_football": 54,
+   "checked": 53,
+   "api_football": 0,
    "football_data": 14,
-   "unmatched": []
+   "unmatched": [
+    "Inverness Caledonian Thistle FC v Livingston FC (Championship)",
+    "Newport County v Walsall FC (FA Cup)",
+    "Crewe Alexandra v AFC Wimbledon (FA Cup)",
+    "Eastleigh FC v Shrewsbury Town (FA Cup)",
+    "Guiseley FC v Sutton United (FA Cup)",
+    "Luton Town v Forest Green Rovers (FA Cup)",
+    "Barnsley FC v Aldershot Town FC (FA Cup)",
+    "Gillingham FC v Barrow AFC (FA Cup)",
+    "Plymouth Argyle v Alvechurch (FA Cup)",
+    "St. Johnstone FC v Dundee FC (Premiership)",
+    "Volos NPS v AE Kifisia FC (Super League)",
+    "Arbroath FC v Ayr United FC (Championship)",
+    "Greenock Morton FC v Stenhousemuir FC (Championship)",
+    "Dover Athletic FC v Wealdstone FC (FA Cup)",
+    "Huddersfield Town v Exeter City (FA Cup)",
+    "Kidderminster Harriers FC v Doncaster Rovers (FA Cup)",
+    "Leyton Orient London v Harborough Town FC (FA Cup)",
+    "Accrington Stanley v Wycombe Wanderers (FA Cup)",
+    "Milton Keynes Dons v Swindon Town (FA Cup)",
+    "Bromley FC v Rotherham United (FA Cup)",
+    "Barnet FC v Tranmere Rovers FC (FA Cup)",
+    "Fleetwood Town v Rochdale AFC (FA Cup)",
+    "Oxford United v Stevenage FC (FA Cup)",
+    "Burton Albion v AFC Rushden And Diamonds (FA Cup)",
+    "Port Vale v Scunthorpe United (FA Cup)",
+    "Cheltenham Town v FC Halifax Town (FA Cup)",
+    "Hornchurch FC v Blackpool FC (FA Cup)",
+    "Bradford City FC v Marine FC (FA Cup)",
+    "York City FC v Northampton Town (FA Cup)",
+    "Boreham Wood FC v Wigan Athletic (FA Cup)",
+    "Carlisle United v Salford City (FA Cup)",
+    "Salisbury FC v Sholing FC (FA Cup)",
+    "Mansfield Town v Macclesfield FC (FA Cup)",
+    "Chesterfield FC v Yeovil Town (FA Cup)",
+    "Harrogate Town v AFC Fylde (FA Cup)",
+    "Colchester United v Worcester City (FA Cup)",
+    "Dundee United v Motherwell FC (Premiership)",
+    "KVC Westerlo v Royal Charleroi SC (Pro League)",
+    "Cadiz CF v Real Oviedo (LaLiga 2)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T16:01:02Z"
