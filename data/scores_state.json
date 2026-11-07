@@ -781,10 +781,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T14:28:49Z"
+   "at": "2026-11-07T14:29:18Z"
   }
  },
- "last_called_at": "2026-11-07T14:28:49Z",
+ "last_called_at": "2026-11-07T14:29:18Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1006,19 +1006,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T14:28:49Z",
-  "want": 10,
+  "at": "2026-11-07T14:29:18Z",
+  "want": 6,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1029,12 +1021,17 @@
     "results": 36
    }
   ],
-  "changed": 8,
+  "changed": 0,
   "coverage": {
-   "checked": 10,
-   "api_football": 10,
-   "football_data": 6,
-   "unmatched": []
+   "checked": 6,
+   "api_football": 0,
+   "football_data": 2,
+   "unmatched": [
+    "Samsunspor v Konyaspor (Super Lig)",
+    "Clermont Foot 63 v Rodez Aveyron Football (Ligue 2)",
+    "Cesena FC v US Catanzaro (Serie B)",
+    "Calcio Padova v Empoli FC (Serie B)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T14:28:49Z"
