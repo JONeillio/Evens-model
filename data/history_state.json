@@ -3,7 +3,7 @@
   {
    "key": "2026-11-07T15:00:00Z",
    "slip_id": "81680c949b1e",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 15:00–17:30",
    "start": "2026-11-07T15:00:00Z",
    "book": "unibet",
@@ -105,7 +105,7 @@
   {
    "key": "2026-11-07T12:30:00Z",
    "slip_id": "9638a3239050",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 12:30–15:00",
    "start": "2026-11-07T12:30:00Z",
    "book": "unibet",
@@ -189,7 +189,7 @@
   {
    "key": "2026-11-07T13:00:00Z",
    "slip_id": "4308e483315b",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 13:00–15:15",
    "start": "2026-11-07T13:00:00Z",
    "book": "bet365",
@@ -291,7 +291,7 @@
   {
    "key": "2026-11-08T14:00:00Z",
    "slip_id": "67cf4450302f",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 14:00–15:45",
    "start": "2026-11-08T14:00:00Z",
    "book": "unibet",
@@ -375,7 +375,7 @@
   {
    "key": "2026-11-08T15:00:00Z",
    "slip_id": "5ac3d50dbf9d",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 15:00–17:15",
    "start": "2026-11-08T15:00:00Z",
    "book": "unibet",
@@ -455,7 +455,7 @@
   {
    "key": "2026-11-08T15:15:00Z",
    "slip_id": "6c1fffd79d1b",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 15:15–17:15",
    "start": "2026-11-08T15:15:00Z",
    "book": "unibet",
@@ -539,7 +539,7 @@
   {
    "key": "2026-11-07T14:00:00Z",
    "slip_id": "786925e2b1f9",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 14:00–15:15",
    "start": "2026-11-07T14:00:00Z",
    "book": "ladbrokes",
@@ -645,7 +645,7 @@
   {
    "key": "2026-11-07T14:30:00Z",
    "slip_id": "1975938589d7",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 14:30–15:15",
    "start": "2026-11-07T14:30:00Z",
    "book": "ladbrokes",
@@ -751,7 +751,7 @@
   {
    "key": "2026-11-07T15:15:00Z",
    "slip_id": "3246a7d561b1",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sat 15:15–17:30",
    "start": "2026-11-07T15:15:00Z",
    "book": "unibet",
@@ -835,7 +835,7 @@
   {
    "key": "2026-11-08T00:30:00Z",
    "slip_id": "aa24279174c5",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 00:30–02:00",
    "start": "2026-11-08T00:30:00Z",
    "book": "williamhill",
@@ -893,7 +893,7 @@
   {
    "key": "2026-11-08T01:00:00Z",
    "slip_id": "85d70307c314",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 01:00–02:00",
    "start": "2026-11-08T01:00:00Z",
    "book": "williamhill",
@@ -951,7 +951,7 @@
   {
    "key": "2026-11-08T12:00:00Z",
    "slip_id": "e9bc78fea412",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 12:00–14:30",
    "start": "2026-11-08T12:00:00Z",
    "book": "unibet",
@@ -1031,7 +1031,7 @@
   {
    "key": "2026-11-08T14:15:00Z",
    "slip_id": "8d89bcb2cc16",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 14:15–15:45",
    "start": "2026-11-08T14:15:00Z",
    "book": "unibet",
@@ -1111,7 +1111,7 @@
   {
    "key": "2026-11-08T14:30:00Z",
    "slip_id": "b061a1f57bd4",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 14:30–15:45",
    "start": "2026-11-08T14:30:00Z",
    "book": "unibet",
@@ -1191,7 +1191,7 @@
   {
    "key": "2026-11-08T15:45:00Z",
    "slip_id": "036d9bd00d00",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 15:45–18:00",
    "start": "2026-11-08T15:45:00Z",
    "book": "ladbrokes",
@@ -1267,7 +1267,7 @@
   {
    "key": "2026-11-08T16:30:00Z",
    "slip_id": "dd86cb43c38e",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 16:30–18:00",
    "start": "2026-11-08T16:30:00Z",
    "book": "ladbrokes",
@@ -1343,7 +1343,7 @@
   {
    "key": "2026-11-08T17:15:00Z",
    "slip_id": "f73369bbab47",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 17:15–18:00",
    "start": "2026-11-08T17:15:00Z",
    "book": "unibet",
@@ -1415,7 +1415,7 @@
   {
    "key": "2026-11-08T18:00:00Z",
    "slip_id": "e522e6af9409",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 18:00",
    "start": "2026-11-08T18:00:00Z",
    "book": "ladbrokes",
@@ -1487,7 +1487,7 @@
   {
    "key": "2026-11-08T21:05:00Z",
    "slip_id": "57ee5975e599",
-   "published_at": "2026-11-07T10:25:59Z",
+   "published_at": "2026-11-07T10:43:27Z",
    "label": "Sun 21:05–21:25",
    "start": "2026-11-08T21:05:00Z",
    "book": "unibet",

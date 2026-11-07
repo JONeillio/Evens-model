@@ -1,5 +1,5 @@
 {
- "started_at": "2026-11-07T10:25:59Z",
+ "started_at": "2026-11-07T10:43:27Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
@@ -7,9 +7,9 @@
  ],
  "nfl": {
   "prop_legs": 0,
-  "projections": 337
+  "projections": 382
  },
- "builder_seconds": 1.64,
+ "builder_seconds": 1.66,
  "fixtures": 98,
  "legs": 1868,
  "slips": 121,
@@ -34,5 +34,5 @@
  "model_fixtures": 36,
  "fd_errors": [],
  "calls": [],
- "finished_at": "2026-11-07T10:26:39Z"
+ "finished_at": "2026-11-07T10:44:22Z"
 }
