@@ -1,54 +1,53 @@
 {
- "started_at": "2026-11-07T00:05:18Z",
+ "started_at": "2026-11-07T00:11:47Z",
  "mode": "manual",
- "errors": [
-  "skybet [19, 18, 17, 36, 8]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}",
-  "skybet [23, 35, 34, 37, 238]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}",
-  "skybet [52, 38, 44, 185, 206]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
- ],
- "notes": [
-  "Skipped to save requests: Serie B, LaLiga 2, League One, League Two, Ligue 2"
- ],
+ "errors": [],
+ "notes": [],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 10,
-  "remaining": 240
+  "used": 21,
+  "remaining": 229
  },
  "plan": {
-  "allowance": 11,
-  "remaining": 240,
-  "share": 11.1,
-  "weekday_weight": 3,
+  "allowance": 12,
+  "remaining": 229,
+  "share": 12.3,
+  "weekday_weight": 4,
   "fetch": true,
-  "books": [
-   "bet365",
-   "skybet"
-  ],
   "leagues_with_games": 20,
   "chunks_needed": 4,
-  "chunks_fetched": 3,
-  "planned_calls": 10
+  "chunks_fetched": 4,
+  "matches_priced": 7,
+  "planned_calls": 12
  },
- "prices_added": {
-  "pinnacle": 4904,
-  "bet365": 404
- },
- "builder_seconds": 0.0,
- "fixtures": 147,
- "legs": 86,
- "slips": 0,
+ "builder_seconds": 0.01,
+ "fixtures": 7,
+ "legs": 53,
+ "slips": 5,
  "books": [
-  "bet365"
+  "bet365",
+  "paddypower",
+  "ladbrokes",
+  "coral",
+  "unibet",
+  "betmgm.co.uk",
+  "livescorebet",
+  "virginbet",
+  "betuk",
+  "grosvenor",
+  "sportingbet",
+  "betfair-ex",
+  "matchbook"
  ],
- "model_fixtures": 98,
+ "model_fixtures": 3,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.23,
+   "seconds": 0.57,
    "billable": false,
    "note": ""
   },
@@ -56,8 +55,44 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-07T00:05:18Z",
-    "to": "2026-11-08T23:05:18Z"
+    "from": "2026-11-07T00:11:47Z",
+    "to": "2026-11-08T23:11:47Z"
+   },
+   "status": 200,
+   "seconds": 0.57,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "19,18,17,36,8",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.7,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "23,35,34,37,238",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.54,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "52,38,44,185,206",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
    },
    "status": 200,
    "seconds": 0.56,
@@ -67,9 +102,59 @@
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "19,18,17,36,8",
+    "tournamentIds": "53,54,207,209,182",
     "bookmaker": "pinnacle",
     "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.43,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001872340030"
+   },
+   "status": 200,
+   "seconds": 1.07,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001872340016"
+   },
+   "status": 200,
+   "seconds": 1.09,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001872340028"
+   },
+   "status": 200,
+   "seconds": 1.33,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975802940"
+   },
+   "status": 200,
+   "seconds": 0.95,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001975802950"
    },
    "status": 200,
    "seconds": 0.84,
@@ -77,35 +162,9 @@
    "note": ""
   },
   {
-   "endpoint": "odds-by-tournaments",
+   "endpoint": "odds",
    "params": {
-    "tournamentIds": "23,35,34,37,238",
-    "bookmaker": "pinnacle",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.48,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "52,38,44,185,206",
-    "bookmaker": "pinnacle",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.53,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "19,18,17,36,8",
-    "bookmaker": "bet365",
-    "oddsFormat": "decimal"
+    "fixtureId": "id1000001975837136"
    },
    "status": 200,
    "seconds": 0.79,
@@ -113,65 +172,15 @@
    "note": ""
   },
   {
-   "endpoint": "odds-by-tournaments",
+   "endpoint": "odds",
    "params": {
-    "tournamentIds": "23,35,34,37,238",
-    "bookmaker": "bet365",
-    "oddsFormat": "decimal"
+    "fixtureId": "id1000001975837138"
    },
    "status": 200,
-   "seconds": 1.08,
+   "seconds": 0.94,
    "billable": true,
    "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "52,38,44,185,206",
-    "bookmaker": "bet365",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.66,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "19,18,17,36,8",
-    "bookmaker": "skybet",
-    "oddsFormat": "decimal"
-   },
-   "status": 404,
-   "seconds": 0.16,
-   "billable": true,
-   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "23,35,34,37,238",
-    "bookmaker": "skybet",
-    "oddsFormat": "decimal"
-   },
-   "status": 404,
-   "seconds": 0.14,
-   "billable": true,
-   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "52,38,44,185,206",
-    "bookmaker": "skybet",
-    "oddsFormat": "decimal"
-   },
-   "status": 404,
-   "seconds": 0.14,
-   "billable": true,
-   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
   }
  ],
- "finished_at": "2026-11-07T00:06:04Z"
+ "finished_at": "2026-11-07T00:12:15Z"
 }

@@ -1,5 +1,78 @@
 {
- "slips": [],
+ "slips": [
+  {
+   "key": "2026-11-07T15:00:00Z",
+   "slip_id": "f11736c02bc1",
+   "published_at": "2026-11-07T00:11:47Z",
+   "label": "Sat 15:00",
+   "start": "2026-11-07T15:00:00Z",
+   "book": "unibet",
+   "odds": 2.171,
+   "hit_p": 0.4437,
+   "ev": -0.0369,
+   "legs": [
+    {
+     "id": "id1000001975837138|ou:1.5:over",
+     "key": "ou:1.5:over",
+     "label": "Over 1.5 goals",
+     "match": "Barnsley FC v Aldershot Town FC",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.1,
+     "p_win": 0.89,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001975802950|ou:4.5:under",
+     "key": "ou:4.5:under",
+     "label": "Under 4.5 goals",
+     "match": "Crewe Alexandra v AFC Wimbledon",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.1,
+     "p_win": 0.8895,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001975802940|ou:1.5:over",
+     "key": "ou:1.5:over",
+     "label": "Over 1.5 goals",
+     "match": "Newport County v Walsall FC",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.3,
+     "p_win": 0.7675,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    },
+    {
+     "id": "id1000001975837136|ou:4.5:under",
+     "key": "ou:4.5:under",
+     "label": "Under 4.5 goals",
+     "match": "Luton Town v Forest Green Rovers",
+     "league": "FA Cup",
+     "kickoff": "2026-11-07T15:00:00Z",
+     "price": 1.38,
+     "p_win": 0.7302,
+     "p_void": 0.0,
+     "fd": null,
+     "result": null,
+     "score": null
+    }
+   ],
+   "status": "pending",
+   "settled_odds": null,
+   "profit_per_10": null
+  }
+ ],
  "calibration": {},
  "legs_pending": {
   "id1000001872340016|ou:0.5:over": {
@@ -9,7 +82,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.052,
+   "price": 1.07,
    "p_win": 0.8924,
    "p_void": 0.0,
    "fd": {
@@ -27,7 +100,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.25,
+   "price": 1.32,
    "p_win": 0.7606,
    "p_void": 0.0,
    "fd": {
@@ -45,7 +118,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.33,
+   "price": 1.39,
    "p_win": 0.7205,
    "p_void": 0.0,
    "fd": {
@@ -63,7 +136,7 @@
    "match": "Charlton Athletic v Sheffield United",
    "league": "Championship",
    "kickoff": "2026-11-07T15:00:00Z",
-   "price": 1.1,
+   "price": 1.14,
    "p_win": 0.8715,
    "p_void": 0.0,
    "fd": {
@@ -988,6 +1061,366 @@
     "div": "B1",
     "home": "St Truiden",
     "away": "Waregem"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ah:1:+1.5": {
+   "id": "id1000001872340030|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Wrexham AFC +1.5 (handicap)",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.25,
+   "p_win": 0.7904,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ah:2:+1.5": {
+   "id": "id1000001872340030|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Wolverhampton Wanderers +1.5 (handicap)",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.11,
+   "p_win": 0.8637,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ou:0.5:over": {
+   "id": "id1000001872340030|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.07,
+   "p_win": 0.9312,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ou:1.5:over": {
+   "id": "id1000001872340030|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.32,
+   "p_win": 0.7575,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ou:3.5:under": {
+   "id": "id1000001872340030|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.37,
+   "p_win": 0.7262,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ou:4.5:under": {
+   "id": "id1000001872340030|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.14,
+   "p_win": 0.8747,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ts:1:yes": {
+   "id": "id1000001872340030|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Wrexham AFC to score",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.36,
+   "p_win": 0.7007,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340030|ts:2:yes": {
+   "id": "id1000001872340030|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Wolverhampton Wanderers to score",
+   "match": "Wrexham AFC v Wolverhampton Wanderers",
+   "league": "Championship",
+   "kickoff": "2026-11-07T12:30:00Z",
+   "price": 1.22,
+   "p_win": 0.7957,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Wrexham",
+    "away": "Wolves"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ah:1:+1.5": {
+   "id": "id1000001872340016|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "Charlton Athletic +1.5 (handicap)",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.26,
+   "p_win": 0.7766,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ah:2:+1.5": {
+   "id": "id1000001872340016|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Sheffield United +1.5 (handicap)",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.11,
+   "p_win": 0.9125,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ts:1:yes": {
+   "id": "id1000001872340016|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "Charlton Athletic to score",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.37,
+   "p_win": 0.7004,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ts:2:yes": {
+   "id": "id1000001872340016|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Sheffield United to score",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.22,
+   "p_win": 0.7998,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ah:1:+1.5": {
+   "id": "id1000001872340028|ah:1:+1.5",
+   "key": "ah:1:+1.5",
+   "label": "West Bromwich Albion +1.5 (handicap)",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.11,
+   "p_win": 0.8712,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ah:2:+1.5": {
+   "id": "id1000001872340028|ah:2:+1.5",
+   "key": "ah:2:+1.5",
+   "label": "Millwall FC +1.5 (handicap)",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.29,
+   "p_win": 0.7678,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ou:0.5:over": {
+   "id": "id1000001872340028|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.06,
+   "p_win": 0.9016,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ou:1.5:over": {
+   "id": "id1000001872340028|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.29,
+   "p_win": 0.7852,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ou:3.5:under": {
+   "id": "id1000001872340028|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.43,
+   "p_win": 0.6984,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ou:4.5:under": {
+   "id": "id1000001872340028|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.16,
+   "p_win": 0.8601,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ts:1:yes": {
+   "id": "id1000001872340028|ts:1:yes",
+   "key": "ts:1:yes",
+   "label": "West Bromwich Albion to score",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.2,
+   "p_win": 0.8189,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340028|ts:2:yes": {
+   "id": "id1000001872340028|ts:2:yes",
+   "key": "ts:2:yes",
+   "label": "Millwall FC to score",
+   "match": "West Bromwich Albion v Millwall FC",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.37,
+   "p_win": 0.7107,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "West Brom",
+    "away": "Millwall"
    },
    "result": null,
    "score": null
