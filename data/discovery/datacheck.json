@@ -1,0 +1,92 @@
+{
+ "ran_at": "2026-11-07T10:25:29.477931+00:00",
+ "api_football": {
+  "season": 2026,
+  "fixtures_errors": {
+   "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+  },
+  "fixtures_results": 0
+ },
+ "fpl": {
+  "ok": true,
+  "players": 670,
+  "has": {
+   "chance_of_playing_next_round": true,
+   "news": true,
+   "expected_goals": true,
+   "starts": true,
+   "minutes": true,
+   "penalties_order": true
+  },
+  "per_match_fields": [
+   "assists",
+   "bonus",
+   "bps",
+   "clean_sheets",
+   "clearances_blocks_interceptions",
+   "creativity",
+   "defensive_contribution",
+   "element",
+   "expected_assists",
+   "expected_goal_involvements",
+   "expected_goals",
+   "expected_goals_conceded",
+   "fixture",
+   "goals_conceded",
+   "goals_scored",
+   "ict_index",
+   "influence",
+   "kickoff_time",
+   "minutes",
+   "modified",
+   "opponent_team",
+   "own_goals",
+   "penalties_missed",
+   "penalties_saved",
+   "recoveries",
+   "red_cards",
+   "round",
+   "saves",
+   "selected",
+   "starts",
+   "tackles",
+   "team_a_score",
+   "team_h_score",
+   "threat",
+   "total_points",
+   "transfers_balance",
+   "transfers_in",
+   "transfers_out",
+   "value",
+   "was_home",
+   "yellow_cards"
+  ]
+ },
+ "understat": {
+  "ok": false,
+  "status": 200,
+  "players_data_embedded": false
+ },
+ "football_data": {
+  "ok": true,
+  "columns_of_interest": [
+   "Referee",
+   "HS",
+   "AS",
+   "HST",
+   "AST",
+   "HC",
+   "AC",
+   "HY",
+   "AY"
+  ]
+ },
+ "nflverse": {
+  "ok": true,
+  "files": {
+   "stats_player/stats_player_week_2026.csv": 200,
+   "injuries/injuries_2026.csv": 200,
+   "snap_counts/snap_counts_2026.csv": 200
+  }
+ }
+}
