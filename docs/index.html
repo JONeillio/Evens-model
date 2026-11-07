@@ -78,23 +78,35 @@
     </div>
   </section>
 
-  <!-- The card table: NFL player props, getting to evens is the game -->
+  <!-- The card table: NFL player props, Hold'em style. The dealer lays out hands near evens. -->
   <section class="page table-room" id="table" hidden aria-label="The card table">
     <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home">Slots</a><a class="room-btn" href="#table" aria-current="page">Table <small>NFL</small></a><span class="room-thumb" aria-hidden="true"></span></nav>
-    <div class="felt">
-      <div class="lamp" aria-hidden="true"></div>
+    <div class="felt" id="felt">
+      <div class="lamp" id="lamp" aria-hidden="true">
+        <span class="lamp-cord"></span>
+        <svg class="lamp-shade" viewBox="0 0 120 70" width="120" height="70"><defs><linearGradient id="shadeG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8A5A2B"/><stop offset="1" stop-color="#C97A2C"/></linearGradient></defs><rect x="54" y="0" width="12" height="10" rx="2" fill="#5A3A1A"/><path d="M30 12 Q60 2 90 12 L112 52 Q60 62 8 52 Z" fill="url(#shadeG)" stroke="#3B2412" stroke-width="2"/><ellipse cx="60" cy="53" rx="52" ry="7" fill="#FFB25B"/><ellipse cx="60" cy="55" rx="14" ry="6" fill="#FFF1C9"/></svg>
+        <span class="lamp-light"></span>
+      </div>
       <header class="t-head">
         <h2>The card table</h2>
-        <div class="where-row"><span class="t-when" id="tWhen"></span><button class="book-pill" id="tBook" aria-label="Change bookie"></button></div>
+        <div class="t-controls">
+          <button class="deck-btn" id="tDeck" aria-haspopup="dialog"><span class="deck-ico" aria-hidden="true"></span><span id="tDeckLabel">Deck</span></button>
+          <button class="book-pill" id="tBook" aria-label="Change bookie"></button>
+        </div>
       </header>
-      <div class="game-select" id="tGames" role="group" aria-label="Which games deal cards"></div>
-      <div class="t-play">
-        <div class="shoe" id="tShoe" aria-hidden="true"><span class="shoe-cards"></span><b id="tShoeN">0</b><small>left</small></div>
-        <div class="hand" id="tHand" aria-live="polite"></div>
-        <div class="stamp" id="tStamp" aria-hidden="true"></div>
+      <div class="dealer-row">
+        <div class="dealer" id="dealer" aria-hidden="true"></div>
+        <p class="bubble" id="tBubble" aria-live="polite"></p>
       </div>
+      <div class="hands" id="tHands" role="list" aria-label="The dealer's hands"></div>
+      <div class="board-wrap">
+        <div class="t-label">On the board <small>best cards in your deck · ★ = your pick</small></div>
+        <div class="board" id="tBoard" role="list"></div>
+      </div>
+      <div class="t-label">Your hand</div>
+      <div class="hand" id="tHand" aria-live="polite"></div>
       <div class="t-meter" aria-hidden="true"><div class="t-bar"><span class="t-zone"></span><span class="t-mark" id="tMark"></span></div><div class="t-scale" id="tScale"></div></div>
-      <div class="t-line"><b class="num" id="tOdds">–</b><span id="tStatus" role="status"></span></div>
+      <div class="t-line"><b class="num" id="tOdds"></b><span id="tStatus" role="status"></span></div>
       <div class="t-facts num" id="tFacts"></div>
       <div class="t-actions" id="tActions"></div>
     </div>
@@ -104,6 +116,7 @@
       <div id="tPlayers"></div>
     </section>
   </section>
+
   <!-- Play: today's slips -->
   <section class="page" id="play" hidden aria-labelledby="playTitle">
     <header class="page-head"><a class="back" href="#home">‹ Slots</a><h2 id="playTitle">Play</h2><span></span></header>

@@ -1,6 +1,6 @@
 // Offline support: the app shell is cached; odds data is fetched fresh when online
 // and falls back to the last copy when not.
-const VERSION = "evens-v12";
+const VERSION = "evens-v13";
 const SHELL = ["./", "index.html", "app.css", "app.js", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png",
   "fonts/barlow-condensed-latin-500-normal.woff2", "fonts/barlow-condensed-latin-600-normal.woff2", "fonts/barlow-condensed-latin-700-normal.woff2", "fonts/bungee-latin-400-normal.woff2", "fonts/share-tech-mono-latin-400-normal.woff2"];
 

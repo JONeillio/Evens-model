@@ -479,3 +479,103 @@ body.on-felt { background: var(--felt-deep); }
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .t-mark[hidden] { display: none; }
+
+/* ================= the card table, Hold'em style (round 4) ================= */
+.felt { padding-top: 64px; }
+/* The lamp hangs from the top of the felt and swings (JS sets --swing). */
+.lamp { position: absolute; top: -6px; left: 50%; width: 120px; margin-left: -60px; height: 150px; transform-origin: 60px 0; transform: rotate(var(--swing, 0deg)); pointer-events: none; z-index: 2; }
+.lamp-cord { position: absolute; left: 59px; top: 0; width: 2px; height: 22px; background: #2B180A; }
+.lamp-shade { position: absolute; top: 20px; left: 0; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .45)); }
+.lamp-light { position: absolute; top: 70px; left: -90px; width: 300px; height: 260px; background: radial-gradient(ellipse 50% 60% at 50% 0%, rgba(255, 170, 80, .34), rgba(255, 150, 60, .12) 55%, transparent 75%); clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); mix-blend-mode: screen; animation: flicker 6s infinite; }
+@keyframes flicker { 0%, 100% { opacity: 1; } 47% { opacity: 1; } 48% { opacity: .86; } 49% { opacity: 1; } 72% { opacity: .95; } }
+.felt > .lamp ~ * { position: relative; z-index: 1; }
+.t-head h2 { font-size: 22px; }
+.t-controls { display: flex; justify-content: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.deck-btn { min-height: 40px; padding: 2px 14px 2px 10px; border-radius: 999px; border: 2px solid #F7E7B0; background: #062616; color: #F7E7B0; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
+.deck-btn::after { content: ""; border: 5px solid transparent; border-top-color: #F7E7B0; border-bottom: 0; margin-top: 2px; }
+.deck-ico { width: 16px; height: 20px; border-radius: 3px; background: repeating-linear-gradient(45deg, #A3172A 0 3px, #7A1020 3px 6px); border: 2px solid var(--card); box-shadow: 3px -3px 0 -1px #F7E7B0; }
+/* The dealer and his speech bubble. */
+.dealer-row { display: flex; align-items: center; gap: 10px; margin: 10px 2px 6px; }
+.dealer { flex: none; width: 64px; height: 64px; image-rendering: pixelated; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .35)); }
+.dealer.dealing { animation: dealerBob .45s steps(3); }
+@keyframes dealerBob { 0% { transform: translateY(0); } 50% { transform: translateY(-3px) translateX(2px); } 100% { transform: translateY(0); } }
+.bubble { position: relative; flex: 1; margin: 0; padding: 8px 12px; border-radius: 12px; background: var(--card); color: var(--card-ink); font-size: 16px; line-height: 1.25; font-weight: 600; }
+.bubble::before { content: ""; position: absolute; left: -8px; top: 50%; margin-top: -8px; border: 8px solid transparent; border-right-color: var(--card); border-left: 0; }
+.bubble.pop { animation: pop .35s; }
+@keyframes pop { 40% { transform: scale(1.04); } }
+/* The dealer's hands: swipe through. */
+.hands { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 8px; scrollbar-width: none; }
+.hands::-webkit-scrollbar, .board::-webkit-scrollbar { display: none; }
+.dhand { flex: none; width: 82%; max-width: 330px; scroll-snap-align: start; text-align: left; padding: 10px 12px; border-radius: 14px; border: 2px solid #2E6B4A; background: rgba(6, 38, 22, .85); color: #F2FFF6; display: flex; flex-direction: column; gap: 6px; }
+.dhand.on { border-color: var(--jackpot); box-shadow: 0 0 14px rgba(255, 210, 63, .35); }
+.dh-name { font-family: var(--font-display); font-size: 15px; color: #F7E7B0; letter-spacing: .5px; }
+.dh-cards { display: flex; gap: 4px; flex-wrap: wrap; }
+.mini { display: inline-flex; flex-direction: column; align-items: center; min-width: 54px; padding: 3px 5px; border-radius: 6px; background: var(--card); color: var(--card-ink); font-size: 12px; font-weight: 700; line-height: 1.1; box-shadow: 0 2px 0 #C9B88F; }
+.mini b { font-size: 12px; color: var(--hold); }
+.dh-nums { font-size: 15px; color: #CDEBD8; }
+.dh-nums b { font-family: var(--font-display); font-weight: 400; color: var(--jackpot); font-size: 17px; }
+/* The board: community cards. */
+.board-wrap { margin: 2px 0 8px; }
+.t-label { margin: 6px 2px 4px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #F7E7B0; }
+.t-label small { text-transform: none; letter-spacing: 0; font-weight: 500; color: #A7D3B8; font-size: 13px; }
+.board { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 6px; scroll-snap-type: x proximity; }
+.bcard { position: relative; flex: none; width: 112px; min-height: 104px; padding: 8px 8px 6px; border-radius: 10px; background: var(--card); color: var(--card-ink); box-shadow: 0 3px 0 #C9B88F, 0 6px 12px rgba(0, 0, 0, .3); display: flex; flex-direction: column; gap: 1px; scroll-snap-align: start; cursor: pointer; }
+.bcard.hole { box-shadow: 0 0 0 3px var(--jackpot), 0 6px 12px rgba(0, 0, 0, .3); }
+.bcard.used { opacity: .55; }
+.b-star { position: absolute; top: 2px; right: 2px; width: 36px; height: 36px; border: 0; background: none; color: #B8860B; font-size: 20px; line-height: 1; }
+.b-name { font-family: var(--font-display); font-size: 13px; line-height: 1.1; padding-right: 26px; }
+.b-name small { font-family: var(--font); font-size: 11px; color: #7A3A2A; }
+.b-stat { font-size: 14px; font-weight: 700; line-height: 1.1; }
+.b-px { margin-top: auto; font-family: var(--font-display); font-size: 18px; color: var(--hold); }
+.b-edge { font-size: 12px; color: #5A4A33; }
+.b-edge .edge.pos { color: var(--good-on-reel); } .b-edge .edge.neg { color: var(--bad-on-reel); }
+/* Cards in your hand: details, pick, swap, fold. */
+.pcard.hole { box-shadow: 0 0 0 3px var(--jackpot), 0 8px 18px rgba(0, 0, 0, .35); }
+.c-mine { color: #B8860B; }
+.c-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.c-btns button { min-height: 38px; padding: 0 10px; border-radius: 8px; border: 1px solid #C9B88F; background: #F1E6C8; color: var(--card-ink); font-weight: 700; font-size: 14px; }
+.c-btns .c-fold { color: var(--hold); }
+.c-btns .c-star[aria-pressed="true"] { background: var(--jackpot); border-color: #B8860B; }
+.pcard.deal-in { animation: dealIn .55s cubic-bezier(.2, .9, .3, 1.2) both; }
+@keyframes dealIn { 0% { transform: translate(-30%, -120px) rotate(-18deg) scale(.5); opacity: 0; } 60% { transform: translate(0, 4px) rotate(1deg) scale(1); opacity: 1; } 100% { transform: rotate(calc((var(--i) - 1) * .6deg)); } }
+#tStatus.over { color: #FFB09A; }
+.t-actions { flex-wrap: wrap; }
+.t-actions #tHit { flex: 2 1 100%; min-height: 56px; font-size: 20px; letter-spacing: 1px; }
+.pline.in { box-shadow: 0 0 0 3px var(--jackpot); }
+/* Team badges (team colours and codes; no logos). */
+.tbadge { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 28px; padding: 0 6px; border-radius: 8px; background: var(--a); color: #fff; font-family: var(--font-display); font-size: 12px; letter-spacing: .5px; box-shadow: inset 0 -4px 0 var(--b); text-shadow: 0 1px 0 rgba(0, 0, 0, .5); }
+.pg-teams { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.pg-teams b { font-size: 15px; }
+/* The deck sheet. */
+.deck-all { margin-bottom: 8px; }
+.dslot { margin: 8px 0; }
+.dslot-head { min-height: 40px; padding: 0 12px; border-radius: 10px; border: 2px dashed var(--gold); background: none; color: var(--blush); font-weight: 700; font-size: 15px; }
+.dslot-head[aria-pressed="true"] { border-style: solid; color: var(--jackpot); }
+.dslot-head small { color: var(--blush); opacity: .8; font-weight: 500; }
+.dgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 6px; }
+.dgame { min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 12px; border: 2px solid #4A2A1A; background: var(--ink); color: var(--blush); opacity: .75; }
+.dgame[aria-pressed="true"] { opacity: 1; border-color: var(--jackpot); box-shadow: 0 0 10px rgba(255, 210, 63, .35); }
+.dgame .at { font-weight: 700; }
+/* Sideways: an oval table, dealer and hands on the left rail, your hand on the right. */
+@media (orientation: landscape) and (max-height: 560px) {
+  #table .felt { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; align-items: start; border-radius: 160px / 90px; padding: 56px 36px 24px; }
+  #table .felt > .lamp { left: 50%; }
+  #table .t-head, #table .dealer-row, #table .hands, #table .board-wrap { grid-column: 1; }
+  #table .t-label, #table .hand, #table .t-meter, #table .t-line, #table .t-facts, #table .t-actions { grid-column: 2; }
+  #table .t-head { grid-row: 1; } #table .dealer-row { grid-row: 2; } #table .hands { grid-row: 3; } #table .board-wrap { grid-row: 4 / span 4; }
+  #table .felt > .t-label { grid-row: 1; } #table .hand { grid-row: 2 / span 2; } #table .t-meter { grid-row: 4; } #table .t-line { grid-row: 5; } #table .t-facts { grid-row: 6; } #table .t-actions { grid-row: 7; }
+  #table .dhand { width: 90%; }
+}
+@media (prefers-reduced-motion: reduce) { .lamp-light { animation: none; } .dealer.dealing { animation: none; } }
+.lamp { background: none; right: auto; bottom: auto; }
+.felt { padding-top: 92px; }
+@media (orientation: landscape) and (max-height: 560px) {
+  body.on-felt #app { max-width: none; }
+  #table .felt { padding-top: 84px; }
+  #table .felt > .lamp { left: 25%; }
+  #table .bubble { font-size: 15px; }
+}
+@media (orientation: landscape) and (max-height: 560px) {
+  #table .felt { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  #table .felt > .t-label { align-self: end; }
+}
