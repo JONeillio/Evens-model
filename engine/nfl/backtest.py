@@ -27,8 +27,13 @@ OUT = ROOT / "data" / "nfl_model"
 def walk(prep, season, weeks, P):
     rows, teams = [], []
     pl = prep["players"]
+    inj = prep.get("injuries")
     for w in weeks:
-        players, T = project_week(prep, season, w, P)
+        q = set()
+        if inj is not None and not inj.empty:
+            cur = inj[(inj["season"] == season) & (inj["week"] == w)]
+            q = set(cur[cur["report_status"] == "Questionable"]["gsis_id"])
+        players, T = project_week(prep, season, w, P, questionable_ids=q)
         if players.empty:
             continue
         act = pl[(pl["season"] == season) & (pl["week"] == w)][["player_id", "game_id", "receiving_yards", "rushing_yards", "passing_yards", "targets", "carries", "attempts"]]

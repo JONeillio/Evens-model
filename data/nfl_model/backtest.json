@@ -32,6 +32,16 @@
    "rush_yds": 1.0,
    "pass_yds": 1.03
   },
+  "q_mult": {
+   "rec_yds": 0.88,
+   "rush_yds": 0.92,
+   "pass_yds": 0.88
+  },
+  "return_mult": {
+   "rec_yds": 0.92,
+   "rush_yds": 0.96,
+   "pass_yds": 0.92
+  },
   "home_points": 1.2,
   "pts_shrink": 0.55,
   "vol_coef": {
@@ -53,127 +63,127 @@
  },
  "players_2025": {
   "rec_yds": {
-   "n": 3277,
-   "mae_model": 18.36,
-   "mae_naive": 19.49,
-   "logloss_model": 0.6525,
-   "logloss_flat": 0.6732,
+   "n": 3274,
+   "mae_model": 18.31,
+   "mae_naive": 19.5,
+   "logloss_model": 0.6511,
+   "logloss_flat": 0.6733,
    "calibration": [
     {
-     "n": 515,
-     "said": 0.234,
-     "came": 0.219
+     "n": 520,
+     "said": 0.233,
+     "came": 0.215
     },
     {
-     "n": 991,
-     "said": 0.351,
-     "came": 0.37
+     "n": 981,
+     "said": 0.352,
+     "came": 0.363
     },
     {
-     "n": 1073,
-     "said": 0.444,
-     "came": 0.426
+     "n": 1050,
+     "said": 0.446,
+     "came": 0.437
     },
     {
-     "n": 471,
-     "said": 0.547,
-     "came": 0.507
+     "n": 498,
+     "said": 0.546,
+     "came": 0.496
     },
     {
-     "n": 195,
+     "n": 191,
      "said": 0.636,
-     "came": 0.585
-    },
-    {
-     "n": 32,
-     "said": 0.734,
-     "came": 0.688
-    }
-   ],
-   "strong_calls": 1446,
-   "strong_hit_rate": 0.692
-  },
-  "rush_yds": {
-   "n": 1453,
-   "mae_model": 18.88,
-   "mae_naive": 20.04,
-   "logloss_model": 0.6467,
-   "logloss_flat": 0.6704,
-   "calibration": [
-    {
-     "n": 264,
-     "said": 0.228,
-     "came": 0.258
-    },
-    {
-     "n": 491,
-     "said": 0.359,
-     "came": 0.344
-    },
-    {
-     "n": 462,
-     "said": 0.448,
-     "came": 0.459
-    },
-    {
-     "n": 184,
-     "said": 0.544,
-     "came": 0.495
-    },
-    {
-     "n": 41,
-     "said": 0.643,
-     "came": 0.537
-    },
-    {
-     "n": 11,
-     "said": 0.739,
-     "came": 0.909
-    }
-   ],
-   "strong_calls": 660,
-   "strong_hit_rate": 0.698
-  },
-  "pass_yds": {
-   "n": 374,
-   "mae_model": 59.43,
-   "mae_naive": 64.26,
-   "logloss_model": 0.6412,
-   "logloss_flat": 0.6926,
-   "calibration": [
-    {
-     "n": 25,
-     "said": 0.226,
-     "came": 0.08
-    },
-    {
-     "n": 51,
-     "said": 0.348,
-     "came": 0.196
-    },
-    {
-     "n": 92,
-     "said": 0.449,
-     "came": 0.511
-    },
-    {
-     "n": 98,
-     "said": 0.553,
      "came": 0.592
     },
     {
-     "n": 53,
-     "said": 0.645,
-     "came": 0.491
-    },
-    {
-     "n": 55,
-     "said": 0.778,
-     "came": 0.691
+     "n": 34,
+     "said": 0.734,
+     "came": 0.735
     }
    ],
-   "strong_calls": 158,
-   "strong_hit_rate": 0.696
+   "strong_calls": 1455,
+   "strong_hit_rate": 0.698
+  },
+  "rush_yds": {
+   "n": 1452,
+   "mae_model": 18.85,
+   "mae_naive": 20.06,
+   "logloss_model": 0.6458,
+   "logloss_flat": 0.6705,
+   "calibration": [
+    {
+     "n": 267,
+     "said": 0.23,
+     "came": 0.247
+    },
+    {
+     "n": 470,
+     "said": 0.359,
+     "came": 0.349
+    },
+    {
+     "n": 472,
+     "said": 0.445,
+     "came": 0.456
+    },
+    {
+     "n": 186,
+     "said": 0.542,
+     "came": 0.489
+    },
+    {
+     "n": 46,
+     "said": 0.637,
+     "came": 0.565
+    },
+    {
+     "n": 11,
+     "said": 0.744,
+     "came": 0.909
+    }
+   ],
+   "strong_calls": 628,
+   "strong_hit_rate": 0.705
+  },
+  "pass_yds": {
+   "n": 374,
+   "mae_model": 59.27,
+   "mae_naive": 64.26,
+   "logloss_model": 0.6422,
+   "logloss_flat": 0.6926,
+   "calibration": [
+    {
+     "n": 24,
+     "said": 0.216,
+     "came": 0.083
+    },
+    {
+     "n": 46,
+     "said": 0.347,
+     "came": 0.217
+    },
+    {
+     "n": 104,
+     "said": 0.452,
+     "came": 0.481
+    },
+    {
+     "n": 94,
+     "said": 0.554,
+     "came": 0.574
+    },
+    {
+     "n": 54,
+     "said": 0.644,
+     "came": 0.556
+    },
+    {
+     "n": 52,
+     "said": 0.778,
+     "came": 0.673
+    }
+   ],
+   "strong_calls": 152,
+   "strong_hit_rate": 0.697
   }
  },
  "teams_2025": {

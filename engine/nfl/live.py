@@ -129,7 +129,10 @@ def build(index: dict, fixtures: dict, settings: dict, now: datetime, offline: b
     if not inj.empty:
         cur = inj[(inj["season"] == season) & (inj["week"] == week)]
         out_ids = set(cur[cur["report_status"].isin(["Out", "Doubtful"])]["gsis_id"])
-    players, T = project_week(prep, season, week, P, games=games, out_ids=out_ids)
+        q_ids = set(cur[cur["report_status"] == "Questionable"]["gsis_id"])
+    else:
+        q_ids = set()
+    players, T = project_week(prep, season, week, P, games=games, out_ids=out_ids, questionable_ids=q_ids)
     fid_of_game = {g["game_id"]: fid for fid, g in gmap.items()}
     players["fid"] = players["game_id"].map(fid_of_game)
 
@@ -206,6 +209,10 @@ def _why(pl, stat) -> str:
         vs += f" · {'hot' if form > 1 else 'cold'} last 3 ({(form - 1) * 100:+.0f}%)"
     if pl.get("qb_factor", 1.0) < 0.97:
         vs += " · backup QB"
+    if pl.get("questionable"):
+        vs += " · questionable"
+    if pl.get("returning"):
+        vs += " · first game back"
     if stat == "rec_yds":
         return f"{pl['tgt_share'] * 100:.0f}% of targets · ~{pl['proj_targets_p']:.1f} targets · {vs}"
     if stat == "rush_yds":

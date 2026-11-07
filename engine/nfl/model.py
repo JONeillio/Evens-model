@@ -50,6 +50,10 @@ class Params:
     hl_def: float = 3.0         # half-life (games) for defences: shorter = recent defensive form counts more
     mom_k: dict = field(default_factory=lambda: {"rec_yds": 15.0, "rush_yds": 15.0, "pass_yds": 60.0})
     home_mult: dict = field(default_factory=lambda: {"rec_yds": 1.01, "rush_yds": 1.0, "pass_yds": 1.03})
+    # Injury signals (measured on 2024, confirmed on 2025): listed Questionable this week, or
+    # first game back after missing the team's last game.
+    q_mult: dict = field(default_factory=lambda: {"rec_yds": 0.88, "rush_yds": 0.92, "pass_yds": 0.88})
+    return_mult: dict = field(default_factory=lambda: {"rec_yds": 0.92, "rush_yds": 0.96, "pass_yds": 0.92})
     home_points: float = 1.2
     pts_shrink: float = 0.55    # how much of a team's above/below-average points to believe
     vol_coef: dict = field(default_factory=dict)  # fitted volume regressions
@@ -92,7 +96,7 @@ def prepare(data: dict) -> dict:
     # Team totals joined to each player-game, for shares.
     p = p.merge(tm[["game_id", "team", "attempts", "carries", "targets"]].rename(
         columns={"attempts": "team_att", "carries": "team_car", "targets": "team_tgt"}), on=["game_id", "team"], how="left")
-    return {"players": p, "teams": tm, "games": g, "points": pts}
+    return {"players": p, "teams": tm, "games": g, "points": pts, "injuries": data.get("injuries")}
 
 
 # ---------- building blocks ----------
@@ -215,7 +219,7 @@ def _attach_lines(x: pd.DataFrame, g: pd.DataFrame) -> pd.DataFrame:
 
 
 def project_week(prep: dict, season: int, week: int, P: Params, games: pd.DataFrame | None = None,
-                 lines: pd.DataFrame | None = None, out_ids=frozenset()) -> tuple[pd.DataFrame, pd.DataFrame]:
+                 lines: pd.DataFrame | None = None, out_ids=frozenset(), questionable_ids=frozenset()) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Projections for every player likely to play in (season, week), using only earlier games.
 
     games: the fixtures to project (game_id, home_team, away_team); defaults to the schedule.
@@ -301,9 +305,16 @@ def project_week(prep: dict, season: int, week: int, P: Params, games: pd.DataFr
     active["proj_pass_yds"] = np.where(active["player_id"].isin(starters),
                                        active["proj_attempts"] * active["att_share"].clip(upper=1.0) * active["ypa"] * active["opp_pass"] ** P.opp_power["pass_yds"]
                                        * active["mom_pass_yds"] * hm["pass_yds"], 0.0)
+    # Injury signals.
+    team_last = tm_hist.groupby("team")["t"].max()
+    active["returning"] = active["last_t"] < active["team"].map(team_last)   # missed the team's last game
+    active["questionable"] = active["player_id"].isin(questionable_ids)
+    for stat in ("rec_yds", "rush_yds", "pass_yds"):
+        m = np.where(active["questionable"], P.q_mult[stat], 1.0) * np.where(active["returning"], P.return_mult[stat], 1.0)
+        active[f"proj_{stat}"] = active[f"proj_{stat}"] * m
     active["proj_targets_p"] = active["proj_targets"] * active["tgt_share"]
     active["proj_carries_p"] = active["proj_carries"] * active["car_share"]
-    keep = ["game_id", "team", "opp", "home", "name", "pos", "qb_factor", "mom_rec_yds", "mom_rush_yds", "mom_pass_yds", "tgt_share", "car_share", "att_share", "ypt", "ypc", "ypa",
+    keep = ["game_id", "team", "opp", "home", "name", "pos", "qb_factor", "returning", "questionable", "mom_rec_yds", "mom_rush_yds", "mom_pass_yds", "tgt_share", "car_share", "att_share", "ypt", "ypc", "ypa",
             "opp_rec", "opp_rush", "opp_pass", "proj_targets_p", "proj_carries_p", "proj_rec_yds", "proj_rush_yds", "proj_pass_yds"]
     players = active[["player_id"] + keep]
     return players, T
