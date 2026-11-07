@@ -646,8 +646,8 @@
       "home": "Barcelona",
       "away": "La Coruna"
      },
-     "result": null,
-     "score": null
+     "result": "lost",
+     "score": "0-0"
     },
     {
      "id": "id1000020672202722|ou:4.5:under",
@@ -664,8 +664,8 @@
       "home": "Morton",
       "away": "Stenhousemuir"
      },
-     "result": null,
-     "score": null
+     "result": "lost",
+     "score": "4-3"
     },
     {
      "id": "id1000001772221380|ou:4.5:under",
@@ -682,8 +682,8 @@
       "home": "Fulham",
       "away": "Newcastle"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-1"
     },
     {
      "id": "id1000001772221372|ou:4.5:under",
@@ -700,8 +700,8 @@
       "home": "Arsenal",
       "away": "Hull"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-0"
     },
     {
      "id": "id1000003572513292|1x2:1",
@@ -718,13 +718,13 @@
       "home": "Dortmund",
       "away": "Elversberg"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-1"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "lost",
+   "settled_odds": 0,
+   "profit_per_10": -10.0
   },
   {
    "key": "2026-11-07T15:15:00Z",
