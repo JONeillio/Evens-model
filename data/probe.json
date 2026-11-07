@@ -1,0 +1,3428 @@
+{
+ "fixture": "id1000001772221384",
+ "tournament": 17,
+ "bookmakers": {
+  "500.casino": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bcgame": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betfury": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betify": {
+   "markets": 134,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betonred": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betplay.io": {
+   "markets": 134,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betwhale.ag": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "blaze": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "blaze.bet.br": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bluechip": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "coolzino": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "cryptoleo": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "duel": {
+   "markets": 128,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "esportivabet": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "expekt.dk": {
+   "markets": 128,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "expekt.se": {
+   "markets": 170,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "fliff": {
+   "markets": 65,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "fortunejack": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "leovegas.dk": {
+   "markets": 128,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "megadice": {
+   "markets": 115,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "ninecasino": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "pamestoixima.gr": {
+   "markets": 112,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "pixbet": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "rainbet": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "rajbets": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "razed": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "rollbit": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "roobet": {
+   "markets": 134,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "superbet": {
+   "markets": 314,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "superbet.pl": {
+   "markets": 276,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "superbet.ro": {
+   "markets": 314,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "superbet.rs": {
+   "markets": 316,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "thunderpick.io": {
+   "markets": 133,
+   "our_markets": 17,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "fonbet": {
+   "markets": 92,
+   "our_markets": 16,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "netbet": {
+   "markets": 250,
+   "our_markets": 16,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "netbet.co.uk": {
+   "markets": 237,
+   "our_markets": 16,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "888sport": {
+   "markets": 267,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "888sport.ca": {
+   "markets": 267,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "888sport.de": {
+   "markets": 247,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "888sport.dk": {
+   "markets": 272,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "888sport.es": {
+   "markets": 265,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "admiralbet.it": {
+   "markets": 135,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "atg.se": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "ballybet": {
+   "markets": 133,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betcenter.be": {
+   "markets": 100,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betcity.nl": {
+   "markets": 96,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betfair-ex": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betfred": {
+   "markets": 90,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betmgm": {
+   "markets": 92,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betmgm.co.uk": {
+   "markets": 144,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betparx": {
+   "markets": 149,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betpawa.cm": {
+   "markets": 113,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betplay": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betrivers": {
+   "markets": 134,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betuk": {
+   "markets": 143,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betway": {
+   "markets": 100,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betway.de": {
+   "markets": 57,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betway.es": {
+   "markets": 100,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bingoal.be": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bodog.eu": {
+   "markets": 119,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "borgata": {
+   "markets": 92,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bovada.lv": {
+   "markets": 119,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bwin": {
+   "markets": 130,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bwin.de": {
+   "markets": 67,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bwin.dk": {
+   "markets": 129,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "cashpoint": {
+   "markets": 100,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "casumo": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "coral": {
+   "markets": 135,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "desertdiamond": {
+   "markets": 133,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "draftkings": {
+   "markets": 145,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "eurobet.it": {
+   "markets": 163,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "fair999-ex": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "fanduel": {
+   "markets": 146,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "grosvenor": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "jacks.nl": {
+   "markets": 96,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "kto": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "kto.bet.br": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "ladbrokes": {
+   "markets": 129,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "leovegas": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "leovegas.es": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "livescorebet": {
+   "markets": 142,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "merkurbets": {
+   "markets": 100,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "midnite": {
+   "markets": 208,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "mrgreen": {
+   "markets": 274,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "mrgreen.dk": {
+   "markets": 266,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "netbet.it": {
+   "markets": 159,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "oddset": {
+   "markets": 67,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "orbitx": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "paf": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "paf.es": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "partypoker": {
+   "markets": 129,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "piwi247-ex": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "pmu": {
+   "markets": 64,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "pokerstars": {
+   "markets": 116,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "pokerstars.it": {
+   "markets": 152,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "pokerstars.ro": {
+   "markets": 116,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "prolineplus": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "quigioco.it": {
+   "markets": 140,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "rushbet.co": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "scooore.be": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "sharpxch": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "sisal.it": {
+   "markets": 152,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "snai.it": {
+   "markets": 152,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "sportingbet": {
+   "markets": 130,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "sportsinteraction": {
+   "markets": 101,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "sugarhouse": {
+   "markets": 134,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "svenskaspel": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "tabtouch": {
+   "markets": 139,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "tipico": {
+   "markets": 67,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "toto.nl": {
+   "markets": 120,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.be": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.com.au": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.dk": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.ie": {
+   "markets": 155,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.nl": {
+   "markets": 96,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.se": {
+   "markets": 156,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "virginbet": {
+   "markets": 142,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winamax.de": {
+   "markets": 74,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winamax.es": {
+   "markets": 109,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winamax.fr": {
+   "markets": 72,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winbet.bg": {
+   "markets": 152,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winbet.ro": {
+   "markets": 148,
+   "our_markets": 15,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "18bet": {
+   "markets": 176,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "1xbet": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "1xbit": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "20bet": {
+   "markets": 98,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "22bet": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "7bet.co.uk": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "7bet.lt": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "888sport.it": {
+   "markets": 104,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "allbritishcasino": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "alphawin": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "apuestatotal": {
+   "markets": 175,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betfirst.be": {
+   "markets": 263,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betinia.dk": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betsafe": {
+   "markets": 263,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betsson": {
+   "markets": 263,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betwinner": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bwin.es": {
+   "markets": 129,
+   "our_markets": 14,
+   "has": [
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "campobet.dk": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "codere.es": {
+   "markets": 82,
+   "our_markets": 14,
+   "has": [
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "coolbet": {
+   "markets": 239,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "fairpari": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "fdj": {
+   "markets": 95,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "fezbet": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "goldenpalacesports.be": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "greatwin": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "hardrockbet": {
+   "markets": 100,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "inkabet": {
+   "markets": 263,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "ivibet": {
+   "markets": 98,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "leovegas.it": {
+   "markets": 104,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "librabet": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "lottoland": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "megapari": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "melbet": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "merkurxtip.cz": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "mrbit.ro": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "nordicbet": {
+   "markets": 263,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "overtime.io": {
+   "markets": 102,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "powbet": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "quickwin": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "rabona": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "spelet.lv": {
+   "markets": 328,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "sportaza": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "sportuna": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "starcasino.be": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "tonybet": {
+   "markets": 98,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "unibet.fr": {
+   "markets": 95,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "vave": {
+   "markets": 98,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "wazamba": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "winpot.mx": {
+   "markets": 167,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "zebet.fr": {
+   "markets": 95,
+   "our_markets": 14,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "admiralbet.ba": {
+   "markets": 81,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "admiralbet.me": {
+   "markets": 81,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "admiralbet.rs": {
+   "markets": 81,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "asports.bet": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bet3000": {
+   "markets": 59,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365-nj": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.bet.ar": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.de": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.es": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.fr": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.gr": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.it": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet365.nl": {
+   "markets": 234,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bet487": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "betano": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.bg": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.ca": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.cz": {
+   "markets": 203,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.de": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.dk": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.mx": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.pe": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.pt": {
+   "markets": 142,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betano.ro": {
+   "markets": 210,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betdex": {
+   "markets": 76,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "bolsadeaposta-spb": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bwin.fr": {
+   "markets": 49,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "duelbits": {
+   "markets": 181,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "espnbet": {
+   "markets": 104,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "estrelabet": {
+   "markets": 164,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "estrelabet.bet.br": {
+   "markets": 164,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "kalshi": {
+   "markets": 41,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "marathonbet": {
+   "markets": 152,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "ole777": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "paddypower": {
+   "markets": 155,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "pin88": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "pinnacle": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "pinnacle+30": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "piwi247-spb": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "playnow": {
+   "markets": 83,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "polymarket": {
+   "markets": 96,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "ps3838": {
+   "markets": 101,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "sportwetten.de": {
+   "markets": 49,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "thescore": {
+   "markets": 104,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "tiptorro": {
+   "markets": 77,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "wettarena": {
+   "markets": 60,
+   "our_markets": 13,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "iddaa": {
+   "markets": 66,
+   "our_markets": 12,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "jazzsports": {
+   "markets": 99,
+   "our_markets": 12,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "mozzartbet": {
+   "markets": 56,
+   "our_markets": 12,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "novig.us": {
+   "markets": 27,
+   "our_markets": 12,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "stoiximan": {
+   "markets": 202,
+   "our_markets": 12,
+   "has": [
+    "result",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "cloudbet": {
+   "markets": 117,
+   "our_markets": 11,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "fourwinds": {
+   "markets": 75,
+   "our_markets": 11,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "gamdom": {
+   "markets": 157,
+   "our_markets": 11,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "stake": {
+   "markets": 117,
+   "our_markets": 11,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "betonline.ag": {
+   "markets": 20,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "eplay24.it": {
+   "markets": 63,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "team to score",
+    "btts"
+   ]
+  },
+  "lowvig.ag": {
+   "markets": 20,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "maxbet.rs": {
+   "markets": 48,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "team to score",
+    "btts"
+   ]
+  },
+  "sportsbetting.ag": {
+   "markets": 20,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "tigergaming": {
+   "markets": 20,
+   "our_markets": 10,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "4casters": {
+   "markets": 32,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "caesars": {
+   "markets": 66,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "team to score",
+    "btts"
+   ]
+  },
+  "efortuna.pl": {
+   "markets": 122,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "fanatics": {
+   "markets": 162,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "fanaticsmarkets": {
+   "markets": 46,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "matchbook": {
+   "markets": 21,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "napoleonsports.be": {
+   "markets": 99,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "partycasino": {
+   "markets": 83,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "team to score"
+   ]
+  },
+  "pointsbet.com.au": {
+   "markets": 162,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "pokerstars.fr": {
+   "markets": 40,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "williamhill-nj": {
+   "markets": 66,
+   "our_markets": 9,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "team to score",
+    "btts"
+   ]
+  },
+  "bet99": {
+   "markets": 24,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "betflag.it": {
+   "markets": 85,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "gemini": {
+   "markets": 11,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "goldbet.it": {
+   "markets": 85,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "lottomatica.it": {
+   "markets": 85,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "planetwin365.it": {
+   "markets": 85,
+   "our_markets": 8,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5",
+    "btts"
+   ]
+  },
+  "31bet": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "betus": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "casapariurilor.ro": {
+   "markets": 110,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "dafabet": {
+   "markets": 83,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "efortuna.ro": {
+   "markets": 101,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "btts"
+   ]
+  },
+  "freshbet": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "goldenbet": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "jackbit": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "mystake": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "nextbet": {
+   "markets": 83,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "rolletto": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "velobet": {
+   "markets": 29,
+   "our_markets": 7,
+   "has": [
+    "result",
+    "double chance",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "198bet": {
+   "markets": 29,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "hth": {
+   "markets": 134,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "kaiyun": {
+   "markets": 134,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "leyusports": {
+   "markets": 134,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "prophetx": {
+   "markets": 8,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "solabet": {
+   "markets": 29,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "sx.bet": {
+   "markets": 13,
+   "our_markets": 6,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "over 1.5",
+    "under 3.5"
+   ]
+  },
+  "sabasports": {
+   "markets": 68,
+   "our_markets": 5,
+   "has": [
+    "result",
+    "double chance",
+    "btts"
+   ]
+  },
+  "aceshigh.ag": {
+   "markets": 8,
+   "our_markets": 4,
+   "has": [
+    "result"
+   ]
+  },
+  "betika": {
+   "markets": 62,
+   "our_markets": 4,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "betwar": {
+   "markets": 8,
+   "our_markets": 4,
+   "has": [
+    "result"
+   ]
+  },
+  "neds.com.au": {
+   "markets": 54,
+   "our_markets": 4,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet",
+    "btts"
+   ]
+  },
+  "paradisewager": {
+   "markets": 5,
+   "our_markets": 4,
+   "has": [
+    "result"
+   ]
+  },
+  "balkanbet.rs": {
+   "markets": 29,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "double chance",
+    "draw no bet"
+   ]
+  },
+  "cmd368": {
+   "markets": 18,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "double chance"
+   ]
+  },
+  "sbobet": {
+   "markets": 31,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "double chance"
+   ]
+  },
+  "sharpbet": {
+   "markets": 16,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "btts"
+   ]
+  },
+  "singbet": {
+   "markets": 29,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "btts"
+   ]
+  },
+  "singbet-b": {
+   "markets": 29,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "btts"
+   ]
+  },
+  "singbet-c": {
+   "markets": 29,
+   "our_markets": 3,
+   "has": [
+    "result",
+    "btts"
+   ]
+  },
+  "3et": {
+   "markets": 20,
+   "our_markets": 2,
+   "has": [
+    "result"
+   ]
+  },
+  "afb88": {
+   "markets": 18,
+   "our_markets": 2,
+   "has": [
+    "result"
+   ]
+  },
+  "circasports": {
+   "markets": 3,
+   "our_markets": 2,
+   "has": [
+    "result"
+   ]
+  },
+  "mansion88": {
+   "markets": 17,
+   "our_markets": 2,
+   "has": [
+    "result"
+   ]
+  },
+  "soccerbet.rs": {
+   "markets": 12,
+   "our_markets": 2,
+   "has": [
+    "result",
+    "double chance"
+   ]
+  },
+  "vertex": {
+   "markets": 5,
+   "our_markets": 2,
+   "has": [
+    "result"
+   ]
+  },
+  "limitless-ex": {
+   "markets": 2,
+   "our_markets": 1,
+   "has": [
+    "result"
+   ]
+  },
+  "polymarket.us": {
+   "markets": 1,
+   "our_markets": 1,
+   "has": [
+    "result"
+   ]
+  },
+  "draftkings-predictions": {
+   "markets": 2,
+   "our_markets": 0,
+   "has": []
+  },
+  "prizepicks": {
+   "markets": 2,
+   "our_markets": 0,
+   "has": []
+  }
+ },
+ "calls": [
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000001772221384"
+   },
+   "status": 200,
+   "seconds": 1.58,
+   "billable": true,
+   "note": ""
+  }
+ ]
+}
