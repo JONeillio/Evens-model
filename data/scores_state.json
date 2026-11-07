@@ -1175,12 +1175,12 @@
    "at": "2026-11-07T17:18:10Z"
   },
   "id1000023872531008": {
-   "s": "PST",
+   "s": "NS",
    "min": null,
    "h": null,
    "a": null,
-   "src": "af",
-   "at": "2026-11-07T17:23:13Z"
+   "src": "fd",
+   "at": "2026-11-07T17:28:16Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1205,10 +1205,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T17:23:13Z"
+   "at": "2026-11-07T17:28:16Z"
   }
  },
- "last_called_at": "2026-11-07T17:23:13Z",
+ "last_called_at": "2026-11-07T17:28:16Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1430,19 +1430,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T17:23:13Z",
-  "want": 6,
+  "at": "2026-11-07T17:28:16Z",
+  "want": 3,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1453,12 +1445,14 @@
     "results": 36
    }
   ],
-  "changed": 4,
+  "changed": 1,
   "coverage": {
-   "checked": 6,
-   "api_football": 6,
+   "checked": 3,
+   "api_football": 0,
    "football_data": 2,
-   "unmatched": []
+   "unmatched": [
+    "Altrincham FC v Notts County (FA Cup)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T17:23:13Z"
