@@ -35,15 +35,16 @@
   "tournaments_refresh_days": 30,
   "markets_refresh_days": 60,
   "weekday_weights": {
-   "Mon": 1,
-   "Tue": 0.8,
-   "Wed": 0.8,
+   "Mon": 0,
+   "Tue": 1,
+   "Wed": 0,
    "Thu": 1,
-   "Fri": 2.5,
-   "Sat": 4,
-   "Sun": 4
+   "Fri": 1.15,
+   "Sat": 1.9,
+   "Sun": 1.9
   },
-  "min_match_calls": 6
+  "min_match_calls": 6,
+  "_weights_readme": "Requests are shared out by these weights. Mon and Wed skip (the 72h lookahead from Sun and Tue covers Monday Night Football and midweek rounds); Tue covers midweek football, Thu covers Thursday Night Football; Fri-Sun get the most."
  },
  "devig_method": "power",
  "legs": {

@@ -36,7 +36,7 @@ def allowance(usage: dict, now: datetime, cfg: dict, manual: bool = False) -> di
     weights = cfg.get("weekday_weights", {})
     today_w = weights.get(DAY_NAMES[now.weekday()], 1)
     spendable = usage["remaining"] - cfg["reserve"]
-    share = spendable * today_w / max(today_w, remaining_weight(now.date(), weights))
+    share = spendable * today_w / max(today_w, remaining_weight(now.date(), weights), 1e-9)
     if manual:  # an extra, by-hand refresh: allow up to half a normal day's share
         share = max(share * 0.5, 4)
     allow = int(min(cfg["max_calls_per_run"], math.floor(share), max(0, spendable)))
