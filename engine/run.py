@@ -22,6 +22,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import budget, builder, settle
+from .pools import build_pools
 from .catalog import prob_from_matrix, LEG_DEFS
 from .footballdata import FootballData
 from .goals_model import fit
@@ -327,6 +328,7 @@ class Run:
             "fixtures": sorted(fixtures.values(), key=lambda f: (f["kickoff"], f["league"])),
             "legs": sorted(legs, key=lambda l: (fixtures[l["fixture_id"]]["kickoff"], -l["best_edge"])),
             "slips": slips,
+            "windows": build_pools(legs, fixtures, slip_books, s),
             "budget": {k: self.log.get("plan", {}).get(k) for k in ("remaining", "planned_calls", "leagues_with_games", "chunks_fetched", "chunks_needed")},
             "notes": self.log["notes"],
             "track": settle.summary(hist),
@@ -395,11 +397,14 @@ def main():
     ap.add_argument("--now")
     ap.add_argument("--manual", action="store_true")
     ap.add_argument("--out", type=Path, help="write outputs here instead of the repo (for tests)")
+    ap.add_argument("--reuse-snapshot", action="store_true", help="no API calls: rebuild from data/snapshot.json")
     args = ap.parse_args()
     settings = load_json(ROOT / "config" / "settings.json", None)
     now = parse_ts(args.now) if args.now else datetime.now(timezone.utc).replace(microsecond=0)
     out = args.out or (Path("/tmp/evens_mock_out") if args.mock else None)
     run = Run(settings, now, mock_dir=args.mock, manual=args.manual, out_dir=out)
+    if args.reuse_snapshot:
+        run.fetch_odds = lambda: (None, [], False)
     try:
         latest = run.execute()
         print(f"OK: {len(latest['fixtures'])} fixtures, {len(latest['legs'])} legs, {len(latest['slips'])} slips; "

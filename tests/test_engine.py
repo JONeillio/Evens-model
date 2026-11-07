@@ -201,3 +201,23 @@ def test_publish_and_settle():
     settle.settle(hist, FakeFD({(f"H{i}", f"A{i}"): (2, 0) for i in range(4)}), later)
     assert hist["slips"][0]["status"] == "won"
     assert math.isclose(hist["slips"][0]["profit_per_10"], round(10 * (1.2 ** 4 - 1), 2))
+
+
+# ---------- pools ----------
+def test_pools_shape_and_filters():
+    from engine.pools import build_pools
+    fixtures = {f"F{i}": {"id": f"F{i}", "home": f"H{i}", "away": f"A{i}", "league": "L",
+                          "kickoff": "2026-11-07T15:00:00Z"} for i in range(3)}
+    fixtures["F2"]["kickoff"] = "2026-11-07T20:00:00Z"
+    legs = []
+    for i in range(3):
+        legs.append({"id": f"F{i}|dc:1X", "fixture_id": f"F{i}", "key": "dc:1X", "label": "x", "market": "Double chance",
+                     "p_win": 0.85, "p_void": 0.0, "source": "sharp", "prices": {"bet365": 1.15, "betfred": 1.9}})
+    settings = {"timezone": "Europe/London", "slips": {"kickoff_spread_hours": 2.5},
+                "pools": {"min_price": 1.02, "max_price": 1.5, "min_fair_prob": 0.6, "min_fixtures": 2}}
+    w = build_pools(legs, fixtures, ["bet365", "betfred"], settings)
+    assert [x["id"] for x in w] == ["2026-11-07T15:00:00Z"]          # 20:00 alone has too few matches
+    assert [b["bookie"] for b in w[0]["bookies"]] == ["bet365"]       # betfred price 1.9 is out of range
+    leg = w[0]["bookies"][0]["fixtures"][0]["legs"][0]
+    assert set(leg) >= {"leg_id", "label", "market_type", "price", "fair_p", "edge", "fair_source"}
+    assert abs(leg["edge"] - (1.15 * 0.85 - 1)) < 1e-4

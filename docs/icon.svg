@@ -1,8 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#0E2A47"/>
-  <path d="M136 96h240v304l-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16z" fill="#E0A93B"/>
-  <rect x="172" y="150" width="168" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
-  <rect x="172" y="190" width="132" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
-  <rect x="172" y="230" width="150" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
-  <text x="256" y="345" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700" fill="#6B3E26">2.0</text>
+  <rect width="512" height="512" rx="112" fill="#1A0508"/>
+  <rect x="56" y="96" width="400" height="320" rx="36" fill="#5C0F1B" stroke="#E0A93B" stroke-width="14"/>
+  <g fill="#FFD23F"><circle cx="112" cy="140" r="12"/><circle cx="184" cy="140" r="12"/><circle cx="256" cy="140" r="12"/><circle cx="328" cy="140" r="12"/><circle cx="400" cy="140" r="12"/></g>
+  <rect x="96" y="180" width="320" height="196" rx="16" fill="#2B0A10"/>
+  <rect x="112" y="196" width="88" height="164" rx="10" fill="#FFF6E0"/>
+  <rect x="212" y="196" width="88" height="164" rx="10" fill="#FFF6E0"/>
+  <rect x="312" y="196" width="88" height="164" rx="10" fill="#FFF6E0"/>
+  <text x="156" y="300" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="64" fill="#5C0F1B">2</text>
+  <text x="256" y="300" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="64" fill="#5C0F1B">.</text>
+  <text x="356" y="300" text-anchor="middle" font-family="Bungee, Arial Black, sans-serif" font-size="64" fill="#5C0F1B">0</text>
 </svg>

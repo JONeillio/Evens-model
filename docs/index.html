@@ -3,66 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0E2A47">
-<meta name="description" content="Near-evens football accumulators priced against the sharpest odds.">
-<title>Surf &amp; Turf</title>
+<meta name="theme-color" content="#1A0508">
+<meta name="description" content="Near-evens football accumulators, priced against the sharpest odds.">
+<title>Evens Bandit</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<header class="top">
-  <div class="brand"><h1>Surf &amp; Turf</h1><small>Turf accountants, est. 1977</small></div>
-  <div class="stamp" id="stamp">Loading odds…</div>
-  <button class="icon-btn" id="settingsBtn" aria-label="Settings">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-  </button>
-</header>
+<main id="app">
+  <!-- The machine (home) -->
+  <section class="page" id="home" aria-label="The machine">
+    <div class="cabinet">
+      <div class="bulbs" aria-hidden="true" data-bulbs="12"></div>
+      <div class="marquee">
+        <h1 class="blink">Evens jackpot</h1>
+        <button class="subline" id="machineWhere" aria-label="Change kick-off time or bookie">Loading odds…</button>
+      </div>
+      <div class="bulbs" aria-hidden="true" data-bulbs="12" data-offset="1"></div>
+      <div class="reel-bay">
+        <div class="reel-box">
+          <div class="reels" id="reels"></div>
+          <div class="holds" id="holds"></div>
+        </div>
+        <button class="lever-btn" id="lever" aria-label="Pull the lever for new slips">
+          <svg id="leverSvg" class="lever" width="24" height="120" viewBox="0 0 24 120" aria-hidden="true"><rect x="10" y="22" width="4" height="92" rx="2" fill="#C9C9C9"/><circle cx="12" cy="14" r="11" fill="#E2364A"/><circle cx="8" cy="10" r="3" fill="#FF9AA6"/></svg>
+        </button>
+      </div>
+      <div class="payline">
+        <span class="big num" id="mOdds">–</span>
+        <span class="right num" id="mStats"></span>
+      </div>
+      <p class="flash-msg" id="mMsg" role="status" aria-live="polite"></p>
+      <div class="cab-actions">
+        <button class="btn-pull" id="pullBtn">Pull for new slips</button>
+        <a class="btn-edit" href="#build">Edit this<br>slip</a>
+      </div>
+    </div>
 
-<main>
-  <section id="today" aria-labelledby="todayTitle">
-    <h2 id="todayTitle">Surf report</h2>
-    <div class="strip" id="windows" role="group" aria-label="Kick-off sessions"></div>
-    <div class="report" id="report"></div>
-    <div id="todayNotes"></div>
+    <nav class="doors" aria-label="Doors">
+      <a class="door play" href="#play"><b>Play</b><span>Today's slips</span></a>
+      <a class="door build" href="#build"><b>Build a bet</b><span>Edit any leg</span></a>
+      <a class="door wins" href="#winnings"><b>Winnings</b><span id="doorWins">My bets</span></a>
+      <a class="door payout" href="#payout"><b>Payout table</b><span>The model's record</span></a>
+    </nav>
+
+    <div class="led">
+      <span>Credits used this month</span>
+      <span class="led-digits" id="led">£000 / £100</span>
+    </div>
+    <div class="foot-links">
+      <span id="oddsStamp"></span>
+      <button class="link" id="settingsBtn">Settings</button>
+    </div>
+  </section>
+
+  <!-- Play: today's slips -->
+  <section class="page" id="play" hidden aria-labelledby="playTitle">
+    <header class="page-head"><a class="back" href="#home">‹ Slots</a><h2 id="playTitle">Play</h2><span></span></header>
+    <div class="strip" id="windows" role="group" aria-label="Kick-off times"></div>
+    <div id="playNotes"></div>
     <div id="slips"></div>
   </section>
 
-  <section id="build" hidden aria-labelledby="buildTitle">
-    <h2 id="buildTitle">Build your own</h2>
-    <p class="hint">Change anything and the slips update straight away. Lock or remove legs from the Legs tab.</p>
-    <div class="controls" id="controls"></div>
-    <div id="lockSummary"></div>
-    <div id="builtSlips"></div>
+  <!-- Build a bet -->
+  <section class="page" id="build" hidden aria-labelledby="buildTitle">
+    <header class="page-head">
+      <a class="back" href="#home">‹ Slots</a>
+      <h2 id="buildTitle">Build a bet</h2>
+      <button class="where" id="buildWhere" aria-label="Change bookie or kick-off time"></button>
+    </header>
+    <div class="bulbs small" aria-hidden="true" data-bulbs="16"></div>
+    <div id="buildLegs" class="build-legs"></div>
+    <button class="add-leg" id="addLeg">+ Add a leg from another match</button>
+    <div class="meter-panel">
+      <div class="meter" aria-hidden="true"><div class="zone"></div><div class="needle" id="needle"></div></div>
+      <div class="meter-scale"><span>1.50</span><span>Evens zone 1.90–2.30</span><span>3.00</span></div>
+      <div class="meter-row"><span class="big num" id="bOdds">–</span><span id="bStatus"></span></div>
+      <div class="meter-row num"><span id="bChance"></span><span id="bEdge"></span></div>
+      <div class="meter-row">
+        <div class="stake">
+          <button aria-label="Lower stake" id="stakeDown">−</button>
+          <span class="num" id="stake">£10</span>
+          <button aria-label="Raise stake" id="stakeUp">+</button>
+        </div>
+        <span class="num returns" id="bReturns"></span>
+      </div>
+    </div>
+    <div class="build-actions">
+      <a class="door-btn cyan" href="#home">Back to<br>the slots</a>
+      <button class="door-btn yellow" id="copyBtn">Copy to bookie</button>
+    </div>
+    <button class="placed" id="placedBtn" hidden>Placed it: log it in Winnings</button>
+    <h3 class="pool-title">More legs in this window</h3>
+    <p class="hint">Tap a leg to add it, or to swap it in for that match.</p>
+    <div id="pool"></div>
   </section>
 
-  <section id="legs" hidden aria-labelledby="legsTitle">
-    <h2 id="legsTitle">Every leg</h2>
-    <p class="hint">Fair price is what the leg should cost with the bookie's margin taken out. Edge is how much better (green) or worse (red) the best UK price is.</p>
-    <input class="search" id="legSearch" type="search" placeholder="Search a team or league" aria-label="Search legs">
-    <div id="legList"></div>
-  </section>
-
-  <section id="bets" hidden aria-labelledby="betsTitle">
-    <h2 id="betsTitle">Sessions log</h2>
+  <!-- Winnings: my bets -->
+  <section class="page" id="winnings" hidden aria-labelledby="winTitle">
+    <header class="page-head"><a class="back" href="#home">‹ Slots</a><h2 id="winTitle">Winnings</h2><span></span></header>
     <div id="betsBody"></div>
   </section>
 
-  <section id="record" hidden aria-labelledby="recordTitle">
-    <h2 id="recordTitle">Model record</h2>
-    <p class="hint">The model's own top slip for each kick-off time, settled from the results. A fair test of whether it works.</p>
+  <!-- Payout table: the model's record -->
+  <section class="page" id="payout" hidden aria-labelledby="payTitle">
+    <header class="page-head"><a class="back" href="#home">‹ Slots</a><h2 id="payTitle">Payout table</h2><span></span></header>
+    <p class="hint">The model's own best slip for each kick-off time, settled from the results. A fair test of whether it works.</p>
     <div id="recordBody"></div>
   </section>
 </main>
-
-<nav class="tabs" aria-label="Sections">
-  <button data-tab="today" aria-current="page"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Today</button>
-  <button data-tab="build"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Build</button>
-  <button data-tab="legs"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>Legs</button>
-  <button data-tab="bets"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-4 3 3 5-6"/></svg>My bets</button>
-  <button data-tab="record"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>Record</button>
-</nav>
 
 <div class="sheet-wrap" id="sheet" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheetBody"></div>

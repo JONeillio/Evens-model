@@ -312,5 +312,11 @@
   "min_fair_prob": 0.68,
   "max_fair_price": 1.47,
   "per_window": 16
+ },
+ "pools": {
+  "min_price": 1.02,
+  "max_price": 1.5,
+  "min_fair_prob": 0.6,
+  "min_fixtures": 2
  }
 }

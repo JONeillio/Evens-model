@@ -12,6 +12,10 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
   - `builder.py` slips: one bookie, different matches, kick-off window, odds band
   - `settle.py` track record + calibration; `run.py` orchestrates
 - `docs/`: static PWA on GitHub Pages (`index.html`, `app.css` tokens in `:root`, `app.js`). Reads `docs/data/latest.json` and `history.json`.
+  - Look: **The Bandit** (pub fruit machine), chosen 7 Nov 2026. Spec: project doc `claude/evens-bandit-handoff.md`; designs on the canvas artifact (TheBandit.dc.html, BuildABet.dc.html). Fonts self-hosted in `docs/fonts/` (Bungee, Barlow Condensed, Share Tech Mono; OFL).
+  - Pages are hash routes: `#home` (the machine), `#play` (today's slips), `#build` (Build a bet), `#winnings` (my bets), `#payout` (the model's record). No tab bar.
+  - Shared slip state in localStorage `evens.slip`: `{window_id, bookie, stake, legs: [{fixture_id, leg_id, held}]}`, written by both the machine and Build a bet.
+  - Reels spin on the phone from `latest.json` `windows[]` leg pools (built by `engine/pools.py`): evens zone 1.90–2.30, one leg per match, one bookie, weighted towards higher edge.
 - `config/settings.json`: leagues (with priority tiers), UK bookies, slip rules, budget weights.
 - `data/`: state, snapshot, run log, reference caches (participants, markets, tournaments).
 
@@ -23,5 +27,6 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
 ## Working rules
 - Test before pushing: `python -m pytest -q tests`; offline run with `tests/make_mock.py` + `engine.run --mock` (writes to /tmp).
 - Live runs cost requests. Trigger with `gh workflow run refresh.yml -R JONeillio/evens-model` only when needed; `-f task=probe` costs 1.
-- Look: "Surf & Turf" draft from the design chat's concept doc (project doc `claude/evens-brand-concepts.md`), applied 7 Nov 2026. Palette and fonts are tokens at the top of `docs/app.css`; fonts are self-hosted in `docs/fonts/` (OFL). When the design chat publishes a Design System artifact, update the tokens and components from it.
+- Rebuild the app's data offline with no API calls: copy `data/snapshot.json` to `OUT/data/` and run `python -m engine.run --reuse-snapshot --out OUT`.
+- Joseph asked to be consulted before switching odds provider.
 - Bump `VERSION` in `docs/sw.js` whenever app files change so phones pick up the update.

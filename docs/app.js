@@ -1,34 +1,26 @@
-/* Evens: phone app for near-evens football accumulators.
-   Reads data/latest.json + data/history.json (written by the daily GitHub job).
-   Your own bets and settings stay on this phone (localStorage), with export/import. */
+/* Evens Bandit: a pub fruit machine for near-evens football accumulators.
+   Data: data/latest.json (fixtures, legs, published slips, and leg pools per
+   kick-off window and bookie) + data/history.json (the model's record).
+   Your slip, bets and settings live on this phone only (localStorage). */
 "use strict";
 
-// ---------- small helpers ----------
+// ---------- helpers ----------
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const TZ = "Europe/London";
-const REPO_ACTIONS = "https://github.com/JONeillio/Evens-model/actions/workflows/refresh.yml";
-const pct = (x, d = 0) => (x == null ? "–" : `${(x * 100).toFixed(d)}%`);
+const ZONE = [1.9, 2.3];
+const MAX_LEGS = 6, MIN_LEGS = 2;
+const pct = (x) => (x == null ? "–" : `${Math.round(x * 100)}%`);
 const signedPct = (x, d = 1) => (x == null ? "–" : Math.abs(x) < 0.5 / 10 ** (d + 2) ? `${(0).toFixed(d)}%` : `${x > 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(d)}%`);
-const poundTick = (t) => (t < 0 ? `(£${Math.abs(Math.round(t))})` : `£${Math.round(t)}`);
-const money = (x) => (x == null ? "–" : x < 0 ? `(£${Math.abs(x).toFixed(2)})` : `£${x.toFixed(2)}`);
-// Losses in accountant's brackets, as a turf accountant would write them.
-const signedMoney = (x) => (x == null ? "–" : x < 0 ? `(£${Math.abs(x).toFixed(2)})` : `+£${x.toFixed(2)}`);
-const moneyHTML = (x) => (x != null && x < 0 ? `<span class="loss">${signedMoney(x)}</span>` : signedMoney(x));
-const WAVE = `<svg class="wave-rule" viewBox="0 0 400 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 12.5 0 25 5 T 50 5 T 75 5 T 100 5 T 125 5 T 150 5 T 175 5 T 200 5 T 225 5 T 250 5 T 275 5 T 300 5 T 325 5 T 350 5 T 375 5 T 400 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`;
-// Swell height: the best slip's edge in a session, read like a surf report.
-function swell(ev) {
-  if (ev >= 0.03) return { ft: 6, word: "pumping" };
-  if (ev >= 0) return { ft: 4, word: "good" };
-  if (ev >= -0.03) return { ft: 2, word: "fair" };
-  return { ft: 1, word: "flat" };
-}
+const money = (x) => (x == null ? "–" : `${x < 0 ? "−" : ""}£${Math.abs(x).toFixed(2)}`);
+const signedMoney = (x) => (x == null ? "–" : `${x < 0 ? "−" : "+"}£${Math.abs(x).toFixed(2)}`);
+const poundTick = (t) => `${t < 0 ? "−" : ""}£${Math.abs(Math.round(t))}`;
+const edgeTag = (e) => `<span class="edge ${e >= -0.0005 ? "pos" : "neg"}">${signedPct(e)}</span>`;
 const fmtTime = (iso, withDay = true) => new Intl.DateTimeFormat("en-GB", withDay
   ? { weekday: "short", hour: "2-digit", minute: "2-digit", timeZone: TZ }
   : { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
-const dayKey = (iso) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date(iso));
 
-const FRACS = ["1/100","1/50","1/33","1/25","1/20","1/16","1/14","1/12","1/10","1/9","1/8","2/15","1/7","2/13","1/6","2/11","1/5","2/9","1/4","2/7","3/10","1/3","4/11","2/5","4/9","1/2","8/15","4/7","8/13","4/6","8/11","4/5","5/6","10/11","1/1","21/20","11/10","6/5","5/4","11/8","6/4","13/8","7/4","15/8","2/1","9/4","5/2","11/4","3/1","10/3","7/2","4/1","9/2","5/1","11/2","6/1","13/2","7/1","15/2","8/1","9/1","10/1"]
+const FRACS = ["1/100","1/50","1/33","1/25","1/20","1/16","1/14","1/12","1/10","1/9","1/8","2/15","1/7","2/13","1/6","2/11","1/5","2/9","1/4","2/7","3/10","1/3","4/11","2/5","4/9","1/2","8/15","4/7","8/13","4/6","8/11","4/5","5/6","10/11","1/1","21/20","11/10","6/5","5/4","11/8","6/4","13/8","7/4","15/8","2/1","9/4","5/2","11/4","3/1","10/3","7/2","4/1"]
   .map((f) => { const [a, b] = f.split("/").map(Number); return { f, d: 1 + a / b }; });
 function odds(dec) {
   if (dec == null) return "–";
@@ -37,24 +29,25 @@ function odds(dec) {
   for (const x of FRACS) if (Math.abs(x.d - dec) < Math.abs(best.d - dec)) best = x;
   return best.f === "1/1" ? "Evens" : best.f;
 }
-const edgeTag = (e) => `<span class="edge ${e >= -0.0005 ? "pos" : "neg"}">${signedPct(e)} edge</span>`;
 
 // ---------- storage (this phone only) ----------
 const store = {
   get(k, d) { try { const v = localStorage.getItem("evens." + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
-  set(k, v) { try { localStorage.setItem("evens." + k, JSON.stringify(v)); } catch { /* private mode: keep in memory */ } },
+  set(k, v) { try { localStorage.setItem("evens." + k, JSON.stringify(v)); } catch { /* storage unavailable: keep in memory */ } },
 };
-const DEFAULT_SETTINGS = { oddsFormat: "decimal", stake: 10, bankroll: 200, monthlyLimit: 100, builder: null, myBooks: null };
-let settings = Object.assign({}, DEFAULT_SETTINGS, store.get("settings", {}));
+const DEFAULTS = { oddsFormat: "decimal", monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45, minEdge: -0.06 };
+let settings = Object.assign({}, DEFAULTS, store.get("settings", {}));
 let bets = store.get("bets", []);
+let slip = store.get("slip", null); // shared by the machine and Build a bet
 const saveSettings = () => store.set("settings", settings);
 const saveBets = () => store.set("bets", bets);
+const saveSlip = () => store.set("slip", slip);
 
 // ---------- data ----------
-let DATA = null, HIST = null, FIX = {}, LEGS = {}, BOOKS = {}, SLIP_BOOKS = [];
+let DATA = null, HIST = null, FIX = {}, LEGS = {}, BOOKS = {}, SLIP_BOOKS = [], WINDOWS = [];
+const EXCHANGES = ["betfair-ex", "matchbook"];
 const myBooks = () => { const m = (settings.myBooks || SLIP_BOOKS).filter((b) => SLIP_BOOKS.includes(b)); return m.length ? m : SLIP_BOOKS; };
-let todayWindow = null;
-let marks = {}; // legId -> "locked" | "out" (builder)
+const bookName = (b) => BOOKS[b] || b;
 
 async function loadJSON(url) {
   const r = await fetch(url, { cache: "no-cache" });
@@ -65,349 +58,441 @@ async function loadJSON(url) {
 async function load() {
   try {
     [DATA, HIST] = await Promise.all([loadJSON("data/latest.json"), loadJSON("data/history.json").catch(() => null)]);
-  } catch (e) {
-    $("#stamp").textContent = "Couldn't load odds. Check your connection and reopen.";
-    $("#slips").innerHTML = `<div class="empty">No odds yet. The first refresh runs each morning at about 07:15.</div>`;
+  } catch {
+    $("#machineWhere").textContent = "Couldn't load the odds. Check your signal and reopen.";
     return;
   }
   FIX = Object.fromEntries(DATA.fixtures.map((f) => [f.id, f]));
   LEGS = Object.fromEntries(DATA.legs.map((l) => [l.id, l]));
   BOOKS = Object.fromEntries(DATA.books.map((b) => [b.slug, b.name]));
-  const EXCHANGES = ["betfair-ex", "matchbook"];
   SLIP_BOOKS = DATA.books.filter((b) => b.slips !== false && !EXCHANGES.includes(b.slug)).map((b) => b.slug);
-  const saved = store.get("marks", { at: null, marks: {} });
-  marks = saved.at === DATA.generated_at ? saved.marks : {};
-  const when = new Date(DATA.odds_taken_at);
-  const age = (Date.now() - when) / 36e5;
-  $("#stamp").textContent = `Odds checked ${fmtTime(DATA.odds_taken_at)}${age > 20 ? " (old)" : ""}`;
+  WINDOWS = (DATA.windows || []).slice().sort((a, b) => a.start_utc.localeCompare(b.start_utc));
+  $("#oddsStamp").textContent = `Odds checked ${fmtTime(DATA.odds_taken_at)}`;
   autoSettleBets();
-  renderAll();
+  ensureSlip();
+  route();
 }
 
-function renderAll() {
-  renderToday();
-  renderBuilderControls();
-  renderBuilt();
-  renderLegs();
-  renderBets();
-  renderRecord();
+// ---------- pools ----------
+const windowById = (id) => WINDOWS.find((w) => w.id === id);
+function rawPool(windowId, bookie) {
+  const w = windowById(windowId);
+  return w ? (w.bookies.find((b) => b.bookie === bookie) || null) : null;
+}
+// The pool with your filters applied (used for spins and adding legs).
+function pool(windowId, bookie) {
+  const p = rawPool(windowId, bookie);
+  if (!p) return [];
+  return p.fixtures.map((f) => Object.assign({}, f, {
+    legs: f.legs.filter((l) => l.fair_p >= settings.minP && l.price <= settings.maxLeg),
+  })).filter((f) => f.legs.length);
+}
+function findLeg(windowId, bookie, legId) {
+  const p = rawPool(windowId, bookie);
+  if (!p) return null;
+  for (const fx of p.fixtures) for (const leg of fx.legs) if (leg.leg_id === legId) return { fx, leg };
+  return null;
+}
+const upcoming = () => WINDOWS.filter((w) => Date.parse(w.start_utc) > Date.now() + 2 * 60 * 1000);
+const booksFor = (w) => w.bookies.map((b) => b.bookie).filter((b) => myBooks().includes(b));
+
+// ---------- the shared slip ----------
+function resolve(s = slip) {
+  if (!s) return [];
+  return s.legs.map((l) => Object.assign({ held: !!l.held }, findLeg(s.window_id, s.bookie, l.leg_id) || {})).filter((x) => x.leg);
+}
+function numbers(s = slip) {
+  const rs = resolve(s);
+  let o = 1, v = 1, h = 1;
+  rs.forEach(({ leg }) => { o *= leg.price; v *= leg.price * leg.fair_p + (leg.p_void || 0); h *= leg.fair_p + (leg.p_void || 0); });
+  return { legs: rs, odds: o, ev: v - 1, chance: h, ret: (s?.stake || 10) * o };
 }
 
-// ---------- tabs ----------
-document.querySelectorAll("nav.tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
-function showTab(tab) {
-  document.querySelectorAll("main > section").forEach((s) => (s.hidden = s.id !== tab));
-  document.querySelectorAll("nav.tabs button").forEach((b) => b.setAttribute("aria-current", b.dataset.tab === tab ? "page" : "false"));
+function ensureSlip() {
+  const valid = slip && windowById(slip.window_id) && Date.parse(windowById(slip.window_id).start_utc) > Date.now()
+    && myBooks().includes(slip.bookie) && resolve().length >= MIN_LEGS;
+  if (valid) {
+    slip.legs = slip.legs.filter((l) => findLeg(slip.window_id, slip.bookie, l.leg_id));
+    saveSlip();
+    return;
+  }
+  const w = upcoming().find((x) => booksFor(x).length);
+  if (!w) { slip = null; saveSlip(); return; }
+  // Start from the model's best published slip for this window at your bookies.
+  const best = DATA.slips.filter((s) => s.start === w.id && myBooks().includes(s.book)).sort((a, b) => b.ev - a.ev)[0];
+  if (best && best.legs.every((id) => findLeg(w.id, best.book, id))) {
+    slip = { window_id: w.id, bookie: best.book, stake: slip?.stake || 10,
+      legs: best.legs.map((id) => ({ fixture_id: LEGS[id]?.fixture_id || id.split("|")[0], leg_id: id, held: false })) };
+  } else {
+    const bk = booksFor(w).sort((a, b) => pool(w.id, b).length - pool(w.id, a).length)[0];
+    slip = { window_id: w.id, bookie: bk, stake: slip?.stake || 10, legs: [] };
+    fillTo(4);
+  }
+  sortSlip();
+  saveSlip();
+}
+
+function sortSlip() {
+  const ko = (l) => findLeg(slip.window_id, slip.bookie, l.leg_id)?.fx.kickoff_utc || "";
+  slip.legs.sort((a, b) => ko(a).localeCompare(ko(b)));
+}
+
+// Best leg from a match not already used (for "+ Add a leg" and topping up).
+function bestFreeLeg() {
+  const used = new Set(slip.legs.map((l) => l.fixture_id));
+  let best = null;
+  for (const fx of pool(slip.window_id, slip.bookie)) {
+    if (used.has(fx.fixture_id)) continue;
+    const leg = fx.legs[0]; // pools arrive sorted by edge
+    if (!best || leg.edge > best.leg.edge || (leg.edge === best.leg.edge && leg.fair_p > best.leg.fair_p)) best = { fx, leg };
+  }
+  return best;
+}
+function fillTo(n) {
+  while (slip.legs.length < n) {
+    const b = bestFreeLeg();
+    if (!b) break;
+    slip.legs.push({ fixture_id: b.fx.fixture_id, leg_id: b.leg.leg_id, held: false });
+  }
+}
+
+/* Re-spin the reels that aren't held. Searches every combination of legs from
+   unused matches that lands the slip in the evens zone with edge at or above your
+   minimum, then picks one at random, weighted towards higher edge. */
+function spin() {
+  const n = slip.legs.length;
+  const held = slip.legs.filter((l) => l.held);
+  const k = n - held.length;
+  if (k === 0) return { ok: false, why: "Every reel is held. Release one to spin it." };
+  const heldR = held.map((l) => findLeg(slip.window_id, slip.bookie, l.leg_id)).filter(Boolean);
+  const heldFx = new Set(held.map((l) => l.fixture_id));
+  let o0 = 1, v0 = 1;
+  heldR.forEach(({ leg }) => { o0 *= leg.price; v0 *= leg.price * leg.fair_p + (leg.p_void || 0); });
+
+  const perFx = {};
+  const items = [];
+  pool(slip.window_id, slip.bookie).filter((f) => !heldFx.has(f.fixture_id)).forEach((fx) => fx.legs.forEach((leg) => items.push({ fx, leg })));
+  items.sort((a, b) => b.leg.edge - a.leg.edge);
+  const top = items.filter((it) => (perFx[it.fx.fixture_id] = (perFx[it.fx.fixture_id] || 0) + 1) <= 3).slice(0, 30)
+    .sort((a, b) => a.leg.price - b.leg.price);
+
+  const found = [];
+  let nodes = 0;
+  const chosen = [], used = new Set();
+  (function dfs(start, o, v) {
+    if (++nodes > 150000) return;
+    if (chosen.length === k) {
+      if (o >= ZONE[0] && o <= ZONE[1] && v - 1 >= settings.minEdge) found.push({ picks: chosen.slice(), ev: v - 1 });
+      return;
+    }
+    for (let i = start; i < top.length; i++) {
+      const it = top[i], no = o * it.leg.price;
+      if (no > ZONE[1]) break;
+      if (used.has(it.fx.fixture_id)) continue;
+      chosen.push(it); used.add(it.fx.fixture_id);
+      dfs(i + 1, no, v * (it.leg.price * it.leg.fair_p + (it.leg.p_void || 0)));
+      chosen.pop(); used.delete(it.fx.fixture_id);
+    }
+  })(0, o0, v0);
+
+  if (!found.length) return { ok: false, why: "Nothing fits the evens zone with those reels. Release a hold, change the bookie, or loosen Settings." };
+  const current = slip.legs.filter((l) => !l.held).map((l) => l.leg_id).sort().join("|");
+  let pickFrom = found.sort((a, b) => b.ev - a.ev).slice(0, 60);
+  if (pickFrom.length > 1) pickFrom = pickFrom.filter((c) => c.picks.map((p) => p.leg.leg_id).sort().join("|") !== current);
+  const weights = pickFrom.map((c) => Math.exp(30 * c.ev));
+  let r = Math.random() * weights.reduce((a, b) => a + b, 0), choice = pickFrom[0];
+  for (let i = 0; i < pickFrom.length; i++) { r -= weights[i]; if (r <= 0) { choice = pickFrom[i]; break; } }
+  const same = choice.picks.map((p) => p.leg.leg_id).sort().join("|") === current;
+  const fresh = choice.picks.slice().sort((a, b) => a.fx.kickoff_utc.localeCompare(b.fx.kickoff_utc));
+  let j = 0;
+  slip.legs = slip.legs.map((l) => (l.held ? l : { fixture_id: fresh[j].fx.fixture_id, leg_id: fresh[j++].leg.leg_id, held: false }));
+  saveSlip();
+  return { ok: true, same };
+}
+
+// ---------- router ----------
+const PAGES = ["home", "play", "build", "winnings", "payout"];
+function route() {
+  const page = PAGES.includes(location.hash.slice(1)) ? location.hash.slice(1) : "home";
+  PAGES.forEach((p) => ($("#" + p).hidden = p !== page));
+  if (!DATA) return;
+  ({ home: renderMachine, play: renderPlay, build: renderBuild, winnings: renderBets, payout: renderRecord })[page]();
   window.scrollTo({ top: 0 });
-  if (tab === "build") renderBuilt();
+}
+window.addEventListener("hashchange", route);
+
+// ---------- the machine ----------
+document.querySelectorAll("[data-bulbs]").forEach((el) => {
+  const n = +el.dataset.bulbs, off = +(el.dataset.offset || 0);
+  el.innerHTML = Array.from({ length: n }, (_, i) => `<span class="bulb${(i + off) % 2 ? " alt" : ""}"></span>`).join("");
+});
+
+function countdown(iso) {
+  const mins = Math.round((Date.parse(iso) - Date.now()) / 60000);
+  if (mins <= 0) return "kicking off now";
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return `kicks off in ${h ? `${h}h ` : ""}${m}m`;
 }
 
-// ---------- slip card ----------
-function slipCard(slip, { place = true, tweak = true } = {}) {
-  const legs = slip.legs.map((id) => LEGS[id]).filter(Boolean);
-  const rows = legs.map((l) => {
-    const f = FIX[l.fixture_id];
-    const price = slip.prices[l.id];
-    return `<div class="leg">
-      <div class="leg-sel">${esc(l.label)}</div>
-      <div class="leg-price num">${odds(price)}<small>${pct(l.p_win)} likely</small></div>
-      <div class="leg-match">${esc(f.home)} v ${esc(f.away)} · ${esc(fmtTime(f.kickoff, false))} ${esc(f.league)}</div>
+let spinning = false;
+function renderMachine() {
+  const where = $("#machineWhere");
+  if (!slip) {
+    where.textContent = "No kick-offs with prices in the next two days";
+    $("#reels").innerHTML = ""; $("#holds").innerHTML = "";
+    $("#mOdds").textContent = "–"; $("#mStats").textContent = "";
+  } else {
+    const w = windowById(slip.window_id);
+    where.textContent = `${w.label} · ${bookName(slip.bookie)} · ${countdown(w.start_utc)}`;
+    const nums = numbers();
+    const n = nums.legs.length;
+    const reels = $("#reels"), holds = $("#holds");
+    reels.style.setProperty("--n", n); holds.style.setProperty("--n", n);
+    reels.classList.toggle("many", n > 4);
+    reels.innerHTML = nums.legs.map(({ leg, held }, i) => `<div class="reel${held ? " held" : ""}" data-i="${i}">
+      <div class="face"><span class="lbl">${esc(leg.label)}</span><span class="px num">${odds(leg.price)}</span></div></div>`).join("");
+    holds.innerHTML = nums.legs.map(({ held }, i) => `<button class="hold-btn" data-i="${i}" aria-pressed="${held}" aria-label="Hold reel ${i + 1}">${held ? "Held" : "Hold"}</button>`).join("");
+    holds.querySelectorAll(".hold-btn").forEach((b) => b.addEventListener("click", () => {
+      const l = slip.legs[+b.dataset.i]; l.held = !l.held; saveSlip(); renderMachine();
+    }));
+    $("#mOdds").textContent = odds(nums.odds);
+    $("#mStats").innerHTML = `Real chance ${pct(nums.chance)} · edge ${edgeTag(nums.ev)}<br>£${slip.stake} pays £${nums.ret.toFixed(2)}`;
+  }
+  const st = betStats();
+  $("#doorWins").textContent = st.settled.length ? `My bets · ${signedMoney(st.pl)}` : "My bets";
+  const led = $("#led");
+  led.textContent = `£${String(Math.round(st.monthStaked)).padStart(3, "0")} / £${settings.monthlyLimit}`;
+  led.classList.toggle("over", st.monthStaked > settings.monthlyLimit);
+}
+
+function pull() {
+  if (spinning || !slip) return;
+  const msg = $("#mMsg");
+  msg.textContent = "";
+  const before = slip.legs.map((l) => l.leg_id);
+  const res = spin();
+  const lever = $("#leverSvg");
+  lever.classList.add("pulled");
+  if (!res.ok) {
+    msg.textContent = res.why;
+    document.querySelectorAll("#reels .reel").forEach((r, i) => { if (!slip.legs[i].held) { r.classList.remove("fail"); void r.offsetWidth; r.classList.add("fail"); } });
+    setTimeout(() => lever.classList.remove("pulled"), 300);
+    return;
+  }
+  if (res.same) msg.textContent = "Same again: that's the only slip in the evens zone with those holds. Release a reel or change the bookie.";
+  spinning = true;
+  $("#pullBtn").disabled = true; $("#pullBtn").textContent = "Spinning…";
+  const prices = pool(slip.window_id, slip.bookie).flatMap((f) => f.legs.map((l) => odds(l.price))).slice(0, 8);
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("#reels .reel").forEach((r, i) => {
+    if (slip.legs[i].held || before[i] === undefined) return;
+    const col = prices.concat(prices).map((p) => `<span>${esc(p)}</span>`).join("");
+    r.innerHTML = `<div class="strip-spin num">${col}</div>`;
+  });
+  setTimeout(() => {
+    spinning = false;
+    lever.classList.remove("pulled");
+    $("#pullBtn").disabled = false; $("#pullBtn").textContent = "Pull for new slips";
+    renderMachine();
+  }, reduced ? 150 : 900);
+}
+$("#pullBtn").addEventListener("click", pull);
+$("#lever").addEventListener("click", pull);
+$("#machineWhere").addEventListener("click", () => slip && openWhereSheet());
+setInterval(() => { if (!$("#home").hidden && slip && !spinning) renderMachine(); }, 30000);
+
+// ---------- Build a bet ----------
+let copied = false;
+function renderBuild() {
+  if (!slip) {
+    $("#buildLegs").innerHTML = `<div class="empty">No kick-offs with prices in the next two days. Check back after the morning refresh.</div>`;
+    return;
+  }
+  const w = windowById(slip.window_id);
+  $("#buildWhere").innerHTML = `<span>${esc(bookName(slip.bookie))}</span><small>${esc(w.label)}</small>`;
+  const nums = numbers();
+  const n = nums.legs.length;
+  $("#buildLegs").innerHTML = nums.legs.map(({ fx, leg, held }, i) => {
+    const choices = (rawPool(slip.window_id, slip.bookie).fixtures.find((f) => f.fixture_id === fx.fixture_id)?.legs || []).length;
+    return `<div class="bleg${held ? " held" : ""}" data-i="${i}">
+      <button class="hold-btn" data-act="hold" aria-pressed="${held}" aria-label="Hold this leg">${held ? "Held" : "Hold"}</button>
+      <div class="info"><span class="match">${esc(fx.home)} v ${esc(fx.away)} · ${esc(fmtTime(fx.kickoff_utc, false))}</span>
+        <span class="sel">${esc(leg.label)}</span>
+        <span class="meta num">${odds(leg.price)} · ${pct(leg.fair_p)} chance · edge ${edgeTag(leg.edge)}</span></div>
+      <button class="ibtn" data-act="prev" aria-label="Previous market for this match" ${choices < 2 ? "disabled" : ""}><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 L6 10 L12 16" fill="none" stroke="#5C0F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="ibtn" data-act="next" aria-label="Next market for this match" ${choices < 2 ? "disabled" : ""}><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4 L14 10 L8 16" fill="none" stroke="#5C0F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="ibtn x" data-act="remove" aria-label="Remove this leg" ${n <= MIN_LEGS || held ? "disabled" : ""}><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 L13 13 M13 3 L3 13" stroke="#8C1D2C" stroke-width="2.5" stroke-linecap="round"/></svg></button>
     </div>`;
   }).join("");
-  return `<article class="slip" data-slip="${esc(slip.id)}">
-    <div class="slip-head"><span class="slip-book">${esc(BOOKS[slip.book] || slip.book)}</span><span class="slip-when">${esc(slip.label)}, ${slip.n_legs} legs</span></div>
-    ${slip.alsoAt && slip.alsoAt.length ? `<div class="also">Same prices at ${slip.alsoAt.map((b) => esc(BOOKS[b] || b)).join(", ")}</div>` : ""}
-    ${rows}
-    <div class="slip-foot">
-      <div class="stat"><b class="num">${odds(slip.odds)}</b><span>Combined odds</span></div>
-      <div class="stat"><b class="num">${pct(slip.hit_p)}</b><span>Real chance it lands</span></div>
-      <div class="stat"><b class="num">${money(settings.stake * slip.odds)}</b><span>£${settings.stake} returns</span></div>
-      <div class="stat"><b>${edgeTag(slip.ev)}</b><span>${slip.ev >= 0 ? "Priced better than fair" : "Priced worse than fair"}</span></div>
-    </div>
-    <div class="slip-actions">
-      ${place ? `<button class="btn primary" data-act="place">Placed it</button>` : ""}
-      ${tweak ? `<button class="btn" data-act="tweak">Tweak in builder</button>` : ""}
-    </div>
-  </article>`;
+  $("#buildLegs").querySelectorAll(".bleg").forEach((row) => row.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+    const i = +row.dataset.i, l = slip.legs[i];
+    if (b.dataset.act === "hold") l.held = !l.held;
+    if (b.dataset.act === "remove" && slip.legs.length > MIN_LEGS && !l.held) slip.legs.splice(i, 1);
+    if (b.dataset.act === "prev" || b.dataset.act === "next") {
+      const fx = rawPool(slip.window_id, slip.bookie).fixtures.find((f) => f.fixture_id === l.fixture_id);
+      const list = fx.legs.slice().sort((a, c) => a.price - c.price);
+      const at = list.findIndex((x) => x.leg_id === l.leg_id);
+      l.leg_id = list[(at + (b.dataset.act === "next" ? 1 : -1) + list.length) % list.length].leg_id;
+    }
+    copied = false; saveSlip(); renderBuild();
+  })));
+
+  const full = n >= MAX_LEGS, free = bestFreeLeg();
+  const add = $("#addLeg");
+  add.disabled = full || !free;
+  add.textContent = full ? "Six legs is the max" : free ? "+ Add a leg from another match" : "No other matches in this window";
+
+  $("#needle").style.left = `${Math.max(0, Math.min(100, ((nums.odds - 1.5) / 1.5) * 100))}%`;
+  $("#bOdds").textContent = odds(nums.odds);
+  const st = $("#bStatus");
+  if (nums.odds < ZONE[0]) { st.textContent = "A bit short — add a leg"; st.style.color = "var(--jackpot)"; }
+  else if (nums.odds > ZONE[1]) { st.textContent = "Getting long — drop one"; st.style.color = "var(--bad-on-dark)"; }
+  else { st.textContent = "Bang on evens"; st.style.color = "var(--good-on-dark)"; }
+  $("#bChance").textContent = `Real chance ${pct(nums.chance)}`;
+  $("#bEdge").innerHTML = `Edge ${edgeTag(nums.ev)}`;
+  $("#stake").textContent = `£${slip.stake}`;
+  $("#bReturns").textContent = `Returns £${nums.ret.toFixed(2)}`;
+  $("#copyBtn").textContent = copied ? "Copied" : `Copy to ${bookName(slip.bookie)}`;
+  $("#placedBtn").hidden = !copied;
+  renderPool();
 }
 
-// Sister bookies (e.g. Unibet, BetMGM, BetUK) often post identical prices: show one card.
+function renderPool() {
+  const inSlip = Object.fromEntries(slip.legs.map((l) => [l.fixture_id, l.leg_id]));
+  const p = pool(slip.window_id, slip.bookie);
+  $("#pool").innerHTML = p.map((fx) => `<div class="pool-match"><div class="pm-head"><span>${esc(fx.home)} v ${esc(fx.away)}</span><small>${esc(fmtTime(fx.kickoff_utc, false))} ${esc(fx.league)}</small></div>
+    ${fx.legs.map((l) => `<button class="pool-leg${inSlip[fx.fixture_id] === l.leg_id ? " in" : ""}" data-fx="${esc(fx.fixture_id)}" data-leg="${esc(l.leg_id)}">
+      <span>${esc(l.label)}<br><small class="num">real chance ${pct(l.fair_p)}</small></span><span class="p num">${odds(l.price)}</span>${edgeTag(l.edge)}</button>`).join("")}</div>`).join("")
+    || `<p class="hint">No legs match your filters. Loosen them in Settings.</p>`;
+  $("#pool").querySelectorAll(".pool-leg").forEach((b) => b.addEventListener("click", () => {
+    const at = slip.legs.findIndex((l) => l.fixture_id === b.dataset.fx);
+    if (at >= 0) slip.legs[at].leg_id = b.dataset.leg;
+    else if (slip.legs.length < MAX_LEGS) slip.legs.push({ fixture_id: b.dataset.fx, leg_id: b.dataset.leg, held: false });
+    else return;
+    sortSlip(); copied = false; saveSlip(); renderBuild();
+  }));
+}
+
+$("#addLeg").addEventListener("click", () => {
+  const b = bestFreeLeg();
+  if (!b || slip.legs.length >= MAX_LEGS) return;
+  slip.legs.push({ fixture_id: b.fx.fixture_id, leg_id: b.leg.leg_id, held: false });
+  sortSlip(); copied = false; saveSlip(); renderBuild();
+});
+$("#stakeDown").addEventListener("click", () => { slip.stake = Math.max(5, slip.stake - 5); saveSlip(); renderBuild(); });
+$("#stakeUp").addEventListener("click", () => { slip.stake = Math.min(20, slip.stake + 5); saveSlip(); renderBuild(); });
+$("#buildWhere").addEventListener("click", () => slip && openWhereSheet());
+
+function slipText() {
+  const nums = numbers();
+  const lines = nums.legs.map(({ fx, leg }, i) => `${i + 1}. ${fx.home} v ${fx.away} (${fmtTime(fx.kickoff_utc, false)}): ${leg.label} @ ${leg.price.toFixed(2)}`);
+  return `${bookName(slip.bookie)}: ${nums.legs.length}-fold, ${windowById(slip.window_id).label}\n${lines.join("\n")}\nCombined odds ${nums.odds.toFixed(2)}. Stake £${slip.stake}, returns £${nums.ret.toFixed(2)}.`;
+}
+$("#copyBtn").addEventListener("click", async () => {
+  const text = slipText();
+  try { await navigator.clipboard.writeText(text); }
+  catch {
+    const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch { /* nothing else to try */ }
+    ta.remove();
+  }
+  copied = true; renderBuild();
+});
+$("#placedBtn").addEventListener("click", () => openPlaceSheet(currentSlipAsBet()));
+
+function currentSlipAsBet() {
+  const nums = numbers();
+  return { book: slip.bookie, label: windowById(slip.window_id).label, start: slip.window_id, odds: nums.odds,
+    hit_p: nums.chance, ev: nums.ev, stake: slip.stake,
+    legIds: nums.legs.map(({ leg }) => leg.leg_id),
+    legs: nums.legs.map(({ fx, leg }) => ({ label: leg.label, match: `${fx.home} v ${fx.away}`, kickoff: fx.kickoff_utc, price: leg.price, p_win: leg.fair_p })) };
+}
+
+// ---------- choose window and bookie ----------
+function openWhereSheet() {
+  let wid = slip.window_id, bk = slip.bookie;
+  const draw = (s) => {
+    const w = windowById(wid);
+    const books = booksFor(w);
+    if (!books.includes(bk)) bk = books[0];
+    s.innerHTML = `<h3 id="sheetTitle">Which kick-off and bookie?</h3>
+      <div class="field"><span class="lbl">Kick-off</span><div class="chips">${upcoming().filter((x) => booksFor(x).length).map((x) => `<button class="chip" data-w="${x.id}" aria-pressed="${x.id === wid}">${esc(x.label)}</button>`).join("")}</div></div>
+      <div class="field"><span class="lbl">Bookie</span><div class="chips">${books.map((b) => `<button class="chip" data-b="${b}" aria-pressed="${b === bk}">${esc(bookName(b))} <small>${pool(wid, b).length}</small></button>`).join("")}</div></div>
+      <p class="hint">The number is how many matches that bookie has priced in this window.</p>
+      <div class="sheet-actions"><button class="cbtn plain" id="wCancel">Cancel</button><button class="cbtn yellow" id="wGo">Load the reels</button></div>`;
+    s.querySelectorAll("[data-w]").forEach((b) => b.addEventListener("click", () => { wid = b.dataset.w; draw(s); }));
+    s.querySelectorAll("[data-b]").forEach((b) => b.addEventListener("click", () => { bk = b.dataset.b; draw(s); }));
+    s.querySelector("#wCancel").addEventListener("click", closeSheet);
+    s.querySelector("#wGo").addEventListener("click", () => { changeWhere(wid, bk); closeSheet(); route(); });
+  };
+  openSheet("", draw);
+}
+function changeWhere(wid, bk) {
+  if (wid === slip.window_id && bk === slip.bookie) return;
+  const n = Math.max(4, Math.min(slip.legs.length, MAX_LEGS));
+  const keep = slip.legs.filter((l) => l.held && findLeg(wid, bk, l.leg_id));
+  slip = { window_id: wid, bookie: bk, stake: slip.stake, legs: keep };
+  fillTo(n);
+  if (slip.legs.length >= MIN_LEGS) spin();
+  sortSlip(); copied = false; saveSlip();
+}
+
+// ---------- Play (today's slips) ----------
+let playWindow = null;
 function mergeTwins(slips) {
   const out = [], seen = new Map();
   for (const s of slips) {
     const key = s.legs.map((id) => id + "@" + s.prices[id]).sort().join("|");
     if (seen.has(key)) { seen.get(key).alsoAt.push(s.book); continue; }
-    const copy = Object.assign({}, s, { alsoAt: [] });
-    seen.set(key, copy); out.push(copy);
+    const c = Object.assign({}, s, { alsoAt: [] }); seen.set(key, c); out.push(c);
   }
   return out;
 }
-
-function wireSlips(container, slips) {
-  container.querySelectorAll("[data-slip]").forEach((card) => {
-    const slip = slips.find((s) => s.id === card.dataset.slip);
-    card.querySelector('[data-act="place"]')?.addEventListener("click", () => openPlaceSheet(slip));
-    card.querySelector('[data-act="tweak"]')?.addEventListener("click", () => {
-      marks = {};
-      slip.legs.forEach((id) => (marks[id] = "locked"));
-      saveMarks();
-      const b = builderState();
-      b.books = [slip.book];
-      b.start = "all";
-      settings.builder = b; saveSettings();
-      renderBuilderControls();
-      showTab("build");
-    });
-  });
-}
-
-// ---------- Today ----------
-function renderToday() {
-  const now = Date.now();
+function renderPlay() {
   const mine = new Set(myBooks());
-  const slips = mergeTwins(DATA.slips.filter((s) => Date.parse(s.start) > now && mine.has(s.book)).sort((a, c) => c.ev - a.ev))
+  const slips = mergeTwins(DATA.slips.filter((s) => Date.parse(s.start) > Date.now() && mine.has(s.book)).sort((a, b) => b.ev - a.ev))
     .filter((s, i, arr) => arr.filter((x) => x.start === s.start).indexOf(s) < 3);
   const starts = [...new Set(slips.map((s) => s.start))].sort();
-  if (!todayWindow || !starts.includes(todayWindow)) todayWindow = starts[0] || null;
-  const today = dayKey(new Date().toISOString());
-  const best = (st) => Math.max(...slips.filter((s) => s.start === st).map((s) => s.ev));
-  $("#windows").innerHTML = starts.map((st) => {
-    const lbl = dayKey(st) === today ? fmtTime(st, false) : fmtTime(st);
-    return `<button class="chip num" aria-pressed="${st === todayWindow}" data-start="${st}">${esc(lbl)}<small>${swell(best(st)).ft}ft</small></button>`;
-  }).join("");
-  if (todayWindow) {
-    const n = slips.filter((s) => s.start === todayWindow).length, sw = swell(best(todayWindow));
-    $("#report").innerHTML = `${esc(fmtTime(todayWindow))} session. Swell <b>${sw.ft}ft, ${sw.word}</b>. ${n} slip${n > 1 ? "s" : ""}.`;
-  } else $("#report").textContent = "";
-  $("#windows").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { todayWindow = c.dataset.start; renderToday(); }));
-
-  const notes = (DATA.notes || []).filter((n) => !/^Refreshed/.test(n));
-  $("#todayNotes").innerHTML = notes.map((n) => `<div class="notice">${esc(n)}</div>`).join("");
-
-  const shown = slips.filter((s) => s.start === todayWindow);
-  if (!shown.length) {
-    $("#slips").innerHTML = `<div class="empty">Flat out there. No slips near evens for the coming kick-offs.<br>Open the builder to loosen the filters.</div>`;
-    return;
-  }
-  $("#slips").innerHTML = shown.map((s) => slipCard(s)).join(WAVE) +
-    `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets.</p>`;
-  wireSlips($("#slips"), shown);
-}
-
-// ---------- Builder ----------
-const MARKETS = ["Result", "Double chance", "Draw no bet", "Goals", "Team to score", "Team goals", "BTTS", "Handicap"];
-function builderState() {
-  const d = DATA.defaults;
-  const def = { legs: d.legs_options, tmin: d.target_min, tmax: d.target_max, minEdge: d.leg_min_edge, minP: d.leg_min_fair_prob,
-    maxLeg: d.leg_max_price, spread: d.kickoff_spread_hours, books: myBooks(), markets: MARKETS.slice(), start: "all" };
-  const b = Object.assign(def, settings.builder || {});
-  b.books = b.books.filter((x) => SLIP_BOOKS.includes(x));
-  if (!b.books.length) b.books = myBooks();
-  return b;
-}
-function saveMarks() { store.set("marks", { at: DATA.generated_at, marks }); }
-
-function renderBuilderControls() {
-  const b = builderState();
-  const starts = [...new Set(DATA.legs.map((l) => FIX[l.fixture_id].kickoff))].filter((k) => Date.parse(k) > Date.now()).sort();
-  $("#controls").innerHTML = `
-    <div class="ctl"><div class="lbl">Number of legs</div>
-      <div class="chips">${[3, 4, 5, 6].map((n) => `<button class="chip" data-legs="${n}" aria-pressed="${b.legs.includes(n)}">${n}</button>`).join("")}</div></div>
-    <div class="ctl"><div class="lbl">Combined odds between</div>
-      <div class="pair"><input id="tmin" type="number" inputmode="decimal" step="0.05" min="1.2" value="${b.tmin}" aria-label="Lowest combined odds"><span>and</span>
-      <input id="tmax" type="number" inputmode="decimal" step="0.05" min="1.3" value="${b.tmax}" aria-label="Highest combined odds"></div>
-      <div class="err" id="tErr"></div></div>
-    <div class="ctl"><div class="ctl-row"><label for="minP">Each leg at least this likely</label><output id="minPo">${pct(b.minP)}</output></div>
-      <input id="minP" type="range" min="0.5" max="0.97" step="0.01" value="${b.minP}"></div>
-    <div class="ctl"><div class="ctl-row"><label for="minEdge">Each leg's edge at least</label><output id="minEdgeo">${signedPct(b.minEdge)}</output></div>
-      <input id="minEdge" type="range" min="-0.1" max="0.05" step="0.005" value="${b.minEdge}"></div>
-    <div class="ctl"><div class="ctl-row"><label for="maxLeg">Highest price per leg</label><output id="maxLego">${odds(b.maxLeg)}</output></div>
-      <input id="maxLeg" type="range" min="1.1" max="2" step="0.01" value="${b.maxLeg}"></div>
-    <div class="ctl"><div class="ctl-row"><label for="spread">Kick-offs within</label><output id="spreado">${b.spread} hours</output></div>
-      <input id="spread" type="range" min="0" max="8" step="0.5" value="${b.spread}"></div>
-    <div class="ctl"><div class="lbl">First kick-off</div>
-      <div class="chips"><button class="chip" data-start="all" aria-pressed="${b.start === "all"}">Any</button>${starts.map((s) => `<button class="chip num" data-start="${s}" aria-pressed="${b.start === s}">${esc(fmtTime(s))}</button>`).join("")}</div></div>
-    <div class="ctl"><div class="lbl">Bookies</div>
-      <div class="chips">${myBooks().map((x) => `<button class="chip" data-book="${x}" aria-pressed="${b.books.includes(x)}">${esc(BOOKS[x])}</button>`).join("")}</div>
-      <p class="hint" style="margin:6px 0 0">Change which bookies you use in Settings.</p></div>
-    <div class="ctl"><div class="lbl">Markets</div>
-      <div class="chips">${MARKETS.map((m) => `<button class="chip" data-market="${esc(m)}" aria-pressed="${b.markets.includes(m)}">${esc(m)}</button>`).join("")}</div></div>
-    <div class="ctl"><button class="btn small" id="resetBuilder">Reset to defaults</button></div>`;
-
-  const update = (fn) => { const s = builderState(); fn(s); settings.builder = s; saveSettings(); renderBuilt(); };
-  const c = $("#controls");
-  c.querySelectorAll("[data-legs]").forEach((el) => el.addEventListener("click", () => update((s) => {
-    const n = +el.dataset.legs;
-    s.legs = s.legs.includes(n) ? s.legs.filter((x) => x !== n) : [...s.legs, n].sort();
-    if (!s.legs.length) s.legs = [n];
-    c.querySelectorAll("[data-legs]").forEach((x) => x.setAttribute("aria-pressed", s.legs.includes(+x.dataset.legs)));
-  })));
-  const toggleSet = (attr, key) => c.querySelectorAll(`[data-${attr}]`).forEach((el) => el.addEventListener("click", () => update((s) => {
-    const v = el.dataset[attr];
-    s[key] = s[key].includes(v) ? s[key].filter((x) => x !== v) : [...s[key], v];
-    if (!s[key].length) s[key] = [v];
-    c.querySelectorAll(`[data-${attr}]`).forEach((x) => x.setAttribute("aria-pressed", s[key].includes(x.dataset[attr])));
-  })));
-  toggleSet("book", "books");
-  toggleSet("market", "markets");
-  c.querySelectorAll("[data-start]").forEach((el) => el.addEventListener("click", () => update((s) => {
-    s.start = el.dataset.start;
-    c.querySelectorAll("[data-start]").forEach((x) => x.setAttribute("aria-pressed", x.dataset.start === s.start));
-  })));
-  const slider = (id, key, show) => $("#" + id).addEventListener("input", (e) => update((s) => { s[key] = +e.target.value; $("#" + id + "o").textContent = show(s[key]); }));
-  slider("minP", "minP", (v) => pct(v));
-  slider("minEdge", "minEdge", (v) => signedPct(v));
-  slider("maxLeg", "maxLeg", (v) => odds(v));
-  slider("spread", "spread", (v) => `${v} hours`);
-  ["tmin", "tmax"].forEach((id) => $("#" + id).addEventListener("input", () => {
-    const lo = parseFloat($("#tmin").value), hi = parseFloat($("#tmax").value);
-    if (!(lo >= 1.1) || !(hi > lo)) { $("#tErr").textContent = "Enter a lowest figure above 1.1 and a highest figure above it."; return; }
-    $("#tErr").textContent = "";
-    update((s) => { s.tmin = lo; s.tmax = hi; });
-  }));
-  $("#resetBuilder").addEventListener("click", () => { settings.builder = null; marks = {}; saveMarks(); saveSettings(); renderBuilderControls(); renderBuilt(); renderLegs(); });
-}
-
-function buildSlips(b) {
-  const t0 = performance.now();
-  const ko = (l) => Date.parse(FIX[l.fixture_id].kickoff);
-  const now = Date.now();
-  const markets = new Set(b.markets);
-  const locked = Object.keys(marks).filter((id) => marks[id] === "locked" && LEGS[id]).map((id) => LEGS[id]);
-  const legs = DATA.legs.filter((l) => marks[l.id] !== "out" && ko(l) > now && (markets.has(l.market) || marks[l.id] === "locked"));
-  let anchors = [...new Set(legs.map(ko))].sort((a, c) => a - c);
-  if (b.start !== "all") anchors = anchors.filter((a) => a === Date.parse(b.start));
-  const spreadMs = b.spread * 36e5;
-  const ks = new Set(b.legs), maxK = Math.max(...b.legs);
-  const found = new Map();
-  let explored = 0;
-
-  for (const anchor of anchors) {
-    const inWin = legs.filter((l) => ko(l) >= anchor && ko(l) <= anchor + spreadMs);
-    if (locked.some((l) => !inWin.includes(l))) continue;
-    for (const book of b.books) {
-      if (locked.some((l) => l.prices[book] == null)) continue;
-      const lockedFx = new Set(locked.map((l) => l.fixture_id));
-      let elig = inWin.filter((l) => marks[l.id] !== "locked" && !lockedFx.has(l.fixture_id)).map((l) => {
-        const p = l.prices[book];
-        if (p == null || p > b.maxLeg || p < 1.01 || l.p_win < b.minP) return null;
-        const e = p * l.p_win + l.p_void - 1;
-        return e < b.minEdge ? null : { l, p, e };
-      }).filter(Boolean).sort((x, y) => y.e - x.e || y.l.p_win - x.l.p_win);
-      const perFx = {}, pool = [];
-      for (const it of elig) {
-        if ((perFx[it.l.fixture_id] = (perFx[it.l.fixture_id] || 0) + 1) > 3) continue;
-        pool.push(it);
-        if (pool.length >= 24) break;
-      }
-      pool.sort((x, y) => x.p - y.p);
-      let odds0 = 1, val0 = 1, hit0 = 1;
-      for (const l of locked) { const p = l.prices[book]; odds0 *= p; val0 *= p * l.p_win + l.p_void; hit0 *= l.p_win + l.p_void; }
-      const chosen = [], used = new Set(lockedFx);
-      const dfs = (start, o, v, h) => {
-        explored++;
-        const k = locked.length + chosen.length;
-        if (ks.has(k) && o >= b.tmin && o <= b.tmax) {
-          const ids = [...locked.map((l) => l.id), ...chosen.map((c) => c.l.id)];
-          const key = book + "|" + [...ids].sort().join("|");
-          if (!found.has(key)) {
-            const prices = {};
-            locked.forEach((l) => (prices[l.id] = l.prices[book]));
-            chosen.forEach((c) => (prices[c.l.id] = c.p));
-            const times = ids.map((id) => ko(LEGS[id])).sort((a, c) => a - c);
-            found.set(key, { id: key, book, legs: ids, prices, odds: o, hit_p: h, ev: v - 1, n_legs: ids.length,
-              start: new Date(times[0]).toISOString(), label: times[0] === times[times.length - 1] ? fmtTime(times[0]) : `${fmtTime(times[0])}–${fmtTime(times[times.length - 1], false)}` });
-          }
-        }
-        if (k >= maxK || explored > 400000) return;
-        for (let i = start; i < pool.length; i++) {
-          const it = pool[i];
-          const no = o * it.p;
-          if (no > b.tmax) break;
-          if (used.has(it.l.fixture_id)) continue;
-          chosen.push(it); used.add(it.l.fixture_id);
-          dfs(i + 1, no, v * (it.p * it.l.p_win + it.l.p_void), h * (it.l.p_win + it.l.p_void));
-          chosen.pop(); used.delete(it.l.fixture_id);
-        }
-      };
-      dfs(0, odds0, val0, hit0);
-    }
-  }
-  // best first, then drop near-duplicates
-  const all = [...found.values()].sort((x, y) => y.ev - x.ev || y.hit_p - x.hit_p);
-  const out = [];
-  for (const s of all) {
-    const fx = new Set(s.legs.map((id) => LEGS[id].fixture_id));
-    const dup = out.some((o) => { const f2 = new Set(o.legs.map((id) => LEGS[id].fixture_id)); let inter = 0; fx.forEach((x) => f2.has(x) && inter++); return inter / new Set([...fx, ...f2]).size > 0.6; });
-    if (!dup) out.push(s);
-    if (out.length >= 8) break;
-  }
-  return { slips: out, explored, ms: Math.round(performance.now() - t0), total: found.size };
-}
-
-function renderBuilt() {
-  if (!DATA) return;
-  const b = builderState();
-  const lockedN = Object.values(marks).filter((m) => m === "locked").length;
-  const outN = Object.values(marks).filter((m) => m === "out").length;
-  $("#lockSummary").innerHTML = lockedN || outN
-    ? `<div class="notice">${lockedN ? `${lockedN} leg${lockedN > 1 ? "s" : ""} locked in. ` : ""}${outN ? `${outN} removed. ` : ""}<button class="toggle-more" id="clearMarks">Clear</button></div>` : "";
-  $("#clearMarks")?.addEventListener("click", () => { marks = {}; saveMarks(); renderBuilt(); renderLegs(); });
-  const r = buildSlips(b);
-  r.slips = mergeTwins(r.slips);
-  const head = `<p class="hint num">${r.total} slips fit. Showing the best ${r.slips.length}.</p>`;
-  $("#builtSlips").innerHTML = r.slips.length ? head + r.slips.map((s) => slipCard(s, { tweak: false })).join("")
-    : `<div class="empty">Nothing fits these settings. Try widening the odds range, allowing more legs, or lowering the leg chance.</div>`;
-  wireSlips($("#builtSlips"), r.slips);
-}
-
-// ---------- Legs ----------
-function renderLegs() {
-  if (!DATA) return;
-  const q = ($("#legSearch").value || "").trim().toLowerCase();
-  const byFx = {};
-  DATA.legs.forEach((l) => (byFx[l.fixture_id] = byFx[l.fixture_id] || []).push(l));
-  const fixtures = DATA.fixtures.filter((f) => byFx[f.id] && Date.parse(f.kickoff) > Date.now())
-    .filter((f) => !q || `${f.home} ${f.away} ${f.league} ${f.country}`.toLowerCase().includes(q));
-  if (!fixtures.length) { $("#legList").innerHTML = `<div class="empty">No matches found.</div>`; return; }
-  $("#legList").innerHTML = fixtures.slice(0, 120).map((f) => {
-    const xg = f.model ? `Model's expected goals ${f.model.xg_home} v ${f.model.xg_away}` : "";
-    const mine = myBooks();
-    const best = (l) => { let bk = null; mine.forEach((x) => { if (l.prices[x] != null && (bk == null || l.prices[x] > l.prices[bk])) bk = x; }); return bk; };
-    const rows = byFx[f.id].filter((l) => best(l)).sort((a, c) => c.edges[best(c)] - a.edges[best(a)]).map((l) => {
-      const bk = best(l);
-      const state = marks[l.id] || "none";
-      const icon = state === "locked" ? "✓" : state === "out" ? "✕" : "+";
-      const lockLabel = state === "locked" ? "Locked in builder. Tap to remove." : state === "out" ? "Removed from builder. Tap to reset." : "Tap to lock into builder.";
-      const prices = Object.entries(l.prices).sort((a, c) => c[1] - a[1]).map(([b2, p]) => `<span>${esc(BOOKS[b2] || b2)} <b class="num">${odds(p)}</b> ${signedPct(l.edges[b2])}</span>`).join("");
-      const model = l.model_p != null ? `, model ${pct(l.model_p)}` : "";
-      return `<div class="leg-row" data-leg="${esc(l.id)}">
-        <div><div class="lbl">${esc(l.label)}</div><div class="sub num">Fair ${odds(l.fair_price)} (${pct(l.p_win)}${model})</div></div>
-        <div class="px num">${odds(l.prices[bk])}<div class="sub">${esc(BOOKS[bk])}</div><div>${edgeTag(l.edges[bk])}</div></div>
-        <button class="lock" data-state="${state}" aria-label="${lockLabel}">${icon}</button>
-        <div class="prices" hidden>${prices}<span>Source: ${esc(l.source)}</span></div>
-      </div>`;
-    }).join("");
-    return `<div class="match"><div class="match-head"><div><div class="teams">${esc(f.home)} v ${esc(f.away)}</div>
-      <div class="meta">${esc(f.league)}, ${esc(f.country)}${xg ? ". " + esc(xg) : ""}</div></div>
-      <div class="meta num">${esc(fmtTime(f.kickoff))}</div></div>${rows}</div>`;
-  }).join("");
-  $("#legList").querySelectorAll(".leg-row").forEach((row) => {
-    row.addEventListener("click", (e) => {
-      if (e.target.closest(".lock")) return;
-      const p = row.querySelector(".prices"); p.hidden = !p.hidden;
-    });
-    row.querySelector(".lock").addEventListener("click", () => {
-      const id = row.dataset.leg;
-      marks[id] = marks[id] === "locked" ? "out" : marks[id] === "out" ? undefined : "locked";
-      if (!marks[id]) delete marks[id];
-      saveMarks(); renderLegs(); renderBuilt();
-    });
+  if (!starts.includes(playWindow)) playWindow = starts[0] || null;
+  $("#windows").innerHTML = starts.map((st) => `<button class="chip num" data-start="${st}" aria-pressed="${st === playWindow}">${esc(fmtTime(st))}</button>`).join("");
+  $("#windows").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { playWindow = c.dataset.start; renderPlay(); }));
+  $("#playNotes").innerHTML = (DATA.notes || []).filter((n) => !/^Refreshed/.test(n)).map((n) => `<div class="notice">${esc(n)}</div>`).join("");
+  const shown = slips.filter((s) => s.start === playWindow);
+  $("#slips").innerHTML = shown.length ? shown.map(slipCard).join("") +
+    `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets.</p>`
+    : `<div class="empty">No slips near evens for the coming kick-offs. Pull the lever or open Build a bet.</div>`;
+  $("#slips").querySelectorAll("[data-slip]").forEach((card) => {
+    const s = shown.find((x) => x.id === card.dataset.slip);
+    card.querySelector('[data-act="load"]').addEventListener("click", () => { loadPublished(s); location.hash = "#home"; });
+    card.querySelector('[data-act="edit"]').addEventListener("click", () => { loadPublished(s); location.hash = "#build"; });
   });
 }
-$("#legSearch").addEventListener("input", () => renderLegs());
+function loadPublished(s) {
+  slip = { window_id: s.start, bookie: s.book, stake: slip?.stake || 10,
+    legs: s.legs.map((id) => ({ fixture_id: LEGS[id]?.fixture_id || id.split("|")[0], leg_id: id, held: false })) };
+  sortSlip(); copied = false; saveSlip();
+}
+function slipCard(s) {
+  const rows = s.legs.map((id) => {
+    const l = LEGS[id], f = FIX[l.fixture_id];
+    return `<div class="cleg"><span class="sel">${esc(l.label)}</span><span class="p num">${odds(s.prices[id])}<small>${pct(l.p_win)} likely</small></span>
+      <span class="m">${esc(f.home)} v ${esc(f.away)}, ${esc(fmtTime(f.kickoff, false))} ${esc(f.league)}</span></div>`;
+  }).join("");
+  return `<article class="card" data-slip="${esc(s.id)}">
+    <div class="card-head"><b>${esc(bookName(s.book))}</b><span>${esc(s.label)}, ${s.n_legs} legs</span></div>
+    ${s.alsoAt.length ? `<div class="also">Same prices at ${s.alsoAt.map((b) => esc(bookName(b))).join(", ")}</div>` : ""}
+    ${rows}
+    <div class="card-foot">
+      <div><b class="num">${odds(s.odds)}</b><span>Combined odds</span></div>
+      <div><b class="num">${pct(s.hit_p)}</b><span>Real chance it lands</span></div>
+      <div><b class="num">£${(10 * s.odds).toFixed(2)}</b><span>£10 returns</span></div>
+      <div><b>${edgeTag(s.ev)}</b><span>Edge</span></div>
+    </div>
+    <div class="card-actions"><button class="cbtn yellow" data-act="load">Load into the machine</button><button class="cbtn cyan" data-act="edit">Edit this slip</button></div>
+  </article>`;
+}
 
-// ---------- Bets ----------
+// ---------- sheets ----------
 function openSheet(html, mount) {
   $("#sheetBody").innerHTML = html;
   $("#sheet").hidden = false;
@@ -418,41 +503,37 @@ function closeSheet() { $("#sheet").hidden = true; $("#sheetBody").innerHTML = "
 $("#sheet").addEventListener("click", (e) => { if (e.target.id === "sheet") closeSheet(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
 
-function slipSnapshot(slip) {
-  return slip.legs.map((id) => { const l = LEGS[id], f = FIX[l.fixture_id];
-    return { label: l.label, match: `${f.home} v ${f.away}`, kickoff: f.kickoff, price: slip.prices[id], p_win: l.p_win }; });
-}
-
-function openPlaceSheet(slip) {
+// ---------- Winnings (my bets) ----------
+function openPlaceSheet(b) {
   openSheet(`<h3 id="sheetTitle">Log this bet</h3>
-    <p class="hint">${esc(BOOKS[slip.book] || slip.book)}, ${slip.n_legs} legs, ${esc(slip.label)}</p>
-    <div class="field"><label for="pStake">Stake (£)</label><input id="pStake" type="number" inputmode="decimal" min="0.1" step="0.5" value="${settings.stake}"></div>
-    <div class="field"><label for="pOdds">Odds you got (decimal)</label><input id="pOdds" type="number" inputmode="decimal" min="1.01" step="0.01" value="${slip.odds.toFixed(2)}"></div>
+    <p class="hint">${esc(bookName(b.book))}, ${b.legs.length} legs, ${esc(b.label)}</p>
+    <div class="field"><label for="pStake">Stake (£)</label><input id="pStake" type="number" inputmode="decimal" min="0.1" step="0.5" value="${b.stake}"></div>
+    <div class="field"><label for="pOdds">Odds you got (decimal)</label><input id="pOdds" type="number" inputmode="decimal" min="1.01" step="0.01" value="${b.odds.toFixed(2)}"></div>
     <div class="err" id="pErr"></div>
-    <div class="sheet-actions"><button class="btn" id="pCancel">Cancel</button><button class="btn primary" id="pSave">Save bet</button></div>`, (s) => {
+    <div class="sheet-actions"><button class="cbtn plain" id="pCancel">Cancel</button><button class="cbtn green" id="pSave">Save bet</button></div>`, (s) => {
     s.querySelector("#pCancel").addEventListener("click", closeSheet);
     s.querySelectorAll("input").forEach((i) => i.addEventListener("input", () => (s.querySelector("#pErr").textContent = "")));
     s.querySelector("#pSave").addEventListener("click", () => {
       const stake = parseFloat(s.querySelector("#pStake").value), o = parseFloat(s.querySelector("#pOdds").value);
       if (!(stake > 0)) { s.querySelector("#pErr").textContent = "Enter a stake above £0."; return; }
-      if (!(o >= 1.01)) { s.querySelector("#pErr").textContent = "Enter the odds as a decimal, e.g. 2.05."; return; }
-      bets.unshift({ id: `${Date.now()}`, slipId: slip.id, placedAt: new Date().toISOString(), book: slip.book, bookName: BOOKS[slip.book] || slip.book,
-        label: slip.label, start: slip.start, stake, odds: o, hit_p: slip.hit_p, ev: slip.ev, legs: slipSnapshot(slip), status: "pending", returns: null });
-      saveBets(); closeSheet(); renderBets();
-      const btn = document.querySelector(`[data-slip="${CSS.escape(slip.id)}"] [data-act="place"]`);
-      if (btn) { btn.textContent = "Saved to My bets"; btn.disabled = true; }
+      if (!(o >= 1.01)) { s.querySelector("#pErr").textContent = "Enter the odds as a decimal, for example 2.05."; return; }
+      bets.unshift({ id: `${Date.now()}`, placedAt: new Date().toISOString(), book: b.book, bookName: bookName(b.book), label: b.label, start: b.start,
+        stake, odds: o, hit_p: b.hit_p, ev: b.ev, legIds: b.legIds, legs: b.legs, status: "pending", returns: null });
+      saveBets(); closeSheet(); copied = false;
+      location.hash = "#winnings";
     });
   });
 }
 
 function autoSettleBets() {
   if (!HIST) return;
-  const byId = Object.fromEntries((HIST.slips || []).map((s) => [s.slip_id, s]));
+  const key = (book, ids) => book + "|" + ids.slice().sort().join("|");
+  const byKey = Object.fromEntries((HIST.slips || []).map((s) => [key(s.book, s.legs.map((l) => l.id)), s]));
   let changed = false;
   bets.forEach((b) => {
-    const h = byId[b.slipId];
+    const h = b.legIds && byKey[key(b.book, b.legIds)];
     if (b.status === "pending" && h && (h.status === "won" || h.status === "lost")) {
-      b.status = h.status; b.returns = h.status === "won" ? b.stake * b.odds : 0; b.settledAt = new Date().toISOString(); b.auto = true; changed = true;
+      b.status = h.status; b.returns = h.status === "won" ? b.stake * b.odds : 0; b.settledAt = new Date().toISOString(); changed = true;
     }
   });
   if (changed) saveBets();
@@ -460,18 +541,18 @@ function autoSettleBets() {
 
 function betStats() {
   const settled = bets.filter((b) => b.status !== "pending").slice().sort((a, c) => a.placedAt.localeCompare(c.placedAt));
-  let pl = 0, peak = 0, dd = 0, run = 0, worstRun = 0, staked = 0, won = 0;
+  let pl = 0, peak = 0, dd = 0, staked = 0, won = 0;
   const series = [];
   settled.forEach((b) => {
     const profit = b.status === "void" ? 0 : (b.returns ?? 0) - b.stake;
     if (b.status !== "void") staked += b.stake;
-    if (b.status === "won") { won++; run = 0; } else if (b.status === "lost") { run++; worstRun = Math.max(worstRun, run); }
+    if (b.status === "won") won++;
     pl += profit; peak = Math.max(peak, pl); dd = Math.min(dd, pl - peak);
     series.push({ x: series.length + 1, y: pl, label: `${b.label}: ${signedMoney(profit)}` });
   });
   const month = new Date().toISOString().slice(0, 7);
   const monthStaked = bets.filter((b) => b.placedAt.slice(0, 7) === month).reduce((s, b) => s + b.stake, 0);
-  return { settled, pl, staked, won, roi: staked ? pl / staked : null, dd, worstRun, series, monthStaked };
+  return { settled, pl, staked, won, roi: staked ? pl / staked : null, dd, series, monthStaked };
 }
 
 function renderBets() {
@@ -481,33 +562,33 @@ function renderBets() {
   const sim = simulate();
   $("#betsBody").innerHTML = `
     <div class="tiles">
-      <div class="tile"><b class="num">${moneyHTML(st.pl)}</b><span>Profit so far</span></div>
+      <div class="tile"><b class="num">${signedMoney(st.pl)}</b><span>Profit so far</span></div>
       <div class="tile"><b class="num">${st.roi == null ? "–" : signedPct(st.roi)}</b><span>Return on stakes</span></div>
       <div class="tile"><b class="num">${st.won} of ${st.settled.filter((b) => b.status !== "void").length}</b><span>Slips won</span></div>
       <div class="tile"><b class="num">${money(-st.dd)}</b><span>Biggest dip from a high</span></div>
     </div>
-    <div class="notice">This month: <b class="num">${money(st.monthStaked)}</b> staked of your <b class="num">${money(settings.monthlyLimit)}</b> limit.
+    <div class="notice">This month <b class="num">${money(st.monthStaked)}</b> staked of your <b class="num">${money(settings.monthlyLimit)}</b> limit.
       <div class="progress ${over ? "over" : ""}"><div style="width:${Math.min(100, (st.monthStaked / settings.monthlyLimit) * 100)}%"></div></div>
-      ${over ? `<div class="err">You're over your monthly limit. Honest Joe weeps.</div>` : ""}</div>
-    ${st.series.length >= 2 ? `<h2>Tide chart</h2><p class="hint">Your running profit after each settled slip.</p><div class="chart" id="plChart"></div>` : ""}
-    <h2>Next 50 slips</h2>
+      ${over ? `<div class="err">You're over your monthly limit.</div>` : ""}</div>
+    ${st.series.length >= 2 ? `<h3 class="sec">Profit over time</h3><div class="chart" id="plChart"></div>` : ""}
+    <h3 class="sec">Next 50 slips</h3>
     <p class="hint">${esc(sim.basis)}</p>
     <div class="chart" id="simChart"></div>
-    <div class="legend"><span><i style="background:var(--chart-softer)"></i>8 in 10 runs</span><span><i style="background:var(--chart-soft)"></i>Middle half</span><span><i style="background:var(--chart);height:3px"></i>Typical</span></div>
-    <p class="hint num">At £${settings.stake} a slip you'd be ahead after 50 in ${pct(sim.pAhead)} of runs. Typical result ${signedMoney(sim.median)}; a bad run (1 in 10) ${signedMoney(sim.p10)}.</p>
-    <h2>Waiting on results</h2>
-    ${pending.length ? pending.map(betCard).join("") : `<p class="hint">Tap "Placed it" on a slip to log it here.</p>`}
-    ${st.settled.length ? `<h2>Settled</h2>${bets.filter((b) => b.status !== "pending").slice(0, 30).map(betCard).join("")}` : ""}
-    <h2>Backup</h2>
+    <div class="legend"><span><i style="background:rgba(255,210,63,.12)"></i>8 in 10 runs</span><span><i style="background:rgba(255,210,63,.24)"></i>Middle half</span><span><i style="background:var(--jackpot);height:3px"></i>Typical</span></div>
+    <p class="hint num">At £10 a slip you'd be ahead after 50 in ${pct(sim.pAhead)} of runs. Typical result ${signedMoney(sim.median)}; a bad run (1 in 10) ${signedMoney(sim.p10)}.</p>
+    <h3 class="sec">Waiting on results</h3>
+    ${pending.length ? pending.map(betCard).join("") : `<p class="hint">Copy a slip in Build a bet, then tap "Placed it" to log it here.</p>`}
+    ${st.settled.length ? `<h3 class="sec">Settled</h3>${bets.filter((b) => b.status !== "pending").slice(0, 30).map(betCard).join("")}` : ""}
+    <h3 class="sec">Backup</h3>
     <p class="hint">Your bets live on this phone only. Save a copy now and then.</p>
-    <div class="slip-actions" style="padding:0"><button class="btn" id="exportBets">Save a copy</button><label class="btn" style="display:inline-grid;place-items:center">Restore a copy<input id="importBets" type="file" accept="application/json" hidden></label></div>`;
-  if (st.series.length >= 2) lineChart($("#plChart"), st.series, { money: true });
+    <div class="card-actions" style="padding:0"><button class="cbtn plain" id="exportBets">Save a copy</button><label class="cbtn plain" style="display:inline-grid;place-items:center">Restore a copy<input id="importBets" type="file" accept="application/json" hidden></label></div>`;
+  if (st.series.length >= 2) lineChart($("#plChart"), st.series);
   fanChart($("#simChart"), sim.bands);
   $("#betsBody").querySelectorAll("[data-bet]").forEach((card) => {
     const b = bets.find((x) => x.id === card.dataset.bet);
     card.querySelectorAll("[data-set]").forEach((btn) => btn.addEventListener("click", () => {
       const s = btn.dataset.set;
-      if (s === "delete") { bets = bets.filter((x) => x !== b); }
+      if (s === "delete") bets = bets.filter((x) => x !== b);
       else { b.status = s; b.returns = s === "won" ? b.stake * b.odds : s === "void" ? b.stake : 0; b.settledAt = new Date().toISOString(); }
       saveBets(); renderBets();
     }));
@@ -520,49 +601,44 @@ function renderBets() {
     try {
       const obj = JSON.parse(await e.target.files[0].text());
       if (!Array.isArray(obj.bets)) throw new Error();
-      bets = obj.bets; if (obj.settings) settings = Object.assign({}, DEFAULT_SETTINGS, obj.settings);
-      saveBets(); saveSettings(); renderAll();
+      bets = obj.bets; if (obj.settings) settings = Object.assign({}, DEFAULTS, obj.settings);
+      saveBets(); saveSettings(); route();
     } catch { alert("That file isn't an Evens backup."); }
   });
 }
 
 function betCard(b) {
-  const legs = b.legs.map((l) => `<div class="sub">${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</div>`).join("");
   const settled = b.status !== "pending";
   const profit = b.status === "void" ? 0 : (b.returns ?? 0) - b.stake;
-  const stamp = b.status === "won" ? `<span class="stamp-mark won">Hang tenner</span>` : b.status === "lost" ? `<span class="stamp-mark lost">Wipeout</span>` : "";
-  return `<div class="bet" data-bet="${esc(b.id)}">${stamp}
-    <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span>
-      ${settled && b.status !== "void" ? `<div class="num">${moneyHTML(profit)}</div>` : ""}</div>
-      <span class="status ${b.status}">${settled ? `${b.status === "won" ? "Won" : b.status === "lost" ? "Lost" : "Void"} ${b.status !== "void" ? signedMoney(profit) : ""}` : "Pending"}</span></div>
+  const tag = { won: `Won ${signedMoney(profit)}`, lost: `Lost ${signedMoney(profit)}`, void: "Void", pending: "Waiting" }[b.status];
+  return `<div class="card bet" data-bet="${esc(b.id)}">
+    <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span></div><span class="status ${b.status}">${esc(tag)}</span></div>
     <div class="sub num">£${b.stake.toFixed(2)} at ${odds(b.odds)}, real chance ${pct(b.hit_p)}</div>
-    ${legs}
-    ${b.status === "lost" ? `<div class="quip">The bookie thanks you for your contribution.</div>` : ""}
-    <div class="bet-actions">${settled ? `<button class="btn small" data-set="pending">Undo result</button>` :
-      `<button class="btn small good" data-set="won">Won</button><button class="btn small bad" data-set="lost">Lost</button><button class="btn small" data-set="void">Void</button>`}
-      <button class="btn small" data-set="delete">Delete</button></div>
+    ${b.legs.map((l) => `<div class="sub">${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</div>`).join("")}
+    <div class="card-actions" style="padding:8px 0 0">${settled ? `<button class="cbtn plain" data-set="pending">Undo result</button>` :
+      `<button class="cbtn green" data-set="won">Won</button><button class="cbtn red" data-set="lost">Lost</button><button class="cbtn plain" data-set="void">Void</button>`}
+      <button class="cbtn plain" data-set="delete">Delete</button></div>
   </div>`;
 }
 
-// Monte Carlo: 50 slips, using your bets (if you have 5+) or today's suggestions.
+// Monte Carlo: 50 slips, from your bets (5+) or today's suggestions.
 function simulate() {
   const N = 50, RUNS = 2000;
-  let pool = bets.filter((b) => b.hit_p && b.odds).map((b) => ({ p: b.hit_p, o: b.odds }));
+  let src = bets.filter((b) => b.hit_p && b.odds).map((b) => ({ p: b.hit_p, o: b.odds }));
   let basis = "Based on the bets you've logged, assuming the model's chances are right.";
-  if (pool.length < 5) {
-    pool = (DATA?.slips || []).map((s) => ({ p: s.hit_p, o: s.odds }));
+  if (src.length < 5) {
+    src = (DATA?.slips || []).map((s) => ({ p: s.hit_p, o: s.odds }));
     basis = "Based on today's suggested slips, assuming the model's chances are right. Real results swing a lot.";
   }
-  if (!pool.length) pool = [{ p: 0.47, o: 2.05 }];
-  const stake = settings.stake;
+  if (!src.length) src = [{ p: 0.47, o: 2.05 }];
   const paths = Array.from({ length: N + 1 }, () => new Float64Array(RUNS));
   let seed = 12345;
   const rand = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
   for (let r = 0; r < RUNS; r++) {
     let pl = 0;
     for (let i = 1; i <= N; i++) {
-      const s = pool[Math.floor(rand() * pool.length)];
-      pl += rand() < s.p ? stake * (s.o - 1) : -stake;
+      const s = src[Math.floor(rand() * src.length)];
+      pl += rand() < s.p ? 10 * (s.o - 1) : -10;
       paths[i][r] = pl;
     }
   }
@@ -573,40 +649,37 @@ function simulate() {
   return { bands, basis, pAhead: last.filter((v) => v > 0).length / RUNS, median: q(last, 0.5), p10: q(last, 0.1) };
 }
 
-// ---------- Record ----------
+// ---------- Payout table (the model's record) ----------
 function renderRecord() {
-  if (!HIST || !HIST.summary) { $("#recordBody").innerHTML = `<div class="empty">The record fills in as matches finish. Check back after the weekend.</div>`; return; }
+  if (!HIST || !HIST.summary) { $("#recordBody").innerHTML = `<div class="empty">The payout table fills in as matches finish. Check back after the weekend.</div>`; return; }
   const s = HIST.summary;
-  const cal = Object.entries(HIST.calibration || {}).map(([bin, v]) => ({ said: v.p_sum / v.n, came: v.wins / v.n, n: v.n, bin: +bin })).filter((b) => b.n > 0).sort((a, c) => a.said - c.said);
-  const settledSlips = (HIST.slips || []).filter((x) => x.status !== "pending").slice(0, 25);
-  const pendingSlips = (HIST.slips || []).filter((x) => x.status === "pending");
+  const cal = Object.values(HIST.calibration || {}).map((v) => ({ said: v.p_sum / v.n, came: v.wins / v.n, n: v.n })).filter((b) => b.n > 0).sort((a, c) => a.said - c.said);
+  const list = [...(HIST.slips || []).filter((x) => x.status === "pending").slice(0, 5), ...(HIST.slips || []).filter((x) => x.status !== "pending").slice(0, 25)];
   $("#recordBody").innerHTML = `
     <div class="tiles">
       <div class="tile"><b class="num">${s.won} of ${s.won + s.lost}</b><span>Slips won (expected ${s.expected_wins})</span></div>
-      <div class="tile"><b class="num">${moneyHTML(s.profit_per_10)}</b><span>Profit at £10 a slip</span></div>
+      <div class="tile"><b class="num">${signedMoney(s.profit_per_10)}</b><span>Profit at £10 a slip</span></div>
       <div class="tile"><b class="num">${s.roi == null ? "–" : signedPct(s.roi)}</b><span>Return on stakes</span></div>
       <div class="tile"><b class="num">${s.pending}</b><span>Waiting on results</span></div>
     </div>
-    <h2>Does it know what it's saying?</h2>
-    <p class="hint">Each dot is a group of legs. Across: how likely the model said they were. Up: how often they actually came in. On the dashed line means honest chances.</p>
+    <h3 class="sec">Does it know what it's saying?</h3>
+    <p class="hint">Each dot is a group of legs. Across: how likely the model said they were. Up: how often they came in. On the dashed line means honest chances.</p>
     ${cal.length ? `<div class="chart" id="calChart"></div>` : `<p class="hint">Needs a weekend of results first.</p>`}
-    <h2>Recent slips</h2>
-    ${[...pendingSlips.slice(0, 5), ...settledSlips].map(recordCard).join("") || `<p class="hint">None yet.</p>`}`;
+    <h3 class="sec">Recent slips</h3>
+    ${list.map(recordCard).join("") || `<p class="hint">None yet.</p>`}`;
   if (cal.length) calibrationChart($("#calChart"), cal);
 }
 function recordCard(h) {
   const mark = (r) => (r === "won" ? "✓" : r === "lost" ? "✕" : r === "void" ? "–" : "·");
-  const stamp = h.status === "won" ? `<span class="stamp-mark won">Hang tenner</span>` : h.status === "lost" ? `<span class="stamp-mark lost">Wipeout</span>` : "";
-  return `<div class="bet">${stamp}<div class="bet-top"><div><b>${esc(BOOKS[h.book] || h.book)}</b> <span class="sub">${esc(h.label)}, ${odds(h.odds)}</span></div>
-    <span class="status ${h.status}">${h.status === "pending" ? "Pending" : h.status === "won" ? `Won ${signedMoney(h.profit_per_10)}` : h.status === "lost" ? "Lost −£10.00" : esc(h.status)}</span></div>
-    ${h.legs.map((l) => `<div class="sub leg-result">${mark(l.result)} ${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}${l.score ? ` <b class="num">${esc(l.score)}</b>` : ""}</div>`).join("")}</div>`;
+  const tag = { won: `Won ${signedMoney(h.profit_per_10)}`, lost: "Lost −£10.00", pending: "Waiting", void: "Void", unsettled: "No result" }[h.status] || h.status;
+  return `<div class="card bet"><div class="bet-top"><div><b>${esc(bookName(h.book))}</b> <span class="sub">${esc(h.label)}, ${odds(h.odds)}</span></div><span class="status ${h.status}">${esc(tag)}</span></div>
+    ${h.legs.map((l) => `<div class="sub">${mark(l.result)} ${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}${l.score ? ` <b class="num">${esc(l.score)}</b>` : ""}</div>`).join("")}</div>`;
 }
 
 // ---------- charts (plain SVG) ----------
 const W = 340, H = 170, PAD = { l: 44, r: 10, t: 10, b: 22 };
-function scale(d0, d1, r0, r1) { return (v) => r0 + ((v - d0) / (d1 - d0 || 1)) * (r1 - r0); }
-function ticks(lo, hi, n = 4) { const step = (hi - lo) / n; return Array.from({ length: n + 1 }, (_, i) => lo + i * step); }
-
+const scale = (d0, d1, r0, r1) => (v) => r0 + ((v - d0) / (d1 - d0 || 1)) * (r1 - r0);
+const ticks = (lo, hi, n = 4) => Array.from({ length: n + 1 }, (_, i) => lo + (i * (hi - lo)) / n);
 function addHover(el, svg, xs, tipFor) {
   const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; el.appendChild(tip);
   const cross = svg.querySelector(".cross");
@@ -615,7 +688,7 @@ function addHover(el, svg, xs, tipFor) {
     const x = ((ev.clientX - rect.left) / rect.width) * W;
     let i = 0; xs.forEach((v, k) => { if (Math.abs(v - x) < Math.abs(xs[i] - x)) i = k; });
     const t = tipFor(i);
-    cross?.setAttribute("x1", xs[i]); cross?.setAttribute("x2", xs[i]); if (cross) cross.style.display = "";
+    if (cross) { cross.setAttribute("x1", xs[i]); cross.setAttribute("x2", xs[i]); cross.style.display = ""; }
     tip.innerHTML = t.html; tip.hidden = false;
     tip.style.left = `${Math.max(60, Math.min(rect.width - 60, (xs[i] / W) * rect.width))}px`;
     tip.style.top = `${(t.y / H) * rect.height + 10}px`;
@@ -624,43 +697,38 @@ function addHover(el, svg, xs, tipFor) {
   svg.addEventListener("pointerdown", move);
   svg.addEventListener("pointerleave", () => { tip.hidden = true; if (cross) cross.style.display = "none"; });
 }
-
-function lineChart(el, pts, { money: isMoney } = {}) {
-  const ys = pts.map((p) => p.y).concat(0);
-  const lo = Math.min(...ys), hi = Math.max(...ys);
+function lineChart(el, pts) {
+  const ys = pts.map((p) => p.y).concat(0), lo = Math.min(...ys), hi = Math.max(...ys);
   const x = scale(pts[0].x, pts[pts.length - 1].x, PAD.l, W - PAD.r), y = scale(lo, hi, H - PAD.b, PAD.t);
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(p.x).toFixed(1)},${y(p.y).toFixed(1)}`).join("");
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative profit after each settled bet">
-    ${ticks(lo, hi).map((t) => `<text class="tick num" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${isMoney ? poundTick(t) : t.toFixed(1)}</text>`).join("")}
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Running profit after each settled bet">
+    ${ticks(lo, hi).map((t) => `<text class="tick" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${poundTick(t)}</text>`).join("")}
     <line class="zero" x1="${PAD.l}" x2="${W - PAD.r}" y1="${y(0)}" y2="${y(0)}"/>
-    <path class="ln" d="${d}"/><line class="cross" y1="${PAD.t}" y2="${H - PAD.b}" style="display:none"/>
+    <path class="ln" d="${pts.map((p, i) => `${i ? "L" : "M"}${x(p.x).toFixed(1)},${y(p.y).toFixed(1)}`).join("")}"/>
+    <line class="cross" y1="${PAD.t}" y2="${H - PAD.b}" style="display:none"/>
     <text class="tick" x="${W - PAD.r}" y="${H - 4}" text-anchor="end">Bets settled</text></svg>`;
   addHover(el, el.querySelector("svg"), pts.map((p) => x(p.x)), (i) => ({ html: `Bet ${pts[i].x}: ${esc(signedMoney(pts[i].y))} total<br>${esc(pts[i].label)}`, y: y(pts[i].y) }));
 }
-
 function fanChart(el, bands) {
   const lo = Math.min(...bands.map((b) => b.p10), 0), hi = Math.max(...bands.map((b) => b.p90), 0);
   const x = scale(0, bands[bands.length - 1].x, PAD.l, W - PAD.r), y = scale(lo, hi, H - PAD.b, PAD.t);
   const area = (a, b) => bands.map((p, i) => `${i ? "L" : "M"}${x(p.x)},${y(p[a])}`).join("") + bands.slice().reverse().map((p) => `L${x(p.x)},${y(p[b])}`).join("") + "Z";
-  const mid = bands.map((p, i) => `${i ? "L" : "M"}${x(p.x)},${y(p.p50)}`).join("");
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Range of possible profit over the next 50 slips">
-    ${ticks(lo, hi).map((t) => `<text class="tick num" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${poundTick(t)}</text>`).join("")}
+    ${ticks(lo, hi).map((t) => `<text class="tick" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${poundTick(t)}</text>`).join("")}
     <path class="band1" d="${area("p90", "p10")}"/><path class="band2" d="${area("p75", "p25")}"/>
     <line class="zero" x1="${PAD.l}" x2="${W - PAD.r}" y1="${y(0)}" y2="${y(0)}"/>
-    <path class="ln" d="${mid}"/><line class="cross" y1="${PAD.t}" y2="${H - PAD.b}" style="display:none"/>
+    <path class="ln" d="${bands.map((p, i) => `${i ? "L" : "M"}${x(p.x)},${y(p.p50)}`).join("")}"/>
+    <line class="cross" y1="${PAD.t}" y2="${H - PAD.b}" style="display:none"/>
     <text class="tick" x="${W - PAD.r}" y="${H - 4}" text-anchor="end">Slips from now</text></svg>`;
   addHover(el, el.querySelector("svg"), bands.map((b) => x(b.x)), (i) => {
     const b = bands[i];
     return { html: `After ${b.x} slips<br>Typical ${esc(signedMoney(b.p50))}<br>8 in 10: ${esc(signedMoney(b.p10))} to ${esc(signedMoney(b.p90))}`, y: y(b.p50) };
   });
 }
-
 function calibrationChart(el, bins) {
-  const lo = 0.5, hi = 1;
-  const x = scale(lo, hi, PAD.l, W - PAD.r), y = scale(lo, hi, H - PAD.b, PAD.t);
+  const lo = 0.5, hi = 1, x = scale(lo, hi, PAD.l, W - PAD.r), y = scale(lo, hi, H - PAD.b, PAD.t);
   const maxN = Math.max(...bins.map((b) => b.n));
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Predicted chance against actual win rate">
-    ${[0.5, 0.6, 0.7, 0.8, 0.9, 1].map((t) => `<text class="tick num" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${Math.round(t * 100)}%</text><text class="tick num" x="${x(t)}" y="${H - 6}" text-anchor="middle">${Math.round(t * 100)}%</text>`).join("")}
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Predicted chance against how often legs came in">
+    ${[0.5, 0.6, 0.7, 0.8, 0.9, 1].map((t) => `<text class="tick" x="${PAD.l - 6}" y="${y(t) + 4}" text-anchor="end">${Math.round(t * 100)}%</text><text class="tick" x="${x(t)}" y="${H - 6}" text-anchor="middle">${Math.round(t * 100)}%</text>`).join("")}
     <line class="ref" x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}"/>
     ${bins.map((b) => `<circle class="dot" cx="${x(b.said)}" cy="${y(Math.max(lo, b.came))}" r="${(5 + 7 * Math.sqrt(b.n / maxN)).toFixed(1)}"/>`).join("")}</svg>`;
   addHover(el, el.querySelector("svg"), bins.map((b) => x(b.said)), (i) => ({ html: `Said ${pct(bins[i].said)}, came in ${pct(bins[i].came)}<br>${bins[i].n} legs`, y: y(Math.max(lo, bins[i].came)) }));
@@ -668,41 +736,43 @@ function calibrationChart(el, bins) {
 
 // ---------- settings ----------
 $("#settingsBtn").addEventListener("click", () => {
-  openSheet(`<h3 id="sheetTitle">Settings</h3>
-    <div class="field"><label>Show odds as</label><div class="chips">
-      <button class="chip" data-fmt="decimal" aria-pressed="${settings.oddsFormat !== "fraction"}">Decimal (2.10)</button>
-      <button class="chip" data-fmt="fraction" aria-pressed="${settings.oddsFormat === "fraction"}">Fractions (11/10)</button></div></div>
-    <div class="field"><label for="sStake">Usual stake (£)</label><input id="sStake" type="number" inputmode="decimal" min="1" step="1" value="${settings.stake}"></div>
-    <div class="field"><label for="sLimit">Monthly limit (£)</label><input id="sLimit" type="number" inputmode="decimal" min="1" step="5" value="${settings.monthlyLimit}"></div>
-    <div class="err" id="sErr"></div>
-    <div class="field"><label>Bookies you have accounts with</label><div class="chips">
-      ${SLIP_BOOKS.map((b) => `<button class="chip" data-mybook="${b}" aria-pressed="${myBooks().includes(b)}">${esc(BOOKS[b])}</button>`).join("")}</div>
-      <p class="hint">Sky Bet and William Hill aren't in the odds feed, so they can't be shown.</p></div>
-    <div class="sheet-actions"><button class="btn primary" id="sSave">Save settings</button></div>
-    <h3 style="margin-top:20px">Fresh odds</h3>
-    <p class="hint">Odds refresh every morning at about 07:15. To refresh now, open GitHub and tap "Run workflow". Each refresh uses some of the month's 250 free requests${DATA?.budget?.remaining_after != null ? ` (${DATA.budget.remaining_after} left)` : ""}.</p>
-    <a class="btn" style="display:inline-grid;place-items:center;text-decoration:none" href="${REPO_ACTIONS}" target="_blank" rel="noopener">Open refresh page</a>
-    <h3 style="margin-top:20px">How the numbers work</h3>
-    <p class="hint">Fair price: Pinnacle's odds with their margin removed. Pinnacle's prices are the sharpest in the market, so they're the best guide to the real chance.
-    Edge: how much the UK bookie's price beats (green) or falls short of (red) fair. A slip's edge multiplies across its legs.
-    Model: a goals model built from two seasons of results, shown as a second opinion.</p>`, (s) => {
-    s.querySelectorAll("[data-fmt]").forEach((b) => b.addEventListener("click", () => {
-      settings.oddsFormat = b.dataset.fmt; saveSettings();
-      s.querySelectorAll("[data-fmt]").forEach((x) => x.setAttribute("aria-pressed", x.dataset.fmt === settings.oddsFormat));
-      renderAll();
-    }));
+  const draft = Object.assign({}, settings, { myBooks: myBooks().slice() });
+  openSheet("", (s) => {
+    s.innerHTML = `<h3 id="sheetTitle">Settings</h3>
+      <div class="field"><span class="lbl">Bookies you have accounts with</span><div class="chips">
+        ${SLIP_BOOKS.map((b) => `<button class="chip" data-mybook="${b}" aria-pressed="${draft.myBooks.includes(b)}">${esc(bookName(b))}</button>`).join("")}</div>
+        <p class="hint">Sky Bet and William Hill aren't in the odds feed, so they can't be shown.</p></div>
+      <div class="field"><label for="sMinP">Each leg at least this likely <output id="oMinP">${pct(draft.minP)}</output></label><input id="sMinP" type="range" min="0.6" max="0.95" step="0.01" value="${draft.minP}"></div>
+      <div class="field"><label for="sMax">Highest price per leg <output id="oMax">${draft.maxLeg.toFixed(2)}</output></label><input id="sMax" type="range" min="1.1" max="1.5" step="0.01" value="${draft.maxLeg}"></div>
+      <div class="field"><label for="sEdge">Lowest edge a spin can land on <output id="oEdge">${signedPct(draft.minEdge)}</output></label><input id="sEdge" type="range" min="-0.15" max="0.05" step="0.005" value="${draft.minEdge}"></div>
+      <div class="field"><span class="lbl">Show odds as</span><div class="chips">
+        <button class="chip" data-fmt="decimal" aria-pressed="${draft.oddsFormat !== "fraction"}">Decimal (2.10)</button>
+        <button class="chip" data-fmt="fraction" aria-pressed="${draft.oddsFormat === "fraction"}">Fractions (11/10)</button></div></div>
+      <div class="field"><label for="sLimit">Monthly limit (£)</label><input id="sLimit" type="number" inputmode="decimal" min="1" step="5" value="${draft.monthlyLimit}"></div>
+      <div class="err" id="sErr"></div>
+      <div class="sheet-actions"><button class="cbtn plain" id="sCancel">Cancel</button><button class="cbtn yellow" id="sSave">Save settings</button></div>
+      <p class="hint" style="margin-top:16px">Odds refresh every morning at about 07:15${DATA?.budget?.remaining_after != null ? `; ${DATA.budget.remaining_after} free requests left this month` : ""}.</p>`;
     s.querySelectorAll("[data-mybook]").forEach((b) => b.addEventListener("click", () => {
-      const cur = new Set(myBooks()); const v = b.dataset.mybook;
-      cur.has(v) ? cur.delete(v) : cur.add(v);
-      if (!cur.size) cur.add(v);
-      settings.myBooks = [...cur]; settings.builder = null; saveSettings();
-      s.querySelectorAll("[data-mybook]").forEach((x) => x.setAttribute("aria-pressed", cur.has(x.dataset.mybook)));
-      renderAll();
+      const v = b.dataset.mybook, set = new Set(draft.myBooks);
+      set.has(v) ? set.delete(v) : set.add(v);
+      if (!set.size) set.add(v);
+      draft.myBooks = [...set];
+      s.querySelectorAll("[data-mybook]").forEach((x) => x.setAttribute("aria-pressed", set.has(x.dataset.mybook)));
     }));
+    s.querySelectorAll("[data-fmt]").forEach((b) => b.addEventListener("click", () => {
+      draft.oddsFormat = b.dataset.fmt;
+      s.querySelectorAll("[data-fmt]").forEach((x) => x.setAttribute("aria-pressed", x.dataset.fmt === draft.oddsFormat));
+    }));
+    const slide = (id, key, out, fmt) => s.querySelector(id).addEventListener("input", (e) => { draft[key] = +e.target.value; s.querySelector(out).textContent = fmt(draft[key]); });
+    slide("#sMinP", "minP", "#oMinP", pct);
+    slide("#sMax", "maxLeg", "#oMax", (v) => v.toFixed(2));
+    slide("#sEdge", "minEdge", "#oEdge", (v) => signedPct(v));
+    s.querySelector("#sCancel").addEventListener("click", closeSheet);
     s.querySelector("#sSave").addEventListener("click", () => {
-      const stake = parseFloat(s.querySelector("#sStake").value), lim = parseFloat(s.querySelector("#sLimit").value);
-      if (!(stake > 0) || !(lim > 0)) { s.querySelector("#sErr").textContent = "Enter amounts above £0."; return; }
-      settings.stake = stake; settings.monthlyLimit = lim; saveSettings(); closeSheet(); renderAll();
+      const lim = parseFloat(s.querySelector("#sLimit").value);
+      if (!(lim > 0)) { s.querySelector("#sErr").textContent = "Enter a monthly limit above £0."; return; }
+      draft.monthlyLimit = lim;
+      settings = draft; saveSettings(); closeSheet(); ensureSlip(); route();
     });
   });
 });
