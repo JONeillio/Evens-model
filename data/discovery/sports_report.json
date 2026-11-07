@@ -1,0 +1,2722 @@
+{
+ "ran_at": "2026-11-07T09:03:04.217130+00:00",
+ "steps": {
+  "account": "ok",
+  "sports": "ok",
+  "tournaments_NBA": "ok",
+  "tournaments_MLB": "ok",
+  "tournaments_NFL": "ok",
+  "markets": "ok",
+  "nfl_pinnacle": "ok",
+  "nfl_match_all_books": "ok",
+  "nfl_bet365_tournament": "ok",
+  "nba_pinnacle": "ok",
+  "football_unibet_tournament": "ok",
+  "football_paddypower_tournament": "ok",
+  "account_after": "ok"
+ },
+ "account_before": {
+  "plan": "free",
+  "request_limit": 250,
+  "request_count": 60
+ },
+ "sports": [
+  {
+   "sportId": 10,
+   "slug": "soccer",
+   "sportName": "Soccer",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 11,
+   "slug": "basketball",
+   "sportName": "Basketball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 12,
+   "slug": "tennis",
+   "sportName": "Tennis",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 13,
+   "slug": "baseball",
+   "sportName": "Baseball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 14,
+   "slug": "american-football",
+   "sportName": "American Football",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 15,
+   "slug": "ice-hockey",
+   "sportName": "Ice Hockey",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 16,
+   "slug": "esport-dota",
+   "sportName": "ESport Dota",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 17,
+   "slug": "esport-counter-strike",
+   "sportName": "ESport Counter-Strike",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 18,
+   "slug": "esport-league-of-legends",
+   "sportName": "ESport League of Legends",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 19,
+   "slug": "darts",
+   "sportName": "Darts",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 20,
+   "slug": "mma",
+   "sportName": "MMA",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 21,
+   "slug": "boxing",
+   "sportName": "Boxing",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 22,
+   "slug": "handball",
+   "sportName": "Handball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 23,
+   "slug": "volleyball",
+   "sportName": "Volleyball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 24,
+   "slug": "snooker",
+   "sportName": "Snooker",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 25,
+   "slug": "table-tennis",
+   "sportName": "Table Tennis",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 26,
+   "slug": "rugby",
+   "sportName": "Rugby",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 27,
+   "slug": "cricket",
+   "sportName": "Cricket",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 28,
+   "slug": "waterpolo",
+   "sportName": "Waterpolo",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 29,
+   "slug": "futsal",
+   "sportName": "Futsal",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 30,
+   "slug": "beach-volley",
+   "sportName": "Beach Volley",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 31,
+   "slug": "aussie-rules",
+   "sportName": "Aussie Rules",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 32,
+   "slug": "field-hockey",
+   "sportName": "Field hockey",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 33,
+   "slug": "floorball",
+   "sportName": "Floorball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 34,
+   "slug": "squash",
+   "sportName": "Squash",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 35,
+   "slug": "basketball-3x3",
+   "sportName": "Basketball 3x3",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 36,
+   "slug": "beach-soccer",
+   "sportName": "Beach Soccer",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 37,
+   "slug": "pesapallo",
+   "sportName": "Pesapallo",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 38,
+   "slug": "lacrosse",
+   "sportName": "Lacrosse",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 39,
+   "slug": "curling",
+   "sportName": "Curling",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 40,
+   "slug": "padel",
+   "sportName": "Padel",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 41,
+   "slug": "bandy",
+   "sportName": "Bandy",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 42,
+   "slug": "kabaddi",
+   "sportName": "Kabaddi",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 43,
+   "slug": "rink-hockey",
+   "sportName": "Rink Hockey",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 44,
+   "slug": "soccer-specials",
+   "sportName": "Soccer Specials",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 45,
+   "slug": "gaelic-football",
+   "sportName": "Gaelic Football",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 46,
+   "slug": "netball",
+   "sportName": "Netball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 47,
+   "slug": "beach-handball",
+   "sportName": "Beach Handball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 48,
+   "slug": "athletics",
+   "sportName": "Athletics",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 49,
+   "slug": "badminton",
+   "sportName": "Badminton",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 50,
+   "slug": "bowls",
+   "sportName": "Bowls",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 51,
+   "slug": "cross-country",
+   "sportName": "Cross-Country",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 52,
+   "slug": "gaelic-hurling",
+   "sportName": "Gaelic Hurling",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 53,
+   "slug": "softball",
+   "sportName": "Softball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 54,
+   "slug": "esoccer",
+   "sportName": "eSoccer",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 55,
+   "slug": "ebasketball",
+   "sportName": "eBasketball",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 56,
+   "slug": "esport-call-of-duty",
+   "sportName": "ESport Call of Duty",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 57,
+   "slug": "esport-overwatch",
+   "sportName": "ESport Overwatch",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 58,
+   "slug": "esport-rainbow-six",
+   "sportName": "ESport Rainbow Six",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 59,
+   "slug": "esport-rocket-league",
+   "sportName": "ESport Rocket League",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 60,
+   "slug": "esport-starcraft",
+   "sportName": "ESport StarCraft",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 61,
+   "slug": "esport-valorant",
+   "sportName": "ESport Valorant",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 62,
+   "slug": "esport-arena-of-valor",
+   "sportName": "ESport Arena of Valor",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 63,
+   "slug": "esport-king-of-glory",
+   "sportName": "ESport King of Glory",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 64,
+   "slug": "judo",
+   "sportName": "Judo",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 65,
+   "slug": "esport-honor-of-kings",
+   "sportName": "ESport Honor of Kings",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 66,
+   "slug": "speedway",
+   "sportName": "Speedway",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 67,
+   "slug": "golf",
+   "sportName": "Golf",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 68,
+   "slug": "cycling",
+   "sportName": "Cycling",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 69,
+   "slug": "politics",
+   "sportName": "Politics",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 70,
+   "slug": "elections",
+   "sportName": "Elections",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 71,
+   "slug": "economics",
+   "sportName": "Economics",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 72,
+   "slug": "finance",
+   "sportName": "Finance",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 73,
+   "slug": "technology",
+   "sportName": "Technology",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 74,
+   "slug": "health",
+   "sportName": "Health",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 75,
+   "slug": "science",
+   "sportName": "Science",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 76,
+   "slug": "cryptocurrency",
+   "sportName": "Cryptocurrency",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 77,
+   "slug": "weather",
+   "sportName": "Weather",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 78,
+   "slug": "culture",
+   "sportName": "Culture",
+   "sportSlug": null,
+   "name": null
+  },
+  {
+   "sportId": 83,
+   "slug": "esport-mobile-legends",
+   "sportName": null,
+   "sportSlug": null,
+   "name": null
+  }
+ ],
+ "sport_ids": {
+  "NBA": 11,
+  "MLB": 13,
+  "NFL": 14
+ },
+ "NBA_candidates": [
+  {
+   "tournamentId": 132,
+   "tournamentSlug": "nba",
+   "tournamentName": "NBA",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 1077,
+   "upcomingFixtures": 2,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 41126,
+   "tournamentSlug": "nba-g-league-showcase-cup",
+   "tournamentName": "NBA G League Tip-Off Tournament",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 217,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 875,
+   "tournamentSlug": "nba-all-star-game",
+   "tournamentName": "NBA All Star Game",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 1580,
+   "tournamentSlug": "nba-g-league",
+   "tournamentName": "NBA G League",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 2382,
+   "tournamentSlug": "nba-preseason",
+   "tournamentName": "NBA Preseason",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  }
+ ],
+ "MLB_candidates": [
+  {
+   "tournamentId": 109,
+   "tournamentSlug": "mlb",
+   "tournamentName": "MLB",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 803,
+   "tournamentSlug": "mlb-all-star-game",
+   "tournamentName": "MLB All Star Game",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 2456,
+   "tournamentSlug": "mlb-spring-training",
+   "tournamentName": "MLB Spring Training",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 37343,
+   "tournamentSlug": "mlb-draft",
+   "tournamentName": "MLB Draft",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  }
+ ],
+ "NFL_candidates": [
+  {
+   "tournamentId": 31,
+   "tournamentSlug": "nfl",
+   "tournamentName": "NFL",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 150,
+   "upcomingFixtures": 1,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 233,
+   "tournamentSlug": "nfl-preseason",
+   "tournamentName": "NFL Preseason",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 458,
+   "tournamentSlug": "nfl-europe",
+   "tournamentName": "NFL Europe",
+   "categorySlug": "europe",
+   "categoryName": "Europe",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 1010,
+   "tournamentSlug": "nfl-pro-bowl",
+   "tournamentName": "NFL Pro Bowl",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  },
+  {
+   "tournamentId": 38947,
+   "tournamentSlug": "nfl-draft",
+   "tournamentName": "NFL Draft",
+   "categorySlug": "usa",
+   "categoryName": "USA",
+   "futureFixtures": 0,
+   "upcomingFixtures": 0,
+   "liveFixtures": 0
+  }
+ ],
+ "tournament_ids": {
+  "NBA": 132,
+  "MLB": 109,
+  "NFL": 31
+ },
+ "markets_NBA": 8883,
+ "markets_MLB": 794,
+ "markets_NFL": 19196,
+ "nfl_pinnacle": {
+  "fixtures": 14,
+  "fixture_keys": [
+   "bookmakerOdds",
+   "fixtureId",
+   "hasOdds",
+   "participant1Id",
+   "participant2Id",
+   "seasonId",
+   "sportId",
+   "startTime",
+   "statusId",
+   "tournamentId",
+   "trueEndTime",
+   "trueStartTime",
+   "updatedAt"
+  ],
+  "start_min": "2026-11-08T14:30:00.000Z",
+  "start_max": "2026-11-10T01:15:00.000Z",
+  "bookmakers": [
+   [
+    "pinnacle",
+    14
+   ]
+  ],
+  "market_ids": [
+   [
+    "141",
+    14
+   ],
+   [
+    "14430",
+    14
+   ],
+   [
+    "1434497",
+    14
+   ],
+   [
+    "1434356",
+    14
+   ],
+   [
+    "14434",
+    14
+   ],
+   [
+    "14438",
+    14
+   ],
+   [
+    "14436",
+    14
+   ],
+   [
+    "14428",
+    14
+   ],
+   [
+    "1434215",
+    14
+   ],
+   [
+    "14446",
+    14
+   ],
+   [
+    "142140",
+    14
+   ],
+   [
+    "1420043",
+    14
+   ],
+   [
+    "14440",
+    14
+   ],
+   [
+    "146571",
+    14
+   ],
+   [
+    "14402",
+    14
+   ],
+   [
+    "14398",
+    14
+   ],
+   [
+    "148549",
+    14
+   ],
+   [
+    "14272",
+    13
+   ],
+   [
+    "14410",
+    13
+   ],
+   [
+    "14414",
+    13
+   ],
+   [
+    "14412",
+    13
+   ],
+   [
+    "142383",
+    12
+   ],
+   [
+    "14300",
+    11
+   ],
+   [
+    "142181",
+    11
+   ],
+   [
+    "14418",
+    11
+   ],
+   [
+    "14416",
+    11
+   ],
+   [
+    "14821",
+    10
+   ],
+   [
+    "14817",
+    10
+   ],
+   [
+    "14535",
+    10
+   ],
+   [
+    "14537",
+    10
+   ],
+   [
+    "142173",
+    10
+   ],
+   [
+    "142387",
+    9
+   ],
+   [
+    "14813",
+    9
+   ],
+   [
+    "14539",
+    9
+   ],
+   [
+    "14551",
+    9
+   ],
+   [
+    "14541",
+    9
+   ],
+   [
+    "14547",
+    9
+   ],
+   [
+    "1472",
+    9
+   ],
+   [
+    "14545",
+    9
+   ],
+   [
+    "142183",
+    9
+   ],
+   [
+    "14533",
+    9
+   ],
+   [
+    "1468",
+    9
+   ],
+   [
+    "14308",
+    8
+   ],
+   [
+    "14825",
+    8
+   ],
+   [
+    "14805",
+    8
+   ],
+   [
+    "14304",
+    8
+   ],
+   [
+    "14302",
+    8
+   ],
+   [
+    "142391",
+    8
+   ],
+   [
+    "14306",
+    8
+   ],
+   [
+    "14823",
+    8
+   ],
+   [
+    "14316",
+    8
+   ],
+   [
+    "14827",
+    8
+   ],
+   [
+    "14809",
+    8
+   ],
+   [
+    "1488",
+    8
+   ],
+   [
+    "148591",
+    8
+   ],
+   [
+    "145346",
+    8
+   ],
+   [
+    "1452",
+    8
+   ],
+   [
+    "14543",
+    7
+   ],
+   [
+    "14298",
+    7
+   ],
+   [
+    "148577",
+    7
+   ]
+  ]
+ },
+ "nfl_match_books": {
+  "198bet": {
+   "fixtures": 1,
+   "avg_markets": 7.0
+  },
+  "1xbet": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "1xbit": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "20bet": {
+   "fixtures": 1,
+   "avg_markets": 154.0
+  },
+  "22bet": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "31bet": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "3et": {
+   "fixtures": 1,
+   "avg_markets": 16.0
+  },
+  "4casters": {
+   "fixtures": 1,
+   "avg_markets": 108.0
+  },
+  "500.casino": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "7bet.co.uk": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "7bet.lt": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "888sport": {
+   "fixtures": 1,
+   "avg_markets": 181.0
+  },
+  "888sport.ca": {
+   "fixtures": 1,
+   "avg_markets": 181.0
+  },
+  "888sport.de": {
+   "fixtures": 1,
+   "avg_markets": 85.0
+  },
+  "888sport.dk": {
+   "fixtures": 1,
+   "avg_markets": 183.0
+  },
+  "888sport.es": {
+   "fixtures": 1,
+   "avg_markets": 165.0
+  },
+  "888sport.it": {
+   "fixtures": 1,
+   "avg_markets": 161.0
+  },
+  "aceshigh.ag": {
+   "fixtures": 1,
+   "avg_markets": 13.0
+  },
+  "admiralbet.ba": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "admiralbet.it": {
+   "fixtures": 1,
+   "avg_markets": 37.0
+  },
+  "admiralbet.me": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "admiralbet.rs": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "allbritishcasino": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "alphawin": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "apuestatotal": {
+   "fixtures": 1,
+   "avg_markets": 233.0
+  },
+  "asports.bet": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "atg.se": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "balkanbet.rs": {
+   "fixtures": 1,
+   "avg_markets": 47.0
+  },
+  "ballybet": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "bcgame": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "bet365": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365-nj": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.bet.ar": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.de": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.es": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.fr": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.gr": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.it": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet365.nl": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "bet487": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "bet99": {
+   "fixtures": 1,
+   "avg_markets": 205.0
+  },
+  "betamapola": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "betano": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.bg": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.ca": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.cz": {
+   "fixtures": 1,
+   "avg_markets": 382.0
+  },
+  "betano.de": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.dk": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.mx": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.pe": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betano.pt": {
+   "fixtures": 1,
+   "avg_markets": 203.0
+  },
+  "betano.ro": {
+   "fixtures": 1,
+   "avg_markets": 327.0
+  },
+  "betcenter.be": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "betcity.nl": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "betcris": {
+   "fixtures": 1,
+   "avg_markets": 101.0
+  },
+  "betdex": {
+   "fixtures": 1,
+   "avg_markets": 7.0
+  },
+  "betfair-ex": {
+   "fixtures": 1,
+   "avg_markets": 145.0
+  },
+  "betfirst.be": {
+   "fixtures": 1,
+   "avg_markets": 438.0
+  },
+  "betflag.it": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "betfred": {
+   "fixtures": 1,
+   "avg_markets": 78.0
+  },
+  "betfury": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "betify": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "betika": {
+   "fixtures": 1,
+   "avg_markets": 29.0
+  },
+  "betinia.dk": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "betmgm": {
+   "fixtures": 1,
+   "avg_markets": 299.0
+  },
+  "betmgm.co.uk": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "betonline.ag": {
+   "fixtures": 1,
+   "avg_markets": 11.0
+  },
+  "betonred": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "betparx": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "betplay": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "betplay.io": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "betrivers": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "betsafe": {
+   "fixtures": 1,
+   "avg_markets": 438.0
+  },
+  "betsson": {
+   "fixtures": 1,
+   "avg_markets": 438.0
+  },
+  "betuk": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "betus": {
+   "fixtures": 1,
+   "avg_markets": 40.0
+  },
+  "betwar": {
+   "fixtures": 1,
+   "avg_markets": 15.0
+  },
+  "betway": {
+   "fixtures": 1,
+   "avg_markets": 123.0
+  },
+  "betway.de": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "betway.es": {
+   "fixtures": 1,
+   "avg_markets": 121.0
+  },
+  "betwhale.ag": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "betwinner": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "bingoal.be": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "blaze": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "blaze.bet.br": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "bluechip": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "bodog.eu": {
+   "fixtures": 1,
+   "avg_markets": 279.0
+  },
+  "bolsadeaposta-spb": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "bookmaker.eu": {
+   "fixtures": 1,
+   "avg_markets": 101.0
+  },
+  "borgata": {
+   "fixtures": 1,
+   "avg_markets": 299.0
+  },
+  "bovada.lv": {
+   "fixtures": 1,
+   "avg_markets": 279.0
+  },
+  "bwin": {
+   "fixtures": 1,
+   "avg_markets": 321.0
+  },
+  "bwin.de": {
+   "fixtures": 1,
+   "avg_markets": 179.0
+  },
+  "bwin.dk": {
+   "fixtures": 1,
+   "avg_markets": 321.0
+  },
+  "bwin.es": {
+   "fixtures": 1,
+   "avg_markets": 321.0
+  },
+  "bwin.fr": {
+   "fixtures": 1,
+   "avg_markets": 83.0
+  },
+  "caesars": {
+   "fixtures": 1,
+   "avg_markets": 205.0
+  },
+  "campobet.dk": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "casapariurilor.ro": {
+   "fixtures": 1,
+   "avg_markets": 28.0
+  },
+  "cashpoint": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "casumo": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "circasports": {
+   "fixtures": 1,
+   "avg_markets": 23.0
+  },
+  "cloudbet": {
+   "fixtures": 1,
+   "avg_markets": 209.0
+  },
+  "cmd368": {
+   "fixtures": 1,
+   "avg_markets": 6.0
+  },
+  "coolbet": {
+   "fixtures": 1,
+   "avg_markets": 82.0
+  },
+  "coolzino": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "coral": {
+   "fixtures": 1,
+   "avg_markets": 140.0
+  },
+  "crypto.com": {
+   "fixtures": 1,
+   "avg_markets": 325.0
+  },
+  "cryptoleo": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "dafabet": {
+   "fixtures": 1,
+   "avg_markets": 18.0
+  },
+  "desertdiamond": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "draftkings": {
+   "fixtures": 1,
+   "avg_markets": 663.0
+  },
+  "draftkings-predictions": {
+   "fixtures": 1,
+   "avg_markets": 196.0
+  },
+  "duel": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "duelbits": {
+   "fixtures": 1,
+   "avg_markets": 448.0
+  },
+  "efortuna.pl": {
+   "fixtures": 1,
+   "avg_markets": 30.0
+  },
+  "efortuna.ro": {
+   "fixtures": 1,
+   "avg_markets": 30.0
+  },
+  "eplay24.it": {
+   "fixtures": 1,
+   "avg_markets": 46.0
+  },
+  "espnbet": {
+   "fixtures": 1,
+   "avg_markets": 331.0
+  },
+  "esportivabet": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "estrelabet": {
+   "fixtures": 1,
+   "avg_markets": 233.0
+  },
+  "estrelabet.bet.br": {
+   "fixtures": 1,
+   "avg_markets": 233.0
+  },
+  "expekt.dk": {
+   "fixtures": 1,
+   "avg_markets": 114.0
+  },
+  "expekt.se": {
+   "fixtures": 1,
+   "avg_markets": 261.0
+  },
+  "fair999-ex": {
+   "fixtures": 1,
+   "avg_markets": 145.0
+  },
+  "fairpari": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "fanatics": {
+   "fixtures": 1,
+   "avg_markets": 196.0
+  },
+  "fanaticsmarkets": {
+   "fixtures": 1,
+   "avg_markets": 223.0
+  },
+  "fanduel": {
+   "fixtures": 1,
+   "avg_markets": 584.0
+  },
+  "fdj": {
+   "fixtures": 1,
+   "avg_markets": 184.0
+  },
+  "fezbet": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "fliff": {
+   "fixtures": 1,
+   "avg_markets": 221.0
+  },
+  "fonbet": {
+   "fixtures": 1,
+   "avg_markets": 38.0
+  },
+  "fortunejack": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "fourwinds": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "freshbet": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "gamdom": {
+   "fixtures": 1,
+   "avg_markets": 539.0
+  },
+  "gemini": {
+   "fixtures": 1,
+   "avg_markets": 211.0
+  },
+  "goldbet.it": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "goldenbet": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "goldenpalacesports.be": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "greatwin": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "grosvenor": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "hardrockbet": {
+   "fixtures": 1,
+   "avg_markets": 1464.0
+  },
+  "hth": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "iddaa": {
+   "fixtures": 1,
+   "avg_markets": 22.0
+  },
+  "inkabet": {
+   "fixtures": 1,
+   "avg_markets": 438.0
+  },
+  "ivibet": {
+   "fixtures": 1,
+   "avg_markets": 154.0
+  },
+  "jackbit": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "jacks.nl": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "jazzsports": {
+   "fixtures": 1,
+   "avg_markets": 353.0
+  },
+  "justbet": {
+   "fixtures": 1,
+   "avg_markets": 101.0
+  },
+  "kaiyun": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "kalshi": {
+   "fixtures": 1,
+   "avg_markets": 346.0
+  },
+  "kto": {
+   "fixtures": 1,
+   "avg_markets": 304.0
+  },
+  "kto.bet.br": {
+   "fixtures": 1,
+   "avg_markets": 304.0
+  },
+  "ladbrokes": {
+   "fixtures": 1,
+   "avg_markets": 228.0
+  },
+  "leovegas": {
+   "fixtures": 1,
+   "avg_markets": 313.0
+  },
+  "leovegas.dk": {
+   "fixtures": 1,
+   "avg_markets": 114.0
+  },
+  "leovegas.es": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "leovegas.it": {
+   "fixtures": 1,
+   "avg_markets": 161.0
+  },
+  "leyusports": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "librabet": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "limitless-ex": {
+   "fixtures": 1,
+   "avg_markets": 1.0
+  },
+  "livescorebet": {
+   "fixtures": 1,
+   "avg_markets": 242.0
+  },
+  "lottoland": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "lottomatica.it": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "lowvig.ag": {
+   "fixtures": 1,
+   "avg_markets": 11.0
+  },
+  "marathonbet": {
+   "fixtures": 1,
+   "avg_markets": 51.0
+  },
+  "matchbook": {
+   "fixtures": 1,
+   "avg_markets": 34.0
+  },
+  "maxbet.rs": {
+   "fixtures": 1,
+   "avg_markets": 5.0
+  },
+  "megadice": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "megapari": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "melbet": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "merkurbets": {
+   "fixtures": 1,
+   "avg_markets": 48.0
+  },
+  "merkurxtip.cz": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "midnite": {
+   "fixtures": 1,
+   "avg_markets": 58.0
+  },
+  "mozzartbet": {
+   "fixtures": 1,
+   "avg_markets": 8.0
+  },
+  "mrbit.ro": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "mrgreen": {
+   "fixtures": 1,
+   "avg_markets": 226.0
+  },
+  "mrgreen.dk": {
+   "fixtures": 1,
+   "avg_markets": 220.0
+  },
+  "mystake": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "napoleonsports.be": {
+   "fixtures": 1,
+   "avg_markets": 276.0
+  },
+  "neds.com.au": {
+   "fixtures": 1,
+   "avg_markets": 65.0
+  },
+  "netbet": {
+   "fixtures": 1,
+   "avg_markets": 69.0
+  },
+  "netbet.co.uk": {
+   "fixtures": 1,
+   "avg_markets": 69.0
+  },
+  "netbet.it": {
+   "fixtures": 1,
+   "avg_markets": 65.0
+  },
+  "nextbet": {
+   "fixtures": 1,
+   "avg_markets": 18.0
+  },
+  "ninecasino": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "nordicbet": {
+   "fixtures": 1,
+   "avg_markets": 438.0
+  },
+  "novig.us": {
+   "fixtures": 1,
+   "avg_markets": 270.0
+  },
+  "oddset": {
+   "fixtures": 1,
+   "avg_markets": 179.0
+  },
+  "ole777": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "orbitx": {
+   "fixtures": 1,
+   "avg_markets": 145.0
+  },
+  "overtime.io": {
+   "fixtures": 1,
+   "avg_markets": 256.0
+  },
+  "paddypower": {
+   "fixtures": 1,
+   "avg_markets": 581.0
+  },
+  "paf": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "paf.es": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "pamestoixima.gr": {
+   "fixtures": 1,
+   "avg_markets": 2.0
+  },
+  "paradisewager": {
+   "fixtures": 1,
+   "avg_markets": 21.0
+  },
+  "partycasino": {
+   "fixtures": 1,
+   "avg_markets": 293.0
+  },
+  "partypoker": {
+   "fixtures": 1,
+   "avg_markets": 321.0
+  },
+  "pin88": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "pinnacle": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "pinnacle+30": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "piwi247-ex": {
+   "fixtures": 1,
+   "avg_markets": 145.0
+  },
+  "piwi247-spb": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "pixbet": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "planetwin365.it": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "playnow": {
+   "fixtures": 1,
+   "avg_markets": 137.0
+  },
+  "pmu": {
+   "fixtures": 1,
+   "avg_markets": 268.0
+  },
+  "pointsbet.com.au": {
+   "fixtures": 1,
+   "avg_markets": 196.0
+  },
+  "pokerstars": {
+   "fixtures": 1,
+   "avg_markets": 514.0
+  },
+  "pokerstars.it": {
+   "fixtures": 1,
+   "avg_markets": 31.0
+  },
+  "pokerstars.ro": {
+   "fixtures": 1,
+   "avg_markets": 520.0
+  },
+  "polymarket": {
+   "fixtures": 1,
+   "avg_markets": 319.0
+  },
+  "polymarket.us": {
+   "fixtures": 1,
+   "avg_markets": 1.0
+  },
+  "powbet": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "prizepicks": {
+   "fixtures": 1,
+   "avg_markets": 153.0
+  },
+  "prolineplus": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "prophetx": {
+   "fixtures": 1,
+   "avg_markets": 458.0
+  },
+  "ps3838": {
+   "fixtures": 1,
+   "avg_markets": 118.0
+  },
+  "quickwin": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "quigioco.it": {
+   "fixtures": 1,
+   "avg_markets": 39.0
+  },
+  "rabona": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "rainbet": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "rajbets": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "razed": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "robinhood": {
+   "fixtures": 1,
+   "avg_markets": 95.0
+  },
+  "rollbit": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "rolletto": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "roobet": {
+   "fixtures": 1,
+   "avg_markets": 115.0
+  },
+  "rushbet.co": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "sabasports": {
+   "fixtures": 1,
+   "avg_markets": 6.0
+  },
+  "sbobet": {
+   "fixtures": 1,
+   "avg_markets": 31.0
+  },
+  "scooore.be": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "sharp.ag": {
+   "fixtures": 1,
+   "avg_markets": 2.0
+  },
+  "sharpxch": {
+   "fixtures": 1,
+   "avg_markets": 145.0
+  },
+  "sisal.it": {
+   "fixtures": 1,
+   "avg_markets": 31.0
+  },
+  "snai.it": {
+   "fixtures": 1,
+   "avg_markets": 31.0
+  },
+  "soccerbet.rs": {
+   "fixtures": 1,
+   "avg_markets": 2.0
+  },
+  "solabet": {
+   "fixtures": 1,
+   "avg_markets": 7.0
+  },
+  "spelet.lv": {
+   "fixtures": 1,
+   "avg_markets": 574.0
+  },
+  "sportaza": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "sportingbet": {
+   "fixtures": 1,
+   "avg_markets": 321.0
+  },
+  "sports411.ag": {
+   "fixtures": 1,
+   "avg_markets": 101.0
+  },
+  "sportsbetting.ag": {
+   "fixtures": 1,
+   "avg_markets": 11.0
+  },
+  "sportsinteraction": {
+   "fixtures": 1,
+   "avg_markets": 297.0
+  },
+  "sportuna": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "sportwetten.de": {
+   "fixtures": 1,
+   "avg_markets": 26.0
+  },
+  "stake": {
+   "fixtures": 1,
+   "avg_markets": 54.0
+  },
+  "starcasino.be": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "stoiximan": {
+   "fixtures": 1,
+   "avg_markets": 382.0
+  },
+  "sugarhouse": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "superbet": {
+   "fixtures": 1,
+   "avg_markets": 259.0
+  },
+  "superbet.pl": {
+   "fixtures": 1,
+   "avg_markets": 221.0
+  },
+  "superbet.ro": {
+   "fixtures": 1,
+   "avg_markets": 259.0
+  },
+  "superbet.rs": {
+   "fixtures": 1,
+   "avg_markets": 239.0
+  },
+  "svenskaspel": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "sx.bet": {
+   "fixtures": 1,
+   "avg_markets": 88.0
+  },
+  "tabtouch": {
+   "fixtures": 1,
+   "avg_markets": 226.0
+  },
+  "thescore": {
+   "fixtures": 1,
+   "avg_markets": 331.0
+  },
+  "thunderpick.io": {
+   "fixtures": 1,
+   "avg_markets": 188.0
+  },
+  "tigergaming": {
+   "fixtures": 1,
+   "avg_markets": 11.0
+  },
+  "tipico": {
+   "fixtures": 1,
+   "avg_markets": 46.0
+  },
+  "tiptorro": {
+   "fixtures": 1,
+   "avg_markets": 24.0
+  },
+  "tonybet": {
+   "fixtures": 1,
+   "avg_markets": 154.0
+  },
+  "topodds": {
+   "fixtures": 1,
+   "avg_markets": 4.0
+  },
+  "toto.nl": {
+   "fixtures": 1,
+   "avg_markets": 219.0
+  },
+  "unibet": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "unibet.be": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "unibet.com.au": {
+   "fixtures": 1,
+   "avg_markets": 310.0
+  },
+  "unibet.dk": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "unibet.fr": {
+   "fixtures": 1,
+   "avg_markets": 184.0
+  },
+  "unibet.ie": {
+   "fixtures": 1,
+   "avg_markets": 312.0
+  },
+  "unibet.nl": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "unibet.se": {
+   "fixtures": 1,
+   "avg_markets": 311.0
+  },
+  "vave": {
+   "fixtures": 1,
+   "avg_markets": 154.0
+  },
+  "velobet": {
+   "fixtures": 1,
+   "avg_markets": 19.0
+  },
+  "vertex": {
+   "fixtures": 1,
+   "avg_markets": 3.0
+  },
+  "virginbet": {
+   "fixtures": 1,
+   "avg_markets": 242.0
+  },
+  "wazamba": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "williamhill": {
+   "fixtures": 1,
+   "avg_markets": 229.0
+  },
+  "williamhill-nj": {
+   "fixtures": 1,
+   "avg_markets": 205.0
+  },
+  "winamax.de": {
+   "fixtures": 1,
+   "avg_markets": 107.0
+  },
+  "winamax.es": {
+   "fixtures": 1,
+   "avg_markets": 387.0
+  },
+  "winamax.fr": {
+   "fixtures": 1,
+   "avg_markets": 419.0
+  },
+  "winbet.bg": {
+   "fixtures": 1,
+   "avg_markets": 220.0
+  },
+  "winbet.ro": {
+   "fixtures": 1,
+   "avg_markets": 223.0
+  },
+  "winpot.mx": {
+   "fixtures": 1,
+   "avg_markets": 197.0
+  },
+  "zebet.fr": {
+   "fixtures": 1,
+   "avg_markets": 184.0
+  }
+ },
+ "nfl_bet365_tournament": {
+  "bet365": {
+   "fixtures": 27,
+   "avg_markets": 272.6
+  }
+ },
+ "nba_pinnacle": {
+  "fixtures": 5,
+  "fixture_keys": [
+   "bookmakerOdds",
+   "fixtureId",
+   "hasOdds",
+   "participant1Id",
+   "participant2Id",
+   "seasonId",
+   "sportId",
+   "startTime",
+   "statusId",
+   "tournamentId",
+   "trueEndTime",
+   "trueStartTime",
+   "updatedAt"
+  ],
+  "start_min": "2026-11-07T22:00:00.000Z",
+  "start_max": "2026-11-08T02:00:00.000Z",
+  "bookmakers": [
+   [
+    "pinnacle",
+    5
+   ]
+  ],
+  "market_ids": [
+   [
+    "111",
+    5
+   ],
+   [
+    "111462",
+    4
+   ],
+   [
+    "113122",
+    4
+   ],
+   [
+    "11252",
+    4
+   ],
+   [
+    "113128",
+    4
+   ],
+   [
+    "113126",
+    4
+   ],
+   [
+    "11250",
+    4
+   ],
+   [
+    "11254",
+    4
+   ],
+   [
+    "113124",
+    4
+   ],
+   [
+    "11248",
+    4
+   ],
+   [
+    "111454",
+    3
+   ],
+   [
+    "111460",
+    3
+   ],
+   [
+    "11476",
+    3
+   ],
+   [
+    "111648",
+    3
+   ],
+   [
+    "11484",
+    3
+   ],
+   [
+    "11486",
+    3
+   ],
+   [
+    "11478",
+    3
+   ],
+   [
+    "11260",
+    3
+   ],
+   [
+    "11482",
+    3
+   ],
+   [
+    "11480",
+    3
+   ],
+   [
+    "111456",
+    3
+   ],
+   [
+    "111464",
+    3
+   ],
+   [
+    "11474",
+    3
+   ],
+   [
+    "113132",
+    3
+   ],
+   [
+    "111458",
+    3
+   ],
+   [
+    "11258",
+    3
+   ],
+   [
+    "111650",
+    3
+   ],
+   [
+    "113120",
+    3
+   ],
+   [
+    "11262",
+    2
+   ],
+   [
+    "11264",
+    2
+   ],
+   [
+    "11490",
+    2
+   ],
+   [
+    "113136",
+    2
+   ],
+   [
+    "11492",
+    2
+   ],
+   [
+    "113134",
+    2
+   ],
+   [
+    "11494",
+    2
+   ],
+   [
+    "11488",
+    2
+   ],
+   [
+    "11426",
+    2
+   ],
+   [
+    "11434",
+    2
+   ],
+   [
+    "111470",
+    2
+   ],
+   [
+    "111630",
+    2
+   ],
+   [
+    "11422",
+    2
+   ],
+   [
+    "111632",
+    2
+   ],
+   [
+    "11428",
+    2
+   ],
+   [
+    "11420",
+    2
+   ],
+   [
+    "11440",
+    2
+   ],
+   [
+    "11438",
+    2
+   ],
+   [
+    "111466",
+    2
+   ],
+   [
+    "113130",
+    2
+   ],
+   [
+    "11432",
+    2
+   ],
+   [
+    "11424",
+    2
+   ],
+   [
+    "111636",
+    2
+   ],
+   [
+    "11430",
+    2
+   ],
+   [
+    "111634",
+    2
+   ],
+   [
+    "111468",
+    2
+   ],
+   [
+    "11256",
+    2
+   ],
+   [
+    "11436",
+    2
+   ],
+   [
+    "111644",
+    2
+   ],
+   [
+    "111642",
+    2
+   ],
+   [
+    "111452",
+    2
+   ],
+   [
+    "11472",
+    2
+   ]
+  ]
+ },
+ "football_unibet_tournament": {
+  "unibet": {
+   "fixtures": 68,
+   "avg_markets": 80.3
+  }
+ },
+ "football_paddypower_tournament": {
+  "paddypower": {
+   "fixtures": 58,
+   "avg_markets": 131.9
+  }
+ },
+ "football_per_match_depth_in_snapshot": {
+  "pinnacle": 13.8,
+  "betfair-ex": 11.2,
+  "betmgm.co.uk": 12.4,
+  "betuk": 12.4,
+  "coral": 15.1,
+  "grosvenor": 12.4,
+  "ladbrokes": 15.1,
+  "livescorebet": 12.4,
+  "matchbook": 7.5,
+  "paddypower": 11.9,
+  "sportingbet": 15.1,
+  "unibet": 12.5,
+  "virginbet": 12.4,
+  "bet365": 7.0,
+  "midnite": 1.0,
+  "betfred": 1.2,
+  "888sport": 1.0
+ },
+ "account_after": {
+  "plan": "free",
+  "request_limit": 250,
+  "request_count": 71
+ },
+ "oddspapi_calls": [
+  {
+   "endpoint": "account",
+   "params": {},
+   "status": 200,
+   "seconds": 0.28,
+   "billable": false,
+   "note": ""
+  },
+  {
+   "endpoint": "sports",
+   "params": {},
+   "status": 200,
+   "seconds": 0.32,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "tournaments",
+   "params": {
+    "sportId": 11
+   },
+   "status": 200,
+   "seconds": 0.3,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "tournaments",
+   "params": {
+    "sportId": 13
+   },
+   "status": 200,
+   "seconds": 0.17,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "tournaments",
+   "params": {
+    "sportId": 14
+   },
+   "status": 200,
+   "seconds": 0.19,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "markets",
+   "params": {},
+   "status": 200,
+   "seconds": 1.01,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.5,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1400003171474296"
+   },
+   "status": 200,
+   "seconds": 1.41,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "bet365",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.88,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "132",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.17,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,19",
+    "bookmaker": "unibet",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.88,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "17,18,19",
+    "bookmaker": "paddypower",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.73,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "account",
+   "params": {},
+   "status": 200,
+   "seconds": 0.19,
+   "billable": false,
+   "note": ""
+  }
+ ],
+ "api_sports": {
+  "nfl_status": {
+   "status": 200,
+   "errors": [],
+   "results": 0,
+   "sample": null,
+   "requests": {
+    "current": 0,
+    "limit_day": 100
+   },
+   "plan": "Free"
+  },
+  "nfl_games_today": {
+   "status": 200,
+   "errors": [],
+   "results": 100,
+   "sample": [
+    {
+     "game": {
+      "id": 24851,
+      "stage": "FBS (Division I-A)",
+      "week": "10",
+      "date": {
+       "timezone": "UTC",
+       "date": "2026-11-07",
+       "time": "00:00",
+       "timestamp": 1794009600
+      },
+      "venue": {
+       "name": null,
+       "city": null
+      },
+      "status": {
+       "short": "FT",
+       "long": "Finished",
+       "timer": null
+      }
+     },
+     "league": {
+      "id": 2,
+      "name": "NCAA",
+      "season": "2026",
+      "logo": "https://media.api-sports.io/american-football/leagues/2.png",
+      "country": {
+       "name": "USA",
+       "code": "US",
+       "flag": "https://media.api-sports.io/flags/us.svg"
+      }
+     },
+     "teams": {
+      "home": {
+       "id": 190,
+       "name": "SMU",
+       "logo": "https://media.api-sports.io/american-football/teams/190.png"
+      },
+      "away": {
+       "id": 97,
+       "name": "Virginia Tech",
+       "logo": "https://media.api-sports.io/american-football/teams/97.png"
+      }
+     },
+     "scores": {
+      "home": {
+       "quarter_1": 10,
+       "quarter_2": 13,
+       "quarter_3": 14,
+       "quarter_4": 14,
+       "overtime": null,
+       "total": 51
+      },
+      "away": {
+       "quarter_1": 0,
+       "quarter_2": 14,
+       "quarter_3": 0,
+       "quarter_4": 14,
+       "overtime": null,
+       "total": 28
+      }
+     }
+    }
+   ]
+  },
+  "nba_games_today": {
+   "status": 200,
+   "errors": [],
+   "results": 10,
+   "sample": [
+    {
+     "id": 17064,
+     "league": "standard",
+     "season": 2026,
+     "date": {
+      "start": "2026-11-07T00:00:00.000Z",
+      "end": null,
+      "duration": null
+     },
+     "stage": 2,
+     "status": {
+      "clock": null,
+      "halftime": false,
+      "short": 3,
+      "long": "Finished"
+     },
+     "periods": {
+      "current": 4,
+      "total": 4,
+      "endOfPeriod": false
+     },
+     "arena": {
+      "name": "State Farm Arena",
+      "city": "Atlanta",
+      "state": "GA",
+      "country": null
+     },
+     "teams": {
+      "visitors": {
+       "id": 41,
+       "name": "Washington Wizards",
+       "nickname": "Wizards",
+       "code": "WAS",
+       "logo": "https://upload.wikimedia.org/wikipedia/en/0/02/Washington_Wizards_logo.svg"
+      },
+      "home": {
+       "id": 1,
+       "name": "Atlanta Hawks",
+       "nickname": "Hawks",
+       "code": "ATL",
+       "logo": "https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png"
+      }
+     },
+     "scores": {
+      "visitors": {
+       "win": 0,
+       "loss": 0,
+       "series": {
+        "win": 0,
+        "loss": 0
+       },
+       "linescore": [
+        "32",
+        "27",
+        "35",
+        "38"
+       ],
+       "points": 132
+      },
+      "home": {
+       "win": 0,
+       "loss": 0,
+       "series": {
+        "win": 0,
+        "loss": 0
+       },
+       "linescore": [
+        "28",
+        "38",
+        "39",
+        "34"
+       ],
+       "points": 139
+      }
+     },
+     "officials": [],
+     "timesTied": null,
+     "leadChanges": null,
+     "nugget": null
+    }
+   ]
+  }
+ }
+}

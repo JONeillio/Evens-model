@@ -1,0 +1,1072 @@
+[
+ {
+  "tournamentId": 109,
+  "tournamentSlug": "mlb",
+  "tournamentName": "MLB",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 492,
+  "tournamentSlug": "superpesis",
+  "tournamentName": "Superpesis",
+  "categorySlug": "finland",
+  "categoryName": "Finland",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 546,
+  "tournamentSlug": "olympic-games",
+  "tournamentName": "Olympic Games",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 640,
+  "tournamentSlug": "world-baseball-classic",
+  "tournamentName": "World Baseball Classic",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 657,
+  "tournamentSlug": "1st-bundesliga",
+  "tournamentName": "1st Bundesliga",
+  "categorySlug": "germany",
+  "categoryName": "Germany",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 658,
+  "tournamentSlug": "1st-bundesliga-south",
+  "tournamentName": "1st Bundesliga South",
+  "categorySlug": "germany",
+  "categoryName": "Germany",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 803,
+  "tournamentSlug": "mlb-all-star-game",
+  "tournamentName": "MLB All Star Game",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 1030,
+  "tournamentSlug": "mexican-league",
+  "tournamentName": "Mexican League",
+  "categorySlug": "mexico",
+  "categoryName": "Mexico",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 1036,
+  "tournamentSlug": "npb",
+  "tournamentName": "NPB",
+  "categorySlug": "japan",
+  "categoryName": "Japan",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 1046,
+  "tournamentSlug": "italian-baseball-league",
+  "tournamentName": "Serie A",
+  "categorySlug": "italy",
+  "categoryName": "Italy",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 2456,
+  "tournamentSlug": "mlb-spring-training",
+  "tournamentName": "MLB Spring Training",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 2541,
+  "tournamentSlug": "kbo-league",
+  "tournamentName": "KBO League",
+  "categorySlug": "republic-of-korea",
+  "categoryName": "Republic of Korea",
+  "futureFixtures": 3,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 14602,
+  "tournamentSlug": "abl",
+  "tournamentName": "ABL",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 78,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 24087,
+  "tournamentSlug": "milb",
+  "tournamentName": "MiLB",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 24089,
+  "tournamentSlug": "niu-24089",
+  "tournamentName": "NIU",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 24091,
+  "tournamentSlug": "niu",
+  "tournamentName": "NIU",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 24954,
+  "tournamentSlug": "niu",
+  "tournamentName": "NIU",
+  "categorySlug": "dominican-republic",
+  "categoryName": "Dominican Republic",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25933,
+  "tournamentSlug": "appalachian-league",
+  "tournamentName": "Appalachian League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25935,
+  "tournamentSlug": "arizona-complex-league",
+  "tournamentName": "Arizona Complex League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25937,
+  "tournamentSlug": "california-league",
+  "tournamentName": "California League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25939,
+  "tournamentSlug": "carolina-league",
+  "tournamentName": "Carolina League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25941,
+  "tournamentSlug": "eastern-league",
+  "tournamentName": "Eastern League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25943,
+  "tournamentSlug": "florida-state-league",
+  "tournamentName": "Florida State League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25945,
+  "tournamentSlug": "florida-complex-league",
+  "tournamentName": "Florida Complex League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25947,
+  "tournamentSlug": "international-league",
+  "tournamentName": "International League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25949,
+  "tournamentSlug": "midwest-league",
+  "tournamentName": "Midwest League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25951,
+  "tournamentSlug": "new-york-penn-league",
+  "tournamentName": "New York-Penn League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25953,
+  "tournamentSlug": "northwest-league",
+  "tournamentName": "Northwest League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25955,
+  "tournamentSlug": "pacific-coast-league",
+  "tournamentName": "Pacific Coast League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25957,
+  "tournamentSlug": "pioneer-league",
+  "tournamentName": "Pioneer League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25961,
+  "tournamentSlug": "southern-league",
+  "tournamentName": "Southern League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 25963,
+  "tournamentSlug": "texas-league",
+  "tournamentName": "Texas League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 26588,
+  "tournamentSlug": "international-friendly-games",
+  "tournamentName": "International Friendly Games",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 26770,
+  "tournamentSlug": "arizona-fall-league",
+  "tournamentName": "Arizona Fall League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 9,
+  "upcomingFixtures": 3,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27074,
+  "tournamentSlug": "u23-world-cup",
+  "tournamentName": "U23 World Cup",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 30,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27076,
+  "tournamentSlug": "club-federations-cup",
+  "tournamentName": "Club Federations Cup",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27078,
+  "tournamentSlug": "u23-european-championship",
+  "tournamentName": "U23 European Championship",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27080,
+  "tournamentSlug": "european-championship",
+  "tournamentName": "European Championship",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27082,
+  "tournamentSlug": "european-champions-cup",
+  "tournamentName": "European Champions Cup",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27114,
+  "tournamentSlug": "baseball-league-austria",
+  "tournamentName": "Baseball League Austria",
+  "categorySlug": "austria",
+  "categoryName": "Austria",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27118,
+  "tournamentSlug": "ceb-euro-baseball",
+  "tournamentName": "CEB Euro Baseball",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27126,
+  "tournamentSlug": "wbsc-super-six-baseball",
+  "tournamentName": "WBSC Super Six Baseball",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27130,
+  "tournamentSlug": "euro-baseball-playoff-series",
+  "tournamentName": "Euro Baseball Playoff Series",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28416,
+  "tournamentSlug": "ncaa-regular-season",
+  "tournamentName": "NCAA, Regular Season",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28418,
+  "tournamentSlug": "niu-28418",
+  "tournamentName": "NIU",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28733,
+  "tournamentSlug": "can-am-league",
+  "tournamentName": "Can-Am League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28737,
+  "tournamentSlug": "american-association",
+  "tournamentName": "American Association",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28739,
+  "tournamentSlug": "frontier-league",
+  "tournamentName": "Frontier League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28741,
+  "tournamentSlug": "atlantic-league",
+  "tournamentName": "Atlantic League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28905,
+  "tournamentSlug": "northwoods-league",
+  "tournamentName": "Northwoods League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 28907,
+  "tournamentSlug": "dominican-summer-league",
+  "tournamentName": "Dominican Summer League",
+  "categorySlug": "dominican-republic",
+  "categoryName": "Dominican Republic",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29013,
+  "tournamentSlug": "ncaa-division-i-national-championship",
+  "tournamentName": "NCAA Division I, National Championship",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29648,
+  "tournamentSlug": "pan-american-games",
+  "tournamentName": "Pan American Games",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29702,
+  "tournamentSlug": "virtual-baseball-in-play",
+  "tournamentName": "Virtual Baseball In-Play",
+  "categorySlug": "virtual-baseball",
+  "categoryName": "Virtual Baseball",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 30392,
+  "tournamentSlug": "triple-a-national-championship",
+  "tournamentName": "Triple A, National Championship",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 30618,
+  "tournamentSlug": "lidom",
+  "tournamentName": "LIDOM",
+  "categorySlug": "dominican-republic",
+  "categoryName": "Dominican Republic",
+  "futureFixtures": 105,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 30985,
+  "tournamentSlug": "wbsc-premier-12",
+  "tournamentName": "WBSC Premier 12",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 30997,
+  "tournamentSlug": "lvbp",
+  "tournamentName": "LVBP",
+  "categorySlug": "venezuela",
+  "categoryName": "Venezuela",
+  "futureFixtures": 144,
+  "upcomingFixtures": 4,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 31471,
+  "tournamentSlug": "sea-games",
+  "tournamentName": "SEA Games",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 31705,
+  "tournamentSlug": "serie-del-caribe",
+  "tournamentName": "Serie del Caribe",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 31853,
+  "tournamentSlug": "triple-a-all-star-game",
+  "tournamentName": "Triple A All Star Game",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 32233,
+  "tournamentSlug": "cpbl",
+  "tournamentName": "CPBL",
+  "categorySlug": "chinese-taipei",
+  "categoryName": "Chinese Taipei",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 33852,
+  "tournamentSlug": "npb-preseason",
+  "tournamentName": "NPB Preseason",
+  "categorySlug": "japan",
+  "categoryName": "Japan",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34238,
+  "tournamentSlug": "triple-a-international-league",
+  "tournamentName": "Triple-A International League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 1
+ },
+ {
+  "tournamentId": 34240,
+  "tournamentSlug": "triple-a-pacific-coast-league",
+  "tournamentName": "Triple-A Pacific Coast League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34242,
+  "tournamentSlug": "double-a-texas-league",
+  "tournamentName": "Double-A Texas League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34244,
+  "tournamentSlug": "double-a-eastern-league",
+  "tournamentName": "Double-A Eastern League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34246,
+  "tournamentSlug": "double-a-southern-league",
+  "tournamentName": "Double-A Southern League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34248,
+  "tournamentSlug": "high-a-midwest-league",
+  "tournamentName": "High-A Midwest League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34250,
+  "tournamentSlug": "high-a-south-atlantic-league",
+  "tournamentName": "High-A South Atlantic League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34252,
+  "tournamentSlug": "high-a-northwest-league",
+  "tournamentName": "High-A Northwest League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34254,
+  "tournamentSlug": "single-a-california-league",
+  "tournamentName": "Single-A California League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34256,
+  "tournamentSlug": "single-a-florida-state-league",
+  "tournamentName": "Single-A Florida State League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34258,
+  "tournamentSlug": "single-a-carolina-league",
+  "tournamentName": "Single-A Carolina League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34386,
+  "tournamentSlug": "olympic-games-americas-qualifier",
+  "tournamentName": "Olympic Games, Americas Qualifier",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34548,
+  "tournamentSlug": "olympic-games-final-qualifiernnisvolleyb",
+  "tournamentName": "Olympic Games, Final Qualifier",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 35356,
+  "tournamentSlug": "liga-mexicana-del-pacifico",
+  "tournamentName": "Liga Mexicana del Pacifico",
+  "categorySlug": "mexico",
+  "categoryName": "Mexico",
+  "futureFixtures": 241,
+  "upcomingFixtures": 5,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 36155,
+  "tournamentSlug": "liga-nacional",
+  "tournamentName": "Liga Nacional",
+  "categorySlug": "el-salvador",
+  "categoryName": "El Salvador",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 36429,
+  "tournamentSlug": "cpbl-preseason",
+  "tournamentName": "CPBL, Preseason",
+  "categorySlug": "chinese-taipei",
+  "categoryName": "Chinese Taipei",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 37221,
+  "tournamentSlug": "ncaa",
+  "tournamentName": "NCAA",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 37343,
+  "tournamentSlug": "mlb-draft",
+  "tournamentName": "MLB Draft",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 37529,
+  "tournamentSlug": "npb-all-star",
+  "tournamentName": "NPB All Star Game",
+  "categorySlug": "japan",
+  "categoryName": "Japan",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 38789,
+  "tournamentSlug": "u18-youth-championship",
+  "tournamentName": "U18 Youth Championship",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 38849,
+  "tournamentSlug": "u16-youth-championship",
+  "tournamentName": "U16 Youth Championship",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 39731,
+  "tournamentSlug": "australian-senior-championship",
+  "tournamentName": "Australian Senior Championship",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 39733,
+  "tournamentSlug": "australian-intermediate-championship",
+  "tournamentName": "Australian Intermediate Championship",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 40755,
+  "tournamentSlug": "asia-professional-championship",
+  "tournamentName": "Asia Professional Championship",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 6,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 41486,
+  "tournamentSlug": "lbprc",
+  "tournamentName": "La Pro",
+  "categorySlug": "puerto-rico",
+  "categoryName": "Puerto Rico",
+  "futureFixtures": 113,
+  "upcomingFixtures": 3,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 42205,
+  "tournamentSlug": "kbo-preseason",
+  "tournamentName": "KBO Preseason",
+  "categorySlug": "republic-of-korea",
+  "categoryName": "Republic of Korea",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 42687,
+  "tournamentSlug": "little-league-girls-division",
+  "tournamentName": "Little League Girls Division",
+  "categorySlug": "australia",
+  "categoryName": "Australia",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 44905,
+  "tournamentSlug": "lbpn",
+  "tournamentName": "LBPN",
+  "categorySlug": "nicaragua",
+  "categoryName": "Nicaragua",
+  "futureFixtures": 90,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 45851,
+  "tournamentSlug": "world-baseball-classic-qualification",
+  "tournamentName": "World Baseball Classic, Qualification",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 46079,
+  "tournamentSlug": "campeonato-gpo",
+  "tournamentName": "Campeonato GPO",
+  "categorySlug": "nicaragua",
+  "categoryName": "Nicaragua",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 46291,
+  "tournamentSlug": "serie-nacional",
+  "tournamentName": "Serie Nacional",
+  "categorySlug": "cuba",
+  "categoryName": "Cuba",
+  "futureFixtures": 136,
+  "upcomingFixtures": 8,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 46293,
+  "tournamentSlug": "liga-elite",
+  "tournamentName": "Liga Elite",
+  "categorySlug": "cuba",
+  "categoryName": "Cuba",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 46921,
+  "tournamentSlug": "lmbp",
+  "tournamentName": "LMBP",
+  "categorySlug": "venezuela",
+  "categoryName": "Venezuela",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 47460,
+  "tournamentSlug": "lmb-all-star-game",
+  "tournamentName": "LMB All Star Game",
+  "categorySlug": "mexico",
+  "categoryName": "Mexico",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 47462,
+  "tournamentSlug": "prague-baseball-week",
+  "tournamentName": "Prague Baseball Week",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 47634,
+  "tournamentSlug": "kbo-all-star-game",
+  "tournamentName": "KBO All Star Game",
+  "categorySlug": "republic-of-korea",
+  "categoryName": "Republic of Korea",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 47640,
+  "tournamentSlug": "futures-all-star-game",
+  "tournamentName": "Futures All Star Game",
+  "categorySlug": "republic-of-korea",
+  "categoryName": "Republic of Korea",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 48817,
+  "tournamentSlug": "asian-baseball-championship",
+  "tournamentName": "Asian Baseball Championship",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 50182,
+  "tournamentSlug": "niu-50182",
+  "tournamentName": "NIU",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 50854,
+  "tournamentSlug": "world-cup-women",
+  "tournamentName": "World Cup, Women",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 50962,
+  "tournamentSlug": "virtual-baseball-in-play-usa",
+  "tournamentName": "Virtual Baseball In-Play USA",
+  "categorySlug": "virtual-baseball",
+  "categoryName": "Virtual Baseball",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 53436,
+  "tournamentSlug": "asian-games",
+  "tournamentName": "Asian Games",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 53916,
+  "tournamentSlug": "virtual-baseball-strike-zone",
+  "tournamentName": "Virtual Baseball Strike Zone",
+  "categorySlug": "virtual-baseball",
+  "categoryName": "Virtual Baseball",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 54022,
+  "tournamentSlug": "u23-baseball-world-cup",
+  "tournamentName": "U23 Baseball World Cup",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ }
+]

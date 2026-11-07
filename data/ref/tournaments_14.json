@@ -1,0 +1,352 @@
+[
+ {
+  "tournamentId": 31,
+  "tournamentSlug": "nfl",
+  "tournamentName": "NFL",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 150,
+  "upcomingFixtures": 1,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 233,
+  "tournamentSlug": "nfl-preseason",
+  "tournamentName": "NFL Preseason",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 458,
+  "tournamentSlug": "nfl-europe",
+  "tournamentName": "NFL Europe",
+  "categorySlug": "europe",
+  "categoryName": "Europe",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 790,
+  "tournamentSlug": "cfl",
+  "tournamentName": "CFL",
+  "categorySlug": "canada",
+  "categoryName": "Canada",
+  "futureFixtures": 2,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 850,
+  "tournamentSlug": "ncaa",
+  "tournamentName": "NCAA",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 861,
+  "tournamentSlug": "niu-861",
+  "tournamentName": "NIU",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 1010,
+  "tournamentSlug": "nfl-pro-bowl",
+  "tournamentName": "NFL Pro Bowl",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 1728,
+  "tournamentSlug": "efaf-european-chship",
+  "tournamentName": "European Championship",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 14870,
+  "tournamentSlug": "east-west-shrine-game",
+  "tournamentName": "East-West shrine game",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 14872,
+  "tournamentSlug": "nflpa-collegiate-bowl",
+  "tournamentName": "NFLPA Collegiate Bowl",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 15067,
+  "tournamentSlug": "arena-football-league",
+  "tournamentName": "Arena Football League",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27621,
+  "tournamentSlug": "alliance-of-american-football",
+  "tournamentName": "Alliance of American Football",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27625,
+  "tournamentSlug": "ncaa-division-i-fbs-post-season",
+  "tournamentName": "NCAA Division I, FBS Post Season",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27627,
+  "tournamentSlug": "ncaa-division-i-fcs-national-championship",
+  "tournamentName": "NCAA Division I, FCS National Championship",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27629,
+  "tournamentSlug": "ncaa-division-ii-national-championship",
+  "tournamentName": "NCAA Division II National Championship",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27631,
+  "tournamentSlug": "ncaa-division-iii-national-championship",
+  "tournamentName": "NCAA Division III National Championship",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27651,
+  "tournamentSlug": "test",
+  "tournamentName": "Test",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27653,
+  "tournamentSlug": "ncaa-regular-season",
+  "tournamentName": "NCAA, Regular Season",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 819,
+  "upcomingFixtures": 3,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 27745,
+  "tournamentSlug": "niu-27745",
+  "tournamentName": "n.i.u",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29222,
+  "tournamentSlug": "gfl-german-football-league",
+  "tournamentName": "GFL German Football League",
+  "categorySlug": "germany",
+  "categoryName": "Germany",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29676,
+  "tournamentSlug": "regionalliga-southwest",
+  "tournamentName": "Regionalliga Southwest",
+  "categorySlug": "germany",
+  "categoryName": "Germany",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 29678,
+  "tournamentSlug": "german-football-league-2",
+  "tournamentName": "German Football League 2",
+  "categorySlug": "germany",
+  "categoryName": "Germany",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 31371,
+  "tournamentSlug": "xfl",
+  "tournamentName": "XFL",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 34498,
+  "tournamentSlug": "european-league-of-football",
+  "tournamentName": "European League of Football",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 36011,
+  "tournamentSlug": "senior-bowl",
+  "tournamentName": "Senior Bowl",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 36373,
+  "tournamentSlug": "usfl",
+  "tournamentName": "USFL",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 38947,
+  "tournamentSlug": "nfl-draft",
+  "tournamentName": "NFL Draft",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 38951,
+  "tournamentSlug": "niu",
+  "tournamentName": "N.I.U.",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 39281,
+  "tournamentSlug": "hbcu-legacy-bowl",
+  "tournamentName": "HBCU Legacy Bowl",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 42113,
+  "tournamentSlug": "cfl-preseason",
+  "tournamentName": "CFL, Preseason",
+  "categorySlug": "canada",
+  "categoryName": "Canada",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 42133,
+  "tournamentSlug": "ufl",
+  "tournamentName": "UFL",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 46313,
+  "tournamentSlug": "arena-football-one",
+  "tournamentName": "Arena Football One",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 51578,
+  "tournamentSlug": "efa",
+  "tournamentName": "EFA",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 51580,
+  "tournamentSlug": "afle",
+  "tournamentName": "AFLE",
+  "categorySlug": "international",
+  "categoryName": "International",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ },
+ {
+  "tournamentId": 53904,
+  "tournamentSlug": "nfl-specials",
+  "tournamentName": "NFL Specials",
+  "categorySlug": "usa",
+  "categoryName": "USA",
+  "futureFixtures": 0,
+  "upcomingFixtures": 0,
+  "liveFixtures": 0
+ }
+]
