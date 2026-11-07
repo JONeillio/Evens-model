@@ -1,5 +1,5 @@
 {
- "ran_at": "2026-11-07T10:25:29.477931+00:00",
+ "ran_at": "2026-11-07T10:28:11.135195+00:00",
  "api_football": {
   "season": 2026,
   "fixtures_errors": {
@@ -63,9 +63,19 @@
   ]
  },
  "understat": {
-  "ok": false,
-  "status": 200,
-  "players_data_embedded": false
+  "https://understat.com/getLeagueData/EPL/2026": {
+   "status": 200,
+   "json_keys": null,
+   "players": null,
+   "player_fields": null
+  },
+  "https://understat.com/getLeagueData/EPL/2025": {
+   "status": 200,
+   "json_keys": null,
+   "players": null,
+   "player_fields": null
+  },
+  "ok": false
  },
  "football_data": {
   "ok": true,
