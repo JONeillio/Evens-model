@@ -1,17 +1,19 @@
-"""Keep OddsPapi usage inside the free monthly allowance.
+"""Keep OddsPapi usage inside the free monthly allowance (250 requests).
 
-Each odds pull is one request per bookie (per chunk of leagues). Before every
-run we check how many requests are left this month and how many scheduled runs
-remain, then decide how many bookies we can afford this time.
+Costs per run:
+  1 request   to list the next 48 hours of fixtures (tells us which leagues play)
+  1 request   per bookie per 5 leagues (OddsPapi's limit per odds request)
+
+Saturdays get the biggest share of the month's requests, quiet weekdays the
+least, and every run checks how many requests are actually left first.
 """
 from __future__ import annotations
 
 import calendar
 import math
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
-# Average scheduled runs per day (daily morning run plus a Saturday top-up).
-RUNS_PER_DAY = 8 / 7
+DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
 def usage_from_account(account: dict | None, fallback_limit: int) -> dict:
@@ -21,28 +23,35 @@ def usage_from_account(account: dict | None, fallback_limit: int) -> dict:
     return {"plan": sub.get("plan"), "limit": int(limit), "used": int(used), "remaining": int(limit) - int(used)}
 
 
-def plan_run(usage: dict, now: datetime, n_tournaments: int, soft_books: list[str], cfg: dict,
-             manual: bool = False) -> dict:
-    chunks = max(1, math.ceil(n_tournaments / cfg["max_tournaments_per_call"]))
-    days_in_month = calendar.monthrange(now.year, now.month)[1]
-    days_left = days_in_month - now.day + 1
-    runs_left = max(1.0, days_left * RUNS_PER_DAY)
-    spendable = usage["remaining"] - cfg["reserve"]
-    fair_share = spendable / runs_left
-    # A manual refresh may spend up to two scheduled runs' worth.
-    allowance = min(cfg["max_calls_per_run"], math.floor(fair_share * (2 if manual else 1)))
-    allowance = min(allowance, spendable)
+def remaining_weight(today: date, weights: dict) -> float:
+    last = calendar.monthrange(today.year, today.month)[1]
+    total, d = 0.0, today
+    while d.month == today.month and d.day <= last:
+        total += weights.get(DAY_NAMES[d.weekday()], 1)
+        d += timedelta(days=1)
+    return total
 
-    books_affordable = allowance // chunks - 1  # minus the sharp book
-    books = soft_books[: max(0, books_affordable)]
-    fetch = books_affordable >= 1
-    return {
-        "fetch": fetch,
-        "books": books,
-        "chunks": chunks,
-        "planned_calls": (1 + len(books)) * chunks if fetch else 0,
-        "allowance": allowance,
-        "remaining": usage["remaining"],
-        "runs_left": round(runs_left, 1),
-        "reason": "ok" if fetch else "saving requests for the rest of the month",
-    }
+
+def allowance(usage: dict, now: datetime, cfg: dict, manual: bool = False) -> dict:
+    weights = cfg.get("weekday_weights", {})
+    today_w = weights.get(DAY_NAMES[now.weekday()], 1)
+    spendable = usage["remaining"] - cfg["reserve"]
+    share = spendable * today_w / max(today_w, remaining_weight(now.date(), weights))
+    if manual:  # an extra, by-hand refresh: allow up to half a normal day's share
+        share = max(share * 0.5, 4)
+    allow = int(min(cfg["max_calls_per_run"], math.floor(share), max(0, spendable)))
+    return {"allowance": allow, "remaining": usage["remaining"], "share": round(share, 1), "weekday_weight": today_w}
+
+
+def choose(allow_after_fixtures: int, n_chunks: int, soft_books: list[str], min_chunks: int = 3):
+    """Cover the top leagues (first `min_chunks` groups of 5) with every bookie if we
+    can; otherwise drop bookies before dropping leagues. Returns (books, chunks)."""
+    if n_chunks <= 0:
+        return [], 0
+    target = min(n_chunks, min_chunks)
+    for n_soft in range(len(soft_books), 0, -1):
+        chunks = min(n_chunks, allow_after_fixtures // (1 + n_soft))
+        if chunks >= target:
+            return soft_books[:n_soft], chunks
+    chunks = min(n_chunks, allow_after_fixtures // 2)
+    return (soft_books[:1], chunks) if chunks >= 1 else ([], 0)

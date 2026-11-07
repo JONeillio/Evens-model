@@ -76,11 +76,13 @@ class Run:
                     "errors": [], "notes": []}
         self.state = load_json(DATA / "state.json", {})
         self.api = None
+        self.fixture_names = {}
 
     # -- odds -----------------------------------------------------------------
     def fetch_odds(self):
-        leagues = [l["id"] for l in self.s["leagues"]]
         soft = self.s["soft_books"]
+        tier = {l["id"]: l.get("tier", 9) for l in self.s["leagues"]}
+        self.fixture_names = {}
         if self.mock_dir:
             index = {}
             for book in [self.s["sharp_book"]] + soft:
@@ -97,37 +99,62 @@ class Run:
             account = self.api.account()
         except Exception as exc:
             self.log["errors"].append(f"account check failed: {exc}")
-        usage = budget.usage_from_account(account, self.s["budget"]["monthly_limit_fallback"])
-        cfg = dict(self.s["budget"])
-        cfg["max_tournaments_per_call"] = self.state.get("max_tournaments_per_call", cfg["max_tournaments_per_call"])
-        plan = budget.plan_run(usage, self.now, len(leagues), soft, cfg, manual=self.manual)
+        cfg = self.s["budget"]
+        usage = budget.usage_from_account(account, cfg["monthly_limit_fallback"])
+        plan = budget.allowance(usage, self.now, cfg, manual=self.manual)
         self.log["usage_before"] = usage
         self.log["plan"] = plan
-        if not plan["fetch"]:
-            self.log["notes"].append(plan["reason"])
+        if plan["allowance"] < 3:  # need fixtures + Pinnacle + one bookie
+            plan["fetch"] = False
+            plan["reason"] = "saving requests for the rest of the month"
+            self.log["notes"].append("Saving requests for the rest of the month; showing the last odds.")
             return None, [], False
 
-        chunk = cfg["max_tournaments_per_call"]
-        chunks = [leagues[i:i + chunk] for i in range(0, len(leagues), chunk)]
+        # 1 request: which of our leagues play in the next ~2 days?
+        start = self.now.strftime("%Y-%m-%dT%H:%M:%SZ")
+        end = (self.now + timedelta(hours=min(47, self.s["horizon_hours"]))).strftime("%Y-%m-%dT%H:%M:%SZ")
+        try:
+            fx_list = self.api.fixtures(sportId=self.s["sport_id"], **{"from": start, "to": end})
+        except Exception as exc:
+            self.log["errors"].append(f"fixtures: {exc}")
+            fx_list = []
+        counts = {}
+        for f in fx_list if isinstance(fx_list, list) else []:
+            tid = f.get("tournamentId")
+            if tid in tier and f.get("statusId") in (0, None):
+                counts[tid] = counts.get(tid, 0) + 1
+                self.fixture_names[f.get("fixtureId")] = (f.get("participant1Name"), f.get("participant2Name"))
+        if not fx_list:  # fixtures call failed: fall back to tier 1 leagues
+            counts = {l["id"]: 1 for l in self.s["leagues"] if l.get("tier") == 1}
+        active = sorted(counts, key=lambda t: (tier[t], -counts[t]))
+        per_call = cfg["max_tournaments_per_call"]
+        chunks = [active[i:i + per_call] for i in range(0, len(active), per_call)]
+        books, n_chunks = budget.choose(plan["allowance"] - 1, len(chunks), soft)
+        plan.update({"fetch": bool(books), "books": books, "leagues_with_games": len(active),
+                     "chunks_needed": len(chunks), "chunks_fetched": n_chunks,
+                     "planned_calls": 1 + n_chunks * (1 + len(books))})
+        skipped = [t for c in chunks[n_chunks:] for t in c]
+        if skipped:
+            names = {l["id"]: l["name"] for l in self.s["leagues"]}
+            self.log["notes"].append("Skipped to save requests: " + ", ".join(names[t] for t in skipped))
+        if not books:
+            self.log["notes"].append("No leagues in our list play in the next 2 days.")
+            return {}, [], True
+
         index: dict = {}
         books_ok = []
-        for book in [self.s["sharp_book"]] + plan["books"]:
+        for book in [self.s["sharp_book"]] + books:
             ok = True
-            for ids in chunks:
+            for ids in chunks[:n_chunks]:
                 try:
                     payload = self.api.odds_by_tournaments(ids, bookmaker=book)
                     n = add_payload(index, payload)
                     self.log.setdefault("prices_added", {})[book] = self.log.get("prices_added", {}).get(book, 0) + n
                 except QuotaExhausted as exc:
                     self.log["errors"].append(str(exc))
-                    ok = False
-                    break
+                    return index, books_ok, True
                 except Exception as exc:
-                    msg = str(exc)
-                    self.log["errors"].append(f"{book}: {msg[:300]}")
-                    if "tournament" in msg.lower() and len(ids) > 10:
-                        self.state["max_tournaments_per_call"] = 10
-                        self.log["notes"].append("Too many leagues per call; will use 10 next time.")
+                    self.log["errors"].append(f"{book} {ids}: {str(exc)[:300]}")
                     ok = False
             if ok and book != self.s["sharp_book"]:
                 books_ok.append(book)
@@ -139,7 +166,14 @@ class Run:
         ids = set()
         for e in index.values():
             ids.update([e["meta"].get("participant1Id"), e["meta"].get("participant2Id")])
-        missing = parts.missing(i for i in ids if i is not None)
+        missing = [i for i in parts.missing(i for i in ids if i is not None)]
+        if getattr(self, "fixture_names", None):
+            have = set()
+            for fid, (h, a) in self.fixture_names.items():
+                e = index.get(fid)
+                if e and h and a:
+                    have.update([str(e["meta"].get("participant1Id")), str(e["meta"].get("participant2Id"))])
+            missing = [i for i in missing if i not in have]
         refresh_days = self.s["budget"]["participants_refresh_days"]
         stale = days_since(self.state.get("participants_at"), self.now) >= 1
         if self.api and missing and (stale or days_since(self.state.get("participants_at"), self.now) >= refresh_days):
@@ -184,8 +218,9 @@ class Run:
             lg = league_by_id.get(m.get("tournamentId"))
             if not lg:
                 continue
-            home = parts.name(m.get("participant1Id")) or f"Team {m.get('participant1Id')}"
-            away = parts.name(m.get("participant2Id")) or f"Team {m.get('participant2Id')}"
+            fn = self.fixture_names.get(fid, (None, None))
+            home = fn[0] or parts.name(m.get("participant1Id")) or f"Team {m.get('participant1Id')}"
+            away = fn[1] or parts.name(m.get("participant2Id")) or f"Team {m.get('participant2Id')}"
             fixtures[fid] = {"id": fid, "league_id": lg["id"], "league": lg["name"], "country": lg["country"],
                              "home": home, "away": away, "kickoff": iso(ko), "fd": None, "model": None}
 
@@ -238,7 +273,7 @@ class Run:
             "fixtures": sorted(fixtures.values(), key=lambda f: (f["kickoff"], f["league"])),
             "legs": sorted(legs, key=lambda l: (fixtures[l["fixture_id"]]["kickoff"], -l["best_edge"])),
             "slips": slips,
-            "budget": {k: self.log.get("plan", {}).get(k) for k in ("remaining", "planned_calls", "runs_left")},
+            "budget": {k: self.log.get("plan", {}).get(k) for k in ("remaining", "planned_calls", "leagues_with_games", "chunks_fetched", "chunks_needed")},
             "notes": self.log["notes"],
             "track": settle.summary(hist),
         }

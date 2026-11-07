@@ -1,12 +1,11 @@
 name: Refresh odds and slips
 
-# Runs every morning, plus a Saturday top-up before the 12:30/15:00 games.
+# Runs every morning. Saturdays get the biggest share of the free request budget.
 # Times are UTC (07:15 UTC = 07:15 UK in winter, 08:15 in summer).
 # Run it by hand from the Actions tab: "Refresh odds and slips" -> "Run workflow".
 on:
   schedule:
     - cron: "15 7 * * *"
-    - cron: "30 11 * * 6"
   workflow_dispatch:
 
 permissions:

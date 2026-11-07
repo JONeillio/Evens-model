@@ -11,7 +11,6 @@ from engine.goals_model import fit
 from engine.legs import build_legs, sharp_probabilities
 from engine.names import best_match
 from engine.parse import add_payload
-from engine.budget import plan_run
 
 
 # ---------- fair prices ----------
@@ -165,14 +164,17 @@ def test_builder_constraints():
 
 
 # ---------- budget ----------
-def test_budget_plan():
-    usage = {"limit": 250, "used": 10, "remaining": 240}
-    cfg = {"reserve": 20, "max_calls_per_run": 8, "max_tournaments_per_call": 40}
-    p = plan_run(usage, datetime(2026, 11, 7, tzinfo=timezone.utc), 28, ["bet365", "skybet", "williamhill"], cfg)
-    assert p["fetch"] and p["planned_calls"] == 4
-    low = plan_run({"limit": 250, "used": 245, "remaining": 5}, datetime(2026, 11, 7, tzinfo=timezone.utc), 28,
-                   ["bet365"], cfg)
-    assert not low["fetch"]
+def test_budget_allowance_and_choice():
+    from engine.budget import allowance, choose
+    cfg = {"reserve": 15, "max_calls_per_run": 16,
+           "weekday_weights": {"Mon": 0.5, "Tue": 1, "Wed": 1, "Thu": 0.5, "Fri": 1, "Sat": 3, "Sun": 1.5}}
+    sat = allowance({"remaining": 240}, datetime(2026, 11, 7, tzinfo=timezone.utc), cfg)
+    mon = allowance({"remaining": 240}, datetime(2026, 11, 9, tzinfo=timezone.utc), cfg)
+    assert sat["allowance"] > mon["allowance"] >= 3
+    assert allowance({"remaining": 16}, datetime(2026, 11, 9, tzinfo=timezone.utc), cfg)["allowance"] <= 1
+    assert choose(15, 6, ["bet365", "skybet"]) == (["bet365", "skybet"], 5)
+    assert choose(4, 6, ["bet365", "skybet"]) == (["bet365"], 2)
+    assert choose(1, 6, ["bet365"]) == ([], 0)
 
 
 # ---------- settlement ----------
