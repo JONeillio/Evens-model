@@ -20,6 +20,12 @@ const edgeTag = (e) => `<span class="edge ${e >= -0.0005 ? "pos" : "neg"}">${sig
 const fmtTime = (iso, withDay = true) => new Intl.DateTimeFormat("en-GB", withDay
   ? { weekday: "short", hour: "2-digit", minute: "2-digit", timeZone: TZ }
   : { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
+// Days in UK time (round 3): "Today", "Tomorrow", else "Mon 9 Nov".
+const dayKey = (iso) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(iso));
+const dayOffset = (iso) => Math.round((Date.parse(dayKey(iso)) - Date.parse(dayKey(new Date().toISOString()))) / 86400000);
+const dayLong = (iso) => new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: TZ }).format(new Date(iso));
+const dayShort = (iso) => new Intl.DateTimeFormat("en-GB", { weekday: "short", timeZone: TZ }).format(new Date(iso));
+const dayWord = (iso) => { const d = dayOffset(iso); return d === 0 ? "Today" : d === 1 ? "Tomorrow" : dayLong(iso); };
 
 // Fractional odds (display only: every sum uses the decimal price).
 // UK ladder of the fractional part; Evens = 1/1.
@@ -52,7 +58,7 @@ const DEFAULTS = { monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45 };
 let settings = Object.assign({}, DEFAULTS, store.get("settings", {}));
 // Round 2 preferences live in evens.prefs.
 // comps: which competitions go on the reels ([] = all). fav_book: your main bookie (null = any).
-const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26], comps: [], fav_book: null };
+const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26], comps: [], fav_book: null, day_range: "7" };
 let prefs = Object.assign({}, PREF_DEFAULTS, store.get("prefs", {}));
 const savePrefs = () => store.set("prefs", prefs);
 let bets = store.get("bets", []);
@@ -255,6 +261,7 @@ const COMPS = [
 ];
 const compOf = (fid) => { const lid = FIX[fid]?.league_id; return (COMPS.find((c) => c.ids.includes(lid)) || COMPS[COMPS.length - 1]).id; };
 const inComps = (fid) => !prefs.comps?.length || prefs.comps.includes(compOf(fid));
+const scopeName = () => (prefs.comps || []).map((c) => COMPS.find((x) => x.id === c)?.name).filter(Boolean).join(" + ");
 const legOk = (l) => l.fair_p >= settings.minP && l.price <= settings.maxLeg;
 
 // The pool with your filters applied (used for spins and adding legs).
@@ -265,7 +272,7 @@ function pool(windowId, bookie) {
     legs: f.legs.filter(legOk),
   })).filter((f) => f.legs.length);
 }
-// Matches with usable legs in the next two days, per competition group (your bookies only).
+// Matches with usable legs in the chosen day range, per competition group (your bookies only).
 function compCounts() {
   const seen = {};
   for (const w of upcoming()) for (const b of w.bookies) {
@@ -280,7 +287,23 @@ function findLeg(windowId, bookie, legId) {
   for (const fx of p.fixtures) for (const leg of fx.legs) if (leg.leg_id === legId) return { fx, leg };
   return null;
 }
-const upcoming = () => WINDOWS.filter((w) => Date.parse(w.start_utc) > Date.now() + 2 * 60 * 1000);
+const upcomingAll = () => WINDOWS.filter((w) => Date.parse(w.start_utc) > Date.now() + 2 * 60 * 1000);
+// Day range (round 3): Today · Tomorrow · Next 7 days · Next 14 days. Sets the scope with the league chips.
+const RANGES = [["today", "Today"], ["tomorrow", "Tomorrow"], ["7", "Next 7 days"], ["14", "Next 14 days"]];
+function inRange(iso, r = prefs.day_range) {
+  const d = dayOffset(iso);
+  return r === "today" ? d === 0 : r === "tomorrow" ? d === 1 : r === "14" ? d < 14 : d < 7;
+}
+const upcoming = () => upcomingAll().filter((w) => inRange(w.start_utc));
+// Only offer ranges the data covers: a range is off if it adds no kick-offs.
+function rangeAvailable(r) {
+  const ws = upcomingAll().filter((w) => booksFor(w).length);
+  if (r === "today") return ws.some((w) => dayOffset(w.start_utc) === 0);
+  if (r === "tomorrow") return ws.some((w) => dayOffset(w.start_utc) === 1);
+  if (r === "7") return ws.some((w) => dayOffset(w.start_utc) < 7);
+  return ws.some((w) => dayOffset(w.start_utc) >= 7 && dayOffset(w.start_utc) < 14);
+}
+const rangeName = (r = prefs.day_range) => (RANGES.find((x) => x[0] === r) || RANGES[2])[1];
 const booksFor = (w) => w.bookies.map((b) => b.bookie).filter((b) => myBooks().includes(b));
 
 // ---------- the shared slip ----------
@@ -407,9 +430,12 @@ function rebuildSlip() {
     ? `${bookName(fav)} hasn't priced enough matches to make a slip near evens, so this one's at ${bookName(found.best.bookie)}.` : null;
   slip = { window_id: found.w.id, bookie: found.best.bookie, stake: slip?.stake || 10, legs: [] };
   applyCombo(found.best.combo, []);
+  recordScope();
   return true;
 }
 
+// The slip remembers the scope it was built in, so the machine and Build a bet agree.
+function recordScope() { if (slip) { slip.league = (prefs.comps || []).slice(); slip.day_range = prefs.day_range; saveSlip(); } }
 function sortSlip() {
   const ko = (l) => findLeg(slip.window_id, slip.bookie, l.leg_id)?.fx.kickoff_utc || "";
   slip.legs.sort((a, b) => ko(a).localeCompare(ko(b)));
@@ -442,9 +468,9 @@ function fillTo(n) {
    minimum edge, takes the best available and says so ("Thin pickings"). */
 function spin() {
   const held = slip.legs.filter((l) => l.held);
-  if (held.length >= Math.max(...sizeOptions(), 6)) return { ok: false, why: "Every reel is held. Release one to spin it." };
+  if (held.length >= Math.max(...sizeOptions(), 6)) return { ok: false, why: "Every reel is held · release one" };
   const found = combosWithFallback(slip.window_id, slip.bookie, held);
-  if (!found.length) return { ok: false, why: "Nothing fits the evens zone with those reels. Release a hold, change the bookie, or loosen Settings." };
+  if (!found.length) return { ok: false, why: "Nothing fits with those holds · release one" };
   const current = slip.legs.filter((l) => !l.held).map((l) => l.leg_id).sort().join("|");
   const key = (c) => c.picks.map((p) => p.leg.leg_id).sort().join("|");
   let pickFrom = found.filter((c) => c.ev >= prefs.min_edge);
@@ -570,7 +596,7 @@ function renderSweat(b) {
   const toGo = pr.live + pr.waiting;
   const ret = b.status === "won" ? `Returned £${(b.returns ?? 0).toFixed(2)}` : b.status === "lost" || pr.gone ? `£${b.stake.toFixed(2)} gone` : `£${b.stake.toFixed(2)} returns £${(b.stake * b.odds).toFixed(2)}`;
   $("#mStats").innerHTML = `${esc(ret)}<br>${b.status !== "pending" || pr.gone ? "Settled from the scores" : `${toGo} to go · ${pr.landed} in`}`;
-  $("#mMsg").textContent = "";
+  clearStatus();
   $("#ticket").hidden = true;
   $("#watchBtn").hidden = true;
 }
@@ -594,6 +620,15 @@ document.querySelectorAll("[data-bulbs]").forEach((el) => {
   el.innerHTML = Array.from({ length: n }, (_, i) => `<span class="bulb${(i + off) % 2 ? " alt" : ""}"></span>`).join("");
 });
 
+function marqueeTime() {
+  const legs = numbers().legs;
+  const first = legs.map((r) => r.fx.kickoff_utc).sort()[0] || windowById(slip.window_id)?.start_utc;
+  if (!first) return "";
+  const mins = (Date.parse(first) - Date.now()) / 60000;
+  const t = `${dayWord(first)} ${fmtTime(first, false)}`;
+  return mins <= 180 ? `${t} · ${countdown(first).replace("kicks off ", "")}` : t;
+}
+const slipSpansDays = () => new Set(numbers().legs.map((r) => dayKey(r.fx.kickoff_utc))).size > 1;
 function countdown(iso) {
   const mins = Math.round((Date.parse(iso) - Date.now()) / 60000);
   if (mins <= 0) return "kicking off now";
@@ -606,8 +641,9 @@ const code = (fx, side) => fx[`${side}_short`] || String(fx[side] || "").replace
 const fixtureLine = (fx) => `${code(fx, "home")} v ${code(fx, "away")} · ${fmtTime(fx.kickoff_utc, false)}`;
 const shortLabel = (fx, label) => label.split(fx.home).join(code(fx, "home")).split(fx.away).join(code(fx, "away"));
 
-function reelFace({ fx, leg }) {
-  return `<div class="face"><span class="fxl" aria-label="${esc(`${fx.home} v ${fx.away}, ${fmtTime(fx.kickoff_utc, false)}`)}"><span>${esc(code(fx, "home"))} v ${esc(code(fx, "away"))}</span><span>${esc(fmtTime(fx.kickoff_utc, false))}</span></span><span class="lbl" data-short="${esc(leg.short || shortLabel(fx, leg.label))}"><span class="t">${esc(leg.label)}</span></span><span class="px num">${oddsH(leg.price)}</span></div>`;
+function reelFace({ fx, leg }, spans = slipSpansDays()) {
+  const when = spans ? `${dayShort(fx.kickoff_utc).toUpperCase()} ${fmtTime(fx.kickoff_utc, false)}` : fmtTime(fx.kickoff_utc, false);
+  return `<div class="face"><span class="fxl" aria-label="${esc(`${fx.home} v ${fx.away}, ${dayWord(fx.kickoff_utc)} ${fmtTime(fx.kickoff_utc, false)}`)}"><span>${esc(code(fx, "home"))} v ${esc(code(fx, "away"))}</span><span>${esc(when)}</span></span><span class="lbl" data-short="${esc(leg.short || shortLabel(fx, leg.label))}"><span class="t">${esc(leg.label)}</span></span><span class="px num">${oddsH(leg.price)}</span></div>`;
 }
 // Shrink a reel label in steps (to 12px), up to 3 lines, never clipped sideways;
 // if it still won't fit, swap team names for their codes ("SAM to score").
@@ -636,19 +672,19 @@ function renderMachine(opts = {}) {
   }
   leaveSweat();
   renderGameSelect(); renderBookPill();
-  if (fallbackNote && !spinning) { $("#mMsg").textContent = fallbackNote; fallbackNote = null; }
+  if (fallbackNote && !spinning) { const n = fallbackNote; fallbackNote = null; setTimeout(() => flashStatus(n), 0); }
   const cand = sweatCandidate();
   const wb = $("#watchBtn");
   wb.hidden = !cand;
   if (cand) { const pr = betProgress(cand); wb.textContent = `▶ Watch your ${cand.bookName} bet live · ${pr.landed} of ${cand.legIds.length} in`; }
   if (!slip) {
-    where.textContent = "No kick-offs with prices in the next two days";
+    where.textContent = `No kick-offs with prices · ${rangeName().toLowerCase()} ▾`;
     $("#reels").innerHTML = ""; $("#holds").innerHTML = ""; $("#nudges").innerHTML = "";
     $("#mOdds").textContent = "–"; $("#mStats").textContent = "";
     ticket.innerHTML = ""; ticket.hidden = true;
   } else {
-    const w = windowById(slip.window_id);
-    where.textContent = `${w.label} · ${countdown(w.start_utc)}`;
+    where.textContent = marqueeTime();
+    where.setAttribute("aria-label", `Kick-off ${marqueeTime()}. Tap to change the day, kick-off or bookie`);
     const nums = numbers();
     const n = nums.legs.length;
     const reels = $("#reels"), holds = $("#holds"), nudges = $("#nudges");
@@ -672,10 +708,28 @@ function renderMachine(opts = {}) {
     $("#nudgeCount").textContent = nudgesLeft;
 
     $("#mOdds").innerHTML = oddsH(nums.odds);
-    $("#mStats").innerHTML = fairLine(nums).replace(" · ", "<br>");
+    if (!statusTimer) $("#mStats").innerHTML = fairLine(nums).replace(" · ", "<br>");
     renderTicket(opts.print);
   }
   renderLiveStrip(); renderFooter();
+}
+// The fair-price line is the machine's only status slot (round 3: no extra rows).
+// Messages and the "Released 2 holds · not NFL  UNDO" pill swap in, then it goes back.
+let statusTimer = null;
+function flashStatus(text, opts = {}) {
+  const el = $("#mStats");
+  clearTimeout(statusTimer);
+  el.classList.add("status-pill");
+  el.classList.toggle("info", !opts.undo);
+  el.innerHTML = `<span class="sp-text">${esc(text)}</span>${opts.undo ? '<button class="sp-undo" type="button">Undo</button>' : ""}`;
+  if (opts.undo) el.querySelector(".sp-undo").addEventListener("click", () => { clearStatus(); opts.undo(); }, { once: true });
+  statusTimer = setTimeout(clearStatus, opts.ms || 7000);
+}
+function clearStatus() {
+  clearTimeout(statusTimer); statusTimer = null;
+  const el = $("#mStats");
+  el.classList.remove("status-pill", "info");
+  el.innerHTML = slip ? fairLine(numbers()).replace(" · ", "<br>") : "";
 }
 function renderFooter() {
   const st = betStats();
@@ -695,14 +749,22 @@ function fairLine(nums) {
 // The ticket is the source of truth: Copy sends exactly what it shows.
 let ticketState = { copied: false };
 function ticketRows() {
-  return numbers().legs.map(({ fx, leg }) => ({ time: fmtTime(fx.kickoff_utc, false), match: `${fx.home} v ${fx.away}`, league: fx.league || "", label: leg.label, price: leg.price }));
+  return numbers().legs.map(({ fx, leg }) => ({ time: fmtTime(fx.kickoff_utc, false), day: dayKey(fx.kickoff_utc), ko: fx.kickoff_utc,
+    match: `${fx.home} v ${fx.away}`, league: fx.league || "", label: leg.label, price: leg.price }));
 }
+// "TOMORROW · SUN 8 NOV" once, then a second header only for a leg on another day.
+const dayHeader = (iso) => { const w = dayWord(iso), l = dayLong(iso); return (w === l ? l : `${w} · ${l}`).toUpperCase(); };
 function renderTicket(print) {
   const t = $("#ticket");
   const nums = numbers();
   t.hidden = !nums.legs.length;
-  t.innerHTML = `${ticketRows().map((r) => `<div class="tk-row"><span class="tk-fx">${esc(r.time)} · ${esc(r.match)}${r.league ? ` · ${esc(r.league)}` : ""}</span>
-      <span class="tk-leg"><span>${esc(r.label)}</span><b class="num">${oddsH(r.price)}</b></span></div>`).join("")}
+  let lastDay = null;
+  t.innerHTML = `${ticketRows().map((r) => {
+      const head = r.day !== lastDay ? `<div class="tk-day">${esc(dayHeader(r.ko))}</div>` : "";
+      lastDay = r.day;
+      return `${head}<div class="tk-row"><span class="tk-fx">${esc(r.time)} · ${esc(r.match)}${r.league ? ` · ${esc(r.league)}` : ""}</span>
+      <span class="tk-leg"><span>${esc(r.label)}</span><b class="num">${oddsH(r.price)}</b></span></div>`;
+    }).join("")}
     ${BOOKCHECK[slip.bookie] ? `<div class="tk-check">${esc(bookName(slip.bookie))}'s prices reach us on a delay. Check each one in the ${esc(bookName(slip.bookie))} app before you place it.</div>` : ""}
     <div class="tk-foot num"><b>${oddsH(nums.odds)}</b><span>real chance ${pct(nums.chance)}</span><span>£${slip.stake} pays £${nums.ret.toFixed(2)}</span></div>
     <div class="tk-actions">
@@ -722,8 +784,13 @@ function renderTicket(print) {
 }
 function ticketText() {
   const nums = numbers();
-  const rows = ticketRows().map((r) => `${r.time} · ${r.match}${r.league ? ` · ${r.league}` : ""}\n${r.label}  ${odds(r.price)}`);
-  return `${bookName(slip.bookie)} · ${nums.legs.length}-fold · ${windowById(slip.window_id).label}\n\n${rows.join("\n\n")}\n\n`
+  let lastDay = null;
+  const rows = ticketRows().map((r) => {
+    const head = r.day !== lastDay ? `${dayHeader(r.ko)}\n` : "";
+    lastDay = r.day;
+    return `${head}${r.time} · ${r.match}${r.league ? ` · ${r.league}` : ""}\n${r.label}  ${odds(r.price)}`;
+  });
+  return `${bookName(slip.bookie)} · ${nums.legs.length}-fold\n\n${rows.join("\n\n")}\n\n`
     + `Combined odds ${odds(nums.odds)}${prefs.odds_format === "decimal" ? "" : ` (${nums.odds.toFixed(2)})`} · real chance ${pct(nums.chance)} · £${slip.stake} pays £${nums.ret.toFixed(2)}`;
 }
 async function copyText(text) {
@@ -846,19 +913,18 @@ function leverDrop() {
 function pull() {
   if (spinning || !slip || $("#cabinet").classList.contains("sweating")) return;
   Sound.unlock();
-  const msg = $("#mMsg");
-  msg.textContent = "";
+  clearStatus();
   const res = spin();
   Sound.lever(); buzz(30);
   if ($("#leverKnob") && !document.querySelector(".lever-track.spring")) leverDrop();
   if (!res.ok) {
-    msg.textContent = res.why;
+    flashStatus(res.why);
     document.querySelectorAll("#reels .reel").forEach((r, i) => { if (!slip.legs[i]?.held) { r.classList.remove("fail"); void r.offsetWidth; r.classList.add("fail"); } });
     return;
   }
-  if (res.thin != null) msg.textContent = `Thin pickings — best edge is ${signedPct(res.thin)}`;
-  else if (res.same) msg.textContent = "Same again: that's the only slip in the evens zone with those holds. Release a reel or change the bookie.";
   playSpin(res);
+  if (res.thin != null) flashStatus(`Thin pickings · best edge ${signedPct(res.thin)}`);
+  else if (res.same) flashStatus("Same again · the only slip that fits");
 }
 // The reel animation for a slip that's already been chosen (Pull, game select, bookie change).
 function playSpin(res = { ok: true }) {
@@ -919,7 +985,7 @@ function nudge(i, dir) {
   if (r && !reducedMotion()) { r.classList.remove("nudged"); void r.offsetWidth; r.classList.add("nudged"); r.dataset.dir = dir; }
   const now = numbers();
   if (!wasJackpot && now.odds >= ZONE[0] && now.odds <= ZONE[1] && now.ev >= prefs.min_edge) jackpot();
-  if (!nudgesLeft) $("#mMsg").textContent = "Out of nudges. Pull to refill, or edit the slip in Build a bet.";
+  if (!nudgesLeft) flashStatus("Out of nudges · pull to refill");
 }
 // Swipe up or down on a reel to nudge it.
 (function swipes() {
@@ -944,7 +1010,39 @@ function nudge(i, dir) {
 $("#pullBtn").addEventListener("click", pull);
 $("#machineWhere").addEventListener("click", () => slip && openWhereSheet());
 $("#bookPill").addEventListener("click", () => slip && openWhereSheet());
-setInterval(() => { if (!$("#home").hidden && slip && !spinning && !$("#cabinet").classList.contains("sweating")) { const w = windowById(slip.window_id); if (w) $("#machineWhere").textContent = `${w.label} · ${countdown(w.start_utc)}`; } }, 30000);
+setInterval(() => { if (!$("#home").hidden && slip && !spinning && !$("#cabinet").classList.contains("sweating")) $("#machineWhere").textContent = marqueeTime(); }, 30000);
+
+// ---------- round 3: the filters set the scope, holds live inside it ----------
+// Scope = league chips + day range + kick-off + bookie. On any change: held legs still in
+// scope stay held, the rest are released and their reels re-spin; Undo puts it all back.
+const snapshotScope = () => ({ comps: (prefs.comps || []).slice(), day_range: prefs.day_range, slip: slip && JSON.parse(JSON.stringify(slip)) });
+function restoreScope(snap) {
+  prefs.comps = snap.comps; prefs.day_range = snap.day_range; savePrefs();
+  slip = snap.slip; saveSlip();
+  ticketState.copied = false;
+  renderMachine({ print: true });
+}
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+function rescope(snap, why) {
+  const undo = () => restoreScope(snap);
+  const released = slip.legs.filter((l) => l.held && !inComps(l.fixture_id));
+  released.forEach((l) => { l.held = false; });
+  const w = windowById(slip.window_id);
+  let ok = false;
+  if (w && inRange(w.start_utc) && booksFor(w).includes(slip.bookie)) ok = spin().ok;
+  if (!ok && !slip.legs.some((l) => l.held)) ok = rebuildSlip();
+  if (!ok) {
+    slip = snap.slip; prefs.comps = snap.comps; prefs.day_range = snap.day_range; savePrefs(); saveSlip();
+    const n = Object.values(compCounts()).reduce((a, b) => a + b, 0);
+    renderMachine();
+    flashStatus(slip.legs.some((l) => l.held) ? "Nothing there fits your holds · release one" : `Not enough matches priced there (${n})`);
+    return false;
+  }
+  sortSlip(); recordScope(); saveSlip();
+  playSpin();
+  if (released.length) flashStatus(`Released ${plural(released.length, "hold")} · ${why}`, { undo });
+  return true;
+}
 
 // ---------- game select (competitions) and bookie pill ----------
 function renderGameSelect() {
@@ -972,27 +1070,22 @@ function renderBookPill() {
 $("#gameSelect").addEventListener("click", (e) => {
   const b = e.target.closest("[data-comp]");
   if (!b || spinning || !DATA) return;
-  const id = b.dataset.comp, msg = $("#mMsg");
+  const id = b.dataset.comp;
   const name = COMPS.find((c) => c.id === id)?.long;
   if (b.getAttribute("aria-disabled") === "true") {
-    msg.textContent = `No ${name} matches have prices in the next two days.`;
+    flashStatus(`No ${name} prices · ${rangeName().toLowerCase()}`);
     buzz(10);
     return;
   }
   const cur = prefs.comps || [];
   // First tap focuses on one competition; more taps add or remove; All clears.
   const next = id === "all" ? [] : !cur.length ? [id] : cur.includes(id) ? cur.filter((x) => x !== id) : cur.concat(id);
+  const snap = snapshotScope();
   prefs.comps = next; savePrefs();
   Sound.unlock(); Sound.hold(); buzz(10);
-  msg.textContent = "";
   renderGameSelect();
   if (!slip || $("#cabinet").classList.contains("sweating")) return;
-  if (rebuildSlip()) { sortSlip(); saveSlip(); playSpin(); return; }
-  const counts = compCounts();
-  const n = next.length ? next.reduce((a, c) => a + (counts[c] || 0), 0) : Object.values(counts).reduce((a, b) => a + b, 0);
-  msg.textContent = n < 3
-    ? `Only ${n} ${n === 1 ? "match has" : "matches have"} prices there in the next two days — not enough for a slip. Tap another to add it.`
-    : "Those matches don't kick off close enough together for a slip near evens. Tap another to add it.";
+  rescope(snap, next.length ? `not ${scopeName()}` : "");
 });
 window.addEventListener("resize", () => fitLabels($("#reels")));
 
@@ -1004,14 +1097,14 @@ function renderBuild() {
     return;
   }
   const w = windowById(slip.window_id);
-  $("#buildWhere").innerHTML = `<span>${esc(bookName(slip.bookie))}</span><small>${esc(w.label)}</small>`;
+  $("#buildWhere").innerHTML = `<span>${esc(bookName(slip.bookie))}</span><small>${esc(dayWord(w.start_utc))} ${esc(fmtTime(w.start_utc, false))}</small>`;
   const nums = numbers();
   const n = nums.legs.length;
   $("#buildLegs").innerHTML = nums.legs.map(({ fx, leg, held }, i) => {
     const choices = (rawPool(slip.window_id, slip.bookie).fixtures.find((f) => f.fixture_id === fx.fixture_id)?.legs || []).length;
     return `<div class="bleg${held ? " held" : ""}" data-i="${i}">
       <button class="hold-btn" data-act="hold" aria-pressed="${held}" aria-label="Hold this leg">${held ? "Held" : "Hold"}</button>
-      <div class="info"><span class="match">${esc(fx.home)} v ${esc(fx.away)} · ${esc(fmtTime(fx.kickoff_utc, false))}</span>
+      <div class="info"><span class="match">${esc(fx.home)} v ${esc(fx.away)} · ${esc(dayWord(fx.kickoff_utc))} ${esc(fmtTime(fx.kickoff_utc, false))}</span>
         <span class="sel">${esc(leg.label)}</span>
         <span class="meta num">${oddsH(leg.price)} · ${pct(leg.fair_p)} chance · edge ${edgeTag(leg.edge)}${bandFit(leg.price) < 1 ? ` · <span class="offspot">outside sweet spot</span>` : ""}</span></div>
       <button class="ibtn" data-act="prev" aria-label="Previous market for this match" ${choices < 2 ? "disabled" : ""}><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 L6 10 L12 16" fill="none" stroke="#5C0F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1096,20 +1189,39 @@ function currentSlipAsBet() {
 
 // ---------- choose window and bookie ----------
 function openWhereSheet() {
-  let wid = slip.window_id, bk = slip.bookie;
+  let wid = slip.window_id, bk = slip.bookie, range = prefs.day_range;
   const draw = (s) => {
+    const inR = (w) => inRange(w.start_utc, range) && booksFor(w).length;
+    const wins = upcomingAll().filter(inR);
+    if (!wins.some((x) => x.id === wid)) wid = wins[0]?.id || wid;
     const w = windowById(wid);
     const fav = prefs.fav_book;
     const books = booksFor(w).slice().sort((a, b) => (b === fav) - (a === fav));
     if (!books.includes(bk)) bk = books[0];
     const favMissing = fav && !books.includes(fav);
-    s.innerHTML = `<h3 id="sheetTitle">Which kick-off and bookie?</h3>
-      <div class="field"><span class="lbl">Kick-off</span><div class="chips">${upcoming().filter((x) => booksFor(x).length).map((x) => `<button class="chip" data-w="${x.id}" aria-pressed="${x.id === wid}">${esc(x.label)}</button>`).join("")}</div></div>
+    // Kick-offs grouped under day headers.
+    let lastDay = null;
+    const kicks = wins.map((x) => {
+      const head = dayKey(x.start_utc) !== lastDay ? `<div class="day-head">${esc(dayHeader(x.start_utc))}</div>` : "";
+      lastDay = dayKey(x.start_utc);
+      return `${head}<button class="chip" data-w="${x.id}" aria-pressed="${x.id === wid}">${esc(fmtTime(x.start_utc, false))}</button>`;
+    }).join("");
+    s.innerHTML = `<h3 id="sheetTitle">When, and which bookie?</h3>
+      <div class="seg" role="group" aria-label="Day range">${RANGES.map(([r, label]) => {
+        const ok = rangeAvailable(r);
+        return `<button class="seg-btn" data-r="${r}" aria-pressed="${r === range}"${ok ? "" : ' aria-disabled="true" title="No odds that far out yet"'}>${esc(label)}</button>`;
+      }).join("")}</div>
+      ${rangeAvailable("14") ? "" : '<p class="hint seg-note">Next 14 days: no odds that far out yet.</p>'}
+      <div class="field"><span class="lbl">Kick-off</span><div class="chips day-chips">${kicks || '<span class="hint">No kick-offs with prices in this range.</span>'}</div></div>
       <div class="field"><span class="lbl">Bookie</span><div class="chips">${books.map((b) => `<button class="chip" data-b="${b}" aria-pressed="${b === bk}">${b === fav ? "★ " : ""}${esc(bookName(b))} <small>${pool(wid, b).length}</small></button>`).join("")}</div>
         <button class="star-btn" id="wStar" aria-pressed="${fav === bk}">${fav === bk ? `★ ${esc(bookName(bk))} is your bookie` : `☆ Make ${esc(bookName(bk))} my bookie`}</button></div>
-      <p class="hint">The number is how many matches that bookie has priced at this kick-off${prefs.comps?.length ? " (in the competitions you picked)" : ""}. Your bookie is the one the machine loads first, whenever it has prices.${favMissing ? ` ${esc(bookName(fav))} hasn't priced this kick-off.` : ""}</p>
-      ${pool(wid, bk).length < 3 ? `<div class="notice">${esc(bookName(bk))} has only priced ${pool(wid, bk).length} ${pool(wid, bk).length === 1 ? "match" : "matches"} here, so the reels can't get near evens with it.</div>` : ""}
-      <div class="sheet-actions"><button class="cbtn plain" id="wCancel">Cancel</button><button class="cbtn yellow" id="wGo">Load the reels</button></div>`;
+      <p class="hint">The number is how many matches that bookie has priced at this kick-off${prefs.comps?.length ? ` (${esc(scopeName())} only)` : ""}. Your bookie is the one the machine loads first, whenever it has prices.${favMissing ? ` ${esc(bookName(fav))} hasn't priced this kick-off.` : ""}</p>
+      ${bk && pool(wid, bk).length < 3 ? `<div class="notice">${esc(bookName(bk))} has only priced ${pool(wid, bk).length} ${pool(wid, bk).length === 1 ? "match" : "matches"} here, so the reels can't get near evens with it.</div>` : ""}
+      <div class="sheet-actions"><button class="cbtn plain" id="wCancel">Cancel</button><button class="cbtn yellow" id="wGo"${wins.length ? "" : " disabled"}>Load the reels</button></div>`;
+    s.querySelectorAll("[data-r]").forEach((b) => b.addEventListener("click", () => {
+      if (b.getAttribute("aria-disabled") === "true") return;
+      range = b.dataset.r; draw(s);
+    }));
     s.querySelectorAll("[data-w]").forEach((b) => b.addEventListener("click", () => { wid = b.dataset.w; draw(s); }));
     s.querySelectorAll("[data-b]").forEach((b) => b.addEventListener("click", () => { bk = b.dataset.b; draw(s); }));
     s.querySelector("#wStar").addEventListener("click", () => {
@@ -1117,26 +1229,34 @@ function openWhereSheet() {
     });
     s.querySelector("#wCancel").addEventListener("click", () => { closeSheet(); route(); });
     s.querySelector("#wGo").addEventListener("click", () => {
-      const changed = changeWhere(wid, bk);
+      const snap = snapshotScope();
+      const rangeChanged = range !== prefs.day_range;
+      prefs.day_range = range; savePrefs();
+      const res = changeWhere(wid, bk);
       closeSheet(); route();
-      if (changed && !$("#home").hidden && !$("#cabinet").classList.contains("sweating")) {
+      if (!res.changed) { if (rangeChanged) renderMachine(); return; }
+      if (!$("#home").hidden && !$("#cabinet").classList.contains("sweating")) {
         playSpin();
         const o = numbers().odds;
-        if (o < ZONE[0] || o > ZONE[1]) $("#mMsg").textContent = `${bookName(bk)} hasn't priced enough matches here to reach evens. Try another bookie or kick-off.`;
+        const why = bk !== snap.slip.bookie ? `not at ${bookName(bk)}` : "other kick-off";
+        if (res.released) flashStatus(`Released ${plural(res.released, "hold")} · ${why}`, { undo: () => restoreScope(snap) });
+        else if (o < ZONE[0] || o > ZONE[1]) flashStatus(`${bookName(bk)} can't reach evens here`);
       }
     });
   };
   openSheet("", draw);
 }
 function changeWhere(wid, bk) {
-  if (wid === slip.window_id && bk === slip.bookie) return false;
+  if (wid === slip.window_id && bk === slip.bookie) return { changed: false, released: 0 };
   const n = Math.max(4, Math.min(slip.legs.length, MAX_LEGS));
-  const keep = slip.legs.filter((l) => l.held && findLeg(wid, bk, l.leg_id));
+  const held = slip.legs.filter((l) => l.held);
+  const keep = held.filter((l) => findLeg(wid, bk, l.leg_id) && inComps(l.fixture_id));
+  const kept = keep.length;
   slip = { window_id: wid, bookie: bk, stake: slip.stake, legs: keep };
-  fillTo(n);
+  fillTo(Math.max(n, MIN_LEGS));
   if (slip.legs.length >= MIN_LEGS) spin();
-  sortSlip(); copied = false; saveSlip();
-  return true;
+  sortSlip(); copied = false; recordScope(); saveSlip();
+  return { changed: true, released: held.length - kept };
 }
 
 // ---------- Play (today's slips) ----------
