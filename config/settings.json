@@ -27,20 +27,20 @@
  },
  "budget": {
   "monthly_limit_fallback": 250,
-  "reserve": 10,
-  "max_calls_per_run": 26,
+  "reserve": 5,
+  "max_calls_per_run": 60,
   "max_tournaments_per_call": 5,
   "participants_refresh_days": 7,
   "tournaments_refresh_days": 30,
   "markets_refresh_days": 60,
   "weekday_weights": {
-   "Mon": 0.3,
-   "Tue": 1.2,
-   "Wed": 1.2,
-   "Thu": 0.3,
+   "Mon": 0.1,
+   "Tue": 1,
+   "Wed": 1,
+   "Thu": 0.1,
    "Fri": 0.8,
-   "Sat": 4,
-   "Sun": 2
+   "Sat": 5,
+   "Sun": 2.5
   },
   "min_match_calls": 6
  },
@@ -311,6 +311,6 @@
  "shortlist": {
   "min_fair_prob": 0.68,
   "max_fair_price": 1.47,
-  "per_window": 10
+  "per_window": 16
  }
 }
