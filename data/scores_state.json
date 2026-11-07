@@ -1,0 +1,217 @@
+{
+ "fixtures": {
+  "id1000001872340012": {
+   "home": "Bristol City",
+   "away": "Norwich City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-07T12:30:00Z"
+  },
+  "id1000001872340030": {
+   "home": "Wrexham AFC",
+   "away": "Wolverhampton Wanderers",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-07T12:30:00Z"
+  },
+  "id1000005272723320": {
+   "home": "Samsunspor",
+   "away": "Konyaspor",
+   "league": "Super Lig",
+   "country": "Turkey",
+   "kickoff": "2026-11-07T13:00:00Z"
+  },
+  "id1000001872340016": {
+   "home": "Charlton Athletic",
+   "away": "Sheffield United",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001872340028": {
+   "home": "West Bromwich Albion",
+   "away": "Millwall FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000020672202724": {
+   "home": "Inverness Caledonian Thistle FC",
+   "away": "Livingston FC",
+   "league": "Championship",
+   "country": "Scotland",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975802940": {
+   "home": "Newport County",
+   "away": "Walsall FC",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975802950": {
+   "home": "Crewe Alexandra",
+   "away": "AFC Wimbledon",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975802960": {
+   "home": "Eastleigh FC",
+   "away": "Shrewsbury Town",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975802968": {
+   "home": "Guiseley FC",
+   "away": "Sutton United",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975837136": {
+   "home": "Luton Town",
+   "away": "Forest Green Rovers",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975837138": {
+   "home": "Barnsley FC",
+   "away": "Aldershot Town FC",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975837142": {
+   "home": "Gillingham FC",
+   "away": "Barrow AFC",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001975837150": {
+   "home": "Plymouth Argyle",
+   "away": "Alvechurch",
+   "league": "FA Cup",
+   "country": "England",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000003672201712": {
+   "home": "St. Johnstone FC",
+   "away": "Dundee FC",
+   "league": "Premiership",
+   "country": "Scotland",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000018572936126": {
+   "home": "Volos NPS",
+   "away": "AE Kifisia FC",
+   "league": "Super League",
+   "country": "Greece",
+   "kickoff": "2026-11-07T15:00:00Z"
+  },
+  "id1000001772221390": {
+   "home": "Sunderland AFC",
+   "away": "Chelsea FC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-08T14:00:00Z"
+  },
+  "id1000018572936122": {
+   "home": "AEK Athens",
+   "away": "APO Levadiakos FC",
+   "league": "Super League",
+   "country": "Greece",
+   "kickoff": "2026-11-08T15:00:00Z"
+  },
+  "id1000005472477570": {
+   "home": "Girona FC",
+   "away": "UD Almeria",
+   "league": "LaLiga 2",
+   "country": "Spain",
+   "kickoff": "2026-11-08T15:15:00Z"
+  },
+  "id1000023872531004": {
+   "home": "Estoril Praia",
+   "away": "Maritimo Madeira",
+   "league": "Liga Portugal",
+   "country": "Portugal",
+   "kickoff": "2026-11-08T15:30:00Z"
+  },
+  "id1000003772041236": {
+   "home": "SC Cambuur",
+   "away": "PSV Eindhoven",
+   "league": "Eredivisie",
+   "country": "Netherlands",
+   "kickoff": "2026-11-08T15:45:00Z"
+  },
+  "id1000005373093056": {
+   "home": "Carrarese Calcio",
+   "away": "Sampdoria Genoa",
+   "league": "Serie B",
+   "country": "Italy",
+   "kickoff": "2026-11-08T16:15:00Z"
+  }
+ },
+ "scores": {},
+ "budget": {
+  "date": "2026-11-07",
+  "api_football": 1,
+  "af_blocked": null
+ },
+ "feeds": {
+  "api_football": {
+   "ok": true,
+   "note": "",
+   "at": "2026-11-07T08:18:04Z"
+  },
+  "football_data": {
+   "ok": true,
+   "note": "",
+   "at": "2026-11-07T08:18:04Z"
+  }
+ },
+ "last_called_at": "2026-11-07T08:18:04Z",
+ "af_status": {
+  "ok": true,
+  "plan": "Free",
+  "used_today": 0,
+  "limit_day": 100
+ },
+ "af_status_date": "2026-11-07",
+ "links": {},
+ "last_log": {
+  "at": "2026-11-07T08:18:04Z",
+  "want": 0,
+  "live": false,
+  "called": true,
+  "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": ""
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1449
+   },
+   {
+    "feed": "football_data",
+    "endpoint": "matches",
+    "from": "2026-11-07",
+    "to": "2026-11-08",
+    "status": 200,
+    "error": "",
+    "results": 36
+   }
+  ],
+  "changed": 0
+ }
+}
