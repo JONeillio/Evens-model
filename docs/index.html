@@ -15,6 +15,7 @@
 <main id="app">
   <!-- The machine (home) -->
   <section class="page" id="home" aria-label="The machine">
+    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home" aria-current="page">Slots</a><a class="room-btn" href="#table">Table <small>NFL</small></a><span class="room-thumb" aria-hidden="true"></span></nav>
     <div class="cabinet" id="cabinet">
       <div class="bulbs" aria-hidden="true" data-bulbs="12"></div>
       <div class="marquee">
@@ -75,6 +76,33 @@
       <span id="oddsStamp"></span>
       <button class="link" id="settingsBtn">Settings</button>
     </div>
+  </section>
+
+  <!-- The card table: NFL player props, getting to evens is the game -->
+  <section class="page table-room" id="table" hidden aria-label="The card table">
+    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home">Slots</a><a class="room-btn" href="#table" aria-current="page">Table <small>NFL</small></a><span class="room-thumb" aria-hidden="true"></span></nav>
+    <div class="felt">
+      <div class="lamp" aria-hidden="true"></div>
+      <header class="t-head">
+        <h2>The card table</h2>
+        <div class="where-row"><span class="t-when" id="tWhen"></span><button class="book-pill" id="tBook" aria-label="Change bookie"></button></div>
+      </header>
+      <div class="game-select" id="tGames" role="group" aria-label="Which games deal cards"></div>
+      <div class="t-play">
+        <div class="shoe" id="tShoe" aria-hidden="true"><span class="shoe-cards"></span><b id="tShoeN">0</b><small>left</small></div>
+        <div class="hand" id="tHand" aria-live="polite"></div>
+        <div class="stamp" id="tStamp" aria-hidden="true"></div>
+      </div>
+      <div class="t-meter" aria-hidden="true"><div class="t-bar"><span class="t-zone"></span><span class="t-mark" id="tMark"></span></div><div class="t-scale" id="tScale"></div></div>
+      <div class="t-line"><b class="num" id="tOdds">–</b><span id="tStatus" role="status"></span></div>
+      <div class="t-facts num" id="tFacts"></div>
+      <div class="t-actions" id="tActions"></div>
+    </div>
+    <section class="players" aria-labelledby="tPlayersTitle">
+      <h3 id="tPlayersTitle">Who's going to do what</h3>
+      <p class="hint" id="tPlayersHint"></p>
+      <div id="tPlayers"></div>
+    </section>
   </section>
   <!-- Play: today's slips -->
   <section class="page" id="play" hidden aria-labelledby="playTitle">

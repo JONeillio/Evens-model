@@ -178,9 +178,19 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: di
                 b["wins"] += 1 if res == "won" else 0
                 b["p_sum"] = round(b["p_sum"] + leg["p_win"], 4)
                 b["price_sum"] = round(b["price_sum"] + leg["price"], 3)
+            # Per-leg results for the app (player-prop hands on the card table settle from these).
+            if leg["key"].startswith("nfl-"):
+                history.setdefault("leg_results", {})[lid] = {"r": res, "k": leg["kickoff"]}
             del pending[lid]
         elif _ts(leg["kickoff"]) < now - timedelta(days=give_up_days):
             del pending[lid]
+    prune_leg_results(history, now)
+
+
+def prune_leg_results(history: dict, now: datetime, days: int = 21) -> None:
+    lr = history.get("leg_results", {})
+    for k in [k for k, v in lr.items() if _ts(v["k"]) < now - timedelta(days=days)]:
+        del lr[k]
 
 
 def public_history(history: dict, generated_at: str) -> dict:
@@ -190,6 +200,7 @@ def public_history(history: dict, generated_at: str) -> dict:
         "summary": summary(history),
         "calibration": history.get("calibration", {}),
         "slips": list(reversed(history["slips"][-150:])),
+        "leg_results": {k: v["r"] for k, v in history.get("leg_results", {}).items()},
     }
 
 

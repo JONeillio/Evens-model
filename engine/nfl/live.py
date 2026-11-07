@@ -83,14 +83,14 @@ def match_games(fixtures: list[dict], games: pd.DataFrame) -> dict:
     return out
 
 
-def _centre_from_line(table, stat, line, p_target):
+def _centre_from_line(table, stat, line, p_target, tighten=1.0):
     """The expected value whose modelled P(over line) equals the market's fair chance."""
     lo, hi = 1.0, 4 * max(line, 25.0)
-    if p_over(table, stat, hi, line) is None:
+    if p_over(table, stat, hi, line, tighten) is None:
         return None
     for _ in range(40):
         mid = (lo + hi) / 2
-        p = p_over(table, stat, mid, line)
+        p = p_over(table, stat, mid, line, tighten)
         if p is None:
             lo = mid
             continue
@@ -101,9 +101,24 @@ def _centre_from_line(table, stat, line, p_target):
     return (lo + hi) / 2
 
 
-def _p(table, stat, mu, line):
-    p = p_over(table, stat, mu, line)
-    return None if p is None else 0.5 + CAL_SHRINK * (p - 0.5)
+# How much of the miss spread is our own centre error, removed when the centre is anchored to
+# the market: Pinnacle-anchored players get a narrower range, UK-average-anchored a bit narrower.
+# Passing only: receivers and runners have real zero-yard games (no catch, no carry) that a
+# narrower range would squeeze out, which made 5+ / 10+ lines look like sure things.
+TIGHTEN = {"sharp+model": 0.8, "market+model": 0.9, "model": 1.0}
+TIGHTEN_STATS = {"pass_yds"}
+
+
+def _tighten(stat, source):
+    return TIGHTEN.get(source, 1.0) if stat in TIGHTEN_STATS else 1.0
+
+
+def _p(table, stat, mu, line, source="model"):
+    p = p_over(table, stat, mu, line, _tighten(stat, source))
+    if p is None:
+        return None
+    # The backtest's slight over-confidence is about our own centre: only correct model-only calls.
+    return 0.5 + CAL_SHRINK * (p - 0.5) if source == "model" else p
 
 
 def build(index: dict, fixtures: dict, settings: dict, now: datetime, offline: bool = False):
@@ -191,7 +206,7 @@ def _anchor(table, stat, mu_model, off):
         w, pts, source = W_CONS, cons, "market+model"
     else:
         return mu_model, "model", None
-    centres = [c for c in (_centre_from_line(table, stat, L, p) for L, p in pts) if c]
+    centres = [c for c in (_centre_from_line(table, stat, L, p, _tighten(stat, source)) for L, p in pts) if c]
     if not centres:
         return mu_model, "model", None
     mu_mkt = float(np.median(centres))
@@ -224,7 +239,7 @@ def _legs_for(fid, fx, pl, stat, mu, source, off, table, cfg, why, mu_model):
     out = []
     surname = pl["name"].split(" ", 1)[-1] if " " in pl["name"] else pl["name"]
     for line, books in off.items():
-        p_ov = _p(table, stat, mu, line)
+        p_ov = _p(table, stat, mu, line, source)
         if p_ov is None:
             continue
         for side, p in (("over", p_ov), ("under", 1 - p_ov)):

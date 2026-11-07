@@ -349,11 +349,17 @@ def _bucket(table: dict, stat: str, mu: float):
     return None
 
 
-def p_over(table: dict, stat: str, mu: float, line: float) -> float | None:
+def p_over(table: dict, stat: str, mu: float, line: float, tighten: float = 1.0) -> float | None:
+    """P(stat > line) given expected value mu. `tighten` < 1 narrows the spread of misses
+    around mu (used when mu is anchored to the market, which removes part of our own error)."""
     if mu is None or not np.isfinite(mu) or mu <= 3:
         return None
     z = _bucket(table, stat, mu)
-    return None if z is None else float((z * mu > line).mean())
+    if z is None:
+        return None
+    if tighten != 1.0:
+        z = np.clip(1 + tighten * (z - 1), 0, None)
+    return float((z * mu > line).mean())
 
 
 def quantiles(table: dict, stat: str, mu: float, qs=(0.1, 0.5, 0.9)):
