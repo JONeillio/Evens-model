@@ -1,0 +1,15 @@
+{
+ "_readme": "Per-stat logistic calibration of P(over line): p' = 1/(1+exp(-(a*logit(p)+b))). Fitted on walk-forward 2024+2025 player-games over many lines (4.5 to 99.5 rec/rush, 149.5 to 299.5 pass). Tested: fitted on 2024 alone, it improved 2025 log loss for every stat.",
+ "rec_yds": {
+  "a": 1.007,
+  "b": -0.0286
+ },
+ "rush_yds": {
+  "a": 1.0215,
+  "b": 0.0409
+ },
+ "pass_yds": {
+  "a": 1.0253,
+  "b": -0.0769
+ }
+}

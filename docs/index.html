@@ -95,14 +95,15 @@
         </div>
       </header>
       <div class="dealer-row">
-        <div class="dealer" id="dealer" aria-hidden="true"></div>
-        <p class="bubble" id="tBubble" aria-live="polite"></p>
+        <button class="dealer" id="dealer" aria-label="Ask the dealer for a tip"></button>
+        <p class="bubble" id="tBubble" aria-live="polite" role="button" tabindex="0"></p>
       </div>
+      <div class="t-label">The dealer's hands <small>each pays about evens</small></div>
       <div class="hands" id="tHands" role="list" aria-label="The dealer's hands"></div>
-      <div class="board-wrap">
-        <div class="t-label">On the board <small>best cards in your deck · ★ = your pick</small></div>
+      <details class="board-wrap">
+        <summary class="t-label">On the board <small id="tBoardN"></small><span class="sum-hint">the best single cards · ☆ a player to build around him</span></summary>
         <div class="board" id="tBoard" role="list"></div>
-      </div>
+      </details>
       <div class="t-label">Your hand</div>
       <div class="hand" id="tHand" aria-live="polite"></div>
       <div class="t-meter" aria-hidden="true"><div class="t-bar"><span class="t-zone"></span><span class="t-mark" id="tMark"></span></div><div class="t-scale" id="tScale"></div></div>

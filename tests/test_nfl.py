@@ -27,3 +27,11 @@ def test_prop_settlement():
     assert _prop_result(leg, {"F1": (20, 17)}, {"F1|nfl-prop:rec_yds:00-1": 31.0}) == "won"
     assert _prop_result(leg, {"F1": (20, 17)}, {"F1|nfl-prop:rec_yds:00-1": 12.0}) == "lost"
     assert _prop_result(leg, {"F1": (20, 17)}, {}) == "void"          # didn't play
+
+
+def test_line_calibration_is_gentle_and_monotonic():
+    from engine.nfl.live import _calibrate
+    ps = [0.1, 0.3, 0.5, 0.7, 0.9, 0.97]
+    out = [_calibrate("rec_yds", p) for p in ps]
+    assert all(a < b for a, b in zip(out, out[1:]))
+    assert all(abs(a - b) < 0.03 for a, b in zip(ps, out))  # tested: the raw model was already honest

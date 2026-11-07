@@ -1736,9 +1736,9 @@ function dealerHands() {
   const pick = (sorter, taken) => all.slice().sort(sorter).find((h) => !taken.has(key(h)));
   const taken = new Set(), hands = [];
   const add = (name, tag, h) => { if (h) { taken.add(key(h)); hands.push(Object.assign({ name, tag }, h)); } };
-  add("Best value", "Highest edge", pick((a, b) => (b.ev + 0.02 * b.conf) - (a.ev + 0.02 * a.conf), taken));
-  add("Safest", "Highest real chance", pick((a, b) => b.chance - a.chance, taken));
-  add("Fewest cards", "Quickest to read", pick((a, b) => a.cards.length - b.cards.length || b.ev - a.ev, taken));
+  add("Best value", "The biggest edge: the most price for the real chance", pick((a, b) => (b.ev + 0.02 * b.conf) - (a.ev + 0.02 * a.conf), taken));
+  add("Safest", "The best chance of landing", pick((a, b) => b.chance - a.chance, taken));
+  add("Fewest cards", "Fewest players to sweat on", pick((a, b) => a.cards.length - b.cards.length || b.ev - a.ev, taken));
   return { hands, why: "" };
 }
 
@@ -1763,15 +1763,17 @@ function renderTable(opts = {}) {
   // The dealer's hands.
   dealt = games.length ? dealerHands() : { hands: [], why: "No NFL player prices yet · they come with the morning odds" };
   const holes = holeCards();
-  $("#tBubble").textContent = dealt.hands.length ? `${dealt.hands.length} hands near evens${holes.length ? ` with your ${plural(holes.length, "pick")}` : ""}. Tap one.` : dealt.why;
+  $("#tBubble").textContent = bubbleText(holes);
   $("#tHands").innerHTML = dealt.hands.map((h, i) => `<button class="dhand${table.active === h.name ? " on" : ""}" role="listitem" data-h="${i}">
       <span class="dh-name">${esc(h.name)}</span>
-      <span class="dh-cards">${h.cards.map((c) => `<span class="mini">${esc((c.player.split(" ").slice(1).join(" ") || c.player).slice(0, 9))}<b>${esc(c.side === "over" ? `${Math.round(c.line + 0.5)}+` : `u${c.line}`)}</b></span>`).join("")}</span>
-      <span class="dh-nums num"><b>${oddsH(h.odds)}</b> · ${pct(h.chance)} · ${edgeTag(h.ev)}</span>
+      <span class="dh-tag">${esc(h.tag)}</span>
+      <span class="dh-cards">${h.cards.map((c) => `<span class="mini">${esc((c.player.split(" ").slice(1).join(" ") || c.player).slice(0, 9))}<b>${esc(c.side === "over" ? `${Math.round(c.line + 0.5)}+` : `u${c.line}`)}</b><i>${esc(c.stat === "pass_yds" ? "pass" : c.stat === "rush_yds" ? "rush" : "rec")}</i></span>`).join("")}</span>
+      <span class="dh-nums num"><span><small>pays</small><b>${oddsH(h.odds)}</b></span><span><small>lands</small>${pct(h.chance)}</span><span><small>edge</small>${edgeTag(h.ev)}</span></span>
+      <span class="dh-go">${table.active === h.name ? "On the felt ✓" : "Lay it down ›"}</span>
     </button>`).join("");
   $("#tHands").querySelectorAll(".dhand").forEach((b) => b.addEventListener("click", () => {
     const h = dealt.hands[+b.dataset.h];
-    table.hand = h.cards.map((c) => c.id); table.active = h.name; table.copied = false; saveTable();
+    table.hand = h.cards.map((c) => c.id); table.active = h.name; table.copied = false; tipAt = -1; saveTable();
     dealerDeal(); Sound.unlock(); Sound.stop(); buzz(12);
     renderTable({ dealAll: true });
   }));
@@ -1782,6 +1784,7 @@ function renderTable(opts = {}) {
   const board = Object.values(by).flat().sort((a, b) => b.score - a.score)
     .filter((c) => { const k = `${c.player}|${c.stat}`; if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 12);
   const inHand = new Set(table.hand), hole = new Set(table.hole);
+  $("#tBoardN").textContent = `${board.length} cards${table.hole.length ? ` · ${table.hole.length} picked` : ""}`;
   $("#tBoard").innerHTML = board.length ? board.map((c) => `<div class="bcard${hole.has(c.id) ? " hole" : ""}${inHand.has(c.id) ? " used" : ""}" role="listitem" data-id="${esc(c.id)}">
       <button class="b-star" data-star="${esc(c.id)}" aria-pressed="${hole.has(c.id)}" aria-label="Make ${esc(c.player)} one of your picks">${hole.has(c.id) ? "★" : "☆"}</button>
       <span class="b-name">${esc(c.player.split(" ").slice(1).join(" ") || c.player)} <small>${esc(c.team)}</small></span>
@@ -1836,6 +1839,30 @@ function renderTable(opts = {}) {
   $("#tClear")?.addEventListener("click", () => { table.hand = []; table.active = null; table.copied = false; saveTable(); Sound.lever(); renderTable(); });
   renderPlayers();
 }
+// What the dealer says: what's in front of you and what to do next. Tap him for tips.
+const TIPS = [
+  "Each hand pays about evens. Best value has the biggest edge, Safest the best chance of landing, Fewest cards the fewest players to sweat on.",
+  "Edge is how much better the price is than our fair price. Plus is good. Most UK player lines sit below fair, so plus numbers are the rare ones.",
+  "Lands is the real chance the whole hand comes in, from our model and Pinnacle's prices.",
+  "Open 'On the board' and tap ☆ on a player you fancy. I'll build every hand around him.",
+  "Tap Deck to pick which games I deal from: one kick-off, or just your team's game.",
+  "Tap any card in your hand to see what we expect from him and why. Swap changes the line, Fold takes it out.",
+];
+let tipAt = -1, bubbleSay = null;
+function bubbleText(holes) {
+  if (bubbleSay) { const t = bubbleSay; bubbleSay = null; return t; }
+  if (tipAt >= 0) return TIPS[tipAt];
+  if (!dealt.hands.length) return dealt.why;
+  const n = comboNums(handCards()), st = tState(n.odds, n.cards.length);
+  const picks = holes.length ? ` around your ${plural(holes.length, "pick")}` : "";
+  if (st === "empty") return `I've dealt ${dealt.hands.length} hands near evens${picks}. Swipe them, then tap one to lay it down. Tap me for tips.`;
+  if (st === "short") return "You're short of evens. Hit and I'll deal a card, or tap a line below.";
+  if (st === "over") return "That's over evens. Fold a card (tap it, then Fold).";
+  return n.ev >= 0 ? "That's evens, and the price beats our fair price. Copy it to the bookie when you're ready." : "That's evens, but the price is below our fair price. Try Best value, or swap a line.";
+}
+$("#dealer").addEventListener("click", () => { tipAt = (tipAt + 1) % TIPS.length; Sound.hold(); renderTable(); });
+$("#tBubble").addEventListener("click", () => { tipAt = (tipAt + 1) % TIPS.length; Sound.hold(); renderTable(); });
+
 function cardHTML(c, i, n) {
   const surname = c.player.split(" ").slice(1).join(" ") || c.player;
   const fx = FIX[c.fid];
@@ -1851,6 +1878,7 @@ function cardHTML(c, i, n) {
 }
 // Put a card in the hand (replacing any card from the same match).
 function placeCard(id) {
+  tipAt = -1;
   const fid = LEGS[id].fixture_id;
   table.hand = table.hand.filter((x) => LEGS[x]?.fixture_id !== fid).concat(id);
   table.active = null; table.copied = false; saveTable();
@@ -1869,6 +1897,7 @@ function bestHit() {
   return pool[Math.floor(Math.random() * Math.min(pool.length, 3))];
 }
 function tableHit() {
+  tipAt = -1;
   const c = bestHit();
   if (!c) return;
   table.hand.push(c.id); table.active = null; table.copied = false; saveTable();
@@ -1970,19 +1999,62 @@ $("#tBook").addEventListener("click", () => {
   });
 });
 
-// ---------- the dealer: an original pixel-art croupier (green visor, red bow tie) ----------
-const DEALER_PAL = { v: "#3FA36B", V: "#2B7A4E", h: "#3B2412", s: "#E8B48A", S: "#C98E66", e: "#1C1208", w: "#F2EFE4", b: "#C0392B", k: "#1C1208", K: "#3A2A1C", c: "#FFF8E7", r: "#A3172A" };
+// ---------- the dealer: an original pixel-art croupier (green visor, moustache, bow tie, sleeve garters) ----------
+const DEALER_PAL = { o: "#1C1208", v: "#3FA36B", V: "#2B7A4E", L: "#8FE0B0", h: "#4A2C14", s: "#F0C29A", S: "#D9A27A", e: "#FFFFFF", p: "#1C1208",
+  m: "#A0522D", w: "#F7F3E8", W: "#D8D2C0", b: "#D23A2A", k: "#2B1D14", K: "#4A3426", g: "#D23A2A", y: "#E0A93B", c: "#FFF8E7", r: "#A3172A" };
 const DEALER_IDLE = [
-  "....vvvvvvvv....", "...vVVVVVVVVv...", "....hhhhhhhh....", "....hssssssh....", "....seesesse....", "....ssssssss....",
-  ".....sSSSSs.....", "......ssss......", "...wwwbbbbwww...", "..kwwwwbbwwwwk..", ".kkkkwwwwwwkkkk.", ".kkkkkwwwwkkkkk.",
-  ".s.kkkkKKkkkk.s.", ".s.kkkkKKkkkk.s.", "...kkkkkkkkkk...", "...kkkkkkkkkk...",
+  "........................",
+  "........oooooooo........",
+  ".......oLLvvvvvvo.......",
+  "......ovvvvvvvvvvo......",
+  "....ooVVVVVVVVVVVVoo....",
+  ".....ohhhhhhhhhhhho.....",
+  ".....ohssssssssssho.....",
+  ".....ossepssssepsso.....",
+  ".....osssssSSsssssso....",
+  ".....ossssmmmmsssso.....",
+  "......oSssssssssSo......",
+  ".......ooSssssSoo.......",
+  ".....oowwwbbbbwwwoo.....",
+  "....okwwwwbbbbwwwwko....",
+  "...okkkwwwwbbwwwwkkko...",
+  "..okkkkkwwwwwwwwkkkkko..",
+  ".owokkkkkwwwwwwkkkkkowo.",
+  ".ogokkkkkkywwykkkkkkogo.",
+  ".owokkkkkkkwwkkkkkkkowo.",
+  ".osokkkkkkywwykkkkkkoso.",
+  "..o.okkkkkkkkkkkkkko.o..",
+  "....oKKKKKKKKKKKKKKo....",
+  "....oooooooooooooooo....",
+  "........................",
 ];
 const DEALER_DEAL = [
-  "....vvvvvvvv....", "...vVVVVVVVVv...", "....hhhhhhhh....", "....hssssssh....", "....seesesse....", "....ssssssss....",
-  ".....sSSSSs.....", "......ssss......", "...wwwbbbbwww...", "..kwwwwbbwwwwkss", ".kkkkwwwwwwkkkcr", ".kkkkkwwwwkkk.cr",
-  ".s.kkkkKKkkkk...", ".s.kkkkKKkkkk...", "...kkkkkkkkkk...", "...kkkkkkkkkk...",
+  "........................",
+  "........oooooooo........",
+  ".......oLLvvvvvvo.......",
+  "......ovvvvvvvvvvo......",
+  "....ooVVVVVVVVVVVVoo....",
+  ".....ohhhhhhhhhhhho.....",
+  ".....ohssssssssssho.....",
+  ".....ossepssssepsso.....",
+  ".....osssssSSsssssso....",
+  ".....ossssmmmmsssso.....",
+  "......oSssssssssSo......",
+  ".......ooSssssSoo.......",
+  ".....oowwwbbbbwwwoo.....",
+  "....okwwwwbbbbwwwwko....",
+  "...okkkwwwwbbwwwwkkko.cc",
+  "..okkkkkwwwwwwwwkkkkkocr",
+  ".owokkkkkwwwwwwkkkkkwwsr",
+  ".ogokkkkkkywwykkkkkko...",
+  ".owokkkkkkkwwkkkkkkko...",
+  ".osokkkkkkywwykkkkkko...",
+  "..o.okkkkkkkkkkkkkko.o..",
+  "....oKKKKKKKKKKKKKKo....",
+  "....oooooooooooooooo....",
+  "........................",
 ];
-const sprite = (rows) => `<svg viewBox="0 0 16 16" width="64" height="64" shape-rendering="crispEdges">${rows.map((r, y) => [...r].map((ch, x) => DEALER_PAL[ch] ? `<rect x="${x}" y="${y}" width="1" height="1" fill="${DEALER_PAL[ch]}"/>` : "").join("")).join("")}</svg>`;
+const sprite = (rows) => `<svg viewBox="0 0 24 24" width="72" height="72" shape-rendering="crispEdges">${rows.map((r, y) => [...r].map((ch, x) => DEALER_PAL[ch] ? `<rect x="${x}" y="${y}" width="1" height="1" fill="${DEALER_PAL[ch]}"/>` : "").join("")).join("")}</svg>`;
 const DEALER_SVG = { idle: sprite(DEALER_IDLE), deal: sprite(DEALER_DEAL) };
 function dealerDeal() {
   const d = $("#dealer");
@@ -2034,7 +2106,7 @@ function roomTransition(page) {
     const el = $("#" + id);
     el.addEventListener("pointerdown", (e) => {
       // Not from the screen edges (Android's back gesture), not on the lever or reels.
-      if (e.clientX < 24 || e.clientX > innerWidth - 24 || e.target.closest(".lever-track, #reels, .game-select, .p-lines, .hands, .board, input")) { x0 = null; return; }
+      if (e.clientX < 24 || e.clientX > innerWidth - 24 || e.target.closest(".lever-track, #reels, .game-select, .p-lines, .hands, .board, summary, input")) { x0 = null; return; }
       x0 = e.clientX; y0 = e.clientY; locked = false;
     });
     el.addEventListener("pointermove", (e) => {

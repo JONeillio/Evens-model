@@ -34,7 +34,6 @@ ROOT = Path(__file__).resolve().parents[2]
 MODEL_DIR = ROOT / "data" / "nfl_model"
 LABEL = {"rec_yds": "receiving yds", "rush_yds": "rushing yds", "pass_yds": "passing yds"}
 SHORT = {"rec_yds": "rec yds", "rush_yds": "rush yds", "pass_yds": "pass yds"}
-CAL_SHRINK = 0.85        # backtest: slightly overconfident above ~65%, so pull towards 50%
 W_SHARP, W_CONS = 0.75, 0.5
 MAX_GAP = 0.45           # skip if model and market centres differ by more than 45%
 
@@ -101,24 +100,29 @@ def _centre_from_line(table, stat, line, p_target, tighten=1.0):
     return (lo + hi) / 2
 
 
-# How much of the miss spread is our own centre error, removed when the centre is anchored to
-# the market: Pinnacle-anchored players get a narrower range, UK-average-anchored a bit narrower.
-# Passing only: receivers and runners have real zero-yard games (no catch, no carry) that a
-# narrower range would squeeze out, which made 5+ / 10+ lines look like sure things.
-TIGHTEN = {"sharp+model": 0.8, "market+model": 0.9, "model": 1.0}
-TIGHTEN_STATS = {"pass_yds"}
+# Line pricing, tested on 7 Nov 2026: over 30,000 walk-forward player-game outcomes in 2025
+# (unseen) across lines from 4.5 to 99.5 yards (receiving, rushing) and 149.5 to 299.5
+# (passing). The raw model was already honest from 3% to 97% (e.g. said 92%, came in 92%),
+# so no shrinking or narrowing: just a tiny per-stat logistic correction fitted on 2024+2025
+# (data/nfl_model/calibration.json).
+_CAL = None
 
 
-def _tighten(stat, source):
-    return TIGHTEN.get(source, 1.0) if stat in TIGHTEN_STATS else 1.0
+def _calibrate(stat, p):
+    global _CAL
+    if _CAL is None:
+        path = MODEL_DIR / "calibration.json"
+        _CAL = json.loads(path.read_text()) if path.exists() else {}
+    c = _CAL.get(stat)
+    if not c or p <= 0 or p >= 1:
+        return p
+    z = c["a"] * np.log(p / (1 - p)) + c["b"]
+    return float(1 / (1 + np.exp(-z)))
 
 
 def _p(table, stat, mu, line, source="model"):
-    p = p_over(table, stat, mu, line, _tighten(stat, source))
-    if p is None:
-        return None
-    # The backtest's slight over-confidence is about our own centre: only correct model-only calls.
-    return 0.5 + CAL_SHRINK * (p - 0.5) if source == "model" else p
+    p = p_over(table, stat, mu, line)
+    return None if p is None else _calibrate(stat, p)
 
 
 def build(index: dict, fixtures: dict, settings: dict, now: datetime, offline: bool = False):
@@ -206,7 +210,7 @@ def _anchor(table, stat, mu_model, off):
         w, pts, source = W_CONS, cons, "market+model"
     else:
         return mu_model, "model", None
-    centres = [c for c in (_centre_from_line(table, stat, L, p, _tighten(stat, source)) for L, p in pts) if c]
+    centres = [c for c in (_centre_from_line(table, stat, L, p) for L, p in pts) if c]
     if not centres:
         return mu_model, "model", None
     mu_mkt = float(np.median(centres))
