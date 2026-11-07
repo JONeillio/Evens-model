@@ -797,10 +797,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T14:49:33Z"
+   "at": "2026-11-07T14:54:36Z"
   }
  },
- "last_called_at": "2026-11-07T14:49:33Z",
+ "last_called_at": "2026-11-07T14:54:36Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1022,19 +1022,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T14:49:33Z",
-  "want": 6,
+  "at": "2026-11-07T14:54:36Z",
+  "want": 54,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1045,12 +1037,55 @@
     "results": 36
    }
   ],
-  "changed": 6,
+  "changed": 0,
   "coverage": {
-   "checked": 6,
-   "api_football": 6,
-   "football_data": 2,
-   "unmatched": []
+   "checked": 54,
+   "api_football": 0,
+   "football_data": 12,
+   "unmatched": [
+    "Samsunspor v Konyaspor (Super Lig)",
+    "Inverness Caledonian Thistle FC v Livingston FC (Championship)",
+    "Newport County v Walsall FC (FA Cup)",
+    "Crewe Alexandra v AFC Wimbledon (FA Cup)",
+    "Eastleigh FC v Shrewsbury Town (FA Cup)",
+    "Guiseley FC v Sutton United (FA Cup)",
+    "Luton Town v Forest Green Rovers (FA Cup)",
+    "Barnsley FC v Aldershot Town FC (FA Cup)",
+    "Gillingham FC v Barrow AFC (FA Cup)",
+    "Plymouth Argyle v Alvechurch (FA Cup)",
+    "St. Johnstone FC v Dundee FC (Premiership)",
+    "Volos NPS v AE Kifisia FC (Super League)",
+    "Clermont Foot 63 v Rodez Aveyron Football (Ligue 2)",
+    "Cesena FC v US Catanzaro (Serie B)",
+    "Calcio Padova v Empoli FC (Serie B)",
+    "Arbroath FC v Ayr United FC (Championship)",
+    "Greenock Morton FC v Stenhousemuir FC (Championship)",
+    "Dover Athletic FC v Wealdstone FC (FA Cup)",
+    "Huddersfield Town v Exeter City (FA Cup)",
+    "Kidderminster Harriers FC v Doncaster Rovers (FA Cup)",
+    "Leyton Orient London v Harborough Town FC (FA Cup)",
+    "Accrington Stanley v Wycombe Wanderers (FA Cup)",
+    "Milton Keynes Dons v Swindon Town (FA Cup)",
+    "Bromley FC v Rotherham United (FA Cup)",
+    "Barnet FC v Tranmere Rovers FC (FA Cup)",
+    "Fleetwood Town v Rochdale AFC (FA Cup)",
+    "Oxford United v Stevenage FC (FA Cup)",
+    "Burton Albion v AFC Rushden And Diamonds (FA Cup)",
+    "Port Vale v Scunthorpe United (FA Cup)",
+    "Cheltenham Town v FC Halifax Town (FA Cup)",
+    "Hornchurch FC v Blackpool FC (FA Cup)",
+    "Bradford City FC v Marine FC (FA Cup)",
+    "York City FC v Northampton Town (FA Cup)",
+    "Boreham Wood FC v Wigan Athletic (FA Cup)",
+    "Carlisle United v Salford City (FA Cup)",
+    "Salisbury FC v Sholing FC (FA Cup)",
+    "Mansfield Town v Macclesfield FC (FA Cup)",
+    "Chesterfield FC v Yeovil Town (FA Cup)",
+    "Harrogate Town v AFC Fylde (FA Cup)",
+    "Colchester United v Worcester City (FA Cup)",
+    "Dundee United v Motherwell FC (Premiership)",
+    "KVC Westerlo v Royal Charleroi SC (Pro League)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T14:49:33Z"
