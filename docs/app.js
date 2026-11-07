@@ -607,7 +607,7 @@ const fixtureLine = (fx) => `${code(fx, "home")} v ${code(fx, "away")} · ${fmtT
 const shortLabel = (fx, label) => label.split(fx.home).join(code(fx, "home")).split(fx.away).join(code(fx, "away"));
 
 function reelFace({ fx, leg }) {
-  return `<div class="face"><span class="fxl" aria-label="${esc(`${fx.home} v ${fx.away}, ${fmtTime(fx.kickoff_utc, false)}`)}"><span>${esc(code(fx, "home"))} v ${esc(code(fx, "away"))}</span><span>${esc(fmtTime(fx.kickoff_utc, false))}</span></span><span class="lbl" data-short="${esc(shortLabel(fx, leg.label))}"><span class="t">${esc(leg.label)}</span></span><span class="px num">${oddsH(leg.price)}</span></div>`;
+  return `<div class="face"><span class="fxl" aria-label="${esc(`${fx.home} v ${fx.away}, ${fmtTime(fx.kickoff_utc, false)}`)}"><span>${esc(code(fx, "home"))} v ${esc(code(fx, "away"))}</span><span>${esc(fmtTime(fx.kickoff_utc, false))}</span></span><span class="lbl" data-short="${esc(leg.short || shortLabel(fx, leg.label))}"><span class="t">${esc(leg.label)}</span></span><span class="px num">${oddsH(leg.price)}</span></div>`;
 }
 // Shrink a reel label in steps (to 12px), up to 3 lines, never clipped sideways;
 // if it still won't fit, swap team names for their codes ("SAM to score").

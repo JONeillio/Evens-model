@@ -59,6 +59,8 @@ def build_pools(legs, fixtures_by_id, books, settings) -> list[dict]:
                         "p_void": leg["p_void"],
                         "edge": round(price * leg["p_win"] + leg["p_void"] - 1, 4),
                         "fair_source": leg["source"],
+                        **({"short": leg["short"]} if leg.get("short") else {}),
+                        **({"why": leg["why"]} if leg.get("why") else {}),
                     })
                 if pool:
                     pool.sort(key=lambda l: (-l["edge"], l["price"]))

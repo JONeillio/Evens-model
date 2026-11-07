@@ -29,7 +29,7 @@ from .footballdata import FootballData
 from .goals_model import fit
 from .legs import build_legs, ALIAS_OF
 from .names import Participants, assign_short_codes, best_match
-from .parse import add_payload
+from .parse import add_payload, add_props
 from .scores import final_results
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -164,7 +164,9 @@ class Run:
         picks = self.shortlist(index, match_calls, skip_tournaments=set(core_ids))
         for fid in picks:
             try:
-                add_payload(index, self.api.get("odds", fixtureId=fid), books=[sharp] + uk, **self.lenient())
+                res = self.api.get("odds", fixtureId=fid)
+                add_payload(index, res, books=[sharp] + uk, **self.lenient())
+                add_props(index, res, books=[sharp] + uk, now=self.now)
             except QuotaExhausted as exc:
                 self.log["errors"].append(str(exc))
                 break
@@ -214,7 +216,9 @@ class Run:
             for bk in books:
                 for g in list(groups):
                     try:
-                        add_payload(index, self.api.odds_by_tournaments(g, bookmaker=bk), books=[bk], **self.lenient())
+                        res = self.api.odds_by_tournaments(g, bookmaker=bk)
+                        add_payload(index, res, books=[bk], **self.lenient())
+                        add_props(index, res, books=[bk], now=self.now)
                     except QuotaExhausted as exc:
                         self.log["errors"].append(str(exc))
                         return done
@@ -229,7 +233,9 @@ class Run:
                             self.log["notes"].append("Core: split by sport (mixed request refused).")
                             for g2 in groups:
                                 try:
-                                    add_payload(index, self.api.odds_by_tournaments(g2, bookmaker=bk), books=[bk], **self.lenient())
+                                    res = self.api.odds_by_tournaments(g2, bookmaker=bk)
+                                    add_payload(index, res, books=[bk], **self.lenient())
+                                    add_props(index, res, books=[bk], now=self.now)
                                 except Exception as exc2:
                                     self.log["errors"].append(f"core {bk} {g2}: {str(exc2)[:200]}")
                             break
@@ -383,6 +389,20 @@ class Run:
         legs = []
         for fid, fx in fixtures.items():
             legs.extend(build_legs(fx, index[fid]["books"], s["sharp_book"], books, s, model_probs.get(fid)))
+        # NFL player yards: stats-first projections lined up with the prop prices (engine/nfl).
+        nfl_proj, nfl_map = [], load_json(ROOT / "data" / "nfl_model" / "fixture_map.json", {})
+        try:
+            from .nfl import live as nfl_live
+            nl, nfl_proj, fmap = nfl_live.build(index, fixtures, s, self.now, offline=bool(self.mock_dir))
+            legs.extend(nl)
+            if fmap and not self.mock_dir:
+                nfl_map.update({k: dict(v, seen=iso(self.now)) for k, v in fmap.items()})
+                cutoff = iso(self.now - timedelta(days=21))
+                nfl_map = {k: v for k, v in nfl_map.items() if v.get("seen", "") >= cutoff}
+                save_json(ROOT / "data" / "nfl_model" / "fixture_map.json", nfl_map)
+            self.log["nfl"] = {"prop_legs": len(nl), "projections": len(nfl_proj)}
+        except Exception as exc:
+            self.log["errors"].append(f"nfl model: {str(exc)[:300]}")
         legs_by_id = {l["id"]: l for l in legs}
 
         t0 = time.monotonic()
@@ -394,8 +414,16 @@ class Run:
         hist = load_json(DATA / "history_state.json", settle.empty_history())
         settle.publish(hist, slips, legs_by_id, fixtures, self.now)
         settle.track_legs(hist, legs, fixtures, self.now)
+        results = final_results(load_json(DATA / "scores_state.json", {}))
+        prop_values = {}
         try:
-            settle.settle(hist, fd, self.now, results=final_results(load_json(DATA / "scores_state.json", {})))
+            from .nfl import live as nfl_live
+            nfl_scores, prop_values = nfl_live.results_and_props(nfl_map, offline=bool(self.mock_dir))
+            results = {**nfl_scores, **results}
+        except Exception as exc:
+            self.log["errors"].append(f"nfl settle: {str(exc)[:200]}")
+        try:
+            settle.settle(hist, fd, self.now, results=results, prop_values=prop_values)
         except Exception as exc:
             self.log["errors"].append(f"settlement: {exc}")
         hist["slips"] = hist["slips"][-400:]
@@ -428,6 +456,7 @@ class Run:
             latest["budget"]["used_this_run"] = self.api.billable_calls
             latest["budget"]["remaining_after"] = (self.log.get("usage_before", {}).get("remaining") or 0) - self.api.billable_calls
         save_json(DOCS_DATA / "latest.json", latest, compact=True)
+        save_json(DOCS_DATA / "projections.json", {"generated_at": iso(self.now), "nfl": nfl_proj}, compact=True)
 
         self.state["last_run_at"] = iso(self.now)
         save_json(DATA / "state.json", self.state)

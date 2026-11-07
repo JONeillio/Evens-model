@@ -12,7 +12,7 @@ on:
         description: "refresh (normal), probe (check which bookies have data, 1 request), sports (NFL/NBA discovery, ~9 requests) or rebuild (re-run the engine on the last odds snapshot, 0 requests)"
         default: refresh
         type: choice
-        options: [refresh, probe, sports, rebuild]
+        options: [refresh, probe, sports, datacheck, nflbacktest, rebuild]
       calls:
         description: "refresh only: spend up to this many requests (blank = the normal daily share)"
         required: false
@@ -51,6 +51,8 @@ jobs:
         run: |
           if [ "${{ inputs.task }}" = "probe" ]; then python -m engine.probe;
           elif [ "${{ inputs.task }}" = "sports" ]; then python -m engine.probe_sports;
+          elif [ "${{ inputs.task }}" = "datacheck" ]; then python -m engine.datacheck;
+          elif [ "${{ inputs.task }}" = "nflbacktest" ]; then python -m engine.nfl.backtest;
           elif [ "${{ inputs.task }}" = "rebuild" ]; then python -m engine.run --reuse-snapshot;
           else python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }} ${CALLS:+--calls "$CALLS"}; fi
 
@@ -60,6 +62,7 @@ jobs:
           git config user.name "evens-bot"
           git config user.email "evens-bot@users.noreply.github.com"
           git add data docs/data
+          git reset -q data/cache || true
           git diff --cached --quiet && exit 0
           git commit -m "Odds refresh $(date -u +'%Y-%m-%d %H:%M') UTC"
           git pull --rebase

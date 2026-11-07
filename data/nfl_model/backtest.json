@@ -1,0 +1,175 @@
+{
+ "params": {
+  "hl_team": 6.0,
+  "hl_share": 3.0,
+  "hl_eff": 8.0,
+  "prior_season_weight": 0.5,
+  "k_ypt": 30.0,
+  "k_ypc": 50.0,
+  "k_ypa": 150.0,
+  "k_def_rec": 90.0,
+  "k_def_rush": 150.0,
+  "k_def_pass": 250.0,
+  "k_share": 2.0,
+  "home_points": 1.2,
+  "pts_shrink": 0.55,
+  "vol_coef": {
+   "attempts": [
+    9.152515573032483,
+    0.3997862172673684,
+    0.1728345824551387,
+    -0.14996351622745108,
+    0.2307522103283536
+   ],
+   "carries": [
+    13.053366517407287,
+    0.42884586287843185,
+    0.19041070277511232,
+    0.27441658590735046,
+    -0.12773042488200553
+   ]
+  }
+ },
+ "players_2025": {
+  "rec_yds": {
+   "n": 3234,
+   "mae_model": 18.33,
+   "mae_naive": 19.62,
+   "logloss_model": 0.6523,
+   "logloss_flat": 0.6743,
+   "calibration": [
+    {
+     "n": 488,
+     "said": 0.233,
+     "came": 0.234
+    },
+    {
+     "n": 1037,
+     "said": 0.35,
+     "came": 0.351
+    },
+    {
+     "n": 1018,
+     "said": 0.444,
+     "came": 0.439
+    },
+    {
+     "n": 518,
+     "said": 0.544,
+     "came": 0.529
+    },
+    {
+     "n": 150,
+     "said": 0.635,
+     "came": 0.607
+    },
+    {
+     "n": 23,
+     "said": 0.742,
+     "came": 0.609
+    }
+   ],
+   "strong_calls": 1451,
+   "strong_hit_rate": 0.695
+  },
+  "rush_yds": {
+   "n": 1410,
+   "mae_model": 19.77,
+   "mae_naive": 20.38,
+   "logloss_model": 0.6468,
+   "logloss_flat": 0.6733,
+   "calibration": [
+    {
+     "n": 275,
+     "said": 0.239,
+     "came": 0.251
+    },
+    {
+     "n": 448,
+     "said": 0.357,
+     "came": 0.339
+    },
+    {
+     "n": 444,
+     "said": 0.447,
+     "came": 0.484
+    },
+    {
+     "n": 177,
+     "said": 0.536,
+     "came": 0.503
+    },
+    {
+     "n": 54,
+     "said": 0.645,
+     "came": 0.574
+    },
+    {
+     "n": 12,
+     "said": 0.764,
+     "came": 0.75
+    }
+   ],
+   "strong_calls": 634,
+   "strong_hit_rate": 0.708
+  },
+  "pass_yds": {
+   "n": 374,
+   "mae_model": 59.37,
+   "mae_naive": 64.26,
+   "logloss_model": 0.6466,
+   "logloss_flat": 0.6926,
+   "calibration": [
+    {
+     "n": 26,
+     "said": 0.21,
+     "came": 0.077
+    },
+    {
+     "n": 65,
+     "said": 0.353,
+     "came": 0.385
+    },
+    {
+     "n": 75,
+     "said": 0.448,
+     "came": 0.44
+    },
+    {
+     "n": 94,
+     "said": 0.554,
+     "came": 0.532
+    },
+    {
+     "n": 63,
+     "said": 0.638,
+     "came": 0.571
+    },
+    {
+     "n": 51,
+     "said": 0.778,
+     "came": 0.686
+    }
+   ],
+   "strong_calls": 163,
+   "strong_hit_rate": 0.669
+  }
+ },
+ "teams_2025": {
+  "games": 224,
+  "margin_mae_model": 10.34,
+  "margin_mae_line": 9.92,
+  "total_mae_model": 10.31,
+  "total_mae_line": 9.94,
+  "margin_mae_blend_0.1": 9.927,
+  "total_mae_blend_0.1": 9.934,
+  "margin_mae_blend_0.2": 9.941,
+  "total_mae_blend_0.2": 9.939,
+  "margin_mae_blend_0.3": 9.97,
+  "total_mae_blend_0.3": 9.954,
+  "ats_disagree_3plus": {
+   "n": 82,
+   "hit": 0.476
+  }
+ }
+}

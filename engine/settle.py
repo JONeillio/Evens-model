@@ -91,7 +91,22 @@ def track_legs(history: dict, legs, fixtures_by_id, now: datetime):
         pending[leg["id"]] = leg_snapshot(leg, fx)
 
 
-def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: dict | None = None):
+def _prop_result(leg, results, prop_values):
+    """Player-yards legs: compare the player's stat with the line once his game is final.
+    No stat line for him in a final game = he didn't play = void (how the bookies settle it)."""
+    fid = leg["id"].split("|")[0]
+    if fid not in results:
+        return None
+    _, stat, pid, line, side = leg["key"].split(":")
+    v = (prop_values or {}).get(f"{fid}|nfl-prop:{stat}:{pid}")
+    if v is None:
+        return "void"
+    over = v > float(line)
+    return "won" if (over if side == "over" else not over) else "lost"
+
+
+def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: dict | None = None,
+           prop_values: dict | None = None):
     """Settle pending slips and legs whose matches have results published.
 
     `results` maps fixture id -> (home goals, away goals) after 90 minutes, from
@@ -121,6 +136,9 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: di
         for leg in slip["legs"]:
             if leg["result"]:
                 continue
+            if leg["key"].startswith("nfl-prop"):
+                leg["result"] = _prop_result(leg, results, prop_values)
+                continue
             score = result_for(leg)
             if score:
                 leg["result"] = outcome(leg["key"], *score)
@@ -147,9 +165,13 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: di
         leg = pending[lid]
         if _ts(leg["kickoff"]) > now - timedelta(hours=2):
             continue
-        score = result_for(leg)
+        if leg["key"].startswith("nfl-prop"):
+            res = _prop_result(leg, results, prop_values)
+            score = (0, 0) if res else None
+        else:
+            score = result_for(leg)
+            res = outcome(leg["key"], *score) if score else None
         if score:
-            res = outcome(leg["key"], *score)
             if res != "void":
                 b = cal.setdefault(_bin(leg["p_win"]), {"n": 0, "wins": 0, "p_sum": 0.0, "price_sum": 0.0})
                 b["n"] += 1
