@@ -200,6 +200,12 @@ def _anchor(table, stat, mu_model, off):
 def _why(pl, stat) -> str:
     opp = {"rec_yds": pl["opp_rec"], "rush_yds": pl["opp_rush"], "pass_yds": pl["opp_pass"]}[stat]
     vs = f"{pl['opp']} allow {abs(opp - 1) * 100:.0f}% {'more' if opp >= 1 else 'less'} than average"
+    vs += " · home" if pl.get("home") == 1 else " · away"
+    form = pl.get(f"mom_{stat}", 1.0)
+    if abs(form - 1) >= 0.05:
+        vs += f" · {'hot' if form > 1 else 'cold'} last 3 ({(form - 1) * 100:+.0f}%)"
+    if pl.get("qb_factor", 1.0) < 0.97:
+        vs += " · backup QB"
     if stat == "rec_yds":
         return f"{pl['tgt_share'] * 100:.0f}% of targets · ~{pl['proj_targets_p']:.1f} targets · {vs}"
     if stat == "rush_yds":

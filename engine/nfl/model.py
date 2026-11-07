@@ -42,7 +42,14 @@ class Params:
     k_def_rec: float = 90.0     # targets faced before trusting a defence's yards/target allowed
     k_def_rush: float = 150.0
     k_def_pass: float = 250.0
-    k_share: float = 2.0        # games of evidence for a share (shrinks rookies/new roles to 0)
+    k_share: float = 1.0        # games of evidence for a share (shrinks rookies/new roles towards 0)
+    # How hard the opponent's defence counts (1 = as measured, 1.5 = 50% stronger), per stat.
+    opp_power: dict = field(default_factory=lambda: {"rec_yds": 0.75, "rush_yds": 1.0, "pass_yds": 0.75})
+    # Momentum: weight on last-3-games form vs his longer baseline (0 = off), per stat.
+    mom_gamma: dict = field(default_factory=lambda: {"rec_yds": 0.0, "rush_yds": 0.25, "pass_yds": 0.0})
+    hl_def: float = 3.0         # half-life (games) for defences: shorter = recent defensive form counts more
+    mom_k: dict = field(default_factory=lambda: {"rec_yds": 15.0, "rush_yds": 15.0, "pass_yds": 60.0})
+    home_mult: dict = field(default_factory=lambda: {"rec_yds": 1.01, "rush_yds": 1.0, "pass_yds": 1.03})
     home_points: float = 1.2
     pts_shrink: float = 0.55    # how much of a team's above/below-average points to believe
     vol_coef: dict = field(default_factory=dict)  # fitted volume regressions
@@ -115,7 +122,7 @@ def _defence_by_pos(p: pd.DataFrame, season: int, P: Params):
     h["w"] = _weights(h.drop_duplicates(["game_id", "team"]).pipe(lambda d: d), "opponent_team", P.hl_team, season, P.prior_season_weight)
     # weight per defence-game, then broadcast to its player rows
     dg = p.drop_duplicates(["game_id", "opponent_team"])[["game_id", "opponent_team", "t", "season"]].copy()
-    dg["w"] = _weights(dg, "opponent_team", P.hl_team, season, P.prior_season_weight)
+    dg["w"] = _weights(dg, "opponent_team", P.hl_def, season, P.prior_season_weight)
     h = p.merge(dg[["game_id", "opponent_team", "w"]], on=["game_id", "opponent_team"], how="left")
 
     rec = h[h["pos"].isin(["WR", "TE", "RB"])]
@@ -150,9 +157,16 @@ def _player_tables(p: pd.DataFrame, season: int, P: Params, lg_ypt, lg_ypc, lg_y
         name=("player_display_name", "last"), pos=("pos", "last"), team=("team", lambda s: s.iloc[-1]),
         tgt=("tgt", "sum"), tt=("tt", "sum"), car=("car", "sum"), tc=("tc", "sum"), att=("att", "sum"), ta=("ta", "sum"),
         ws=("ws", "sum"), ry=("ry", "sum"), rt=("rt", "sum"), uy=("uy", "sum"), uc=("uc", "sum"), py=("py", "sum"), pa=("pa", "sum"),
-        last_t=("t", "max"),
+        last_t=("t", "max"), games=("t", "count"),
     )
-    shrink_share = agg["ws"] / (agg["ws"] + P.k_share)
+    # Shrink shares only for players with few games (rookies, new roles), not everyone.
+    shrink_share = agg["games"] / (agg["games"] + P.k_share)
+    last3 = h.sort_values("t").groupby("player_id").tail(3).groupby("player_id")[["receiving_yards", "rushing_yards", "passing_yards"]].mean()
+    long = h.assign(a=h["receiving_yards"] * h["we"], b=h["rushing_yards"] * h["we"], c=h["passing_yards"] * h["we"]).groupby("player_id")[["a", "b", "c", "we"]].sum()
+    for stat, col, lc in (("rec_yds", "receiving_yards", "a"), ("rush_yds", "rushing_yards", "b"), ("pass_yds", "passing_yards", "c")):
+        k = P.mom_k[stat]
+        base = long[lc] / long["we"].replace(0, np.nan)
+        agg[f"mom_{stat}"] = (((last3[col] + k) / (base + k)) ** P.mom_gamma[stat]).reindex(agg.index).fillna(1.0).clip(0.6, 1.6)
     agg["tgt_share"] = (agg["tgt"] / agg["tt"].replace(0, np.nan)).fillna(0) * shrink_share
     agg["car_share"] = (agg["car"] / agg["tc"].replace(0, np.nan)).fillna(0) * shrink_share
     agg["att_share"] = (agg["att"] / agg["ta"].replace(0, np.nan)).fillna(0)
@@ -246,7 +260,15 @@ def project_week(prep: dict, season: int, week: int, P: Params, games: pd.DataFr
 
     # ---- player side: who's in each team's recent rotation ----
     recent_cut = sorted(tm_hist["t"].unique())[-6:] if len(tm_hist) else []
-    active = pl[pl["last_t"].isin(recent_cut) & pl["team"].isin(T["team"])].reset_index()
+    in_rotation = pl["last_t"].isin(recent_cut)
+    # QBs who've played for the team this season stay available (a backup who last played
+    # in week 2 can still start in week 9).
+    this_season_qb = (pl["pos"] == "QB") & (pl["last_t"] >= season * 100)
+    active = pl[(in_rotation | this_season_qb) & pl["team"].isin(T["team"])].reset_index()
+    active["recent"] = active["last_t"].isin(recent_cut)
+    # Each team's usual starter (before injuries), to spot a backup taking over.
+    usual_qb = active[(active["pos"] == "QB") & active["last_t"].isin(recent_cut)].sort_values(
+        ["team", "att_share", "last_t"], ascending=[True, False, False]).groupby("team").head(1).set_index("team")["ypa"]
     if out_ids:
         # Injured players' targets and carries go to teammates (70% of it: the rest is spread
         # thinly across depth players we don't project).
@@ -256,22 +278,32 @@ def project_week(prep: dict, season: int, week: int, P: Params, games: pd.DataFr
             vac = gone.groupby("team")[col].sum()
             rem = active.groupby("team")[col].transform("sum").replace(0, np.nan)
             active[col] = active[col] * (1 + 0.7 * active["team"].map(vac).fillna(0) / rem).fillna(1)
-    active = active.merge(T[["game_id", "team", "opp", "proj_attempts", "proj_carries", "proj_targets"]], left_on="team", right_on="team")
+    active = active.merge(T[["game_id", "team", "opp", "home", "proj_attempts", "proj_carries", "proj_targets"]], left_on="team", right_on="team")
     active["opp_rec"] = [rec_f.get((o, pz), 1.0) for o, pz in zip(active["opp"], active["pos"])]
     active["opp_rush"] = active["opp"].map(rush_f).fillna(1.0)
     active["opp_pass"] = active["opp"].map(pass_f).fillna(1.0)
-    active["proj_rec_yds"] = active["proj_targets"] * active["tgt_share"] * active["ypt"] * active["opp_rec"]
-    active["proj_rush_yds"] = active["proj_carries"] * active["car_share"] * active["ypc"] * active["opp_rush"]
+    hm = {st: np.where(active["home"] == 1, P.home_mult[st], 1 / P.home_mult[st]) for st in P.home_mult}
+    active["proj_rec_yds"] = (active["proj_targets"] * active["tgt_share"] * active["ypt"] * active["opp_rec"] ** P.opp_power["rec_yds"]
+                              * active["mom_rec_yds"] * hm["rec_yds"])
+    active["proj_rush_yds"] = (active["proj_carries"] * active["car_share"] * active["ypc"] * active["opp_rush"] ** P.opp_power["rush_yds"]
+                               * active["mom_rush_yds"] * hm["rush_yds"])
     # Pass yards: only the team's most likely starter (highest recent share of attempts).
-    qb = active[active["pos"] == "QB"].sort_values(["team", "att_share", "last_t"], ascending=[True, False, False])
-    starters = set(qb.groupby("team").head(1)["player_id"])
+    # Recent QBs first; one who last played weeks ago only if the team has no recent QB available.
+    qb = active[active["pos"] == "QB"].sort_values(["team", "recent", "att_share", "last_t"], ascending=[True, False, False, False])
+    first = qb.groupby("team").head(1)
+    starters = set(first["player_id"])
+    # Backup starting: receivers lose yards in line with the drop in yards per attempt.
+    qb_factor = (first.set_index("team")["ypa"] / usual_qb.reindex(first["team"]).values).clip(0.75, 1.0).fillna(1.0)
+    active["qb_factor"] = active["team"].map(qb_factor).fillna(1.0)
+    active["proj_rec_yds"] = active["proj_rec_yds"] * active["qb_factor"]
     # A backup stepping in gets the starter's workload, not his own small share.
     active.loc[active["player_id"].isin(starters), "att_share"] = active.loc[active["player_id"].isin(starters), "att_share"].clip(lower=0.95)
     active["proj_pass_yds"] = np.where(active["player_id"].isin(starters),
-                                       active["proj_attempts"] * active["att_share"].clip(upper=1.0) * active["ypa"] * active["opp_pass"], 0.0)
+                                       active["proj_attempts"] * active["att_share"].clip(upper=1.0) * active["ypa"] * active["opp_pass"] ** P.opp_power["pass_yds"]
+                                       * active["mom_pass_yds"] * hm["pass_yds"], 0.0)
     active["proj_targets_p"] = active["proj_targets"] * active["tgt_share"]
     active["proj_carries_p"] = active["proj_carries"] * active["car_share"]
-    keep = ["game_id", "team", "opp", "name", "pos", "tgt_share", "car_share", "att_share", "ypt", "ypc", "ypa",
+    keep = ["game_id", "team", "opp", "home", "name", "pos", "qb_factor", "mom_rec_yds", "mom_rush_yds", "mom_pass_yds", "tgt_share", "car_share", "att_share", "ypt", "ypc", "ypa",
             "opp_rec", "opp_rush", "opp_pass", "proj_targets_p", "proj_carries_p", "proj_rec_yds", "proj_rush_yds", "proj_pass_yds"]
     players = active[["player_id"] + keep]
     return players, T

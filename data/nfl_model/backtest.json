@@ -10,7 +10,28 @@
   "k_def_rec": 90.0,
   "k_def_rush": 150.0,
   "k_def_pass": 250.0,
-  "k_share": 2.0,
+  "k_share": 1.0,
+  "opp_power": {
+   "rec_yds": 0.75,
+   "rush_yds": 1.0,
+   "pass_yds": 0.75
+  },
+  "mom_gamma": {
+   "rec_yds": 0.0,
+   "rush_yds": 0.25,
+   "pass_yds": 0.0
+  },
+  "hl_def": 3.0,
+  "mom_k": {
+   "rec_yds": 15.0,
+   "rush_yds": 15.0,
+   "pass_yds": 60.0
+  },
+  "home_mult": {
+   "rec_yds": 1.01,
+   "rush_yds": 1.0,
+   "pass_yds": 1.03
+  },
   "home_points": 1.2,
   "pts_shrink": 0.55,
   "vol_coef": {
@@ -32,127 +53,127 @@
  },
  "players_2025": {
   "rec_yds": {
-   "n": 3234,
-   "mae_model": 18.33,
-   "mae_naive": 19.62,
-   "logloss_model": 0.6523,
-   "logloss_flat": 0.6743,
+   "n": 3277,
+   "mae_model": 18.36,
+   "mae_naive": 19.49,
+   "logloss_model": 0.6525,
+   "logloss_flat": 0.6732,
    "calibration": [
     {
-     "n": 488,
-     "said": 0.233,
-     "came": 0.234
+     "n": 515,
+     "said": 0.234,
+     "came": 0.219
     },
     {
-     "n": 1037,
-     "said": 0.35,
-     "came": 0.351
+     "n": 991,
+     "said": 0.351,
+     "came": 0.37
     },
     {
-     "n": 1018,
+     "n": 1073,
      "said": 0.444,
-     "came": 0.439
+     "came": 0.426
     },
     {
-     "n": 518,
-     "said": 0.544,
-     "came": 0.529
+     "n": 471,
+     "said": 0.547,
+     "came": 0.507
     },
     {
-     "n": 150,
-     "said": 0.635,
-     "came": 0.607
+     "n": 195,
+     "said": 0.636,
+     "came": 0.585
     },
     {
-     "n": 23,
-     "said": 0.742,
-     "came": 0.609
+     "n": 32,
+     "said": 0.734,
+     "came": 0.688
     }
    ],
-   "strong_calls": 1451,
-   "strong_hit_rate": 0.695
+   "strong_calls": 1446,
+   "strong_hit_rate": 0.692
   },
   "rush_yds": {
-   "n": 1410,
-   "mae_model": 19.77,
-   "mae_naive": 20.38,
-   "logloss_model": 0.6468,
-   "logloss_flat": 0.6733,
+   "n": 1453,
+   "mae_model": 18.88,
+   "mae_naive": 20.04,
+   "logloss_model": 0.6467,
+   "logloss_flat": 0.6704,
    "calibration": [
     {
-     "n": 275,
-     "said": 0.239,
-     "came": 0.251
+     "n": 264,
+     "said": 0.228,
+     "came": 0.258
     },
     {
-     "n": 448,
-     "said": 0.357,
-     "came": 0.339
+     "n": 491,
+     "said": 0.359,
+     "came": 0.344
     },
     {
-     "n": 444,
-     "said": 0.447,
-     "came": 0.484
+     "n": 462,
+     "said": 0.448,
+     "came": 0.459
     },
     {
-     "n": 177,
-     "said": 0.536,
-     "came": 0.503
+     "n": 184,
+     "said": 0.544,
+     "came": 0.495
     },
     {
-     "n": 54,
-     "said": 0.645,
-     "came": 0.574
+     "n": 41,
+     "said": 0.643,
+     "came": 0.537
     },
     {
-     "n": 12,
-     "said": 0.764,
-     "came": 0.75
+     "n": 11,
+     "said": 0.739,
+     "came": 0.909
     }
    ],
-   "strong_calls": 634,
-   "strong_hit_rate": 0.708
+   "strong_calls": 660,
+   "strong_hit_rate": 0.698
   },
   "pass_yds": {
    "n": 374,
-   "mae_model": 59.37,
+   "mae_model": 59.43,
    "mae_naive": 64.26,
-   "logloss_model": 0.6466,
+   "logloss_model": 0.6412,
    "logloss_flat": 0.6926,
    "calibration": [
     {
-     "n": 26,
-     "said": 0.21,
-     "came": 0.077
-    },
-    {
-     "n": 65,
-     "said": 0.353,
-     "came": 0.385
-    },
-    {
-     "n": 75,
-     "said": 0.448,
-     "came": 0.44
-    },
-    {
-     "n": 94,
-     "said": 0.554,
-     "came": 0.532
-    },
-    {
-     "n": 63,
-     "said": 0.638,
-     "came": 0.571
+     "n": 25,
+     "said": 0.226,
+     "came": 0.08
     },
     {
      "n": 51,
+     "said": 0.348,
+     "came": 0.196
+    },
+    {
+     "n": 92,
+     "said": 0.449,
+     "came": 0.511
+    },
+    {
+     "n": 98,
+     "said": 0.553,
+     "came": 0.592
+    },
+    {
+     "n": 53,
+     "said": 0.645,
+     "came": 0.491
+    },
+    {
+     "n": 55,
      "said": 0.778,
-     "came": 0.686
+     "came": 0.691
     }
    ],
-   "strong_calls": 163,
-   "strong_hit_rate": 0.669
+   "strong_calls": 158,
+   "strong_hit_rate": 0.696
   }
  },
  "teams_2025": {
