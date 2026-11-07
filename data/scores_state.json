@@ -1175,12 +1175,12 @@
    "at": "2026-11-07T17:18:10Z"
   },
   "id1000023872531008": {
-   "s": "NS",
+   "s": "PST",
    "min": null,
    "h": null,
    "a": null,
-   "src": "fd",
-   "at": "2026-11-07T18:09:00Z"
+   "src": "af",
+   "at": "2026-11-07T18:14:02Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1192,39 +1192,39 @@
   },
   "id1000001975837154": {
    "s": "LIVE",
-   "min": 34,
-   "h": 0,
+   "min": 44,
+   "h": 1,
    "a": 1,
    "src": "af",
-   "at": "2026-11-07T18:03:57Z"
+   "at": "2026-11-07T18:14:02Z"
   },
   "id1000001772221388": {
    "s": "LIVE",
-   "min": 32,
+   "min": 42,
    "h": 2,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T18:03:57Z"
+   "at": "2026-11-07T18:14:02Z"
   }
  },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 34,
+  "api_football": 35,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T18:03:57Z"
+   "at": "2026-11-07T18:14:02Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T18:09:00Z"
+   "at": "2026-11-07T18:14:02Z"
   }
  },
- "last_called_at": "2026-11-07T18:09:00Z",
+ "last_called_at": "2026-11-07T18:14:02Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1446,11 +1446,19 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T18:09:00Z",
+  "at": "2026-11-07T18:14:02Z",
   "want": 3,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1448
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1461,15 +1469,13 @@
     "results": 36
    }
   ],
-  "changed": 1,
+  "changed": 3,
   "coverage": {
    "checked": 3,
-   "api_football": 0,
+   "api_football": 3,
    "football_data": 2,
-   "unmatched": [
-    "Altrincham FC v Notts County (FA Cup)"
-   ]
+   "unmatched": []
   }
  },
- "af_last_at": "2026-11-07T18:03:57Z"
+ "af_last_at": "2026-11-07T18:14:02Z"
 }
