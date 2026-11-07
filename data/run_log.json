@@ -1,102 +1,177 @@
 {
- "started_at": "2026-11-07T00:01:27Z",
+ "started_at": "2026-11-07T00:05:18Z",
  "mode": "manual",
  "errors": [
-  "pinnacle: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
-  "bet365: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
-  "skybet: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}",
-  "williamhill: OddsPapi odds-by-tournaments returned 400: {\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+  "skybet [19, 18, 17, 36, 8]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}",
+  "skybet [23, 35, 34, 37, 238]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}",
+  "skybet [52, 38, 44, 185, 206]: OddsPapi odds-by-tournaments returned 404: {\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
  ],
  "notes": [
-  "Too many leagues per call; will use 10 next time.",
-  "Too many leagues per call; will use 10 next time.",
-  "Too many leagues per call; will use 10 next time.",
-  "Too many leagues per call; will use 10 next time."
+  "Skipped to save requests: Serie B, LaLiga 2, League One, League Two, Ligue 2"
  ],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 6,
-  "remaining": 244
+  "used": 10,
+  "remaining": 240
  },
  "plan": {
+  "allowance": 11,
+  "remaining": 240,
+  "share": 11.1,
+  "weekday_weight": 3,
   "fetch": true,
   "books": [
    "bet365",
-   "skybet",
-   "williamhill"
+   "skybet"
   ],
-  "chunks": 1,
-  "planned_calls": 4,
-  "allowance": 8,
-  "remaining": 244,
-  "runs_left": 27.4,
-  "reason": "ok"
+  "leagues_with_games": 20,
+  "chunks_needed": 4,
+  "chunks_fetched": 3,
+  "planned_calls": 10
+ },
+ "prices_added": {
+  "pinnacle": 4904,
+  "bet365": 404
  },
  "builder_seconds": 0.0,
- "fixtures": 0,
- "legs": 0,
+ "fixtures": 147,
+ "legs": 86,
  "slips": 0,
- "books": [],
- "model_fixtures": 0,
+ "books": [
+  "bet365"
+ ],
+ "model_fixtures": 98,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.41,
+   "seconds": 0.23,
    "billable": false,
+   "note": ""
+  },
+  {
+   "endpoint": "fixtures",
+   "params": {
+    "sportId": 10,
+    "from": "2026-11-07T00:05:18Z",
+    "to": "2026-11-08T23:05:18Z"
+   },
+   "status": 200,
+   "seconds": 0.56,
+   "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "tournamentIds": "19,18,17,36,8",
     "bookmaker": "pinnacle",
     "oddsFormat": "decimal"
    },
-   "status": 400,
-   "seconds": 0.29,
+   "status": 200,
+   "seconds": 0.84,
    "billable": true,
-   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+   "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "tournamentIds": "23,35,34,37,238",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.48,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "52,38,44,185,206",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.53,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "19,18,17,36,8",
     "bookmaker": "bet365",
     "oddsFormat": "decimal"
    },
-   "status": 400,
-   "seconds": 0.26,
+   "status": 200,
+   "seconds": 0.79,
    "billable": true,
-   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+   "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
+    "tournamentIds": "23,35,34,37,238",
+    "bookmaker": "bet365",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 1.08,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "52,38,44,185,206",
+    "bookmaker": "bet365",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.66,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "19,18,17,36,8",
     "bookmaker": "skybet",
     "oddsFormat": "decimal"
    },
-   "status": 400,
-   "seconds": 0.45,
+   "status": 404,
+   "seconds": 0.16,
    "billable": true,
-   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,24,25,173,19,21,36,206,207,209,347,35,44,8,54,23,53,34,182,37,238,38,52,185,7,679,34480",
-    "bookmaker": "williamhill",
+    "tournamentIds": "23,35,34,37,238",
+    "bookmaker": "skybet",
     "oddsFormat": "decimal"
    },
-   "status": 400,
-   "seconds": 0.22,
+   "status": 404,
+   "seconds": 0.14,
    "billable": true,
-   "note": "{\"error\":{\"message\":\"Too many tournament IDs specified.\",\"code\":\"INVALID_PARAMETER\",\"details\":\"Please provide a maximum of 5 tournament IDs using the 'tournamentIds' query parameter.\"}}"
+   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "52,38,44,185,206",
+    "bookmaker": "skybet",
+    "oddsFormat": "decimal"
+   },
+   "status": 404,
+   "seconds": 0.14,
+   "billable": true,
+   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
   }
  ],
- "finished_at": "2026-11-07T00:01:34Z"
+ "finished_at": "2026-11-07T00:06:04Z"
 }

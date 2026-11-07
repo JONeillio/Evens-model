@@ -1,5 +1,996 @@
 {
  "slips": [],
  "calibration": {},
- "legs_pending": {}
+ "legs_pending": {
+  "id1000001872340016|ou:0.5:over": {
+   "id": "id1000001872340016|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.052,
+   "p_win": 0.8924,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ou:1.5:over": {
+   "id": "id1000001872340016|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.25,
+   "p_win": 0.7606,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ou:3.5:under": {
+   "id": "id1000001872340016|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.33,
+   "p_win": 0.7205,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000001872340016|ou:4.5:under": {
+   "id": "id1000001872340016|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Charlton Athletic v Sheffield United",
+   "league": "Championship",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.1,
+   "p_win": 0.8715,
+   "p_void": 0.0,
+   "fd": {
+    "div": "E1",
+    "home": "Charlton",
+    "away": "Sheffield United"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ou:0.5:over": {
+   "id": "id1000003672201712|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.04,
+   "p_win": 0.9354,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ou:1.5:over": {
+   "id": "id1000003672201712|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.19,
+   "p_win": 0.7903,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ou:3.5:under": {
+   "id": "id1000003672201712|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.41,
+   "p_win": 0.682,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003672201712|ou:4.5:under": {
+   "id": "id1000003672201712|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "St. Johnstone FC v Dundee FC",
+   "league": "Premiership",
+   "kickoff": "2026-11-07T15:00:00Z",
+   "price": 1.13,
+   "p_win": 0.8467,
+   "p_void": 0.0,
+   "fd": {
+    "div": "SC0",
+    "home": "St Johnstone",
+    "away": "Dundee"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945402|ou:0.5:over": {
+   "id": "id1000002371945402|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Torino FC v US Lecce",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T14:00:00Z",
+   "price": 1.04,
+   "p_win": 0.9268,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Torino",
+    "away": "Lecce"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945402|ou:1.5:over": {
+   "id": "id1000002371945402|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Torino FC v US Lecce",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T14:00:00Z",
+   "price": 1.25,
+   "p_win": 0.7607,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Torino",
+    "away": "Lecce"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945402|ou:3.5:under": {
+   "id": "id1000002371945402|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Torino FC v US Lecce",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T14:00:00Z",
+   "price": 1.33,
+   "p_win": 0.7157,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Torino",
+    "away": "Lecce"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945402|ou:4.5:under": {
+   "id": "id1000002371945402|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Torino FC v US Lecce",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T14:00:00Z",
+   "price": 1.1,
+   "p_win": 0.8848,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Torino",
+    "away": "Lecce"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531008|ou:0.5:over": {
+   "id": "id1000023872531008|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Nacional da Madeira v Academico de Viseu FC",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-07T15:30:00Z",
+   "price": 1.061,
+   "p_win": 0.9325,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Nacional",
+    "away": "Academico Viseu"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531008|ou:1.5:over": {
+   "id": "id1000023872531008|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Nacional da Madeira v Academico de Viseu FC",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-07T15:30:00Z",
+   "price": 1.3,
+   "p_win": 0.7297,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Nacional",
+    "away": "Academico Viseu"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531008|ou:3.5:under": {
+   "id": "id1000023872531008|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Nacional da Madeira v Academico de Viseu FC",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-07T15:30:00Z",
+   "price": 1.22,
+   "p_win": 0.7602,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Nacional",
+    "away": "Academico Viseu"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531008|ou:4.5:under": {
+   "id": "id1000023872531008|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Nacional da Madeira v Academico de Viseu FC",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-07T15:30:00Z",
+   "price": 1.068,
+   "p_win": 0.8969,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Nacional",
+    "away": "Academico Viseu"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945398|ou:0.5:over": {
+   "id": "id1000002371945398|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Parma Calcio v Bologna FC",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T17:00:00Z",
+   "price": 1.061,
+   "p_win": 0.858,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Parma",
+    "away": "Bologna"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945398|ou:1.5:over": {
+   "id": "id1000002371945398|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Parma Calcio v Bologna FC",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T17:00:00Z",
+   "price": 1.3,
+   "p_win": 0.7237,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Parma",
+    "away": "Bologna"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945398|ou:3.5:under": {
+   "id": "id1000002371945398|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Parma Calcio v Bologna FC",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T17:00:00Z",
+   "price": 1.25,
+   "p_win": 0.8721,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Parma",
+    "away": "Bologna"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945398|ou:4.5:under": {
+   "id": "id1000002371945398|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Parma Calcio v Bologna FC",
+   "league": "Serie A",
+   "kickoff": "2026-11-07T17:00:00Z",
+   "price": 1.08,
+   "p_win": 0.9547,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Parma",
+    "away": "Bologna"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513296|dnb:1": {
+   "id": "id1000003572513296|dnb:1",
+   "key": "dnb:1",
+   "label": "VfB Stuttgart (draw no bet)",
+   "match": "VfB Stuttgart v Werder Bremen",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-07T17:30:00Z",
+   "price": 1.3,
+   "p_win": 0.5861,
+   "p_void": 0.202,
+   "fd": {
+    "div": "D1",
+    "home": "Stuttgart",
+    "away": "Werder Bremen"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513296|ou:1.5:over": {
+   "id": "id1000003572513296|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "VfB Stuttgart v Werder Bremen",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-07T17:30:00Z",
+   "price": 1.08,
+   "p_win": 0.8823,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Stuttgart",
+    "away": "Werder Bremen"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513296|ou:4.5:under": {
+   "id": "id1000003572513296|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "VfB Stuttgart v Werder Bremen",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-07T17:30:00Z",
+   "price": 1.37,
+   "p_win": 0.6924,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Stuttgart",
+    "away": "Werder Bremen"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036286|dnb:1": {
+   "id": "id1000003472036286|dnb:1",
+   "key": "dnb:1",
+   "label": "Paris Saint-Germain (draw no bet)",
+   "match": "Paris Saint-Germain v ESTAC Troyes",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-07T20:05:00Z",
+   "price": 1.02,
+   "p_win": 0.8791,
+   "p_void": 0.0755,
+   "fd": {
+    "div": "F1",
+    "home": "Paris SG",
+    "away": "Troyes"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036286|ou:1.5:over": {
+   "id": "id1000003472036286|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Paris Saint-Germain v ESTAC Troyes",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-07T20:05:00Z",
+   "price": 1.068,
+   "p_win": 0.8754,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Paris SG",
+    "away": "Troyes"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036286|ou:4.5:under": {
+   "id": "id1000003472036286|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Paris Saint-Germain v ESTAC Troyes",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-07T20:05:00Z",
+   "price": 1.46,
+   "p_win": 0.6657,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Paris SG",
+    "away": "Troyes"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945396|ou:0.5:over": {
+   "id": "id1000002371945396|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "SSC Napoli v Lazio Rome",
+   "league": "Serie A",
+   "kickoff": "2026-11-08T11:30:00Z",
+   "price": 1.032,
+   "p_win": 0.9229,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Napoli",
+    "away": "Lazio"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945396|ou:1.5:over": {
+   "id": "id1000002371945396|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "SSC Napoli v Lazio Rome",
+   "league": "Serie A",
+   "kickoff": "2026-11-08T11:30:00Z",
+   "price": 1.19,
+   "p_win": 0.7063,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Napoli",
+    "away": "Lazio"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945396|ou:3.5:under": {
+   "id": "id1000002371945396|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "SSC Napoli v Lazio Rome",
+   "league": "Serie A",
+   "kickoff": "2026-11-08T11:30:00Z",
+   "price": 1.41,
+   "p_win": 0.6717,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Napoli",
+    "away": "Lazio"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000002371945396|ou:4.5:under": {
+   "id": "id1000002371945396|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "SSC Napoli v Lazio Rome",
+   "league": "Serie A",
+   "kickoff": "2026-11-08T11:30:00Z",
+   "price": 1.13,
+   "p_win": 0.8918,
+   "p_void": 0.0,
+   "fd": {
+    "div": "I1",
+    "home": "Napoli",
+    "away": "Lazio"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036288|ou:0.5:over": {
+   "id": "id1000003472036288|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Stade Rennais FC v Lille OSC",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.032,
+   "p_win": 0.924,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Rennes",
+    "away": "Lille"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036288|ou:1.5:over": {
+   "id": "id1000003472036288|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Stade Rennais FC v Lille OSC",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.19,
+   "p_win": 0.7646,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Rennes",
+    "away": "Lille"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036288|ou:3.5:under": {
+   "id": "id1000003472036288|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Stade Rennais FC v Lille OSC",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.46,
+   "p_win": 0.6643,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Rennes",
+    "away": "Lille"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036288|ou:4.5:under": {
+   "id": "id1000003472036288|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Stade Rennais FC v Lille OSC",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T14:00:00Z",
+   "price": 1.13,
+   "p_win": 0.8602,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Rennes",
+    "away": "Lille"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531012|ou:0.5:over": {
+   "id": "id1000023872531012|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Santa Clara Azores v Gil Vicente Barcelos",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.08,
+   "p_win": 0.8947,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Santa Clara",
+    "away": "Gil Vicente"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531012|ou:1.5:over": {
+   "id": "id1000023872531012|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Santa Clara Azores v Gil Vicente Barcelos",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.41,
+   "p_win": 0.6609,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Santa Clara",
+    "away": "Gil Vicente"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531012|ou:3.5:under": {
+   "id": "id1000023872531012|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Santa Clara Azores v Gil Vicente Barcelos",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.13,
+   "p_win": 0.8286,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Santa Clara",
+    "away": "Gil Vicente"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000023872531012|ou:4.5:under": {
+   "id": "id1000023872531012|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Santa Clara Azores v Gil Vicente Barcelos",
+   "league": "Liga Portugal",
+   "kickoff": "2026-11-08T15:30:00Z",
+   "price": 1.04,
+   "p_win": 0.9715,
+   "p_void": 0.0,
+   "fd": {
+    "div": "P1",
+    "home": "Santa Clara",
+    "away": "Gil Vicente"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036274|ou:0.5:over": {
+   "id": "id1000003472036274|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Angers SCO v OGC Nice",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.032,
+   "p_win": 0.8921,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Angers",
+    "away": "Nice"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036274|ou:1.5:over": {
+   "id": "id1000003472036274|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Angers SCO v OGC Nice",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.19,
+   "p_win": 0.6872,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Angers",
+    "away": "Nice"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036274|ou:3.5:under": {
+   "id": "id1000003472036274|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Angers SCO v OGC Nice",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.41,
+   "p_win": 0.6734,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Angers",
+    "away": "Nice"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036274|ou:4.5:under": {
+   "id": "id1000003472036274|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Angers SCO v OGC Nice",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.13,
+   "p_win": 0.9125,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Angers",
+    "away": "Nice"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036280|ou:0.5:over": {
+   "id": "id1000003472036280|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "Le Havre AC v FC Lorient",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.052,
+   "p_win": 0.8703,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Le Havre",
+    "away": "Lorient"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036280|ou:1.5:over": {
+   "id": "id1000003472036280|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "Le Havre AC v FC Lorient",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.27,
+   "p_win": 0.7377,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Le Havre",
+    "away": "Lorient"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036280|ou:3.5:under": {
+   "id": "id1000003472036280|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "Le Havre AC v FC Lorient",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.27,
+   "p_win": 0.8327,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Le Havre",
+    "away": "Lorient"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003472036280|ou:4.5:under": {
+   "id": "id1000003472036280|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "Le Havre AC v FC Lorient",
+   "league": "Ligue 1",
+   "kickoff": "2026-11-08T16:15:00Z",
+   "price": 1.091,
+   "p_win": 0.9348,
+   "p_void": 0.0,
+   "fd": {
+    "div": "F1",
+    "home": "Le Havre",
+    "away": "Lorient"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513300|dnb:1": {
+   "id": "id1000003572513300|dnb:1",
+   "key": "dnb:1",
+   "label": "SC Freiburg (draw no bet)",
+   "match": "SC Freiburg v Union Berlin",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-08T16:30:00Z",
+   "price": 1.16,
+   "p_win": 0.6592,
+   "p_void": 0.2014,
+   "fd": {
+    "div": "D1",
+    "home": "Freiburg",
+    "away": "Union Berlin"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513300|ou:0.5:over": {
+   "id": "id1000003572513300|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "SC Freiburg v Union Berlin",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-08T16:30:00Z",
+   "price": 1.025,
+   "p_win": 0.96,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Freiburg",
+    "away": "Union Berlin"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513300|ou:1.5:over": {
+   "id": "id1000003572513300|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "SC Freiburg v Union Berlin",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-08T16:30:00Z",
+   "price": 1.17,
+   "p_win": 0.8283,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Freiburg",
+    "away": "Union Berlin"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513300|ou:3.5:under": {
+   "id": "id1000003572513300|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "SC Freiburg v Union Berlin",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-08T16:30:00Z",
+   "price": 1.49,
+   "p_win": 0.6374,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Freiburg",
+    "away": "Union Berlin"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003572513300|ou:4.5:under": {
+   "id": "id1000003572513300|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "SC Freiburg v Union Berlin",
+   "league": "Bundesliga",
+   "kickoff": "2026-11-08T16:30:00Z",
+   "price": 1.17,
+   "p_win": 0.7804,
+   "p_void": 0.0,
+   "fd": {
+    "div": "D1",
+    "home": "Freiburg",
+    "away": "Union Berlin"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003872366448|ou:0.5:over": {
+   "id": "id1000003872366448|ou:0.5:over",
+   "key": "ou:0.5:over",
+   "label": "Over 0.5 goals",
+   "match": "St. Truidense VV v SV Zulte Waregem",
+   "league": "Pro League",
+   "kickoff": "2026-11-08T18:15:00Z",
+   "price": 1.025,
+   "p_win": 0.9572,
+   "p_void": 0.0,
+   "fd": {
+    "div": "B1",
+    "home": "St Truiden",
+    "away": "Waregem"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003872366448|ou:1.5:over": {
+   "id": "id1000003872366448|ou:1.5:over",
+   "key": "ou:1.5:over",
+   "label": "Over 1.5 goals",
+   "match": "St. Truidense VV v SV Zulte Waregem",
+   "league": "Pro League",
+   "kickoff": "2026-11-08T18:15:00Z",
+   "price": 1.13,
+   "p_win": 0.8285,
+   "p_void": 0.0,
+   "fd": {
+    "div": "B1",
+    "home": "St Truiden",
+    "away": "Waregem"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003872366448|ou:3.5:under": {
+   "id": "id1000003872366448|ou:3.5:under",
+   "key": "ou:3.5:under",
+   "label": "Under 3.5 goals",
+   "match": "St. Truidense VV v SV Zulte Waregem",
+   "league": "Pro League",
+   "kickoff": "2026-11-08T18:15:00Z",
+   "price": 1.5,
+   "p_win": 0.6263,
+   "p_void": 0.0,
+   "fd": {
+    "div": "B1",
+    "home": "St Truiden",
+    "away": "Waregem"
+   },
+   "result": null,
+   "score": null
+  },
+  "id1000003872366448|ou:4.5:under": {
+   "id": "id1000003872366448|ou:4.5:under",
+   "key": "ou:4.5:under",
+   "label": "Under 4.5 goals",
+   "match": "St. Truidense VV v SV Zulte Waregem",
+   "league": "Pro League",
+   "kickoff": "2026-11-08T18:15:00Z",
+   "price": 1.17,
+   "p_win": 0.8079,
+   "p_void": 0.0,
+   "fd": {
+    "div": "B1",
+    "home": "St Truiden",
+    "away": "Waregem"
+   },
+   "result": null,
+   "score": null
+  }
+ }
 }
