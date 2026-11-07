@@ -1,17 +1,17 @@
 {
- "started_at": "2026-11-07T12:28:26Z",
+ "started_at": "2026-11-07T12:56:22Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
   "Reused odds snapshot from 2026-11-07T12:20:26Z."
  ],
  "nfl": {
-  "prop_legs": 800,
+  "prop_legs": 789,
   "projections": 374
  },
- "builder_seconds": 0.37,
+ "builder_seconds": 0.41,
  "fixtures": 75,
- "legs": 2550,
+ "legs": 2539,
  "slips": 52,
  "books": [
   "bet365",
@@ -23,5 +23,5 @@
  "model_fixtures": 16,
  "fd_errors": [],
  "calls": [],
- "finished_at": "2026-11-07T12:28:41Z"
+ "finished_at": "2026-11-07T12:56:36Z"
 }
