@@ -72,9 +72,20 @@ def fpl():
 
 
 def understat():
-    r = requests.get("https://understat.com/league/EPL", headers=UA, timeout=30)
-    found = bool(re.search(r"playersData\s*=\s*JSON\.parse", r.text))
-    return {"ok": r.ok and found, "status": r.status_code, "players_data_embedded": found}
+    """Understat now loads its tables in the background (AJAX): try the league data endpoint."""
+    out = {}
+    h = dict(UA, **{"X-Requested-With": "XMLHttpRequest", "Referer": "https://understat.com/league/EPL"})
+    for url in ("https://understat.com/getLeagueData/EPL/2026", "https://understat.com/getLeagueData/EPL/2025"):
+        try:
+            r = requests.get(url, headers=h, timeout=30)
+            j = r.json() if r.text[:1] in "{[" else None
+            out[url] = {"status": r.status_code, "json_keys": list(j.keys())[:6] if isinstance(j, dict) else None,
+                        "players": len(j.get("players", [])) if isinstance(j, dict) else None,
+                        "player_fields": sorted((j.get("players") or [{}])[0].keys())[:25] if isinstance(j, dict) else None}
+        except Exception as exc:
+            out[url] = {"error": f"{type(exc).__name__}"}
+    out["ok"] = any((v or {}).get("players") for v in out.values())
+    return out
 
 
 def football_data():
