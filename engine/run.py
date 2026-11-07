@@ -77,20 +77,20 @@ class Run:
         self.state = load_json(DATA / "state.json", {})
         self.api = None
         self.fixture_names = {}
+        self.priced = set()
 
     # -- odds -----------------------------------------------------------------
     def fetch_odds(self):
-        soft = self.s["soft_books"]
+        uk = self.s["uk_books"]
+        sharp = self.s["sharp_book"]
         tier = {l["id"]: l.get("tier", 9) for l in self.s["leagues"]}
         self.fixture_names = {}
         if self.mock_dir:
             index = {}
-            for book in [self.s["sharp_book"]] + soft:
-                p = self.mock_dir / f"{book}.json"
-                if p.exists():
-                    add_payload(index, json.loads(p.read_text()))
-            self.log["plan"] = {"fetch": True, "books": soft, "mock": True}
-            return index, soft, True
+            for p in sorted(self.mock_dir.glob("*.json")):
+                add_payload(index, json.loads(p.read_text()), books=[sharp] + uk)
+            self.log["plan"] = {"fetch": True, "mock": True}
+            return index, self._books_present(index), True
 
         from .oddspapi import OddsPapi, QuotaExhausted
         self.api = OddsPapi()
@@ -104,9 +104,9 @@ class Run:
         plan = budget.allowance(usage, self.now, cfg, manual=self.manual)
         self.log["usage_before"] = usage
         self.log["plan"] = plan
-        if plan["allowance"] < 3:  # need fixtures + Pinnacle + one bookie
+        allow = plan["allowance"]
+        if allow < 4:  # fixtures + Pinnacle + at least two matches
             plan["fetch"] = False
-            plan["reason"] = "saving requests for the rest of the month"
             self.log["notes"].append("Saving requests for the rest of the month; showing the last odds.")
             return None, [], False
 
@@ -124,41 +124,92 @@ class Run:
             if tid in tier and f.get("statusId") in (0, None):
                 counts[tid] = counts.get(tid, 0) + 1
                 self.fixture_names[f.get("fixtureId")] = (f.get("participant1Name"), f.get("participant2Name"))
-        if not fx_list:  # fixtures call failed: fall back to tier 1 leagues
+        if not fx_list:
             counts = {l["id"]: 1 for l in self.s["leagues"] if l.get("tier") == 1}
         active = sorted(counts, key=lambda t: (tier[t], -counts[t]))
         per_call = cfg["max_tournaments_per_call"]
         chunks = [active[i:i + per_call] for i in range(0, len(active), per_call)]
-        books, n_chunks = budget.choose(plan["allowance"] - 1, len(chunks), soft)
-        plan.update({"fetch": bool(books), "books": books, "leagues_with_games": len(active),
-                     "chunks_needed": len(chunks), "chunks_fetched": n_chunks,
-                     "planned_calls": 1 + n_chunks * (1 + len(books))})
+        if not chunks:
+            self.log["notes"].append("None of our leagues play in the next 2 days.")
+            return {}, [], True
+
+        # Pinnacle for every league with games (1 request per 5 leagues), keeping room for match calls.
+        n_chunks = max(1, min(len(chunks), allow - 1 - cfg["min_match_calls"]))
+        index: dict = {}
+        for ids in chunks[:n_chunks]:
+            try:
+                add_payload(index, self.api.odds_by_tournaments(ids, bookmaker=sharp), books=[sharp])
+            except QuotaExhausted as exc:
+                self.log["errors"].append(str(exc))
+                return index, [], True
+            except Exception as exc:
+                self.log["errors"].append(f"pinnacle {ids}: {str(exc)[:300]}")
         skipped = [t for c in chunks[n_chunks:] for t in c]
         if skipped:
             names = {l["id"]: l["name"] for l in self.s["leagues"]}
-            self.log["notes"].append("Skipped to save requests: " + ", ".join(names[t] for t in skipped))
-        if not books:
-            self.log["notes"].append("No leagues in our list play in the next 2 days.")
-            return {}, [], True
+            self.log["notes"].append("Not covered today (saving requests): " + ", ".join(names[t] for t in skipped))
 
-        index: dict = {}
-        books_ok = []
-        for book in [self.s["sharp_book"]] + books:
-            ok = True
-            for ids in chunks[:n_chunks]:
-                try:
-                    payload = self.api.odds_by_tournaments(ids, bookmaker=book)
-                    n = add_payload(index, payload)
-                    self.log.setdefault("prices_added", {})[book] = self.log.get("prices_added", {}).get(book, 0) + n
-                except QuotaExhausted as exc:
-                    self.log["errors"].append(str(exc))
-                    return index, books_ok, True
-                except Exception as exc:
-                    self.log["errors"].append(f"{book} {ids}: {str(exc)[:300]}")
-                    ok = False
-            if ok and book != self.s["sharp_book"]:
-                books_ok.append(book)
-        return index, books_ok, True
+        # Every UK bookie for the matches most likely to give short-priced legs (1 request each).
+        match_calls = max(0, allow - self.api.billable_calls)
+        picks = self.shortlist(index, match_calls)
+        for fid in picks:
+            try:
+                add_payload(index, self.api.get("odds", fixtureId=fid), books=[sharp] + uk)
+            except QuotaExhausted as exc:
+                self.log["errors"].append(str(exc))
+                break
+            except Exception as exc:
+                self.log["errors"].append(f"match {fid}: {str(exc)[:200]}")
+        plan.update({"fetch": True, "leagues_with_games": len(active), "chunks_needed": len(chunks),
+                     "chunks_fetched": n_chunks, "matches_priced": len(picks),
+                     "planned_calls": self.api.billable_calls})
+        self.priced = set(picks)
+        return index, self._books_present(index), True
+
+    def _books_present(self, index) -> list[str]:
+        present = set()
+        for e in index.values():
+            present.update(b for b, m in e["books"].items() if m)
+        return [b for b in self.s["uk_books"] if b in present]
+
+    def shortlist(self, index, budget_calls: int) -> list[str]:
+        """Pick the matches worth a full-price request: lots of short-priced legs,
+        clustered around the same kick-off times so slips can form."""
+        from .legs import sharp_probabilities
+        cfg = self.s["shortlist"]
+        spread = timedelta(hours=self.s["slips"]["kickoff_spread_hours"])
+        soon, horizon = self.now + timedelta(minutes=30), self.now + timedelta(hours=self.s["horizon_hours"])
+        scored = []
+        for fid, e in index.items():
+            m = e["meta"]
+            if not m.get("startTime") or m.get("statusId") not in (0, None):
+                continue
+            ko = parse_ts(m["startTime"])
+            if not (soon <= ko <= horizon):
+                continue
+            probs = sharp_probabilities(e["books"].get(self.s["sharp_book"], {}), self.s.get("devig_method", "power"))
+            good = [p for p, *_ in probs.values() if cfg["min_fair_prob"] <= p <= 1 / 1.03 and 1 / p <= cfg["max_fair_price"]]
+            if good:
+                scored.append((fid, ko, min(len(good), 8)))
+        picks: list[str] = []
+        remaining = {fid: (ko, sc) for fid, ko, sc in scored}
+        while remaining and len(picks) < budget_calls:
+            # The kick-off window with the most promising matches still unpicked.
+            best_anchor, best_set = None, []
+            for anchor in sorted({ko for ko, _ in remaining.values()}):
+                group = sorted((f for f, (ko, _) in remaining.items() if anchor <= ko <= anchor + spread),
+                               key=lambda f: -remaining[f][1])
+                if len(group) > len(best_set) or (len(group) == len(best_set) and best_anchor and anchor < best_anchor):
+                    best_anchor, best_set = anchor, group
+            take = best_set[: min(cfg["per_window"], budget_calls - len(picks))]
+            if len(take) < 3 and picks:  # too few to form a slip on their own
+                break
+            picks.extend(take)
+            for f in take:
+                remaining.pop(f, None)
+            for f in best_set[len(take):]:
+                remaining.pop(f, None)  # rest of this window: next time
+        return picks
 
     # -- reference data -----------------------------------------------------------
     def participants(self, index) -> Participants:
@@ -218,6 +269,8 @@ class Run:
             lg = league_by_id.get(m.get("tournamentId"))
             if not lg:
                 continue
+            if not any(e["books"].get(b) for b in books):
+                continue  # no UK prices for this match
             fn = self.fixture_names.get(fid, (None, None))
             home = fn[0] or parts.name(m.get("participant1Id")) or f"Team {m.get('participant1Id')}"
             away = fn[1] or parts.name(m.get("participant2Id")) or f"Team {m.get('participant2Id')}"
@@ -236,7 +289,8 @@ class Run:
         legs_by_id = {l["id"]: l for l in legs}
 
         t0 = time.monotonic()
-        slips = builder.build_slips(legs, fixtures, books, s["slips"], s["timezone"])
+        slip_books = [b for b in books if b not in s.get("not_for_slips", [])]
+        slips = builder.build_slips(legs, fixtures, slip_books, s["slips"], s["timezone"])
         self.log["builder_seconds"] = round(time.monotonic() - t0, 2)
 
         # Track record

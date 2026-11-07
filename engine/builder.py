@@ -151,23 +151,17 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
 
 
 def select(slips, top_per_group):
-    """Keep the best few slips per start time, avoiding near-duplicates."""
+    """Keep the best few slips per (start time, bookie), avoiding near-duplicates."""
     slips.sort(key=lambda s: (s["ev"], s["hit_p"]), reverse=True)
     chosen, per_group = [], {}
     for s in slips:
-        group = s["start"]
+        group = (s["start"], s["book"])
         if per_group.get(group, 0) >= top_per_group:
             continue
         fx = {lid.split("|")[0] for lid in s["legs"]}
-        too_similar = False
-        for c in chosen:
-            if c["start"] != group:
-                continue
-            other = {lid.split("|")[0] for lid in c["legs"]}
-            if len(fx & other) / len(fx | other) > 0.5:
-                too_similar = True
-                break
-        if too_similar:
+        if any((c["start"], c["book"]) == group and
+               len(fx & {l.split("|")[0] for l in c["legs"]}) / len(fx | {l.split("|")[0] for l in c["legs"]}) > 0.5
+               for c in chosen):
             continue
         chosen.append(s)
         per_group[group] = per_group.get(group, 0) + 1

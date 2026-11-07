@@ -14,6 +14,8 @@ META_KEYS = ("fixtureId", "tournamentId", "startTime", "participant1Id", "partic
 def _fixtures(payload):
     if isinstance(payload, list):
         return payload
+    if isinstance(payload, dict) and payload.get("fixtureId"):
+        return [payload]  # single-fixture /odds response
     if isinstance(payload, dict):
         for k in ("data", "fixtures", "results"):
             if isinstance(payload.get(k), list):
@@ -21,9 +23,10 @@ def _fixtures(payload):
     return []
 
 
-def add_payload(index: dict, payload, wanted_markets=None) -> int:
-    """Fold one bookmaker payload into the index. Returns prices added."""
+def add_payload(index: dict, payload, wanted_markets=None, books=None) -> int:
+    """Fold one payload into the index (optionally only some bookies). Returns prices added."""
     wanted = set(wanted_markets or MARKET_IDS)
+    keep = set(books) if books else None
     added = 0
     for fx in _fixtures(payload):
         fid = fx.get("fixtureId")
@@ -31,6 +34,8 @@ def add_payload(index: dict, payload, wanted_markets=None) -> int:
             continue
         entry = index.setdefault(fid, {"meta": {k: fx.get(k) for k in META_KEYS}, "books": {}})
         for slug, book in (fx.get("bookmakerOdds") or {}).items():
+            if keep is not None and slug not in keep:
+                continue
             if not isinstance(book, dict) or book.get("bookmakerIsActive") is False or book.get("suspended"):
                 continue
             store = entry["books"].setdefault(slug, {})

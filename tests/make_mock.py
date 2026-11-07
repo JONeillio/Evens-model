@@ -34,7 +34,7 @@ def make(out: Path, now: datetime, n_fixtures=60, seed=7):
     rng = random.Random(seed)
     parts = json.loads((Path(__file__).resolve().parents[1] / "data/ref/participants_10.json").read_text())
     ids = sorted(parts, key=int)[:4000]
-    books = {"pinnacle": 0.025, "bet365": 0.06, "skybet": 0.065, "williamhill": 0.07}
+    books = {"pinnacle": 0.025, "bet365": 0.06, "paddypower": 0.065, "betfred": 0.07}
     payloads = {b: [] for b in books}
     day = (now + timedelta(days=0)).date()
     for i in range(n_fixtures):

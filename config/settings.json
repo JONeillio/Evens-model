@@ -1,59 +1,48 @@
 {
- "_readme": "Main knobs for the engine. Leagues are fetched in tier order (1 first) and only when they have games soon; OddsPapi allows 5 leagues per request and each bookie costs one request per 5 leagues.",
+ "_readme": "Main knobs for the engine. Each run: 1 request lists the next 48h of fixtures; Pinnacle prices for every league with games (1 request per 5 leagues); then 1 request per match for every UK bookie's prices on the matches with the most short-priced legs. Sky Bet and William Hill are not in OddsPapi's data.",
  "sport_id": 10,
  "timezone": "Europe/London",
  "horizon_hours": 48,
  "sharp_book": "pinnacle",
- "soft_books": [
-  "bet365",
-  "skybet"
- ],
- "spare_books": [
-  "williamhill",
-  "paddypower",
-  "betfred",
-  "ladbrokes",
-  "coral",
-  "betway",
-  "boylesports",
-  "midnite",
-  "virginbet",
-  "unibet",
-  "888sport"
- ],
  "book_names": {
   "pinnacle": "Pinnacle",
   "bet365": "Bet365",
-  "skybet": "Sky Bet",
-  "williamhill": "William Hill",
   "paddypower": "Paddy Power",
   "betfred": "Betfred",
   "ladbrokes": "Ladbrokes",
   "coral": "Coral",
   "betway": "Betway",
-  "boylesports": "BoyleSports",
+  "888sport": "888sport",
+  "unibet": "Unibet",
+  "betmgm.co.uk": "BetMGM",
+  "livescorebet": "LiveScore Bet",
   "midnite": "Midnite",
   "virginbet": "Virgin Bet",
-  "unibet": "Unibet",
-  "888sport": "888sport"
+  "betuk": "BetUK",
+  "grosvenor": "Grosvenor",
+  "sportingbet": "Sportingbet",
+  "netbet.co.uk": "NetBet",
+  "betfair-ex": "Betfair Exchange",
+  "matchbook": "Matchbook"
  },
  "budget": {
   "monthly_limit_fallback": 250,
-  "reserve": 15,
-  "max_calls_per_run": 16,
+  "reserve": 10,
+  "max_calls_per_run": 26,
   "max_tournaments_per_call": 5,
   "participants_refresh_days": 7,
   "tournaments_refresh_days": 30,
   "markets_refresh_days": 60,
   "weekday_weights": {
-   "Mon": 0.5,
-   "Tue": 1,
-   "Wed": 1,
-   "Thu": 0.5,
-   "Fri": 1,
-   "Sat": 3,
-   "Sun": 1.5
-  }
+   "Mon": 0.3,
+   "Tue": 1.2,
+   "Wed": 1.2,
+   "Thu": 0.3,
+   "Fri": 0.8,
+   "Sat": 4,
+   "Sun": 2
+  },
+  "min_match_calls": 6
  },
  "devig_method": "power",
  "legs": {
@@ -88,7 +77,7 @@
   "leg_min_edge": -0.03,
   "slip_min_ev": -0.06,
   "pool_size": 26,
-  "top_per_window": 3
+  "top_per_window": 2
  },
  "model": {
   "enabled": true,
@@ -294,5 +283,34 @@
    "fd": "F2",
    "tier": 5
   }
- ]
+ ],
+ "uk_books": [
+  "bet365",
+  "paddypower",
+  "betfred",
+  "ladbrokes",
+  "coral",
+  "betway",
+  "888sport",
+  "unibet",
+  "betmgm.co.uk",
+  "livescorebet",
+  "midnite",
+  "virginbet",
+  "betuk",
+  "grosvenor",
+  "sportingbet",
+  "netbet.co.uk",
+  "betfair-ex",
+  "matchbook"
+ ],
+ "not_for_slips": [
+  "betfair-ex",
+  "matchbook"
+ ],
+ "shortlist": {
+  "min_fair_prob": 0.68,
+  "max_fair_price": 1.47,
+  "per_window": 10
+ }
 }
