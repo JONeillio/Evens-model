@@ -1177,10 +1177,10 @@
   "id1000023872531008": {
    "s": "PST",
    "min": null,
-   "h": null,
-   "a": null,
-   "src": "af",
-   "at": "2026-11-07T21:18:07Z"
+   "h": 0,
+   "a": 0,
+   "src": "fd",
+   "at": "2026-11-07T21:23:11Z"
   },
   "id1000001975802944": {
    "s": "FT",
@@ -1229,10 +1229,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T21:18:07Z"
+   "at": "2026-11-07T21:23:11Z"
   }
  },
- "last_called_at": "2026-11-07T21:18:07Z",
+ "last_called_at": "2026-11-07T21:23:11Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1454,19 +1454,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T21:18:07Z",
+  "at": "2026-11-07T21:23:11Z",
   "want": 2,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1477,12 +1469,14 @@
     "results": 36
    }
   ],
-  "changed": 2,
+  "changed": 1,
   "coverage": {
    "checked": 2,
-   "api_football": 2,
+   "api_football": 0,
    "football_data": 1,
-   "unmatched": []
+   "unmatched": [
+    "Peterborough United v Reading FC (FA Cup)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T21:18:07Z"
