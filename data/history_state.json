@@ -44,8 +44,8 @@
       "home": "Nott'm Forest",
       "away": "Man City"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-1"
     },
     {
      "id": "id1000001772221372|ou:4.5:under",
@@ -80,9 +80,9 @@
      "score": "3-1"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "won",
+   "settled_odds": 2.245,
+   "profit_per_10": 12.45
   },
   {
    "key": "2026-11-07T12:30:00Z",
