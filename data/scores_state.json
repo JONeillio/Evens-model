@@ -736,55 +736,71 @@
   },
   "id1000005272723320": {
    "s": "LIVE",
-   "min": 71,
+   "min": 81,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T14:28:49Z"
+   "at": "2026-11-07T14:39:25Z"
   },
   "id1000018272037436": {
    "s": "LIVE",
-   "min": 72,
-   "h": 0,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
-  "id1000005373093058": {
-   "s": "LIVE",
-   "min": 26,
-   "h": 0,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
-  "id1000005373093068": {
-   "s": "LIVE",
-   "min": 25,
+   "min": 83,
    "h": 1,
    "a": 0,
    "src": "af",
-   "at": "2026-11-07T14:28:49Z"
+   "at": "2026-11-07T14:39:25Z"
+  },
+  "id1000005373093058": {
+   "s": "LIVE",
+   "min": 37,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T14:39:25Z"
+  },
+  "id1000005373093068": {
+   "s": "LIVE",
+   "min": 35,
+   "h": 1,
+   "a": 1,
+   "src": "af",
+   "at": "2026-11-07T14:39:25Z"
+  },
+  "id1000003572513292": {
+   "s": "LIVE",
+   "min": 10,
+   "h": 0,
+   "a": 0,
+   "src": "af",
+   "at": "2026-11-07T14:39:25Z"
+  },
+  "id1000003572513294": {
+   "s": "LIVE",
+   "min": 10,
+   "h": 0,
+   "a": 1,
+   "src": "af",
+   "at": "2026-11-07T14:39:25Z"
   }
  },
  "budget": {
   "date": "2026-11-07",
-  "api_football": 13,
+  "api_football": 14,
   "af_blocked": null
  },
  "feeds": {
   "api_football": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T14:28:49Z"
+   "at": "2026-11-07T14:39:25Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T14:34:21Z"
+   "at": "2026-11-07T14:39:25Z"
   }
  },
- "last_called_at": "2026-11-07T14:34:21Z",
+ "last_called_at": "2026-11-07T14:39:25Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1006,11 +1022,19 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T14:34:21Z",
+  "at": "2026-11-07T14:39:25Z",
   "want": 6,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-07",
+    "status": 200,
+    "error": "",
+    "results": 1448
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1021,18 +1045,14 @@
     "results": 36
    }
   ],
-  "changed": 0,
+  "changed": 6,
   "coverage": {
    "checked": 6,
-   "api_football": 0,
+   "api_football": 6,
    "football_data": 2,
-   "unmatched": [
-    "Samsunspor v Konyaspor (Super Lig)",
-    "Clermont Foot 63 v Rodez Aveyron Football (Ligue 2)",
-    "Cesena FC v US Catanzaro (Serie B)",
-    "Calcio Padova v Empoli FC (Serie B)"
-   ]
-  }
+   "unmatched": []
+  },
+  "history_updated": true
  },
- "af_last_at": "2026-11-07T14:28:49Z"
+ "af_last_at": "2026-11-07T14:39:25Z"
 }
