@@ -128,8 +128,8 @@
       "home": "Fulham",
       "away": "Newcastle"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-1"
     },
     {
      "id": "id1000001772221372|ou:4.5:under",
@@ -146,8 +146,8 @@
       "home": "Arsenal",
       "away": "Hull"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-0"
     },
     {
      "id": "id1000001975802972|1x2:1",
@@ -160,13 +160,13 @@
      "p_win": 0.8094,
      "p_void": 0.0,
      "fd": null,
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "7-0"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "won",
+   "settled_odds": 2.118,
+   "profit_per_10": 11.18
   },
   {
    "key": "2026-11-07T13:00:00Z",
