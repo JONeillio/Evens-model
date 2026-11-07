@@ -41,6 +41,8 @@ AF_RAPID = ("https://api-football-v1.p.rapidapi.com/v3", "x-rapidapi-key", "api-
 FDO_URL = "https://api.football-data.org/v4"
 
 AF_DAILY_CAP = 90          # of 100, leaving room for a manual look
+AF_GAP = timedelta(minutes=9)   # API-Football at most every ~10 min (about 60 a match day);
+                                # football-data.org (no daily cap) fills in between
 LIVE_BEFORE = timedelta(minutes=10)
 LIVE_AFTER = timedelta(hours=2, minutes=45)   # kick-off to final whistle, with stoppages and delays
 RESULT_GIVE_UP = timedelta(days=2)
@@ -129,6 +131,7 @@ class Feeds:
 
     def __init__(self, state: dict, now: datetime, mock_dir: Path | None = None):
         self.state, self.now, self.mock_dir = state, now, mock_dir
+        self.force = False
         self.af_key = os.environ.get("API_FOOTBALL_KEY", "").strip()
         self.fdo_key = os.environ.get("FOOTBALL_DATA_API", "").strip()
         self.calls: list[dict] = []
@@ -193,6 +196,10 @@ class Feeds:
         b = self.state["budget"]
         if (not self.af_key and not self.mock_dir) or b.get("af_blocked") or b["api_football"] >= AF_DAILY_CAP:
             return None
+        last = self.state.get("af_last_at")
+        if last and self.now - ts(last) < AF_GAP and not self.force:
+            return None
+        self.state["af_last_at"] = iso(self.now)
         code, body = self._af_get("/fixtures", {"date": day})
         b["api_football"] += 1
         err = self._af_error(body)
@@ -298,6 +305,7 @@ def run(now: datetime, root: Path = ROOT, mock_dir: Path | None = None, force: b
         return log
 
     feeds = Feeds(state, now, mock_dir)
+    feeds.force = force
     log["called"] = True
     state["last_called_at"] = iso(now)
     if state.get("af_status_date") != feeds.today or force:
@@ -348,6 +356,12 @@ def run(now: datetime, root: Path = ROOT, mock_dir: Path | None = None, force: b
             continue
         new = {"s": best["s"], "min": best.get("min"), "h": best["h"], "a": best["a"], "src": best["src"]}
         old = scores.get(fid, {})
+        # football-data.org runs a few minutes behind: don't let it wind back a fresher API-Football score.
+        if (new["src"] == "fd" and old.get("src") == "af" and new["s"] != "FT"
+                and (new["h"] or 0) + (new["a"] or 0) < (old.get("h") or 0) + (old.get("a") or 0)):
+            continue
+        if new["src"] == "fd" and old.get("src") == "af" and new["s"] == old.get("s") and new["min"] is None:
+            new["min"] = old.get("min")
         if any(old.get(k) != new[k] for k in ("s", "min", "h", "a")):
             new["at"] = iso(now)
             scores[fid] = new
@@ -390,10 +404,13 @@ def main():
     ap.add_argument("--mock", type=Path, help="read feed responses from this folder instead of the internet")
     ap.add_argument("--root", type=Path, default=ROOT, help="repo root to read and write (for tests)")
     ap.add_argument("--force", action="store_true", help="call the feeds even if nothing is live (manual check)")
+    ap.add_argument("--status-file", type=Path, help="write {live, want} here so the workflow knows whether to keep polling")
     args = ap.parse_args()
     now = ts(args.now) if args.now else datetime.now(timezone.utc).replace(microsecond=0)
     log = run(now, args.root, args.mock, args.force)
-    print(json.dumps(log, indent=1, default=str)[:4000])
+    print(json.dumps({k: v for k, v in log.items() if k != "calls"} | {"calls": [(c["feed"], c["status"], c.get("error")) for c in log["calls"]]}, default=str)[:2000])
+    if args.status_file:
+        args.status_file.write_text(json.dumps({"live": bool(log["live"]), "want": log["want"]}))
 
 
 if __name__ == "__main__":
