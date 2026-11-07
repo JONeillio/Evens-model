@@ -10,9 +10,19 @@ const TZ = "Europe/London";
 const REPO_ACTIONS = "https://github.com/JONeillio/Evens-model/actions/workflows/refresh.yml";
 const pct = (x, d = 0) => (x == null ? "–" : `${(x * 100).toFixed(d)}%`);
 const signedPct = (x, d = 1) => (x == null ? "–" : Math.abs(x) < 0.5 / 10 ** (d + 2) ? `${(0).toFixed(d)}%` : `${x > 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(d)}%`);
-const poundTick = (t) => `${t < 0 ? "−" : ""}£${Math.abs(Math.round(t))}`;
-const money = (x) => (x == null ? "–" : `${x < 0 ? "−" : ""}£${Math.abs(x).toFixed(2)}`);
-const signedMoney = (x) => (x == null ? "–" : `${x >= 0 ? "+" : "−"}£${Math.abs(x).toFixed(2)}`);
+const poundTick = (t) => (t < 0 ? `(£${Math.abs(Math.round(t))})` : `£${Math.round(t)}`);
+const money = (x) => (x == null ? "–" : x < 0 ? `(£${Math.abs(x).toFixed(2)})` : `£${x.toFixed(2)}`);
+// Losses in accountant's brackets, as a turf accountant would write them.
+const signedMoney = (x) => (x == null ? "–" : x < 0 ? `(£${Math.abs(x).toFixed(2)})` : `+£${x.toFixed(2)}`);
+const moneyHTML = (x) => (x != null && x < 0 ? `<span class="loss">${signedMoney(x)}</span>` : signedMoney(x));
+const WAVE = `<svg class="wave-rule" viewBox="0 0 400 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 12.5 0 25 5 T 50 5 T 75 5 T 100 5 T 125 5 T 150 5 T 175 5 T 200 5 T 225 5 T 250 5 T 275 5 T 300 5 T 325 5 T 350 5 T 375 5 T 400 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`;
+// Swell height: the best slip's edge in a session, read like a surf report.
+function swell(ev) {
+  if (ev >= 0.03) return { ft: 6, word: "pumping" };
+  if (ev >= 0) return { ft: 4, word: "good" };
+  if (ev >= -0.03) return { ft: 2, word: "fair" };
+  return { ft: 1, word: "flat" };
+}
 const fmtTime = (iso, withDay = true) => new Intl.DateTimeFormat("en-GB", withDay
   ? { weekday: "short", hour: "2-digit", minute: "2-digit", timeZone: TZ }
   : { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
@@ -106,7 +116,7 @@ function slipCard(slip, { place = true, tweak = true } = {}) {
   }).join("");
   return `<article class="slip" data-slip="${esc(slip.id)}">
     <div class="slip-head"><span class="slip-book">${esc(BOOKS[slip.book] || slip.book)}</span><span class="slip-when">${esc(slip.label)}, ${slip.n_legs} legs</span></div>
-    ${slip.alsoAt && slip.alsoAt.length ? `<div class="slip-when" style="padding:0 14px 8px">Same prices at ${slip.alsoAt.map((b) => esc(BOOKS[b] || b)).join(", ")}</div>` : ""}
+    ${slip.alsoAt && slip.alsoAt.length ? `<div class="also">Same prices at ${slip.alsoAt.map((b) => esc(BOOKS[b] || b)).join(", ")}</div>` : ""}
     ${rows}
     <div class="slip-foot">
       <div class="stat"><b class="num">${odds(slip.odds)}</b><span>Combined odds</span></div>
@@ -160,11 +170,15 @@ function renderToday() {
   const starts = [...new Set(slips.map((s) => s.start))].sort();
   if (!todayWindow || !starts.includes(todayWindow)) todayWindow = starts[0] || null;
   const today = dayKey(new Date().toISOString());
+  const best = (st) => Math.max(...slips.filter((s) => s.start === st).map((s) => s.ev));
   $("#windows").innerHTML = starts.map((st) => {
-    const n = slips.filter((s) => s.start === st).length;
     const lbl = dayKey(st) === today ? fmtTime(st, false) : fmtTime(st);
-    return `<button class="chip num" aria-pressed="${st === todayWindow}" data-start="${st}">${esc(lbl)}<small>${n}</small></button>`;
+    return `<button class="chip num" aria-pressed="${st === todayWindow}" data-start="${st}">${esc(lbl)}<small>${swell(best(st)).ft}ft</small></button>`;
   }).join("");
+  if (todayWindow) {
+    const n = slips.filter((s) => s.start === todayWindow).length, sw = swell(best(todayWindow));
+    $("#report").innerHTML = `${esc(fmtTime(todayWindow))} session. Swell <b>${sw.ft}ft, ${sw.word}</b>. ${n} slip${n > 1 ? "s" : ""}.`;
+  } else $("#report").textContent = "";
   $("#windows").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { todayWindow = c.dataset.start; renderToday(); }));
 
   const notes = (DATA.notes || []).filter((n) => !/^Refreshed/.test(n));
@@ -172,10 +186,10 @@ function renderToday() {
 
   const shown = slips.filter((s) => s.start === todayWindow);
   if (!shown.length) {
-    $("#slips").innerHTML = `<div class="empty">No slips near evens for the coming kick-offs.<br>Open the builder to loosen the filters.</div>`;
+    $("#slips").innerHTML = `<div class="empty">Flat out there. No slips near evens for the coming kick-offs.<br>Open the builder to loosen the filters.</div>`;
     return;
   }
-  $("#slips").innerHTML = shown.map((s) => slipCard(s)).join("") +
+  $("#slips").innerHTML = shown.map((s) => slipCard(s)).join(WAVE) +
     `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets.</p>`;
   wireSlips($("#slips"), shown);
 }
@@ -467,15 +481,15 @@ function renderBets() {
   const sim = simulate();
   $("#betsBody").innerHTML = `
     <div class="tiles">
-      <div class="tile"><b class="num">${signedMoney(st.pl)}</b><span>Profit so far</span></div>
+      <div class="tile"><b class="num">${moneyHTML(st.pl)}</b><span>Profit so far</span></div>
       <div class="tile"><b class="num">${st.roi == null ? "–" : signedPct(st.roi)}</b><span>Return on stakes</span></div>
       <div class="tile"><b class="num">${st.won} of ${st.settled.filter((b) => b.status !== "void").length}</b><span>Slips won</span></div>
       <div class="tile"><b class="num">${money(-st.dd)}</b><span>Biggest dip from a high</span></div>
     </div>
     <div class="notice">This month: <b class="num">${money(st.monthStaked)}</b> staked of your <b class="num">${money(settings.monthlyLimit)}</b> limit.
       <div class="progress ${over ? "over" : ""}"><div style="width:${Math.min(100, (st.monthStaked / settings.monthlyLimit) * 100)}%"></div></div>
-      ${over ? `<div class="err">You're over your monthly limit.</div>` : ""}</div>
-    ${st.series.length >= 2 ? `<h2>Profit over time</h2><div class="chart" id="plChart"></div>` : ""}
+      ${over ? `<div class="err">You're over your monthly limit. Honest Joe weeps.</div>` : ""}</div>
+    ${st.series.length >= 2 ? `<h2>Tide chart</h2><p class="hint">Your running profit after each settled slip.</p><div class="chart" id="plChart"></div>` : ""}
     <h2>Next 50 slips</h2>
     <p class="hint">${esc(sim.basis)}</p>
     <div class="chart" id="simChart"></div>
@@ -516,11 +530,14 @@ function betCard(b) {
   const legs = b.legs.map((l) => `<div class="sub">${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</div>`).join("");
   const settled = b.status !== "pending";
   const profit = b.status === "void" ? 0 : (b.returns ?? 0) - b.stake;
-  return `<div class="bet" data-bet="${esc(b.id)}">
-    <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span></div>
+  const stamp = b.status === "won" ? `<span class="stamp-mark won">Hang tenner</span>` : b.status === "lost" ? `<span class="stamp-mark lost">Wipeout</span>` : "";
+  return `<div class="bet" data-bet="${esc(b.id)}">${stamp}
+    <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span>
+      ${settled && b.status !== "void" ? `<div class="num">${moneyHTML(profit)}</div>` : ""}</div>
       <span class="status ${b.status}">${settled ? `${b.status === "won" ? "Won" : b.status === "lost" ? "Lost" : "Void"} ${b.status !== "void" ? signedMoney(profit) : ""}` : "Pending"}</span></div>
     <div class="sub num">£${b.stake.toFixed(2)} at ${odds(b.odds)}, real chance ${pct(b.hit_p)}</div>
     ${legs}
+    ${b.status === "lost" ? `<div class="quip">The bookie thanks you for your contribution.</div>` : ""}
     <div class="bet-actions">${settled ? `<button class="btn small" data-set="pending">Undo result</button>` :
       `<button class="btn small good" data-set="won">Won</button><button class="btn small bad" data-set="lost">Lost</button><button class="btn small" data-set="void">Void</button>`}
       <button class="btn small" data-set="delete">Delete</button></div>
@@ -566,7 +583,7 @@ function renderRecord() {
   $("#recordBody").innerHTML = `
     <div class="tiles">
       <div class="tile"><b class="num">${s.won} of ${s.won + s.lost}</b><span>Slips won (expected ${s.expected_wins})</span></div>
-      <div class="tile"><b class="num">${signedMoney(s.profit_per_10)}</b><span>Profit at £10 a slip</span></div>
+      <div class="tile"><b class="num">${moneyHTML(s.profit_per_10)}</b><span>Profit at £10 a slip</span></div>
       <div class="tile"><b class="num">${s.roi == null ? "–" : signedPct(s.roi)}</b><span>Return on stakes</span></div>
       <div class="tile"><b class="num">${s.pending}</b><span>Waiting on results</span></div>
     </div>
@@ -579,7 +596,8 @@ function renderRecord() {
 }
 function recordCard(h) {
   const mark = (r) => (r === "won" ? "✓" : r === "lost" ? "✕" : r === "void" ? "–" : "·");
-  return `<div class="bet"><div class="bet-top"><div><b>${esc(BOOKS[h.book] || h.book)}</b> <span class="sub">${esc(h.label)}, ${odds(h.odds)}</span></div>
+  const stamp = h.status === "won" ? `<span class="stamp-mark won">Hang tenner</span>` : h.status === "lost" ? `<span class="stamp-mark lost">Wipeout</span>` : "";
+  return `<div class="bet">${stamp}<div class="bet-top"><div><b>${esc(BOOKS[h.book] || h.book)}</b> <span class="sub">${esc(h.label)}, ${odds(h.odds)}</span></div>
     <span class="status ${h.status}">${h.status === "pending" ? "Pending" : h.status === "won" ? `Won ${signedMoney(h.profit_per_10)}` : h.status === "lost" ? "Lost −£10.00" : esc(h.status)}</span></div>
     ${h.legs.map((l) => `<div class="sub leg-result">${mark(l.result)} ${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}${l.score ? ` <b class="num">${esc(l.score)}</b>` : ""}</div>`).join("")}</div>`;
 }

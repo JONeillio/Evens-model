@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1720">
+<meta name="theme-color" content="#0E2A47">
 <meta name="description" content="Near-evens football accumulators priced against the sharpest odds.">
-<title>Evens</title>
+<title>Surf &amp; Turf</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <header class="top">
-  <h1>Evens</h1>
+  <div class="brand"><h1>Surf &amp; Turf</h1><small>Turf accountants, est. 1977</small></div>
   <div class="stamp" id="stamp">Loading odds…</div>
   <button class="icon-btn" id="settingsBtn" aria-label="Settings">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
@@ -22,8 +22,9 @@
 
 <main>
   <section id="today" aria-labelledby="todayTitle">
-    <h2 id="todayTitle" class="sr-only">Today</h2>
-    <div class="strip" id="windows" role="group" aria-label="Kick-off times"></div>
+    <h2 id="todayTitle">Surf report</h2>
+    <div class="strip" id="windows" role="group" aria-label="Kick-off sessions"></div>
+    <div class="report" id="report"></div>
     <div id="todayNotes"></div>
     <div id="slips"></div>
   </section>
@@ -44,7 +45,7 @@
   </section>
 
   <section id="bets" hidden aria-labelledby="betsTitle">
-    <h2 id="betsTitle">My bets</h2>
+    <h2 id="betsTitle">Sessions log</h2>
     <div id="betsBody"></div>
   </section>
 

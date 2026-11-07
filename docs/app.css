@@ -1,25 +1,57 @@
+/* Fonts (SIL Open Font License), hosted with the app so they work offline. */
+@font-face { font-family: "Shrikhand"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/shrikhand-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Caveat"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/caveat-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/barlow-condensed-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/barlow-condensed-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/barlow-condensed-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/barlow-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/barlow-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/barlow-latin-600-normal.woff2") format("woff2"); }
+
 /* Evens: plain working theme. Every colour, font and radius comes from the
    tokens below so a finished design can be dropped in by editing :root only. */
+/* Surf & Turf (draft from the design chat's concept, 7 Nov 2026). */
 :root {
-  --bg: #0f1720;
-  --surface: #16202a;
-  --surface-2: #1d2935;
-  --line: #2a3846;
-  --text: #e8eef3;
-  --muted: #94a3b2;
-  --faint: #6b7a89;
-  --accent: #f2b134;
-  --on-accent: #1a1406;
-  --good: #46b883;
-  --bad: #e2694f;
-  --good-bg: rgba(70, 184, 131, 0.14);
-  --bad-bg: rgba(226, 105, 79, 0.14);
-  --chart: #7fb3e0;
-  --chart-soft: rgba(127, 179, 224, 0.18);
-  --chart-softer: rgba(127, 179, 224, 0.10);
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --radius: 14px;
-  --radius-sm: 9px;
+  /* palette */
+  --navy: #0E2A47;          /* ocean navy */
+  --deep: #1E4A72;          /* deep wave */
+  --wave: #4F7FA8;          /* wave line */
+  --mist: #9FC3E0;          /* sea mist */
+  --brown: #6B3E26;
+  --orange: #D9662B;
+  --mustard: #E0A93B;
+  --cream: #F3E9D2;
+  --biro: #1F3FA8;
+  --edge-green: #2F6B2A;
+  --red-ink: #B3261E;
+
+  /* roles */
+  --bg: var(--navy);
+  --surface: #133559;
+  --surface-2: var(--deep);
+  --line: rgba(79, 127, 168, 0.45);
+  --text: var(--cream);
+  --muted: var(--mist);
+  --faint: #7FA3C4;
+  --accent: var(--mustard);
+  --on-accent: #3A2112;
+  --paper: var(--cream);
+  --paper-ink: #2A2A33;
+  --paper-rule: rgba(31, 63, 168, 0.13);
+  --good: var(--edge-green);
+  --bad: var(--red-ink);
+  --good-bg: var(--cream);
+  --bad-bg: var(--cream);
+  --chart: var(--mist);
+  --chart-soft: rgba(159, 195, 224, 0.22);
+  --chart-softer: rgba(159, 195, 224, 0.11);
+
+  --font: "Barlow", system-ui, sans-serif;
+  --font-cond: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+  --font-logo: "Shrikhand", Georgia, serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
+  --radius: 10px;
+  --radius-sm: 8px;
   --tap: 44px;
   --pad: 16px;
 }
@@ -160,3 +192,68 @@ nav.tabs button[aria-current="page"] { color: var(--accent); }
   .sheet { animation: rise .18s ease-out; }
   @keyframes rise { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
 }
+
+/* ---------- Surf & Turf components ---------- */
+.num, .stat b, .tile b, .leg-price, .px, output, .chip { font-family: var(--font-cond); font-variant-numeric: tabular-nums; }
+.brand { display: grid; line-height: 1; }
+.top h1 { font-family: var(--font-logo); font-weight: 400; font-size: 26px; color: var(--mustard); letter-spacing: 0; }
+.brand small { font-family: var(--font-cond); color: var(--muted); font-size: 12px; margin-top: 4px; }
+.top .stamp { text-align: right; font-family: var(--font-cond); font-size: 14px; }
+h2 { font-family: var(--font-cond); font-weight: 600; font-size: 22px; letter-spacing: .01em; }
+
+/* Session strip: kick-off windows as surf sessions */
+.chip { font-size: 16px; }
+.chip small { font-size: 13px; }
+.report { font-family: var(--font-cond); font-size: 17px; color: var(--muted); margin: 2px 0 6px; }
+.report b { color: var(--text); font-weight: 600; }
+.wave-rule { display: block; width: 100%; height: 10px; margin: 14px 0; color: var(--wave); }
+
+/* Slips are cream ledger paper with a torn edge */
+.slip { background-color: var(--paper); color: var(--paper-ink); border: 0; border-radius: 4px; position: relative;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 33px, var(--paper-rule) 33px 34px);
+  -webkit-mask: radial-gradient(circle 6px at 50% 0, transparent 98%, #000) 0 0 / 18px 100% repeat-x,
+                radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 0 / 18px 100% repeat-x;
+  -webkit-mask-composite: source-in; mask-composite: intersect; padding: 6px 0; }
+.slip .slip-head { border-bottom: 2px solid var(--brown); margin: 0 14px; padding: 10px 0 6px; }
+.slip .slip-book { font-family: var(--font-cond); font-size: 20px; font-weight: 700; color: var(--brown); text-transform: none; }
+.slip .slip-when, .slip .leg-match { color: #5b5a63; }
+.slip .leg { border-top: 0; padding: 7px 14px; }
+.slip .leg-sel { font-family: var(--font-hand); font-size: 25px; font-weight: 600; color: var(--biro); line-height: 1.1; }
+.slip .leg-price { color: var(--paper-ink); font-size: 21px; }
+.slip .leg-price small { color: #5b5a63; }
+.slip .slip-foot { background: transparent; border-top: 2px solid var(--brown); margin: 6px 14px 0; gap: 0; }
+.slip .stat { background: transparent; padding: 8px 0; }
+.slip .stat b { font-size: 24px; color: var(--paper-ink); }
+.slip .stat span { color: #5b5a63; }
+.slip .btn { border-color: var(--brown); color: var(--brown); }
+.slip .btn.primary { background: var(--brown); color: var(--cream); border-color: var(--brown); }
+.also { font-family: var(--font-cond); color: #5b5a63; font-size: 14px; padding: 2px 14px 0; }
+
+/* Edge: a small inked stamp, always with a + or − sign */
+.edge { font-family: var(--font-cond); font-size: 14px; letter-spacing: .02em; background: var(--cream); border: 1.5px solid currentColor; border-radius: 4px; padding: 0 6px; }
+.edge.pos { color: var(--edge-green); background: var(--cream); }
+.edge.neg { color: var(--red-ink); background: var(--cream); }
+.loss { color: #F08A80; }
+.slip .loss, .bet .loss { color: var(--red-ink); }
+
+/* Rubber stamps for settled slips */
+.stamp-mark { position: absolute; right: 12px; top: 14px; transform: rotate(-9deg); font-family: var(--font-logo); font-size: 22px;
+  padding: 2px 10px; border: 3px double currentColor; border-radius: 6px; opacity: .85; pointer-events: none; }
+.stamp-mark.won { color: var(--edge-green); }
+.stamp-mark.lost { color: var(--red-ink); }
+.bet { position: relative; background: var(--paper); color: var(--paper-ink); border: 0; border-radius: 4px; }
+.bet b { color: var(--brown); font-family: var(--font-cond); font-size: 18px; }
+.bet .sub { color: #5b5a63; }
+.bet .btn { border-color: var(--brown); color: var(--brown); }
+.bet .btn.good { color: var(--edge-green); border-color: var(--edge-green); }
+.bet .btn.bad { color: var(--red-ink); border-color: var(--red-ink); }
+.bet .quip { font-family: var(--font-hand); color: var(--red-ink); font-size: 19px; margin-top: 4px; }
+.bet .status.won, .bet .status.lost { display: none; }
+
+/* Controls and lists on navy */
+.controls, .match, .tile, .chart, .notice { background: var(--surface); border-color: var(--line); }
+.match-head .teams { font-family: var(--font-cond); font-size: 19px; font-weight: 600; }
+.leg-row .lbl { font-family: var(--font-cond); font-size: 18px; }
+nav.tabs { background: #0B2239; border-top: 1px solid var(--line); }
+nav.tabs button { font-family: var(--font-cond); font-size: 14px; }
+.sheet { background: var(--surface); }

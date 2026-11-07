@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#0f1720"/>
-  <path d="M136 96h240v304l-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16z" fill="#f2b134"/>
-  <rect x="172" y="150" width="168" height="16" rx="8" fill="#1a1406" opacity=".55"/>
-  <rect x="172" y="190" width="132" height="16" rx="8" fill="#1a1406" opacity=".55"/>
-  <rect x="172" y="230" width="150" height="16" rx="8" fill="#1a1406" opacity=".55"/>
-  <text x="256" y="345" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700" fill="#1a1406">2.0</text>
+  <rect width="512" height="512" rx="112" fill="#0E2A47"/>
+  <path d="M136 96h240v304l-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16-20-16-20 16z" fill="#E0A93B"/>
+  <rect x="172" y="150" width="168" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
+  <rect x="172" y="190" width="132" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
+  <rect x="172" y="230" width="150" height="16" rx="8" fill="#6B3E26" opacity=".55"/>
+  <text x="256" y="345" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700" fill="#6B3E26">2.0</text>
 </svg>

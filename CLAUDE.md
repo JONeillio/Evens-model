@@ -23,4 +23,5 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
 ## Working rules
 - Test before pushing: `python -m pytest -q tests`; offline run with `tests/make_mock.py` + `engine.run --mock` (writes to /tmp).
 - Live runs cost requests. Trigger with `gh workflow run refresh.yml -R JONeillio/evens-model` only when needed; `-f task=probe` costs 1.
-- A separate design session may produce a Design System for the app; apply it via the CSS tokens in `docs/app.css`.
+- Look: "Surf & Turf" draft from the design chat's concept doc (project doc `claude/evens-brand-concepts.md`), applied 7 Nov 2026. Palette and fonts are tokens at the top of `docs/app.css`; fonts are self-hosted in `docs/fonts/` (OFL). When the design chat publishes a Design System artifact, update the tokens and components from it.
+- Bump `VERSION` in `docs/sw.js` whenever app files change so phones pick up the update.
