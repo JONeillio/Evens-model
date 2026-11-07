@@ -703,36 +703,36 @@
  },
  "scores": {
   "id1000001872340012": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 1,
-   "src": "af",
-   "at": "2026-11-07T13:27:29Z"
+   "src": "fd",
+   "at": "2026-11-07T13:32:33Z"
   },
   "id1000001872340030": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 1,
-   "src": "af",
-   "at": "2026-11-07T13:27:29Z"
+   "src": "fd",
+   "at": "2026-11-07T13:32:33Z"
   },
   "id1000001872340020": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 1,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T13:27:29Z"
+   "src": "fd",
+   "at": "2026-11-07T13:32:33Z"
   },
   "id1000001772221384": {
-   "s": "HT",
-   "min": 45,
+   "s": "LIVE",
+   "min": null,
    "h": 0,
    "a": 0,
-   "src": "af",
-   "at": "2026-11-07T13:27:29Z"
+   "src": "fd",
+   "at": "2026-11-07T13:32:33Z"
   },
   "id1000005272723320": {
    "s": "LIVE",
@@ -765,10 +765,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T13:27:29Z"
+   "at": "2026-11-07T13:32:33Z"
   }
  },
- "last_called_at": "2026-11-07T13:27:29Z",
+ "last_called_at": "2026-11-07T13:32:33Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -990,19 +990,11 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T13:27:29Z",
+  "at": "2026-11-07T13:32:33Z",
   "want": 6,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-07",
-    "status": 200,
-    "error": "",
-    "results": 1448
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1013,12 +1005,15 @@
     "results": 36
    }
   ],
-  "changed": 6,
+  "changed": 4,
   "coverage": {
    "checked": 6,
-   "api_football": 6,
+   "api_football": 0,
    "football_data": 4,
-   "unmatched": []
+   "unmatched": [
+    "Samsunspor v Konyaspor (Super Lig)",
+    "Clermont Foot 63 v Rodez Aveyron Football (Ligue 2)"
+   ]
   }
  },
  "af_last_at": "2026-11-07T13:27:29Z"
