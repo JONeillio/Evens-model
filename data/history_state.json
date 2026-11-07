@@ -26,8 +26,8 @@
       "home": "Fulham",
       "away": "Newcastle"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-1"
     },
     {
      "id": "id1000001772221388|ou:4.5:under",
@@ -62,8 +62,8 @@
       "home": "Arsenal",
       "away": "Hull"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-0"
     },
     {
      "id": "id1000001975802940|ou:1.5:over",
@@ -76,8 +76,8 @@
      "p_win": 0.8074,
      "p_void": 0.0,
      "fd": null,
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-1"
     }
    ],
    "status": "pending",
