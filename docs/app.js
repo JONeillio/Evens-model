@@ -62,7 +62,7 @@ const saveBets = () => store.set("bets", bets);
 const saveSlip = () => store.set("slip", slip);
 
 // ---------- data ----------
-let DATA = null, HIST = null, LIVE = null, FIX = {}, LEGS = {}, BOOKS = {}, SLIP_BOOKS = [], WINDOWS = [];
+let DATA = null, HIST = null, LIVE = null, FIX = {}, LEGS = {}, BOOKS = {}, BOOKCHECK = {}, SLIP_BOOKS = [], WINDOWS = [];
 const EXCHANGES = ["betfair-ex", "matchbook"];
 const myBooks = () => { const m = (settings.myBooks || SLIP_BOOKS).filter((b) => SLIP_BOOKS.includes(b)); return m.length ? m : SLIP_BOOKS; };
 const bookName = (b) => BOOKS[b] || b;
@@ -84,6 +84,7 @@ async function load() {
   FIX = Object.fromEntries(DATA.fixtures.map((f) => [f.id, f]));
   LEGS = Object.fromEntries(DATA.legs.map((l) => [l.id, l]));
   BOOKS = Object.fromEntries(DATA.books.map((b) => [b.slug, b.name]));
+  BOOKCHECK = Object.fromEntries(DATA.books.map((b) => [b.slug, !!b.check]));
   SLIP_BOOKS = DATA.books.filter((b) => b.slips !== false && !EXCHANGES.includes(b.slug)).map((b) => b.slug);
   WINDOWS = (DATA.windows || []).slice().sort((a, b) => a.start_utc.localeCompare(b.start_utc));
   $("#oddsStamp").textContent = `Odds checked ${fmtTime(DATA.odds_taken_at)}`;
@@ -116,6 +117,14 @@ document.addEventListener("visibilitychange", refreshLive);
 function settleKey(key, hg, ag) {
   const p = key.split(":"), g = { 1: hg, 2: ag }, o = { 1: ag, 2: hg };
   const res = hg > ag ? "1" : ag > hg ? "2" : "X";
+  // NFL / NBA (points, overtime included). Mirrors engine/catalog.py outcome().
+  if (p[0].includes("-")) {
+    const k = p[0].split("-")[1];
+    if (k === "ml") return hg === ag ? "void" : g[p[1]] > o[p[1]] ? "won" : "lost";
+    if (k === "sp") return g[p[1]] - o[p[1]] + +p[2] > 0 ? "won" : "lost";
+    if (k === "tot") { const over = hg + ag > +p[1]; return (p[2] === "over" ? over : !over) ? "won" : "lost"; }
+    return null;
+  }
   switch (p[0]) {
     case "1x2": return res === p[1] ? "won" : "lost";
     case "dc": return p[1].includes(res) ? "won" : "lost";
@@ -140,7 +149,7 @@ function legNow(legId) {
   if (sc.s === "FT") return { st: res, sc };
   // In play, some legs are already decided whatever happens next.
   const p = key.split(":"), tot = sc.h + sc.a, g = { 1: sc.h, 2: sc.a };
-  if (p[0] === "ou" && tot > +p[1]) return { st: p[2] === "over" ? "won" : "lost", sc };
+  if ((p[0] === "ou" || p[0].endsWith("-tot")) && tot > +p[1]) return { st: p[2] === "over" ? "won" : "lost", sc };
   if ((p[0] === "tt" && g[p[1]] > +p[2]) || (p[0] === "ts" && g[p[1]] > 0)) return { st: "won", sc };
   if (p[0] === "btts" && sc.h > 0 && sc.a > 0) return { st: p[1] === "yes" ? "won" : "lost", sc };
   return { st: res === "won" ? "ahead" : res === "void" ? "level" : "behind", sc };
@@ -235,7 +244,9 @@ function rawPool(windowId, bookie) {
 // Grouped by OddsPapi tournament id (config/settings.json leagues).
 const COMPS = [
   { id: "prem", name: "Prem", long: "Premier League", ids: [17] },
+  { id: "nfl", name: "NFL", long: "NFL", ids: [31] },
   { id: "efl", name: "EFL", long: "EFL", ids: [18, 24, 25] },
+  { id: "nba", name: "NBA", long: "NBA", ids: [132] },
   { id: "cups", name: "Cups", long: "cup", ids: [19, 21, 347] },
   { id: "scot", name: "Scotland", long: "Scottish", ids: [36, 206, 207, 209] },
   { id: "euro", name: "Euro nights", long: "European", ids: [7, 679, 34480] },
@@ -692,6 +703,7 @@ function renderTicket(print) {
   t.hidden = !nums.legs.length;
   t.innerHTML = `${ticketRows().map((r) => `<div class="tk-row"><span class="tk-fx">${esc(r.time)} · ${esc(r.match)}${r.league ? ` · ${esc(r.league)}` : ""}</span>
       <span class="tk-leg"><span>${esc(r.label)}</span><b class="num">${oddsH(r.price)}</b></span></div>`).join("")}
+    ${BOOKCHECK[slip.bookie] ? `<div class="tk-check">${esc(bookName(slip.bookie))}'s prices reach us on a delay. Check each one in the ${esc(bookName(slip.bookie))} app before you place it.</div>` : ""}
     <div class="tk-foot num"><b>${oddsH(nums.odds)}</b><span>real chance ${pct(nums.chance)}</span><span>£${slip.stake} pays £${nums.ret.toFixed(2)}</span></div>
     <div class="tk-actions">
       <button class="tk-btn" id="tkCopy">${ticketState.copied ? "Copied ✓" : `Copy to ${esc(bookName(slip.bookie))}`}</button>

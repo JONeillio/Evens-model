@@ -65,7 +65,51 @@ def _defs() -> list[LegDef]:
     return d
 
 
-LEG_DEFS = _defs()
+# ---------- US sports (NFL, NBA): moneyline, spreads and totals, full game incl. overtime ----------
+# Keys: nfl-ml:1  nfl-sp:2:+7.5  nfl-tot:40.5:over  (same for nba-). Points, not goals.
+# Market and outcome ids come from data/ref/markets_<sport>.json (OddsPapi). A spread market's
+# "handicap" is team 1's (home) line; outcome 2 gets the opposite line. Only half-point
+# lines are used, so nothing pushes.
+US_SPORTS = {14: "nfl", 11: "nba"}
+
+
+def _us_defs() -> list[LegDef]:
+    import json
+    from pathlib import Path
+    ref = Path(__file__).resolve().parents[1] / "data" / "ref"
+    d: list[LegDef] = []
+    for sid, tag in US_SPORTS.items():
+        path = ref / f"markets_{sid}.json"
+        if not path.exists():
+            continue
+        for m in json.loads(path.read_text()):
+            if m.get("period") != "result" or m.get("playerProp"):
+                continue
+            kind, h = m.get("marketType"), float(m.get("handicap") or 0)
+            outs = {str(o.get("outcomeName")): str(o.get("outcomeId")) for o in m.get("outcomes", [])}
+            mid = str(m["marketId"])
+            if kind == "moneyline" and set(outs) == {"1", "2"}:
+                sib = (outs["1"], outs["2"])
+                d.append(LegDef(f"{tag}-ml:1", f"{tag}_moneyline", mid, outs["1"], sib))
+                d.append(LegDef(f"{tag}-ml:2", f"{tag}_moneyline", mid, outs["2"], sib))
+            elif kind == "spreads" and set(outs) == {"1", "2"} and abs(h % 1 - 0.5) < 1e-9:
+                sib = (outs["1"], outs["2"])
+                d.append(LegDef(f"{tag}-sp:1:{h:+g}", f"{tag}_spread", mid, outs["1"], sib))
+                d.append(LegDef(f"{tag}-sp:2:{-h:+g}", f"{tag}_spread", mid, outs["2"], sib))
+            elif kind == "totals" and set(outs) == {"Over", "Under"} and abs(h % 1 - 0.5) < 1e-9:
+                sib = (outs["Over"], outs["Under"])
+                d.append(LegDef(f"{tag}-tot:{h:g}:over", f"{tag}_total", mid, outs["Over"], sib))
+                d.append(LegDef(f"{tag}-tot:{h:g}:under", f"{tag}_total", mid, outs["Under"], sib))
+    # One definition per key (the reference can list a market twice).
+    seen, out = set(), []
+    for x in d:
+        if x.key not in seen:
+            seen.add(x.key)
+            out.append(x)
+    return out
+
+
+LEG_DEFS = _defs() + _us_defs()
 LEGS_BY_KEY = {d.key: d for d in LEG_DEFS}
 MARKET_IDS = sorted({d.market_id for d in LEG_DEFS})
 
@@ -78,6 +122,14 @@ def label(key: str, home: str, away: str) -> str:
     parts = key.split(":")
     kind = parts[0]
     team = {"1": home, "2": away}
+    if "-" in kind:  # US sports
+        k = kind.split("-")[1]
+        if k == "ml":
+            return f"{team[parts[1]]} to win"
+        if k == "sp":
+            return f"{team[parts[1]]} {parts[2]} points"
+        if k == "tot":
+            return f"{parts[2].title()} {parts[1]} points"
     if kind == "1x2":
         return "Draw" if parts[1] == "X" else f"{team[parts[1]]} to win"
     if kind == "dc":
@@ -99,6 +151,8 @@ def label(key: str, home: str, away: str) -> str:
 
 def short_market(key: str) -> str:
     kind = key.split(":")[0]
+    if "-" in kind:
+        return {"ml": "Moneyline", "sp": "Spread", "tot": "Total points"}.get(kind.split("-")[1], kind)
     return {"1x2": "Result", "dc": "Double chance", "dnb": "Draw no bet", "ou": "Goals",
             "tt": "Team goals", "ts": "Team to score", "btts": "BTTS", "ah": "Handicap"}.get(kind, kind)
 
@@ -109,6 +163,17 @@ def outcome(key: str, hg: int, ag: int) -> str:
     kind = p[0]
     goals = {"1": hg, "2": ag}
     other = {"1": ag, "2": hg}
+    if "-" in kind:  # US sports: hg/ag are points, overtime included
+        k = kind.split("-")[1]
+        if k == "ml":
+            if hg == ag:
+                return "void"  # an NFL tie
+            return "won" if goals[p[1]] > other[p[1]] else "lost"
+        if k == "sp":
+            return "won" if goals[p[1]] - other[p[1]] + float(p[2]) > 0 else "lost"
+        if k == "tot":
+            over = hg + ag > float(p[1])
+            return "won" if (over if p[2] == "over" else not over) else "lost"
     if kind == "1x2":
         res = "1" if hg > ag else "2" if ag > hg else "X"
         return "won" if res == p[1] else "lost"

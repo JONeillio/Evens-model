@@ -2,7 +2,7 @@
  "_readme": "Main knobs for the engine. Each run: 1 request lists the next 48h of fixtures; Pinnacle prices for every league with games (1 request per 5 leagues); then 1 request per match for every UK bookie's prices on the matches with the most short-priced legs. Sky Bet and William Hill are not in OddsPapi's data.",
  "sport_id": 10,
  "timezone": "Europe/London",
- "horizon_hours": 48,
+ "horizon_hours": 72,
  "sharp_book": "pinnacle",
  "book_names": {
   "pinnacle": "Pinnacle",
@@ -23,7 +23,8 @@
   "sportingbet": "Sportingbet",
   "netbet.co.uk": "NetBet",
   "betfair-ex": "Betfair Exchange",
-  "matchbook": "Matchbook"
+  "matchbook": "Matchbook",
+  "williamhill": "William Hill"
  },
  "budget": {
   "monthly_limit_fallback": 250,
@@ -34,13 +35,13 @@
   "tournaments_refresh_days": 30,
   "markets_refresh_days": 60,
   "weekday_weights": {
-   "Mon": 0.1,
-   "Tue": 1,
-   "Wed": 1,
-   "Thu": 0.1,
-   "Fri": 0.8,
-   "Sat": 5,
-   "Sun": 2.5
+   "Mon": 1,
+   "Tue": 0.8,
+   "Wed": 0.8,
+   "Thu": 1,
+   "Fri": 2.5,
+   "Sat": 4,
+   "Sun": 4
   },
   "min_match_calls": 6
  },
@@ -60,7 +61,13 @@
    "team_to_score",
    "team_over_0_5",
    "btts_no",
-   "ah_plus_1_5"
+   "ah_plus_1_5",
+   "nfl_moneyline",
+   "nfl_spread",
+   "nfl_total",
+   "nba_moneyline",
+   "nba_spread",
+   "nba_total"
   ]
  },
  "slips": {
@@ -292,10 +299,27 @@
    "country": "France",
    "fd": "F2",
    "tier": 5
+  },
+  {
+   "id": 31,
+   "name": "NFL",
+   "country": "USA",
+   "fd": null,
+   "tier": 1,
+   "sport": 14
+  },
+  {
+   "id": 132,
+   "name": "NBA",
+   "country": "USA",
+   "fd": null,
+   "tier": 2,
+   "sport": 11
   }
  ],
  "uk_books": [
   "bet365",
+  "williamhill",
   "paddypower",
   "betfred",
   "ladbrokes",
@@ -343,5 +367,90 @@
    ]
   }
  ],
- "_priority_readme": "Joseph's must-haves: every match in these leagues gets full UK bookie prices first, in this order, before the rest of the shortlist."
+ "_priority_readme": "Joseph's must-haves: every match in these leagues gets full UK bookie prices first, in this order, before the rest of the shortlist.",
+ "core": {
+  "_readme": "One request = one bookie's prices for every game in up to 5 competitions (days ahead). Far cheaper than one request per match. Competitions are tried together across sports; days = when each group is fetched (UK).",
+  "books": [
+   "bet365",
+   "paddypower",
+   "williamhill",
+   "unibet",
+   "ladbrokes"
+  ],
+  "groups": [
+   {
+    "label": "Premier League",
+    "tournaments": [
+     17
+    ],
+    "days": [
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun"
+    ]
+   },
+   {
+    "label": "NFL",
+    "tournaments": [
+     31
+    ],
+    "days": [
+     "Thu",
+     "Sat",
+     "Sun",
+     "Mon"
+    ]
+   },
+   {
+    "label": "Championship",
+    "tournaments": [
+     18
+    ],
+    "days": [
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun"
+    ]
+   },
+   {
+    "label": "NBA",
+    "tournaments": [
+     132
+    ],
+    "days": [
+     "Fri",
+     "Sat",
+     "Sun"
+    ]
+   },
+   {
+    "label": "FA Cup",
+    "tournaments": [
+     19
+    ],
+    "days": [
+     "Fri",
+     "Sat",
+     "Sun",
+     "Mon",
+     "Tue",
+     "Wed"
+    ]
+   }
+  ]
+ },
+ "lenient_books": [
+  "bet365",
+  "williamhill"
+ ],
+ "lenient_max_age_hours": 18,
+ "_lenient_readme": "OddsPapi flags Bet365 and William Hill match markets as not active even when current; keep their prices if they changed in the last 18 hours. The app marks these as 'check price'."
 }

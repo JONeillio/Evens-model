@@ -24,6 +24,10 @@ Owner: Joseph (manages everything from his phone via the Claude app). Plain Engl
 - `config/settings.json`: leagues (with priority tiers), UK bookies, slip rules, budget weights.
 - `data/`: state, snapshot, run log, reference caches (participants, markets, tournaments).
 
+## Coverage and rationing (7 Nov 2026, Joseph's priorities)
+Must-haves: Premier League and NFL whenever they're on; then Championship; then whatever else is on at the same time or evening (NBA; MLB is out of season until late March). `config/settings.json` `core`: one `odds-by-tournaments` request per bookie covers every game in up to 5 competitions (days ahead), so core groups (Prem 17, NFL 31, Championship 18, NBA 132, FA Cup 19) are fetched first for Pinnacle + `core.books` (Bet365, Paddy Power, William Hill, Unibet, Ladbrokes), on the weekdays listed per group. If OddsPapi refuses mixed sports in one request, `fetch_core` splits by sport. Leftover allowance goes to Pinnacle for other football leagues and per-match calls (all bookies) via `shortlist` (`priority` = Prem, Championship first). Weekday weights favour Fri–Sun. `--calls N` / workflow input `calls` lets a by-hand run spend N requests. NFL/NBA legs: `catalog._us_defs` (keys `nfl-ml:1`, `nfl-sp:2:+7.5`, `nba-tot:220.5:over`, from `data/ref/markets_{14,11}.json`); team names `data/ref/participants_{sport}.json`. US legs are not auto-settled yet (needs API-Sports american-football / nba scores, same key, free plan serves the 2026 season). Discovery: `task=sports` (`engine/probe_sports.py`, ~9 requests).
+- Bet365 and William Hill: OddsPapi flags their match markets `marketActive: false` even when current (only player props are 'active'). `lenient_books` keeps their prices if changed in the last 18h; `latest.json` books carry `check: true` and the ticket tells Joseph to check prices in the bookie app.
+
 ## Facts learned from the live API (Nov 2026)
 - Sky Bet and William Hill are not in OddsPapi data. `odds-by-tournaments` for bet365 returns very thin markets; use per-match `/odds` for UK books.
 - 4xx responses still count against the quota.

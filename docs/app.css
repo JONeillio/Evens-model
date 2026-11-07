@@ -362,3 +362,5 @@ h3.sec { font-family: var(--font-display); font-weight: 400; color: var(--jackpo
   @keyframes evens-stamp { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-8deg) scale(2.6); } 12% { opacity: 1; transform: translate(-50%, -50%) rotate(-8deg) scale(1); } 75% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-8deg) scale(1.05); } }
   @keyframes rise { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
 }
+
+.tk-check { font-size: 14px; line-height: 1.25; margin: 6px 0 2px; padding: 6px 8px; border-left: 3px solid var(--bad-on-reel); background: rgba(163, 23, 42, .07); color: var(--ink); }

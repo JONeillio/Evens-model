@@ -20,6 +20,7 @@ import time
 import traceback
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from . import budget, builder, settle
 from .pools import build_pools
@@ -133,16 +134,18 @@ class Run:
                 self.fixture_names[f.get("fixtureId")] = (f.get("participant1Name"), f.get("participant2Name"))
         if not fx_list:
             counts = {l["id"]: 1 for l in self.s["leagues"] if l.get("tier") == 1}
-        active = sorted(counts, key=lambda t: (tier[t], -counts[t]))
+        # Core competitions (Prem, NFL, Championship, NBA, FA Cup): one request per bookie
+        # covers every game in up to 5 competitions, so do these first.
+        core_ids = self.fetch_core(index := {}, counts, allow, sharp)
+        active = sorted((t for t in counts if t not in core_ids), key=lambda t: (tier[t], -counts[t]))
         per_call = cfg["max_tournaments_per_call"]
         chunks = [active[i:i + per_call] for i in range(0, len(active), per_call)]
-        if not chunks:
-            self.log["notes"].append("None of our leagues play in the next 2 days.")
+        if not chunks and not index:
+            self.log["notes"].append("None of our leagues play in the next few days.")
             return {}, [], True
 
         # Pinnacle for every league with games (1 request per 5 leagues), keeping room for match calls.
-        n_chunks = max(1, min(len(chunks), allow - 1 - cfg["min_match_calls"]))
-        index: dict = {}
+        n_chunks = max(0, min(len(chunks), allow - self.api.billable_calls - cfg["min_match_calls"]))
         for ids in chunks[:n_chunks]:
             try:
                 add_payload(index, self.api.odds_by_tournaments(ids, bookmaker=sharp), books=[sharp])
@@ -158,10 +161,10 @@ class Run:
 
         # Every UK bookie for the matches most likely to give short-priced legs (1 request each).
         match_calls = max(0, allow - self.api.billable_calls)
-        picks = self.shortlist(index, match_calls)
+        picks = self.shortlist(index, match_calls, skip_tournaments=set(core_ids))
         for fid in picks:
             try:
-                add_payload(index, self.api.get("odds", fixtureId=fid), books=[sharp] + uk)
+                add_payload(index, self.api.get("odds", fixtureId=fid), books=[sharp] + uk, **self.lenient())
             except QuotaExhausted as exc:
                 self.log["errors"].append(str(exc))
                 break
@@ -173,13 +176,77 @@ class Run:
         self.priced = set(picks)
         return index, self._books_present(index), True
 
+    def lenient(self) -> dict:
+        return {"lenient": self.s.get("lenient_books", []), "now": self.now, "max_age_h": self.s.get("lenient_max_age_hours", 18)}
+
+    def fetch_core(self, index: dict, counts: dict, allow: int, sharp: str) -> list[int]:
+        """Prices for the core groups due today: one request per bookie per 5 competitions.
+        Football competitions are skipped when they have no games in the horizon."""
+        from .budget import DAY_NAMES
+        from .oddspapi import QuotaExhausted
+        core = self.s.get("core") or {}
+        sport_of = {l["id"]: l.get("sport", 10) for l in self.s["leagues"]}
+        day = DAY_NAMES[self.now.astimezone(ZoneInfo(self.s["timezone"])).weekday()]
+        ids: list[int] = []
+        for g in core.get("groups", []):
+            if day not in g.get("days", DAY_NAMES):
+                continue
+            for t in g["tournaments"]:
+                if sport_of.get(t, 10) == 10 and counts and t not in counts:
+                    continue
+                if t not in ids:
+                    ids.append(t)
+        books = [sharp] + [b for b in core.get("books", []) if b != sharp]
+        if not ids or not books:
+            return []
+        # Keep 1 request spare for the fixtures list already spent, and fit the budget.
+        room = max(0, allow - self.api.billable_calls)
+        chunks = [ids[i:i + 5] for i in range(0, len(ids), 5)]
+        while chunks and len(chunks) * len(books) > room:
+            if len(books) > 3:
+                books.pop()  # drop the last bookie before dropping competitions
+            else:
+                chunks.pop()
+        mixed = len({sport_of.get(t, 10) for t in ids}) > 1
+        done: list[int] = []
+        for chunk in chunks:
+            groups = [chunk]
+            for bk in books:
+                for g in list(groups):
+                    try:
+                        add_payload(index, self.api.odds_by_tournaments(g, bookmaker=bk), books=[bk], **self.lenient())
+                    except QuotaExhausted as exc:
+                        self.log["errors"].append(str(exc))
+                        return done
+                    except Exception as exc:
+                        msg = str(exc)
+                        if mixed and len(groups) == 1 and " 400" in msg:
+                            # This API won't mix sports in one request: split by sport from now on.
+                            by_sport: dict = {}
+                            for t in chunk:
+                                by_sport.setdefault(sport_of.get(t, 10), []).append(t)
+                            groups = list(by_sport.values())
+                            self.log["notes"].append("Core: split by sport (mixed request refused).")
+                            for g2 in groups:
+                                try:
+                                    add_payload(index, self.api.odds_by_tournaments(g2, bookmaker=bk), books=[bk], **self.lenient())
+                                except Exception as exc2:
+                                    self.log["errors"].append(f"core {bk} {g2}: {str(exc2)[:200]}")
+                            break
+                        if "404" not in msg:  # 404 = that bookie has no games there: normal
+                            self.log["errors"].append(f"core {bk} {g}: {msg[:200]}")
+            done.extend(chunk)
+        names = {l["id"]: l["name"] for l in self.s["leagues"]}
+        self.log["core"] = {"competitions": [names.get(t, t) for t in done], "books": books}
+        return done
+
     def _books_present(self, index) -> list[str]:
         present = set()
         for e in index.values():
             present.update(b for b, m in e["books"].items() if m)
         return [b for b in self.s["uk_books"] if b in present]
 
-    def shortlist(self, index, budget_calls: int) -> list[str]:
+    def shortlist(self, index, budget_calls: int, skip_tournaments=frozenset()) -> list[str]:
         """Pick the matches worth a full-price request: lots of short-priced legs,
         clustered around the same kick-off times so slips can form."""
         from .legs import sharp_probabilities
@@ -191,6 +258,8 @@ class Run:
             m = e["meta"]
             if not m.get("startTime") or m.get("statusId") not in (0, None):
                 continue
+            if m.get("tournamentId") in skip_tournaments:
+                continue  # already priced by the core calls
             ko = parse_ts(m["startTime"])
             if not (soon <= ko <= horizon):
                 continue
@@ -231,31 +300,39 @@ class Run:
 
     # -- reference data -----------------------------------------------------------
     def participants(self, index) -> Participants:
-        parts = Participants(load_json(ROOT / "data" / "ref" / "participants_10.json", {}))
-        ids = set()
+        """Team names: one cached file per sport (data/ref/participants_<sport>.json)."""
+        sport_of = {l["id"]: l.get("sport", 10) for l in self.s["leagues"]}
+        by_sport: dict[int, set] = {}
         for e in index.values():
-            ids.update([e["meta"].get("participant1Id"), e["meta"].get("participant2Id")])
-        missing = [i for i in parts.missing(i for i in ids if i is not None)]
-        if getattr(self, "fixture_names", None):
-            have = set()
-            for fid, (h, a) in self.fixture_names.items():
-                e = index.get(fid)
-                if e and h and a:
-                    have.update([str(e["meta"].get("participant1Id")), str(e["meta"].get("participant2Id"))])
-            missing = [i for i in missing if i not in have]
+            sp = sport_of.get(e["meta"].get("tournamentId"), 10)
+            by_sport.setdefault(sp, set()).update(i for i in (e["meta"].get("participant1Id"), e["meta"].get("participant2Id")) if i is not None)
+        mapping: dict = {}
         refresh_days = self.s["budget"]["participants_refresh_days"]
-        stale = days_since(self.state.get("participants_at"), self.now) >= 1
-        if self.api and missing and (stale or days_since(self.state.get("participants_at"), self.now) >= refresh_days):
-            try:
-                fresh = self.api.participants(self.s["sport_id"])
-                if isinstance(fresh, dict) and fresh:
-                    save_json(ROOT / "data" / "ref" / "participants_10.json", fresh, compact=True)
-                    parts = Participants(fresh)
-                    self.state["participants_at"] = iso(self.now)
-                    self.log["notes"].append(f"Refreshed team names ({len(missing)} were unknown).")
-            except Exception as exc:
-                self.log["errors"].append(f"participants refresh: {exc}")
-        return parts
+        for sp in sorted(set(by_sport) | {10}):
+            path = ROOT / "data" / "ref" / f"participants_{sp}.json"
+            parts = Participants(load_json(path, {}))
+            missing = parts.missing(by_sport.get(sp, ()))
+            if sp == 10 and getattr(self, "fixture_names", None):
+                have = set()
+                for fid, (h, a) in self.fixture_names.items():
+                    e = index.get(fid)
+                    if e and h and a:
+                        have.update([str(e["meta"].get("participant1Id")), str(e["meta"].get("participant2Id"))])
+                missing = [i for i in missing if i not in have]
+            stamp_key = "participants_at" if sp == 10 else f"participants_{sp}_at"
+            age = days_since(self.state.get(stamp_key), self.now)
+            if self.api and missing and (age >= 1 or not parts.map):
+                try:
+                    fresh = self.api.participants(sp)
+                    if isinstance(fresh, dict) and fresh:
+                        save_json(path, fresh, compact=True)
+                        parts = Participants(fresh)
+                        self.state[stamp_key] = iso(self.now)
+                        self.log["notes"].append(f"Refreshed team names for sport {sp} ({len(missing)} were unknown).")
+                except Exception as exc:
+                    self.log["errors"].append(f"participants refresh {sp}: {exc}")
+            mapping.update(parts.map)
+        return Participants(mapping)
 
     # -- main -----------------------------------------------------------------
     def execute(self):
@@ -335,7 +412,8 @@ class Run:
             "generated_at": iso(self.now),
             "odds_taken_at": odds_time,
             "timezone": s["timezone"],
-            "books": [{"slug": b, "name": book_names.get(b, b), "slips": b not in s.get("not_for_slips", [])} for b in books],
+            "books": [{"slug": b, "name": book_names.get(b, b), "slips": b not in s.get("not_for_slips", []),
+                       **({"check": True} if b in s.get("lenient_books", []) else {})} for b in books],
             "sharp_book": s["sharp_book"],
             "defaults": s["slips"],
             "fixtures": sorted(fixtures.values(), key=lambda f: (f["kickoff"], f["league"])),
