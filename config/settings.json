@@ -1,0 +1,88 @@
+{
+  "_readme": "Main knobs for the engine. Safe to edit; the app reads the results.",
+  "sport_id": 10,
+  "timezone": "Europe/London",
+  "horizon_hours": 48,
+
+  "sharp_book": "pinnacle",
+  "soft_books": ["bet365", "skybet", "williamhill"],
+  "spare_books": ["paddypower", "betfred", "ladbrokes", "coral", "betway", "boylesports", "midnite", "virginbet", "unibet", "888sport"],
+  "book_names": {
+    "pinnacle": "Pinnacle", "bet365": "Bet365", "skybet": "Sky Bet", "williamhill": "William Hill",
+    "paddypower": "Paddy Power", "betfred": "Betfred", "ladbrokes": "Ladbrokes", "coral": "Coral",
+    "betway": "Betway", "boylesports": "BoyleSports", "midnite": "Midnite", "virginbet": "Virgin Bet",
+    "unibet": "Unibet", "888sport": "888sport"
+  },
+
+  "budget": {
+    "monthly_limit_fallback": 250,
+    "reserve": 20,
+    "max_calls_per_run": 8,
+    "max_tournaments_per_call": 40,
+    "participants_refresh_days": 7,
+    "tournaments_refresh_days": 30,
+    "markets_refresh_days": 60
+  },
+
+  "devig_method": "power",
+
+  "legs": {
+    "min_price": 1.02,
+    "max_price": 1.60,
+    "min_fair_prob": 0.55,
+    "markets": ["win", "double_chance", "draw_no_bet", "over_0_5", "over_1_5", "under_3_5", "under_4_5", "team_to_score", "team_over_0_5", "btts_no", "ah_plus_1_5"]
+  },
+
+  "slips": {
+    "legs_options": [4, 5],
+    "target_min": 1.85,
+    "target_max": 2.30,
+    "kickoff_spread_hours": 2.5,
+    "leg_min_price": 1.04,
+    "leg_max_price": 1.45,
+    "leg_min_fair_prob": 0.68,
+    "leg_min_edge": -0.03,
+    "slip_min_ev": -0.06,
+    "pool_size": 26,
+    "top_per_window": 3
+  },
+
+  "model": {
+    "enabled": true,
+    "seasons_back": 2,
+    "half_life_days": 180,
+    "min_team_matches": 6,
+    "agree_tolerance": 0.04
+  },
+
+  "leagues": [
+    {"id": 17,    "name": "Premier League",     "country": "England",     "fd": "E0"},
+    {"id": 18,    "name": "Championship",       "country": "England",     "fd": "E1"},
+    {"id": 24,    "name": "League One",         "country": "England",     "fd": "E2"},
+    {"id": 25,    "name": "League Two",         "country": "England",     "fd": "E3"},
+    {"id": 173,   "name": "National League",    "country": "England",     "fd": "EC"},
+    {"id": 19,    "name": "FA Cup",             "country": "England",     "fd": null},
+    {"id": 21,    "name": "EFL Cup",            "country": "England",     "fd": null},
+    {"id": 36,    "name": "Premiership",        "country": "Scotland",    "fd": "SC0"},
+    {"id": 206,   "name": "Championship",       "country": "Scotland",    "fd": "SC1"},
+    {"id": 207,   "name": "League One",         "country": "Scotland",    "fd": "SC2"},
+    {"id": 209,   "name": "League Two",         "country": "Scotland",    "fd": "SC3"},
+    {"id": 347,   "name": "Scottish Cup",       "country": "Scotland",    "fd": null},
+    {"id": 35,    "name": "Bundesliga",         "country": "Germany",     "fd": "D1"},
+    {"id": 44,    "name": "2. Bundesliga",      "country": "Germany",     "fd": "D2"},
+    {"id": 8,     "name": "LaLiga",             "country": "Spain",       "fd": "SP1"},
+    {"id": 54,    "name": "LaLiga 2",           "country": "Spain",       "fd": "SP2"},
+    {"id": 23,    "name": "Serie A",            "country": "Italy",       "fd": "I1"},
+    {"id": 53,    "name": "Serie B",            "country": "Italy",       "fd": "I2"},
+    {"id": 34,    "name": "Ligue 1",            "country": "France",      "fd": "F1"},
+    {"id": 182,   "name": "Ligue 2",            "country": "France",      "fd": "F2"},
+    {"id": 37,    "name": "Eredivisie",         "country": "Netherlands", "fd": "N1"},
+    {"id": 238,   "name": "Liga Portugal",      "country": "Portugal",    "fd": "P1"},
+    {"id": 38,    "name": "Pro League",         "country": "Belgium",     "fd": "B1"},
+    {"id": 52,    "name": "Super Lig",          "country": "Turkey",      "fd": "T1"},
+    {"id": 185,   "name": "Super League",       "country": "Greece",      "fd": "G1"},
+    {"id": 7,     "name": "Champions League",   "country": "Europe",      "fd": null},
+    {"id": 679,   "name": "Europa League",      "country": "Europe",      "fd": null},
+    {"id": 34480, "name": "Conference League",  "country": "Europe",      "fd": null}
+  ]
+}

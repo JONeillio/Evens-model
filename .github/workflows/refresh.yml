@@ -1,0 +1,51 @@
+name: Refresh odds and slips
+
+# Runs every morning, plus a Saturday top-up before the 12:30/15:00 games.
+# Times are UTC (07:15 UTC = 07:15 UK in winter, 08:15 in summer).
+# Run it by hand from the Actions tab: "Refresh odds and slips" -> "Run workflow".
+on:
+  schedule:
+    - cron: "15 7 * * *"
+    - cron: "30 11 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writes
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt pytest
+
+      - name: Check the engine still works
+        run: python -m pytest -q tests
+
+      - name: Pull odds, price legs, build slips
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: python -m engine.run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}
+
+      - name: Save results
+        if: always()
+        run: |
+          git config user.name "evens-bot"
+          git config user.email "evens-bot@users.noreply.github.com"
+          git add data docs/data
+          git diff --cached --quiet && exit 0
+          git commit -m "Odds refresh $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull --rebase
+          git push

@@ -43,29 +43,36 @@ def devig_power(prices, tol=1e-10, max_iter=100):
     return [p / total for p in probs]
 
 
-def devig_shin(prices, tol=1e-10, max_iter=200):
-    """Shin (1993) method: models the margin as protection against insiders."""
+def _shin_probs(imp, booksum, z):
+    return [
+        (math.sqrt(z * z + 4 * (1 - z) * (x * x) / booksum) - z) / (2 * (1 - z))
+        for x in imp
+    ]
+
+
+def devig_shin(prices, tol=1e-12, max_iter=200):
+    """Shin (1993): models the margin as the bookie's protection against insiders.
+
+    Solve for the insider share z so the probabilities sum to one (bisection;
+    the sum falls as z rises).
+    """
     imp = implied(prices)
     booksum = sum(imp)
-    n = len(imp)
     if booksum <= 1.0:
         return [x / booksum for x in imp]
-    z = 0.0
+    lo, hi = 0.0, 0.4
     for _ in range(max_iter):
-        probs = [
-            (math.sqrt(z * z + 4 * (1 - z) * (x * x) / booksum) - z) / (2 * (1 - z))
-            for x in imp
-        ]
-        z_new = (sum(probs) - 1.0) * 0  # placeholder to keep structure explicit
-        # Standard fixed-point update for z
-        s = sum(probs)
-        z_new = z + (s - 1.0) * 0.5
-        z_new = min(max(z_new, 0.0), 0.5)
-        if abs(z_new - z) < tol:
+        z = (lo + hi) / 2
+        s = sum(_shin_probs(imp, booksum, z))
+        if abs(s - 1.0) < tol:
             break
-        z = z_new
+        if s > 1.0:
+            lo = z
+        else:
+            hi = z
+    probs = _shin_probs(imp, booksum, z)
     total = sum(probs)
-    return [p / total for p in probs] if n else []
+    return [p / total for p in probs]
 
 
 METHODS = {
