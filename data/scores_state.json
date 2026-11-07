@@ -1173,10 +1173,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-07T15:14:52Z"
+   "at": "2026-11-07T15:15:21Z"
   }
  },
- "last_called_at": "2026-11-07T15:14:52Z",
+ "last_called_at": "2026-11-07T15:15:21Z",
  "af_status": {
   "ok": true,
   "plan": "Free",
@@ -1398,7 +1398,7 @@
   "id1100013273722402": {}
  },
  "last_log": {
-  "at": "2026-11-07T15:14:52Z",
+  "at": "2026-11-07T15:15:21Z",
   "want": 54,
   "live": true,
   "called": true,
