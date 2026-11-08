@@ -699,6 +699,55 @@
    "league": "NFL",
    "country": "USA",
    "kickoff": "2026-11-10T01:15:00Z"
+  },
+  "id1100013273719562": {
+   "home": "Chicago Bulls",
+   "away": "Philadelphia 76ers",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-08T20:30:00Z"
+  },
+  "id1100013273719564": {
+   "home": "Detroit Pistons",
+   "away": "Los Angeles Lakers",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-08T23:00:00Z"
+  },
+  "id1100013273719566": {
+   "home": "Minnesota Timberwolves",
+   "away": "Utah Jazz",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-09T00:00:00Z"
+  },
+  "id1100013273719568": {
+   "home": "Dallas Mavericks",
+   "away": "Brooklyn Nets",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-09T00:30:00Z"
+  },
+  "id1100013273719570": {
+   "home": "Milwaukee Bucks",
+   "away": "Boston Celtics",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-09T01:00:00Z"
+  },
+  "id1100013273719572": {
+   "home": "LA Clippers",
+   "away": "New Orleans Pelicans",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-09T02:00:00Z"
+  },
+  "id1100013273719574": {
+   "home": "Sacramento Kings",
+   "away": "Miami Heat",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-09T02:00:00Z"
   }
  },
  "scores": {
@@ -1229,10 +1278,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-08T01:37:25Z"
+   "at": "2026-11-08T11:26:33Z"
   }
  },
- "last_called_at": "2026-11-08T01:37:25Z",
+ "last_called_at": "2026-11-08T11:26:33Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1453,12 +1502,14 @@
   "id1100013273719550": {},
   "id1100013273719552": {},
   "id1100013273719554": {},
-  "id1100013273719556": {}
+  "id1100013273719556": {},
+  "id1100013273719558": {},
+  "id1100013273719560": {}
  },
  "last_log": {
-  "at": "2026-11-08T01:37:25Z",
-  "want": 6,
-  "live": true,
+  "at": "2026-11-08T11:26:33Z",
+  "want": 8,
+  "live": false,
   "called": true,
   "calls": [
    {
@@ -1473,7 +1524,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 6,
+   "checked": 8,
    "api_football": 0,
    "football_data": 1,
    "unmatched": [
@@ -1481,7 +1532,9 @@
     "Atlanta Hawks v Brooklyn Nets (NBA)",
     "Cleveland Cavaliers v New York Knicks (NBA)",
     "Oklahoma City Thunder v Washington Wizards (NBA)",
-    "Golden State Warriors v Orlando Magic (NBA)"
+    "Golden State Warriors v Orlando Magic (NBA)",
+    "Phoenix Suns v Houston Rockets (NBA)",
+    "Portland Trail Blazers v San Antonio Spurs (NBA)"
    ]
   }
  },
