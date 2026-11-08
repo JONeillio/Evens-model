@@ -1283,9 +1283,9 @@
    "s": "LIVE",
    "min": null,
    "h": 0,
-   "a": 1,
+   "a": 2,
    "src": "fd",
-   "at": "2026-11-08T15:11:52Z"
+   "at": "2026-11-08T15:22:20Z"
   },
   "id1000001772221382": {
    "s": "LIVE",
@@ -1310,10 +1310,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-08T15:17:18Z"
+   "at": "2026-11-08T15:22:20Z"
   }
  },
- "last_called_at": "2026-11-08T15:17:18Z",
+ "last_called_at": "2026-11-08T15:22:20Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1554,11 +1554,12 @@
   "id1400003171474296": {},
   "id1000018572936122": {},
   "id1000001975802964": {},
-  "id1000005472477570": {}
+  "id1000005472477570": {},
+  "id1000023872531004": {}
  },
  "last_log": {
-  "at": "2026-11-08T15:17:18Z",
-  "want": 18,
+  "at": "2026-11-08T15:22:20Z",
+  "want": 19,
   "live": true,
   "called": true,
   "calls": [
@@ -1572,14 +1573,15 @@
     "results": 70
    }
   ],
-  "changed": 0,
+  "changed": 1,
   "coverage": {
-   "checked": 18,
+   "checked": 19,
    "api_football": 0,
    "football_data": 5,
    "unmatched": [
     "AEK Athens v APO Levadiakos FC (Super League)",
     "Girona FC v UD Almeria (LaLiga 2)",
+    "Estoril Praia v Maritimo Madeira (Liga Portugal)",
     "Indiana Pacers v Denver Nuggets (NBA)",
     "Atlanta Hawks v Brooklyn Nets (NBA)",
     "Cleveland Cavaliers v New York Knicks (NBA)",
