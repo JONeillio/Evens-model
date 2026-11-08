@@ -346,8 +346,8 @@
       "home": "Crystal Palace",
       "away": "Liverpool"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-3"
     }
    ],
    "status": "pending",
