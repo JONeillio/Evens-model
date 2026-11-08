@@ -1266,10 +1266,10 @@
   "id1000001772221374": {
    "s": "LIVE",
    "min": null,
-   "h": 1,
+   "h": 2,
    "a": 0,
    "src": "fd",
-   "at": "2026-11-08T14:26:02Z"
+   "at": "2026-11-08T14:51:42Z"
   },
   "id1000001772221390": {
    "s": "LIVE",
@@ -1310,10 +1310,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-08T14:46:39Z"
+   "at": "2026-11-08T14:51:42Z"
   }
  },
- "last_called_at": "2026-11-08T14:46:39Z",
+ "last_called_at": "2026-11-08T14:51:42Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1551,11 +1551,13 @@
    "fd": "560637"
   },
   "id1000001975837146": {},
-  "id1400003171474296": {}
+  "id1400003171474296": {},
+  "id1000018572936122": {},
+  "id1000001975802964": {}
  },
  "last_log": {
-  "at": "2026-11-08T14:46:39Z",
-  "want": 15,
+  "at": "2026-11-08T14:51:42Z",
+  "want": 17,
   "live": true,
   "called": true,
   "calls": [
@@ -1569,12 +1571,13 @@
     "results": 70
    }
   ],
-  "changed": 2,
+  "changed": 1,
   "coverage": {
-   "checked": 15,
+   "checked": 17,
    "api_football": 0,
    "football_data": 5,
    "unmatched": [
+    "AEK Athens v APO Levadiakos FC (Super League)",
     "Indiana Pacers v Denver Nuggets (NBA)",
     "Atlanta Hawks v Brooklyn Nets (NBA)",
     "Cleveland Cavaliers v New York Knicks (NBA)",
@@ -1584,7 +1587,8 @@
     "Portland Trail Blazers v San Antonio Spurs (NBA)",
     "Stafford Rangers v Grimsby Town (FA Cup)",
     "Cray Wanderers v Stockport County FC (FA Cup)",
-    "Atlanta Falcons v Cincinnati Bengals (NFL)"
+    "Atlanta Falcons v Cincinnati Bengals (NFL)",
+    "Wimborne Town v Crawley Town (FA Cup)"
    ]
   }
  },
