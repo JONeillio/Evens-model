@@ -600,3 +600,85 @@ details.board-wrap[open] > summary::after { transform: rotate(180deg); }
 details.board-wrap .board { padding: 0 10px 10px; }
 details.board-wrap > summary { position: relative; padding-right: 34px; }
 details.board-wrap > summary::after { position: absolute; right: 12px; top: 12px; margin: 0; }
+
+/* ---- round 4 handoff (8 Nov 2026): deal and fold, hands by kick-off, readable cards, table rail ---- */
+/* The rail: wood frame with brass rivets, gold piping, dark-green inset, felt grain under the lamp. */
+.felt {
+  border: 10px solid transparent; border-radius: 26px; padding: 70px 12px 16px;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .035) 1px, transparent 1.5px) padding-box 0 0 / 5px 5px,
+    radial-gradient(120% 70% at 50% 0%, #1F8650 0%, var(--felt) 48%, var(--felt-deep) 100%) padding-box,
+    radial-gradient(circle at 9px 9px, #FFE7A3 0 1.5px, #B8860B 2.5px 3.5px, transparent 4px) border-box,
+    radial-gradient(circle at calc(100% - 9px) 9px, #FFE7A3 0 1.5px, #B8860B 2.5px 3.5px, transparent 4px) border-box,
+    radial-gradient(circle at 9px calc(100% - 9px), #FFE7A3 0 1.5px, #B8860B 2.5px 3.5px, transparent 4px) border-box,
+    radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), #FFE7A3 0 1.5px, #B8860B 2.5px 3.5px, transparent 4px) border-box,
+    linear-gradient(160deg, #6E4120 0%, #4A2A12 40%, #5E3618 70%, #3A200E 100%) border-box;
+  box-shadow: inset 0 0 0 2px #C9A04A, inset 0 0 0 6px #0B3F26, inset 0 0 40px rgba(0, 0, 0, .5), 0 8px 24px rgba(0, 0, 0, .5);
+}
+/* A smaller lamp, so the first row of hands is on the first screen. */
+.lamp { transform: rotate(var(--swing, 0deg)) scale(.82); top: -10px; }
+.t-head h2 { font-size: 22px; }
+.t-sub { margin: 2px 0 0; font-size: 15px; color: #CDEBD8; letter-spacing: .3px; }
+.t-controls { margin-top: 6px; }
+.deck-btn, #tBook { min-height: 40px; font-size: 15px; }
+.dealer-row { margin: 8px 0 0; align-items: flex-start; }
+/* The bubble: tips with page dots, or what just happened. */
+.bubble { min-height: 72px; padding: 9px 12px 24px; font-size: 16px; font-weight: 600; box-shadow: 0 3px 0 #C9B88F; }
+.bubble::before { top: 30px; }
+.b-dots { position: absolute; left: 12px; bottom: 8px; display: flex; gap: 5px; }
+.b-dots i { width: 7px; height: 7px; border-radius: 50%; background: #D8C6A0; }
+.b-dots i.on { background: var(--hold); }
+.b-hint { position: absolute; right: 10px; bottom: 4px; font-size: 13px; font-weight: 600; color: #7A5A3A; }
+/* Printed felt lettering, like a casino table (decoration; the bubble says it properly). */
+.felt-arc { display: block; width: 100%; height: 34px; margin: 0 0 -6px; }
+.felt-arc text { font-family: var(--font-display); font-size: 9.5px; letter-spacing: 1.2px; fill: #E0A93B; fill-opacity: .7; text-transform: uppercase; }
+/* One row of the dealer's hands per kick-off slot. */
+.slot-row { margin: 8px 0 2px; }
+.slot-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 2px 4px; }
+.slot-head b { font-family: var(--font-display); font-weight: 400; font-size: 16px; color: var(--jackpot); letter-spacing: .3px; }
+.slot-head span { font-size: 15px; color: #CDEBD8; }
+.slot-row .hands { margin: 0 -12px; padding: 2px 12px 8px; scroll-padding-left: 12px; }
+.dhand { width: 76%; max-width: 300px; }
+.dh-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.dh-book { flex: none; font-size: 13px; font-weight: 700; letter-spacing: .3px; padding: 3px 9px; border-radius: 999px; background: var(--card); color: var(--card-ink); }
+.dh-name { font-size: 16px; }
+.mini { min-width: 60px; font-size: 13px; }
+.mini b { font-size: 13px; }
+.slot-skip { margin: 6px 2px 0; padding-top: 8px; border-top: 1px dashed rgba(191, 232, 204, .35); font-size: 14px; line-height: 1.3; color: #BFE8CC; }
+.t-hand-label { margin-top: 14px; display: flex; justify-content: space-between; align-items: baseline; }
+/* Cards in your hand: no overlap, Fold always visible, tap for the why. */
+.hand { gap: 8px; }
+.pcard { margin-top: 0; padding: 0; cursor: default; }
+.pcard:nth-child(odd) { transform: rotate(-.5deg); } .pcard:nth-child(even) { transform: rotate(.5deg); }
+.c-row { display: flex; align-items: stretch; }
+.c-main { flex: 1; min-width: 0; border: 0; background: none; color: inherit; text-align: left; padding: 10px 4px 10px 12px; display: flex; flex-direction: column; gap: 2px; cursor: pointer; font: inherit; }
+.c-name { font-size: 18px; }
+.c-stat { padding-right: 0; font-size: 18px; font-weight: 600; }
+.c-fx { font-size: 14px; color: #5A4A33; }
+.c-side { flex: none; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 6px; padding: 8px 10px 8px 0; }
+.c-px { font-size: 22px; line-height: 1; }
+.c-fold { min-height: 40px; min-width: 64px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--hold); background: none; color: var(--hold); font-family: var(--font-display); font-size: 13px; letter-spacing: .5px; }
+.c-more { margin: 0 12px 12px; padding-top: 8px; }
+.c-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.c-tiles > span { display: flex; flex-direction: column; padding: 5px 8px; border-radius: 8px; background: #F3E4C2; line-height: 1.15; }
+.c-tiles small { font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #6A5638; }
+.c-tiles b { font-size: 18px; }
+.c-tiles i { font-style: normal; font-size: 13px; color: #5A4A33; }
+.why { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 4px 8px; margin: 8px 0 0; font-size: 16px; line-height: 1.25; }
+.why dt { font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #6A5638; padding-top: 2px; }
+.why dd { margin: 0; }
+.why dd.warn { color: var(--hold); font-weight: 700; }
+.c-src { margin: 6px 0 0; font-size: 14px; color: #5A4A33; }
+@keyframes dealIn { 0% { transform: translate(-30%, -120px) rotate(-18deg) scale(.5); opacity: 0; } 60% { transform: translate(0, 4px) rotate(1deg) scale(1); opacity: 1; } 100% { transform: none; opacity: 1; } }
+/* Projections use the same rows, on dark. */
+.prow .why { font-size: 15px; color: #E6F5EA; grid-template-columns: 70px minmax(0, 1fr); }
+.prow .why dt { color: #8FBFA3; }
+.prow .why dd.warn { color: #FFB09A; }
+/* Sideways: dealer and kick-off rows on the left, your hand on the right (one wrapper, so rows don't stretch). */
+@media (orientation: landscape) and (max-height: 560px) {
+  #table .felt { grid-template-rows: auto auto auto 1fr; }
+  #table .t-head { grid-column: 1; grid-row: 1; } #table .dealer-row { grid-column: 1; grid-row: 2; }
+  #table .felt-arc { grid-column: 1; grid-row: 3; } #table .slots { grid-column: 1; grid-row: 4; align-self: start; }
+  #table .t-play-area { grid-column: 2; grid-row: 1 / -1; align-self: start; }
+  #table .t-play-area > .t-label { margin-top: 0; }
+}

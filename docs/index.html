@@ -89,6 +89,7 @@
       </div>
       <header class="t-head">
         <h2>The card table</h2>
+        <p class="t-sub" id="tSub"></p>
         <div class="t-controls">
           <button class="deck-btn" id="tDeck" aria-haspopup="dialog"><span class="deck-ico" aria-hidden="true"></span><span id="tDeckLabel">Deck</span></button>
           <button class="book-pill" id="tBook" aria-label="Change bookie"></button>
@@ -98,18 +99,20 @@
         <button class="dealer" id="dealer" aria-label="Ask the dealer for a tip"></button>
         <p class="bubble" id="tBubble" aria-live="polite" role="button" tabindex="0"></p>
       </div>
-      <div class="t-label">The dealer's hands <small>each pays about evens</small></div>
-      <div class="hands" id="tHands" role="list" aria-label="The dealer's hands"></div>
-      <details class="board-wrap">
-        <summary class="t-label">On the board <small id="tBoardN"></small><span class="sum-hint">the best single cards · ☆ a player to build around him</span></summary>
-        <div class="board" id="tBoard" role="list"></div>
-      </details>
-      <div class="t-label">Your hand</div>
+      <svg class="felt-arc" viewBox="0 0 362 34" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path id="feltArc" d="M 14 30 Q 181 -6 348 30" fill="none"/><text><textPath href="#feltArc" startOffset="50%" text-anchor="middle">Pays about evens · every card must land</textPath></text></svg>
+      <div class="slots" id="tHands" aria-label="The dealer's hands, by kick-off"></div>
+      <div class="t-play-area">
+      <div class="t-label t-hand-label">Your hand <small id="tHandSub"></small></div>
       <div class="hand" id="tHand" aria-live="polite"></div>
       <div class="t-meter" aria-hidden="true"><div class="t-bar"><span class="t-zone"></span><span class="t-mark" id="tMark"></span></div><div class="t-scale" id="tScale"></div></div>
       <div class="t-line"><b class="num" id="tOdds"></b><span id="tStatus" role="status"></span></div>
       <div class="t-facts num" id="tFacts"></div>
       <div class="t-actions" id="tActions"></div>
+      <details class="board-wrap">
+        <summary class="t-label">On the board <small id="tBoardN"></small><span class="sum-hint">every line, best first · ☆ a player to always include</span></summary>
+        <div class="board" id="tBoard" role="list"></div>
+      </details>
+      </div>
     </div>
     <section class="players" aria-labelledby="tPlayersTitle">
       <h3 id="tPlayersTitle">Who's going to do what</h3>

@@ -509,13 +509,23 @@ window.addEventListener("hashchange", route);
 // ---------- sound and haptics (round 2, item 5) ----------
 // Synthesised with the Web Audio API: no files, works offline. Android plays it
 // on the media volume, so the speaker button in the marquee is the mute.
+// iPhones play Web Audio on the ringer channel by default, so the silent switch mutes it:
+// audioSession "playback" (iOS 17+) and a silent <audio> blip (older iOS) move it to media.
 const Sound = (() => {
-  let ctx;
+  let ctx, blip;
   const on = () => prefs.sound !== false;
-  const ac = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  const ac = () => {
+    if (!ctx) {
+      try { if ("audioSession" in navigator) navigator.audioSession.type = "playback"; } catch { /* not allowed */ }
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return ctx;
+  };
   function tone(freq, start, dur, type = "square", vol = 0.15) {
     try {
-      const c = ac(), t = c.currentTime + start;
+      const c = ac();
+      if (c.state !== "running") c.resume?.();
+      const t = c.currentTime + start;
       const o = c.createOscillator(), g = c.createGain();
       o.type = type; o.frequency.setValueAtTime(freq, t);
       g.gain.setValueAtTime(vol, t);
@@ -525,7 +535,18 @@ const Sound = (() => {
     } catch { /* no audio on this device */ }
   }
   return {
-    unlock() { if (on() && (window.AudioContext || window.webkitAudioContext)) ac().resume?.(); },
+    unlock() {
+      if (!on() || !(window.AudioContext || window.webkitAudioContext)) return;
+      try {
+        if (!blip && !("audioSession" in navigator)) {
+          // A few samples of silence: playing an <audio> element in a tap puts older iOS on the media channel.
+          blip = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQQAAACAgICA");
+          blip.play?.().catch(() => {});
+        }
+        ac().resume?.();
+      } catch { /* no audio on this device */ }
+    },
+    running() { return ctx?.state === "running"; },
     lever() { if (on()) { tone(220, 0, 0.08, "sawtooth"); tone(110, 0.06, 0.14, "sawtooth"); } },
     spin() { if (on()) for (let i = 0; i < 14; i++) tone(600 + (i % 2) * 200, i * 0.06, 0.04, "square", 0.05); },
     stop() { if (on()) tone(1800, 0, 0.03, "square", 0.08); },
@@ -535,7 +556,16 @@ const Sound = (() => {
     placed() { if (on()) [784, 1047].forEach((f, i) => tone(f, i * 0.09, 0.12, "triangle", 0.12)); },
   };
 })();
-document.addEventListener("pointerdown", () => Sound.unlock(), { once: true });
+// A touch pointerdown doesn't count as a user gesture for audio; pointerup and click do.
+// Keep trying until the context runs, and wake it again when the app comes back to the front.
+const unlockAudio = () => {
+  Sound.unlock();
+  setTimeout(() => { if (Sound.running()) ["pointerup", "click", "touchend"].forEach((e) => document.removeEventListener(e, unlockAudio, true)); }, 0);
+};
+["pointerup", "click", "touchend"].forEach((e) => document.addEventListener(e, unlockAudio, true));
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && !Sound.running()) ["pointerup", "click", "touchend"].forEach((e) => document.addEventListener(e, unlockAudio, true));
+});
 const buzz = (ms) => { if (prefs.vibration !== false && navigator.vibrate) try { navigator.vibrate(ms); } catch { /* not allowed */ } };
 const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1655,7 +1685,7 @@ $("#settingsBtn").addEventListener("click", () => {
 // built around your hole cards. Tap one to put it on the felt; Hit, swap or fold cards.
 // No bust: over 13/10 just says fold one. Cards come from the NFL player engine.
 // =====================================================================================
-let table = Object.assign({ book: null, games: [], hand: [], hole: [], active: null, copied: false }, store.get("table", {}));
+let table = Object.assign({ book: null, games: [], hand: [], hole: [], folded: [], slot: null, open: null, active: null, copied: false }, store.get("table", {}));
 delete table.stood;
 const saveTable = () => store.set("table", table);
 const T_MAX = 2.6, T_CONF = { "sharp+model": 1, "market+model": 0.8, model: 0.55 };
@@ -1685,7 +1715,7 @@ function card(leg, book = table.book) {
   if (!price) return null;
   const [, stat, , line, side] = leg.key.split(":");
   const pr = projFor(leg);
-  const c = { id: leg.id, fid: leg.fixture_id, leg, price, p: leg.p_win, edge: price * leg.p_win - 1, stat, line: +line, side,
+  const c = { id: leg.id, fid: leg.fixture_id, leg, book, price, p: leg.p_win, edge: price * leg.p_win - 1, stat, line: +line, side,
     player: leg.player, team: pr?.team || "", expected: pr?.expected, range: pr?.range, why: leg.why || pr?.why || "",
     statLine: leg.label.slice(leg.player.length + 1), conf: T_CONF[leg.source] || 0.5 };
   c.score = Math.exp(25 * c.edge) * c.conf * bandFit(c.price);
@@ -1693,15 +1723,17 @@ function card(leg, book = table.book) {
 }
 const inDeck = (fid) => !(table.games || []).length || table.games.includes(fid);
 const usable = (c) => c && c.price >= 1.03 && c.price <= 1.6 && c.p >= 0.55;
-// Every usable card in the deck, grouped by match, best first.
-function deckCards() {
+// Every usable card in the deck at one bookie, grouped by match, best first. fids limits it to some matches.
+function deckCards(book = table.book, fids = null) {
   const by = {};
-  propLegs().forEach((l) => { if (!inDeck(l.fixture_id)) return; const c = card(l); if (usable(c)) (by[c.fid] ||= []).push(c); });
+  propLegs().forEach((l) => {
+    if (!inDeck(l.fixture_id) || (fids && !fids.has(l.fixture_id))) return;
+    const c = card(l, book); if (usable(c)) (by[c.fid] ||= []).push(c);
+  });
   Object.values(by).forEach((a) => a.sort((x, y) => y.score - x.score));
   return by;
 }
 const handCards = () => table.hand.map((id) => LEGS[id] && card(LEGS[id])).filter(Boolean);
-const holeCards = () => { const seen = new Set(); return table.hole.map((id) => LEGS[id] && card(LEGS[id])).filter((c) => c && inDeck(c.fid) && !seen.has(c.fid) && seen.add(c.fid)); };
 function comboNums(cs) {
   let o = 1, h = 1;
   cs.forEach((c) => { o *= c.price; h *= c.p; });
@@ -1709,18 +1741,46 @@ function comboNums(cs) {
 }
 const tState = (o, n) => (!n ? "empty" : o > ZONE[1] ? "over" : o >= ZONE[0] ? "evens" : "short");
 
-// The dealer: every 2–5 card combination near evens (one card per match) around your hole cards.
-function dealerHands() {
-  const by = deckCards(), hole = holeCards();
-  const holeFx = new Set(hole.map((c) => c.fid));
-  const base = comboNums(hole).odds;
-  if (hole.length && base > ZONE[1]) return { hands: [], why: "Your picks are already over evens · unstar one" };
+// ---------- kick-off slots (round 4): games within 30 minutes of the one before share a slot ----------
+function tableSlots() {
+  const games = [...new Set(propLegs().map((l) => l.fixture_id))].filter(inDeck).map((id) => FIX[id]).sort((a, b) => a.kickoff.localeCompare(b.kickoff));
+  const slots = [];
+  games.forEach((f) => {
+    const last = slots[slots.length - 1];
+    if (last && Date.parse(f.kickoff) - Date.parse(last.games[last.games.length - 1].kickoff) <= 30 * 60e3) last.games.push(f);
+    else slots.push({ key: f.kickoff, games: [f] });
+  });
+  let dealtN = 0;
+  slots.forEach((s) => {
+    const a = s.games[0].kickoff, z = s.games[s.games.length - 1].kickoff;
+    const t = fmtTime(a, false) + (fmtTime(z, false) !== fmtTime(a, false) ? `–${fmtTime(z, false)}` : "");
+    s.fids = new Set(s.games.map((g) => g.id));
+    s.when = `${dayOffset(a) === 0 ? "" : `${dayWord(a)} `}${t}`;
+    s.dealable = s.games.length >= 2;
+    s.title = s.dealable ? ["Early doors", "Late games", "Night games"][Math.min(dealtN++, 2)] : "";
+    s.sub = `${s.when} · ${plural(s.games.length, "game")}`;
+  });
+  return slots;
+}
+const slotOf = (fid) => tableSlots().find((s) => s.fids.has(fid));
+const slotName = (s) => (s ? s.title.toLowerCase() : "deck");
+
+// The dealer: every 2–5 card combination near evens (one card per match) in one slot at one bookie,
+// around any ☆ "always include" players in that slot.
+function searchHands(book, fids) {
+  const by = deckCards(book, fids);
+  const hole = table.hole.map((id) => LEGS[id]).filter((l) => l && fids.has(l.fixture_id)).map((l) => card(l, book));
+  if (hole.some((c) => !c)) return [];
+  const seen = new Set(), holeCs = hole.filter((c) => !seen.has(c.fid) && seen.add(c.fid));
+  const holeFx = new Set(holeCs.map((c) => c.fid));
+  const base = comboNums(holeCs).odds;
+  if (base > ZONE[1]) return [];
   const fxs = Object.keys(by).filter((f) => !holeFx.has(f)).sort((a, b) => by[b][0].score - by[a][0].score).slice(0, 12);
   const found = [];
   let nodes = 0;
   const dfs = (i, picks, odds) => {
-    if (++nodes > 80000) return;
-    const n = picks.length + hole.length;
+    if (++nodes > 60000) return;
+    const n = picks.length + holeCs.length;
     if (n >= 2 && odds >= ZONE[0] && odds <= ZONE[1]) found.push(picks.slice());
     if (n >= 5) return;
     for (let j = i; j < fxs.length; j++) for (const c of by[fxs[j]].slice(0, 4)) {
@@ -1730,25 +1790,68 @@ function dealerHands() {
     }
   };
   dfs(0, [], base);
-  const all = found.map((p) => comboNums(hole.concat(p)));
-  if (!all.length) return { hands: [], why: hole.length ? "Nothing in this deck gets your picks to evens · widen the deck" : "Nothing near evens in this deck · widen it" };
-  const key = (h) => h.cards.map((c) => c.id).sort().join("|");
-  const pick = (sorter, taken) => all.slice().sort(sorter).find((h) => !taken.has(key(h)));
-  const taken = new Set(), hands = [];
-  const add = (name, tag, h) => { if (h) { taken.add(key(h)); hands.push(Object.assign({ name, tag }, h)); } };
-  add("Best value", "The biggest edge: the most price for the real chance", pick((a, b) => (b.ev + 0.02 * b.conf) - (a.ev + 0.02 * a.conf), taken));
-  add("Safest", "The best chance of landing", pick((a, b) => b.chance - a.chance, taken));
-  add("Fewest cards", "Fewest players to sweat on", pick((a, b) => a.cards.length - b.cards.length || b.ev - a.ev, taken));
-  return { hands, why: "" };
+  return found.map((p) => Object.assign(comboNums(holeCs.concat(p)), { book }));
+}
+function dealerRows() {
+  const slots = tableSlots();
+  const books = tableBooks().map((x) => x.b);
+  const rows = [], skipped = [];
+  const make = (s) => {
+    const all = [], perBook = {};
+    books.forEach((b) => { const hs = searchHands(b, s.fids); all.push(...hs); if (hs.length) perBook[b] = Math.max(...hs.map((h) => h.ev)); });
+    if (!all.length) return null;
+    const key = (h) => `${h.book}|${h.cards.map((c) => c.id).sort().join("|")}`;
+    const taken = new Set(), hands = [];
+    const pick = (sorter) => all.slice().sort(sorter).find((h) => !taken.has(key(h)));
+    const add = (name, tag, h) => { if (h) { taken.add(key(h)); hands.push(Object.assign({ name, tag }, h)); } };
+    add("Best value", "The biggest edge for the real chance", pick((a, b) => (b.ev + 0.02 * b.conf) - (a.ev + 0.02 * a.conf)));
+    add("Safest", "The best chance of landing", pick((a, b) => b.chance - a.chance));
+    const few = pick((a, b) => a.cards.length - b.cards.length || b.ev - a.ev);
+    if (few && few.cards.length < Math.min(...hands.map((h) => h.cards.length))) add("Fewest cards", "Fewest players to sweat on", few);
+    return Object.assign({}, s, { hands, perBook });
+  };
+  slots.forEach((s) => { if (!s.dealable) { skipped.push(s); return; } const r = make(s); if (r) rows.push(r); });
+  // No slot has two games (a Thursday, say): deal across the whole deck instead.
+  if (!rows.length && slots.length > 1) {
+    const all = { key: "all", games: slots.flatMap((s) => s.games), title: "Across the day", dealable: true };
+    all.fids = new Set(all.games.map((g) => g.id));
+    all.sub = `mixed kick-offs · ${plural(all.games.length, "game")}`;
+    const r = make(all); if (r) { rows.push(r); skipped.length = 0; }
+  }
+  return { rows, skipped };
 }
 
 function ensureTableBook() {
   const books = tableBooks().map((x) => x.b);
   if (!books.includes(table.book)) table.book = books.includes(prefs.fav_book) ? prefs.fav_book : books[0] || null;
   const ok = (id) => LEGS[id] && card(LEGS[id]) && Date.parse(FIX[LEGS[id].fixture_id]?.kickoff) > Date.now();
-  table.hand = table.hand.filter(ok); table.hole = table.hole.filter(ok);
+  table.hand = table.hand.filter(ok);
+  table.hole = table.hole.filter((id) => LEGS[id] && Date.parse(FIX[LEGS[id].fixture_id]?.kickoff) > Date.now());
+  table.folded ||= [];
 }
-let dealt = null; // the dealer's hands as last shown (so tapping one uses exactly what you saw)
+let dealt = null; // the dealer's rows as last shown (so tapping a hand uses exactly what you saw)
+let sayMsg = null; // what the dealer just said about your last move (until the next one)
+
+// The why-line, split into labelled rows (round 4).
+function whyRows(why) {
+  const segs = String(why || "").split(" · ").filter(Boolean);
+  const rows = [];
+  const share = segs.find((s) => /% of (targets|carries|attempts)/.test(s));
+  const vol = segs.find((s) => s.startsWith("~") || /per attempt/.test(s));
+  if (share || vol) rows.push(["Role", [share, vol && vol.replace(/^~/, "about ")].filter(Boolean).join(" · ")]);
+  segs.forEach((s) => {
+    const m = s.match(/^([A-Z]{2,3}) allow (\d+)% (more|less) than average/);
+    if (m) rows.push(["Defence", +m[2] <= 2 ? `${m[1]} about average` : `${m[1]} give up ${m[2]}% ${m[3]} than average`]);
+  });
+  segs.forEach((s) => { const m = s.match(/^(hot|cold) (last .*)$/); if (m) rows.push(["Form", `${m[1] === "hot" ? "Hot" : "Cold"}, ${m[2]}`]); });
+  segs.forEach((s) => { if (s === "home" || s === "away") rows.push(["Venue", s === "home" ? "Home" : "Away"]); });
+  const news = segs.filter((s) => /questionable|first game back|doubtful/i.test(s));
+  if (news.length) rows.push(["News", news.map((s) => s[0].toUpperCase() + s.slice(1)).join("; "), true]);
+  const known = new Set([share, vol, ...news]);
+  segs.forEach((s) => { if (!known.has(s) && !/ allow |^(hot|cold) |^(home|away)$/.test(s)) rows.push(["Note", s]); });
+  return rows;
+}
+const whyHTML = (why) => `<dl class="why">${whyRows(why).map(([k, v, warn]) => `<dt>${esc(k)}</dt><dd${warn ? ' class="warn"' : ""}>${warn ? '<b aria-hidden="true">!</b> ' : ""}${esc(v)}</dd>`).join("")}</dl>`;
 
 function renderTable(opts = {}) {
   ensureTableBook();
@@ -1759,34 +1862,37 @@ function renderTable(opts = {}) {
   const bp = $("#tBook");
   bp.hidden = !table.book;
   bp.innerHTML = table.book ? `${prefs.fav_book === table.book ? '<span class="star" aria-hidden="true">★</span>' : ""}${esc(bookName(table.book))}` : "";
+  const first = games[0]?.kickoff;
+  $("#tSub").textContent = games.length ? `${dayOffset(first) === 0 ? "Today" : dayLong(first)} · ${plural(games.length, "game")} · ${plural(tableBooks().length, "bookie")} checked` : "";
 
-  // The dealer's hands.
-  dealt = games.length ? dealerHands() : { hands: [], why: "No NFL player prices yet · they come with the morning odds" };
-  const holes = holeCards();
-  $("#tBubble").textContent = bubbleText(holes);
-  $("#tHands").innerHTML = dealt.hands.map((h, i) => `<button class="dhand${table.active === h.name ? " on" : ""}" role="listitem" data-h="${i}">
-      <span class="dh-name">${esc(h.name)}</span>
-      <span class="dh-tag">${esc(h.tag)}</span>
-      <span class="dh-cards">${h.cards.map((c) => `<span class="mini">${esc((c.player.split(" ").slice(1).join(" ") || c.player).slice(0, 9))}<b>${esc(c.side === "over" ? `${Math.round(c.line + 0.5)}+` : `u${c.line}`)}</b><i>${esc(c.stat === "pass_yds" ? "pass" : c.stat === "rush_yds" ? "rush" : "rec")}</i></span>`).join("")}</span>
-      <span class="dh-nums num"><span><small>pays</small><b>${oddsH(h.odds)}</b></span><span><small>lands</small>${pct(h.chance)}</span><span><small>edge</small>${edgeTag(h.ev)}</span></span>
-      <span class="dh-go">${table.active === h.name ? "On the felt ✓" : "Lay it down ›"}</span>
-    </button>`).join("");
-  $("#tHands").querySelectorAll(".dhand").forEach((b) => b.addEventListener("click", () => {
-    const h = dealt.hands[+b.dataset.h];
-    table.hand = h.cards.map((c) => c.id); table.active = h.name; table.copied = false; tipAt = -1; saveTable();
-    dealerDeal(); Sound.unlock(); Sound.stop(); buzz(12);
-    renderTable({ dealAll: true });
-  }));
+  // The dealer's hands, one row per kick-off slot.
+  dealt = games.length ? dealerRows() : { rows: [], skipped: [] };
+  $("#tBubble").innerHTML = bubbleHTML();
+  $("#tHands").innerHTML = dealt.rows.map((r, ri) => `<div class="slot-row">
+      <div class="slot-head"><b>${esc(r.title)}</b><span class="num">${esc(r.sub)}</span></div>
+      <div class="hands" role="list" aria-label="${esc(`${r.title}, ${r.sub}`)}">${r.hands.map((h, i) => {
+        const on = table.active === `${r.key}|${h.name}`;
+        return `<button class="dhand${on ? " on" : ""}" role="listitem" data-r="${ri}" data-h="${i}" aria-pressed="${on}">
+          <span class="dh-top"><span class="dh-name">${esc(h.name)}</span><span class="dh-book">${esc(bookName(h.book))}</span></span>
+          <span class="dh-tag">${esc(h.tag)}</span>
+          <span class="dh-cards">${h.cards.map((c) => `<span class="mini">${esc(`${c.player[0]}. ${(c.player.split(" ").slice(1).join(" ") || c.player).slice(0, 10)}`)}<b>${esc(c.side === "over" ? `${Math.round(c.line + 0.5)}+` : `u${c.line}`)}</b><i>${esc(c.stat === "pass_yds" ? "pass" : c.stat === "rush_yds" ? "rush" : "rec")}</i></span>`).join("")}</span>
+          <span class="dh-nums num"><span><small>pays</small><b>${oddsH(h.odds)}</b></span><span><small>lands</small>${pct(h.chance)}</span><span><small>edge</small>${edgeTag(h.ev)}</span></span>
+          <span class="dh-go">${on ? "On the felt ✓" : "Lay it down ›"}</span>
+        </button>`;
+      }).join("")}</div></div>`).join("")
+    + (dealt.skipped.length ? `<p class="slot-skip">Not dealt: the ${esc(listWords(dealt.skipped.map((s) => s.when.replace(/^(Today|Tomorrow) /, (m) => m.toLowerCase()))))} ${dealt.skipped.length === 1 ? "game. That's one game" : "games. They're one game each"}, and a hand needs cards from different games.</p>` : "")
+    + (!dealt.rows.length && games.length ? `<p class="slot-skip">Nothing near evens in this deck. Widen the deck, or unstar a player.</p>` : "");
+  $("#tHands").querySelectorAll(".dhand").forEach((b) => b.addEventListener("click", () => layHand(dealt.rows[+b.dataset.r], dealt.rows[+b.dataset.r].hands[+b.dataset.h])));
 
-  // The board: best cards in the deck (one per player and stat), ★ to make one yours.
+  // The board: best cards in the deck at the hand's bookie (one per player and stat), ☆ = always include.
   const by = deckCards();
   const seen = new Set();
   const board = Object.values(by).flat().sort((a, b) => b.score - a.score)
     .filter((c) => { const k = `${c.player}|${c.stat}`; if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 12);
   const inHand = new Set(table.hand), hole = new Set(table.hole);
-  $("#tBoardN").textContent = `${board.length} cards${table.hole.length ? ` · ${table.hole.length} picked` : ""}`;
+  $("#tBoardN").textContent = `${board.length} cards${table.hole.length ? ` · ${table.hole.length} always in` : ""}`;
   $("#tBoard").innerHTML = board.length ? board.map((c) => `<div class="bcard${hole.has(c.id) ? " hole" : ""}${inHand.has(c.id) ? " used" : ""}" role="listitem" data-id="${esc(c.id)}">
-      <button class="b-star" data-star="${esc(c.id)}" aria-pressed="${hole.has(c.id)}" aria-label="Make ${esc(c.player)} one of your picks">${hole.has(c.id) ? "★" : "☆"}</button>
+      <button class="b-star" data-star="${esc(c.id)}" aria-pressed="${hole.has(c.id)}" aria-label="Always include ${esc(c.player)}">${hole.has(c.id) ? "★" : "☆"}</button>
       <span class="b-name">${esc(c.player.split(" ").slice(1).join(" ") || c.player)} <small>${esc(c.team)}</small></span>
       <span class="b-stat">${esc(c.statLine.replace("receiving", "rec").replace("rushing", "rush").replace("passing", "pass"))}</span>
       <span class="b-px num">${oddsH(c.price)}</span><span class="b-edge num">${pct(c.p)} · ${edgeTag(c.edge)}</span>
@@ -1803,18 +1909,19 @@ function renderTable(opts = {}) {
   // Your hand.
   const nums = comboNums(handCards());
   const st = tState(nums.odds, nums.cards.length);
-  $("#tHand").innerHTML = nums.cards.length ? nums.cards.map((c, i) => cardHTML(c, i, nums.cards.length)).join("")
-    : `<div class="t-empty">Tap one of the dealer's hands, a card on the board, or Hit.</div>`;
-  $("#tHand").querySelectorAll(".pcard").forEach((el) => el.addEventListener("click", (e) => {
+  const slot = table.slot && dealt.rows.find((r) => r.key === table.slot);
+  $("#tHandSub").textContent = nums.cards.length ? `${bookName(table.book)}${slot ? ` · ${slot.title.toLowerCase()}` : ""}` : "";
+  $("#tHand").innerHTML = nums.cards.length ? nums.cards.map((c, i) => cardHTML(c, i)).join("")
+    : `<div class="t-empty">Tap one of the dealer's hands to lay it on the felt.</div>`;
+  $("#tHand").querySelectorAll(".pcard").forEach((el) => {
     const id = el.dataset.id;
-    if (e.target.closest(".c-fold")) { table.hand = table.hand.filter((x) => x !== id); table.active = null; table.copied = false; saveTable(); Sound.nudge(); renderTable(); return; }
-    if (e.target.closest(".c-swap")) { swapCard(id); return; }
-    if (e.target.closest(".c-star")) { table.hole = table.hole.includes(id) ? table.hole.filter((x) => x !== id) : table.hole.filter((x) => LEGS[x]?.fixture_id !== LEGS[id].fixture_id).concat(id); saveTable(); Sound.hold(); renderTable(); return; }
-    el.classList.toggle("open");
-  }));
+    el.querySelector(".c-main").addEventListener("click", () => { table.open = table.open === id ? null : id; saveTable(); renderTable(); });
+    el.querySelector(".c-fold").addEventListener("click", () => foldCard(id));
+  });
   if (!reducedMotion()) {
     const els = [...$("#tHand").querySelectorAll(".pcard")];
-    (opts.dealAll ? els : opts.flipLast ? els.slice(-1) : []).forEach((el, k) => { el.style.animationDelay = `${k * 0.12}s`; el.classList.add("deal-in"); });
+    const dealtIds = opts.dealAll ? els : els.filter((el) => (opts.dealt || []).includes(el.dataset.id));
+    dealtIds.forEach((el, k) => { el.style.animationDelay = `${k * 0.12}s`; el.classList.add("deal-in"); });
   }
   // Meter: Short / Evens / Over, words and a symbol, never colour alone.
   const pos = (o) => `${Math.max(0, Math.min(100, ((o - 1) / (T_MAX - 1)) * 100))}%`;
@@ -1823,99 +1930,164 @@ function renderTable(opts = {}) {
   $("#tMark").className = `t-mark ${st}`;
   $("#tScale").innerHTML = `<span>Short</span><span class="z">Evens ${esc(prefs.odds_format === "decimal" ? "1.90–2.30" : "9/10–13/10")}</span><span>Over</span>`;
   $("#tOdds").innerHTML = nums.cards.length ? oddsH(nums.odds) : "";
-  $("#tStatus").textContent = { empty: "", short: "Short · hit for another card", evens: "✓ Evens", over: "Over evens · fold one" }[st];
+  $("#tStatus").textContent = { empty: "", short: "Short · hit for a card", evens: "✓ Evens", over: "Over · fold one" }[st];
   $("#tStatus").className = st;
   $("#tFacts").innerHTML = nums.cards.length ? `real chance ${pct(nums.chance)} · edge ${edgeTag(nums.ev)} · £10 pays £${(10 * nums.odds).toFixed(2)}` : "";
   // Actions.
   const a = $("#tActions");
-  const hitOk = !!bestHit();
+  const hitOk = st !== "evens" && st !== "over" && !!nextCard(false);
   a.innerHTML = `<button class="cbtn yellow" id="tHit"${hitOk ? "" : " disabled"}>Hit</button>`
     + (nums.cards.length ? `<button class="cbtn plain" id="tCopy">${table.copied ? "Copied ✓" : `Copy to ${esc(bookName(table.book))}`}</button>` : "")
     + (table.copied ? `<button class="cbtn green" id="tPlaced">Placed it</button>` : "")
     + (nums.cards.length ? `<button class="cbtn red" id="tClear" aria-label="Clear the hand">Clear</button>` : "");
   $("#tHit").addEventListener("click", tableHit);
   $("#tCopy")?.addEventListener("click", async () => { await copyText(tableText()); table.copied = true; saveTable(); buzz(10); renderTable(); });
-  $("#tPlaced")?.addEventListener("click", () => openPlaceSheet(tableAsBet(), { onSaved: () => { table.hand = []; table.active = null; table.copied = false; saveTable(); Sound.placed(); location.hash = "#winnings"; } }));
-  $("#tClear")?.addEventListener("click", () => { table.hand = []; table.active = null; table.copied = false; saveTable(); Sound.lever(); renderTable(); });
+  $("#tPlaced")?.addEventListener("click", () => openPlaceSheet(tableAsBet(), { onSaved: () => { resetHand(); Sound.placed(); location.hash = "#winnings"; } }));
+  $("#tClear")?.addEventListener("click", () => { resetHand(); sayMsg = null; Sound.lever(); renderTable(); });
   renderPlayers();
 }
-// What the dealer says: what's in front of you and what to do next. Tap him for tips.
-const TIPS = [
-  "Each hand pays about evens. Best value has the biggest edge, Safest the best chance of landing, Fewest cards the fewest players to sweat on.",
-  "Edge is how much better the price is than our fair price. Plus is good. Most UK player lines sit below fair, so plus numbers are the rare ones.",
-  "Lands is the real chance the whole hand comes in, from our model and Pinnacle's prices.",
-  "Open 'On the board' and tap ☆ on a player you fancy. I'll build every hand around him.",
-  "Tap Deck to pick which games I deal from: one kick-off, or just your team's game.",
-  "Tap any card in your hand to see what we expect from him and why. Swap changes the line, Fold takes it out.",
-];
-let tipAt = -1, bubbleSay = null;
-function bubbleText(holes) {
-  if (bubbleSay) { const t = bubbleSay; bubbleSay = null; return t; }
-  if (tipAt >= 0) return TIPS[tipAt];
-  if (!dealt.hands.length) return dealt.why;
-  const n = comboNums(handCards()), st = tState(n.odds, n.cards.length);
-  const picks = holes.length ? ` around your ${plural(holes.length, "pick")}` : "";
-  if (st === "empty") return `I've dealt ${dealt.hands.length} hands near evens${picks}. Swipe them, then tap one to lay it down. Tap me for tips.`;
-  if (st === "short") return "You're short of evens. Hit and I'll deal a card, or tap a line below.";
-  if (st === "over") return "That's over evens. Fold a card (tap it, then Fold).";
-  return n.ev >= 0 ? "That's evens, and the price beats our fair price. Copy it to the bookie when you're ready." : "That's evens, but the price is below our fair price. Try Best value, or swap a line.";
-}
-$("#dealer").addEventListener("click", () => { tipAt = (tipAt + 1) % TIPS.length; Sound.hold(); renderTable(); });
-$("#tBubble").addEventListener("click", () => { tipAt = (tipAt + 1) % TIPS.length; Sound.hold(); renderTable(); });
+function resetHand() { table.hand = []; table.active = null; table.slot = null; table.folded = []; table.open = null; table.copied = false; saveTable(); }
+const listWords = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
-function cardHTML(c, i, n) {
-  const surname = c.player.split(" ").slice(1).join(" ") || c.player;
+// ---------- what the dealer says (round 4): four tips that explain the game, then what just happened ----------
+let tipAt = -1;
+function tips() {
+  const out = [
+    "Here's the game. I deal hands of two to five player bets that together pay about evens. Every card has to land for the hand to pay.",
+    "Lay a hand on the felt, then fold any card you don't trust. I'll deal the best replacement from the same kick-off.",
+  ];
+  // The bookie comparison, from the first slot dealt.
+  const r = dealt?.rows?.[0];
+  if (r && Object.keys(r.perBook).length > 1) {
+    const ranked = Object.entries(r.perBook).sort((a, b) => b[1] - a[1]);
+    const [best, bestEv] = ranked[0];
+    const fav = prefs.fav_book && r.perBook[prefs.fav_book] != null ? prefs.fav_book : null;
+    const where = `the ${r.when} games`;
+    if (fav && fav !== best) out.push(`I check every bookie. For ${where} ${bookName(fav)}'s best hand is ${signedPct(r.perBook[fav])} and ${bookName(best)}'s is ${signedPct(bestEv)}, so I'm dealing from ${bookName(best)}.`);
+    else if (fav) out.push(`I check every bookie. ${bookName(fav)} has the best prices for ${where} today: ${signedPct(bestEv)}.`);
+    else { const [worst, worstEv] = ranked[ranked.length - 1]; out.push(`I check every bookie. For ${where} ${bookName(best)}'s best hand is ${signedPct(bestEv)} and ${bookName(worst)}'s is ${signedPct(worstEv)}.`); }
+  }
+  const settled = DATA?.track?.settled ?? 0;
+  out.push(`Edge is the price against our fair price. It's an estimate${settled < 50 ? `, and our record is only ${plural(settled, "bet")} old, so keep stakes small` : ""}.`);
+  return out;
+}
+function stateLine() {
+  if (sayMsg) return sayMsg;
+  if (!dealt.rows.length) return dealt.skipped.length ? "Each kick-off has only one game today, so I can't make a hand. A hand needs cards from different games." : "No NFL player prices yet. They come with the morning odds.";
+  const n = comboNums(handCards()), st = tState(n.odds, n.cards.length);
+  if (st === "empty") return `I've dealt hands for ${listWords(dealt.rows.map((r) => r.title.toLowerCase()))}. Tap one to lay it on the felt. Tap me to learn the game.`;
+  if (st === "short") return "You're short of evens. Hit and I'll deal a card.";
+  if (st === "over") return "That's over evens. Fold a card and I'll find a shorter one.";
+  return n.ev >= 0 ? "That's evens, and the price beats our fair price. Copy it to the bookie when you're ready." : "That's evens, but the price is below our fair price. Fold the weakest card and I'll find better.";
+}
+function bubbleHTML() {
+  if (tipAt < 0) return `<span>${esc(stateLine())}</span><span class="b-hint">Tap for tips ›</span>`;
+  const t = tips();
+  tipAt = Math.min(tipAt, t.length - 1);
+  return `<span>${esc(t[tipAt])}</span><span class="b-dots" aria-hidden="true">${t.map((_, i) => `<i${i === tipAt ? ' class="on"' : ""}></i>`).join("")}</span><span class="b-hint">${tipAt < t.length - 1 ? "Tap for more ›" : "Tap to finish"}</span>`;
+}
+function nextTip() {
+  const n = tips().length;
+  tipAt = tipAt < 0 ? 0 : tipAt + 1 >= n ? -1 : tipAt + 1;
+  if (tipAt === 0) sayMsg = null;
+  Sound.hold();
+  const b = $("#tBubble"); b.innerHTML = bubbleHTML(); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+}
+$("#dealer").addEventListener("click", nextTip);
+$("#tBubble").addEventListener("click", nextTip);
+$("#tBubble").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nextTip(); } });
+
+function cardHTML(c, i) {
   const fx = FIX[c.fid];
+  const open = table.open === c.id;
   const mine = table.hole.includes(c.id);
-  return `<div class="pcard${i === n - 1 ? " open" : ""}${mine ? " hole" : ""}" data-id="${esc(c.id)}" style="--i:${i}" role="button" tabindex="0" aria-label="${esc(`${c.player} ${c.statLine}, ${odds(c.price)}`)}">
-    <div class="c-top"><span class="c-name">${mine ? '<span class="c-mine" aria-label="your pick">★</span> ' : ""}${esc(surname)} <small>${esc(c.team)}</small></span><b class="c-px num">${oddsH(c.price)}</b></div>
-    <div class="c-stat">${esc(c.statLine)}</div>
-    <div class="c-more num">${c.expected != null ? `we expect ${Math.round(c.expected)}${c.range?.[0] != null ? ` (${c.range[0]}–${c.range[1]})` : ""}` : "model only"} · real chance ${pct(c.p)} · ${edgeTag(c.edge)}
-      <span class="c-why">${esc(c.why)}</span>
-      <span class="c-fx">${esc(fx.away)} @ ${esc(fx.home)} · ${esc(dayWord(fx.kickoff))} ${esc(fmtTime(fx.kickoff, false))}${c.leg.source === "sharp+model" ? " · Pinnacle-anchored" : c.leg.source === "model" ? " · our model only" : ""}</span>
-      <span class="c-btns"><button class="c-star" aria-pressed="${mine}">${mine ? "★ Your pick" : "☆ Make it a pick"}</button><button class="c-swap">↻ Swap line</button><button class="c-fold">Fold</button></span></div>
+  return `<div class="pcard${open ? " open" : ""}${mine ? " hole" : ""}" data-id="${esc(c.id)}" style="--i:${i}">
+    <div class="c-row">
+      <button class="c-main" aria-expanded="${open}" aria-label="${esc(`${c.player} ${c.statLine}, ${odds(c.price)}. ${open ? "Hide" : "Show"} why`)}">
+        <span class="c-name">${mine ? '<span class="c-mine" aria-label="always included">★</span> ' : ""}${esc(c.player)} <small>${esc(c.team)}</small></span>
+        <span class="c-stat">${esc(c.statLine)}</span>
+        <span class="c-fx num">${esc(code(fx, "away"))} @ ${esc(code(fx, "home"))} · ${esc(dayOffset(fx.kickoff) === 0 ? "" : `${dayShort(fx.kickoff)} `)}${esc(fmtTime(fx.kickoff, false))}</span>
+      </button>
+      <div class="c-side"><b class="c-px num">${oddsH(c.price)}</b><button class="c-fold" aria-label="Fold ${esc(c.player)}">Fold</button></div>
+    </div>
+    <div class="c-more">
+      <div class="c-tiles num">
+        <span><small>We expect</small><b>${c.expected != null ? `${Math.round(c.expected)} yds` : "–"}</b>${c.range?.[0] != null ? `<i>range ${c.range[0]}–${c.range[1]}</i>` : ""}</span>
+        <span><small>Real chance</small><b>${pct(c.p)}</b></span>
+        <span><small>Edge</small><b>${edgeTag(c.edge)}</b></span>
+      </div>
+      ${whyHTML(c.why)}
+      <p class="c-src">${c.leg.source === "sharp+model" ? "Fair price anchored to Pinnacle." : c.leg.source === "model" ? "Our model only: no bookie line to anchor it, so trust the edge less." : "No Pinnacle price: fair price from UK bookies and our model, so trust the edge less."}</p>
+    </div>
   </div>`;
+}
+function layHand(r, h) {
+  tipAt = -1;
+  table.book = h.book; table.hand = h.cards.map((c) => c.id); table.active = `${r.key}|${h.name}`; table.slot = r.key;
+  table.folded = []; table.open = null; table.copied = false; saveTable();
+  sayMsg = `${h.name} for ${r.title.toLowerCase()} is on the felt: ${plural(h.cards.length, "card")} at ${bookName(h.book)}. Tap a card to see why, or fold it.`;
+  dealerDeal(); Sound.unlock(); Sound.stop(); buzz(12);
+  renderTable({ dealAll: true });
 }
 // Put a card in the hand (replacing any card from the same match).
 function placeCard(id) {
   tipAt = -1;
   const fid = LEGS[id].fixture_id;
   table.hand = table.hand.filter((x) => LEGS[x]?.fixture_id !== fid).concat(id);
+  const s = slotOf(fid);
+  if (table.slot && s?.key !== table.slot) table.slot = null;
   table.active = null; table.copied = false; saveTable();
+  const c = card(LEGS[id]);
+  sayMsg = c ? `Added ${c.player}, ${c.statLine}.` : null;
   dealerDeal(); Sound.unlock(); Sound.stop(); buzz(12);
-  renderTable({ flipLast: true });
+  renderTable({ dealt: [id] });
   $("#tHand").scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" });
 }
-// Hit: the dealer's best card from a match not in the hand, keeping you at or under 13/10 where it can.
-function bestHit() {
-  const used = new Set(handCards().map((c) => c.fid));
-  const o = comboNums(handCards()).odds;
-  const cands = Object.values(deckCards()).flat().filter((c) => !used.has(c.fid));
+// The dealer's next card: same bookie, same kick-off slot as the hand, a match not already in it,
+// no folded player, keeping you at or under 13/10. Prefers one that lands you in the evens zone.
+function nextCard(random = false) {
+  const hand = handCards();
+  const used = new Set(hand.map((c) => c.fid));
+  const o = comboNums(hand).odds;
+  const slot = table.slot && tableSlots().find((s) => s.key === table.slot);
+  const folded = new Set(table.folded || []);
+  const cands = Object.values(deckCards(table.book, slot ? slot.fids : null)).flat()
+    .filter((c) => !used.has(c.fid) && !folded.has(c.player) && o * c.price <= ZONE[1]);
   if (!cands.length) return null;
-  const fits = cands.filter((c) => o * c.price <= ZONE[1]);
-  const pool = (fits.length ? fits : cands).sort((a, b) => b.score - a.score).slice(0, 6);
-  return pool[Math.floor(Math.random() * Math.min(pool.length, 3))];
+  const zone = cands.filter((c) => o * c.price >= ZONE[0]);
+  const pool = (zone.length ? zone : cands).sort((a, b) => b.score - a.score);
+  return random ? pool[Math.floor(Math.random() * Math.min(pool.length, 3))] : pool[0];
+}
+function foldCard(id) {
+  tipAt = -1;
+  const out = card(LEGS[id]);
+  table.hand = table.hand.filter((x) => x !== id);
+  table.folded = [...new Set([...(table.folded || []), out?.player].filter(Boolean))];
+  table.active = null; table.open = null; table.copied = false;
+  const next = table.hand.length ? nextCard(false) : null;
+  if (next) {
+    table.hand.push(next.id);
+    const n = comboNums(handCards());
+    sayMsg = `Folded ${out.player}. Dealt ${next.player}, ${next.statLine}, from ${code(FIX[next.fid], "away")} @ ${code(FIX[next.fid], "home")}. Edge is now ${signedPct(n.ev)}.`;
+    dealerDeal(); Sound.stop(); buzz(12);
+  } else {
+    sayMsg = table.hand.length ? `Folded ${out.player}. Nothing else in this kick-off keeps you under 13/10, so you're short.` : `Folded ${out.player}. Lay another hand down when you're ready.`;
+    Sound.nudge(); buzz(10);
+  }
+  saveTable();
+  renderTable({ dealt: next ? [next.id] : [] });
 }
 function tableHit() {
   tipAt = -1;
-  const c = bestHit();
+  const c = nextCard(true);
   if (!c) return;
   table.hand.push(c.id); table.active = null; table.copied = false; saveTable();
+  sayMsg = `Dealt ${c.player}, ${c.statLine}, from ${code(FIX[c.fid], "away")} @ ${code(FIX[c.fid], "home")}.`;
   dealerDeal(); Sound.unlock(); Sound.stop(); buzz(12);
-  renderTable({ flipLast: true });
+  renderTable({ dealt: [c.id] });
   if (tState(comboNums(handCards()).odds, 1) === "evens") Sound.nudge();
 }
-// Swap: the next line for the same match (other players or other lines), cheapest to longest.
-function swapCard(id) {
-  const leg = LEGS[id];
-  const list = (deckCards()[leg.fixture_id] || []).slice().sort((a, b) => a.price - b.price || a.id.localeCompare(b.id));
-  if (list.length < 2) { flashTable("No other lines for that match"); return; }
-  const at = list.findIndex((c) => c.id === id);
-  const next = list[(at + 1) % list.length];
-  table.hand = table.hand.map((x) => (x === id ? next.id : x)); table.active = null; table.copied = false; saveTable();
-  Sound.nudge(); buzz(10); renderTable();
-}
-function flashTable(t) { const b = $("#tBubble"); b.textContent = t; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }
+function flashTable(t) { sayMsg = t; tipAt = -1; const b = $("#tBubble"); b.innerHTML = bubbleHTML(); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }
 function tableText() {
   const n = comboNums(handCards());
   return `${bookName(table.book)} · NFL ${n.cards.length}-fold\n\n` + n.cards.map((c) => {
@@ -1948,7 +2120,7 @@ function renderPlayers() {
         return `<div class="pstat">${esc(STAT_NAME[st])} yards</div>` + rs.map((r) => {
           const cs = (byPlayer[`${f.id}|${r.player}|${st}`] || []).sort((a, b) => a.line - b.line || a.side.localeCompare(b.side));
           return `<div class="prow"><div class="p-who"><b>${esc(r.player)}</b> <small>${esc(r.team)}</small><span class="p-exp num">${Math.round(r.expected)} <small>(${r.range?.[0] ?? "–"}–${r.range?.[1] ?? "–"})</small></span></div>
-            <div class="p-why">${esc(r.why)}${r.source === "model" ? " · our model only" : ""}</div>
+            ${whyHTML(r.why)}${r.source === "model" ? `<div class="p-why">Our model only</div>` : ""}
             ${cs.length ? `<div class="p-lines">${cs.map((c) => `<button class="pline${c.edge >= 0 ? " pos" : ""}${inHand.has(c.id) ? " in" : ""}" data-id="${esc(c.id)}"><span>${esc(c.side === "over" ? `${Math.round(c.line + 0.5)}+` : `u${c.line}`)}</span><b class="num">${oddsH(c.price)}</b><small class="num">${pct(c.p)} · ${c.edge >= 0 ? "+" : "−"}${Math.abs(c.edge * 100).toFixed(1)}%</small></button>`).join("")}</div>` : ""}
           </div>`;
         }).join("");
