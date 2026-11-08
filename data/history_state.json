@@ -310,8 +310,8 @@
       "home": "Ipswich",
       "away": "Bournemouth"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-2"
     },
     {
      "id": "id1000001772221374|ou:4.5:under",
@@ -328,8 +328,8 @@
       "home": "Brighton",
       "away": "Brentford"
      },
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     },
     {
      "id": "id1000001772221376|ou:4.5:under",

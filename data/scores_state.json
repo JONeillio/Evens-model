@@ -1264,12 +1264,12 @@
    "at": "2026-11-07T21:59:00Z"
   },
   "id1000001772221374": {
-   "s": "LIVE",
+   "s": "FT",
    "min": null,
    "h": 2,
    "a": 0,
    "src": "fd",
-   "at": "2026-11-08T15:11:52Z"
+   "at": "2026-11-08T16:08:05Z"
   },
   "id1000001772221390": {
    "s": "LIVE",
@@ -1288,20 +1288,20 @@
    "at": "2026-11-08T16:03:03Z"
   },
   "id1000001772221382": {
-   "s": "LIVE",
+   "s": "FT",
    "min": null,
    "h": 1,
    "a": 2,
    "src": "fd",
-   "at": "2026-11-08T15:37:27Z"
+   "at": "2026-11-08T16:08:05Z"
   },
   "id1000003772041236": {
    "s": "LIVE",
    "min": null,
    "h": 0,
-   "a": 1,
+   "a": 2,
    "src": "fd",
-   "at": "2026-11-08T15:57:35Z"
+   "at": "2026-11-08T16:08:05Z"
   }
  },
  "budget": {
@@ -1318,10 +1318,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-08T16:03:03Z"
+   "at": "2026-11-08T16:08:05Z"
   }
  },
- "last_called_at": "2026-11-08T16:03:03Z",
+ "last_called_at": "2026-11-08T16:08:05Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1566,10 +1566,11 @@
   "id1000023872531004": {},
   "id1000003772041236": {
    "fd": "558842"
-  }
+  },
+  "id1000005373093056": {}
  },
  "last_log": {
-  "at": "2026-11-08T16:03:03Z",
+  "at": "2026-11-08T16:08:05Z",
   "want": 20,
   "live": true,
   "called": true,
@@ -1584,15 +1585,16 @@
     "results": 70
    }
   ],
-  "changed": 1,
+  "changed": 3,
   "coverage": {
    "checked": 20,
    "api_football": 0,
-   "football_data": 6,
+   "football_data": 5,
    "unmatched": [
     "AEK Athens v APO Levadiakos FC (Super League)",
     "Girona FC v UD Almeria (LaLiga 2)",
     "Estoril Praia v Maritimo Madeira (Liga Portugal)",
+    "Carrarese Calcio v Sampdoria Genoa (Serie B)",
     "Indiana Pacers v Denver Nuggets (NBA)",
     "Atlanta Hawks v Brooklyn Nets (NBA)",
     "Cleveland Cavaliers v New York Knicks (NBA)",
