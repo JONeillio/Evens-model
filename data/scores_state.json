@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-09T00:01:29Z"
+   "at": "2026-11-09T00:06:33Z"
   }
  },
- "last_called_at": "2026-11-09T00:01:29Z",
+ "last_called_at": "2026-11-09T00:06:33Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1596,25 +1596,11 @@
   "id1100013273719566": {}
  },
  "last_log": {
-  "at": "2026-11-09T00:01:29Z",
+  "at": "2026-11-09T00:06:33Z",
   "want": 30,
   "live": true,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "status",
-    "status": 200,
-    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
-   },
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-08",
-    "status": 200,
-    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-    "results": 0
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
