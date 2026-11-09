@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-09T01:07:37Z"
+   "at": "2026-11-09T11:45:38Z"
   }
  },
- "last_called_at": "2026-11-09T01:07:37Z",
+ "last_called_at": "2026-11-09T11:45:38Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1595,12 +1595,15 @@
   "id1100013273719564": {},
   "id1100013273719566": {},
   "id1100013273719568": {},
-  "id1100013273719570": {}
+  "id1100013273719570": {},
+  "id1400003171516004": {},
+  "id1100013273719572": {},
+  "id1100013273719574": {}
  },
  "last_log": {
-  "at": "2026-11-09T01:07:37Z",
-  "want": 32,
-  "live": true,
+  "at": "2026-11-09T11:45:38Z",
+  "want": 35,
+  "live": false,
   "called": true,
   "calls": [
    {
@@ -1615,7 +1618,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 32,
+   "checked": 35,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -1646,11 +1649,14 @@
     "San Francisco 49ers v Las Vegas Raiders (NFL)",
     "New England Patriots v Green Bay Packers (NFL)",
     "Seattle Seahawks v Arizona Cardinals (NFL)",
+    "Chicago Bears v Tampa Bay Buccaneers (NFL)",
     "Chicago Bulls v Philadelphia 76ers (NBA)",
     "Detroit Pistons v Los Angeles Lakers (NBA)",
     "Minnesota Timberwolves v Utah Jazz (NBA)",
     "Dallas Mavericks v Brooklyn Nets (NBA)",
-    "Milwaukee Bucks v Boston Celtics (NBA)"
+    "Milwaukee Bucks v Boston Celtics (NBA)",
+    "LA Clippers v New Orleans Pelicans (NBA)",
+    "Sacramento Kings v Miami Heat (NBA)"
    ]
   }
  },
