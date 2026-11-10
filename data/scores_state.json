@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-10T11:42:50Z"
+   "at": "2026-11-10T12:39:10Z"
   }
  },
- "last_called_at": "2026-11-10T11:42:50Z",
+ "last_called_at": "2026-11-10T12:39:10Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1603,25 +1603,11 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-10T11:42:50Z",
-  "want": 30,
+  "at": "2026-11-10T12:39:10Z",
+  "want": 29,
   "live": false,
   "called": true,
   "calls": [
-   {
-    "feed": "api_football",
-    "endpoint": "status",
-    "status": 200,
-    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
-   },
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-09",
-    "status": 200,
-    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-    "results": 0
-   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1634,7 +1620,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 30,
+   "checked": 29,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -1642,7 +1628,6 @@
     "Girona FC v UD Almeria (LaLiga 2)",
     "Estoril Praia v Maritimo Madeira (Liga Portugal)",
     "Carrarese Calcio v Sampdoria Genoa (Serie B)",
-    "Stafford Rangers v Grimsby Town (FA Cup)",
     "Cray Wanderers v Stockport County FC (FA Cup)",
     "Atlanta Falcons v Cincinnati Bengals (NFL)",
     "Wimborne Town v Crawley Town (FA Cup)",
