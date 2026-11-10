@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-10T21:55:38Z"
+   "at": "2026-11-10T23:14:24Z"
   }
  },
- "last_called_at": "2026-11-10T21:55:38Z",
+ "last_called_at": "2026-11-10T23:14:24Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1603,31 +1603,30 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-10T21:55:38Z",
-  "want": 9,
+  "at": "2026-11-10T23:14:24Z",
+  "want": 8,
   "live": false,
   "called": true,
   "calls": [
    {
     "feed": "football_data",
     "endpoint": "matches",
-    "from": "2026-11-08",
+    "from": "2026-11-09",
     "to": "2026-11-11",
     "status": 200,
     "error": "",
-    "results": 35
+    "results": 0
    }
   ],
   "changed": 0,
   "coverage": {
-   "checked": 9,
+   "checked": 8,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
     "Chicago Bears v Tampa Bay Buccaneers (NFL)",
     "Plymouth Parkway v Berkhamsted FC (FA Cup)",
     "Minnesota Vikings v Buffalo Bills (NFL)",
-    "Detroit Pistons v Los Angeles Lakers (NBA)",
     "Minnesota Timberwolves v Utah Jazz (NBA)",
     "Dallas Mavericks v Brooklyn Nets (NBA)",
     "Milwaukee Bucks v Boston Celtics (NBA)",
