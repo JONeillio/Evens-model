@@ -28,7 +28,8 @@ function tellySessions() {
   return groups.slice(0, 8).map((w) => {
     const fids = new Set();
     w.bookies.forEach((b) => myBooks().includes(b.bookie) && b.fixtures.forEach((f) => inComps(f.fixture_id) && fids.add(f.fixture_id)));
-    const comps = [...new Set([...fids].map(compOf))].map((c) => COMPS.find((x) => x.id === c)?.name).filter(Boolean);
+    const have = new Set([...fids].map(compOf));
+    const comps = COMPS.filter((x) => have.has(x.id)).map((x) => x.name);   // in the game-select order: Prem first
     const best = bestSlipFor(w);
     let chance = null, pin = 0, span = null;
     if (best) {
@@ -39,6 +40,38 @@ function tellySessions() {
     }
     return { w, games: fids.size, comps, best, chance, pin, span };
   }).filter((s) => s.games);
+}
+// Two competitions fit beside the time; any more are counted.
+const compsLine = (cs) => (cs.length > 2 ? `${cs.slice(0, 2).join(" · ")} +${cs.length - 2}` : cs.join(" · "));
+// Quiet days. New prices are only asked for on some mornings (the free request allowance
+// is saved for Tuesday, Thursday and the weekend), so say when the next lot is due.
+function nextOdds() {
+  const days = DATA.schedule?.fetch_days;
+  if (!days?.length) return null;
+  const wd = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "short", timeZone: "UTC" }).format(d);
+  const fetchedToday = DATA.odds_taken_at && new Date(DATA.odds_taken_at).toISOString().slice(0, 10) === new Date().toISOString().slice(0, 10);
+  for (let i = 0; i < 8; i++) {
+    const d = new Date(Date.now() + i * 86400e3);
+    if (i === 0 && (fetchedToday || d.getUTCHours() >= 12)) continue;   // today's run has been, or should have
+    if (days.includes(wd(d))) return { offset: i, iso: d.toISOString() };
+  }
+  return null;
+}
+function quietLine() {
+  const nx = nextOdds();
+  if (!nx) return "New odds arrive most mornings, about 07:15.";
+  if (nx.offset === 0) return "New odds are due this morning, usually between 07:15 and 08:30.";
+  const left = DATA.budget?.remaining_after ?? DATA.budget?.remaining;
+  return `Next odds: ${nx.offset === 1 ? "tomorrow" : dayLong(nx.iso)} morning. Requests are saved for the busy days${left != null ? ` (${left} left this month)` : ""}.`;
+}
+// The machine's own slips from the last few days, settled from the scores.
+function lastTimeOut() {
+  const done = (HIST?.slips || []).filter((x) => x.status === "won" || x.status === "lost").slice(0, 4);
+  if (!done.length) return "";
+  const won = done.filter((x) => x.status === "won").length;
+  return `<div class="tt-day">Last time out <span>${won} of ${done.length} won</span></div>` + done.map((x) =>
+    `<div class="tt-l res"><span class="${x.status === "won" ? "g" : "r"}">${x.status === "won" ? "✓ Won" : "✗ Lost"}</span><span class="w lab">${up(fmtTime(x.start))} · ${up(bookName(x.book))}</span><span class="y">${up(odds(x.odds))}</span></div>`).join("")
+    + `<button class="tt-item tt-more" data-go="304"><span class="tt-l"><span class="c">How the machine's own slips are doing</span><span class="c">P304 ›</span></span></button>`;
 }
 // One word on a slip, from its edge after trust. Symbol and word, never colour alone.
 function verdict(ev) {
@@ -68,10 +101,10 @@ function page302() {
       <span class="tt-l"><span>${now.started && !now.dead ? `Chance now ${now.approx ? "about " : ""}${pct(now.chance)}` : esc(live.bookName)}</span><span class="c">P303 ›</span></span></button>`;
   }
   const headline = !sessions.length ? "Nothing priced yet"
-    : good ? `${good} of ${plural(sessions.length, "session")} worth a spin`
+    : good ? (sessions.length === 1 ? "One session, and it's worth a spin" : `${good} of ${plural(sessions.length, "session")} worth a spin`)
     : made ? "Nothing beats the bookie right now" : "No slip near evens";
-  const sub = !sessions.length ? `No kick-offs with prices, ${rangeName().toLowerCase()}. Odds refresh about 07:15.`
-    : good ? "The rest are for fun, or a swerve."
+  const sub = !sessions.length ? `No kick-offs with prices, ${rangeName().toLowerCase()}. ${quietLine()}`
+    : good ? (good === sessions.length ? "Tap one to load it on the machine." : "The rest are for fun, or a swerve.")
     : made ? "Every slip is priced below fair. Play small for fun, or swerve." : "The pools can't make evens with your filters.";
   let lastDay = null;
   const rows = sessions.map((s, i) => {
@@ -80,21 +113,21 @@ function page302() {
     lastDay = day;
     const t = fmtTime(s.w.start_utc, false);
     if (!s.best) {
-      return `${head}<div class="tt-item off"><span class="tt-l"><b class="y">${t}</b><span class="c">${plural(s.games, "game")}</span><span class="w comps">${up(s.comps.join(" · "))}</span></span>
+      return `${head}<div class="tt-item off"><span class="tt-l"><b class="y">${t}</b><span class="c">${plural(s.games, "game")}</span><span class="w comps">${up(compsLine(s.comps))}</span></span>
         <span class="tt-l dim">No slip near evens here</span></div>`;
     }
     const v = verdict(s.best.combo.ev), n = s.best.combo.picks.length;
     const end = fmtTime(s.span[1], false);
     return `${head}<button class="tt-item" data-session="${i}" aria-label="${esc(`${dayWord(s.w.start_utc)} ${t}: ${v.word}. ${bookName(s.best.bookie)}, ${n} legs at ${odds(s.best.combo.odds)}. Load it on the machine`)}">
-      <span class="tt-l"><b class="y">${t}${end !== t ? `<small>–${end}</small>` : ""}</b><span class="c">${plural(s.games, "game")}</span><span class="w comps">${up(s.comps.join(" · "))}</span></span>
-      <span class="tt-l"><span class="${v.cls}">${v.mark} ${up(v.word)}</span><b class="w">${up(odds(s.best.combo.odds))}</b></span>
-      <span class="tt-l dim"><span class="lab">${up(bookName(s.best.bookie))} · ${n} legs</span><span>lands ${pct(s.chance)} · edge ${signedPct(s.best.combo.ev)} ›</span></span></button>`;
+      <span class="tt-l"><b class="y">${t}${end !== t ? `<small>–${end}</small>` : ""}</b><span class="c">${plural(s.games, "game")}</span><span class="w comps">${up(compsLine(s.comps))}</span></span>
+      <span class="tt-l"><span class="${v.cls}">${v.mark} ${up(v.word)}</span><b class="w"><small class="fold">${n}-fold</small> ${up(odds(s.best.combo.odds))}</b></span>
+      <span class="tt-l dim"><span class="lab">${up(bookName(s.best.bookie))}</span><span>lands ${pct(s.chance)} · edge ${signedPct(s.best.combo.ev)} ›</span></span></button>`;
   }).join("");
   const table = tableRows.length ? `<div class="tt-day m">The card table <span>NFL players</span></div>` + tableRows.map((r) => {
     const h = r.hands[0], v = verdict(h.ev);
     return `<button class="tt-item" data-room="table"><span class="tt-l"><b class="y">${up(r.title)}</b><span class="c">${up(r.sub)}</span></span>
-      <span class="tt-l"><span class="${v.cls}">${v.mark} ${up(v.word)}</span><b class="w">${up(odds(h.odds))}</b></span>
-      <span class="tt-l dim"><span class="lab">${up(bookName(h.book))} · ${h.cards.length} cards</span><span>lands ${pct(h.chance)} · edge ${signedPct(h.ev)} ›</span></span></button>`;
+      <span class="tt-l"><span class="${v.cls}">${v.mark} ${up(v.word)}</span><b class="w"><small class="fold">${h.cards.length} cards</small> ${up(odds(h.odds))}</b></span>
+      <span class="tt-l dim"><span class="lab">${up(bookName(h.book))}</span><span>lands ${pct(h.chance)} · edge ${signedPct(h.ev)} ›</span></span></button>`;
   }).join("") : "";
   const picked = scopeName();
   const st = betStats();
@@ -104,6 +137,7 @@ function page302() {
     <p class="tt-sub">${esc(sub)}</p>
     ${picked ? `<p class="tt-sub c">Showing ${esc(picked)} only (the game buttons on the slots).</p>` : ""}
     ${rows}${table}
+    ${sessions.length < 2 ? lastTimeOut() : ""}
     <div class="tt-foot"><span>Odds checked ${up(fmtTime(DATA.odds_taken_at))}</span><span>Month ${poundTick(st.monthStaked)} of ${poundTick(settings.monthlyLimit)}${st.settled.length ? ` · ${signedMoney(st.pl)}` : ""}</span></div>
     <p class="tt-note">Edge is after trust: a big claimed edge is only part believed. Why: P304.</p>`;
 }
@@ -121,6 +155,11 @@ function tellyLoad(i) {
 }
 
 // ---------- P303: your bets, as they stand ----------
+function ttLabel(l, f) {
+  const base = l.short || (f ? shortLabel({ ...f, kickoff_utc: f.kickoff }, l.label || "") : l.label || "");
+  return base.replace(/^(Under|Over) ([\d.]+) goals$/i, "$1 $2").replace(/ receiving (yds|yards)/i, " rec").replace(/ rushing (yds|yards)/i, " rush")
+    .replace(/ passing (yds|yards)/i, " pass").replace(/ points$/i, "").replace(/ \(draw no bet\)/i, " DNB");
+}
 function betBlock(b) {
   const pr = betProgress(b), now = betNow(b), n = b.legIds.length;
   const legs = b.legIds.map((id, i) => {
@@ -131,7 +170,9 @@ function betBlock(b) {
     const right = sc && sc.h != null && st !== "wait" ? `${sc.h}–${sc.a} ${sc.s === "HT" ? "HT" : sc.s === "FT" ? "FT" : sc.min ? `${sc.min}′` : ""}` : l.kickoff ? fmtTime(l.kickoff, false) : "";
     // In play: this leg's own chance now, so "on track" at 3–1 with half an hour left reads as the sweat it is.
     const inPlay = ["ahead", "behind", "level"].includes(st) ? legChanceNow(id, l.p_win ?? 0.8) : null;
-    return `<div class="tt-l leg"><span class="${cls}">${mark}</span><span class="c who">${up(who)}</span><span class="w lab">${up(l.label || "")}</span><span class="y">${up(right)}</span>${inPlay && !inPlay.approx ? `<span class="${cls} pc">${pct(inPlay.p)}</span>` : ""}</div>`;
+    // A teletext row is about 40 columns: keep it short ("Under 4.5"), and give a long one its own row.
+    const lab = ttLabel(l, f), long = lab.length > 13;
+    return `<div class="tt-l leg"><span class="${cls}">${mark}</span><span class="c who">${up(who)}</span><span class="w lab">${long ? "" : up(lab)}</span><span class="y">${up(right)}</span>${inPlay && !inPlay.approx ? `<span class="${cls} pc">${pct(inPlay.p)}</span>` : ""}</div>${long ? `<div class="tt-l leg more"><span class="w lab">${up(lab)}</span></div>` : ""}`;
   }).join("");
   const dead = now.dead || pr.gone;
   const state = dead ? `<div class="tt-l"><span class="r">✗ Gone · ${money(b.stake)} lost</span></div>`
@@ -158,7 +199,7 @@ function page303() {
 
 // ---------- P304: the form ----------
 const EDGE_BANDS = [["big", "Over +5%"], ["some", "+1% to +5%"], ["flat", "−3% to +1%"], ["poor", "Under −3%"]];
-const SOURCE_NAMES = { sharp: "Pinnacle", "sharp-derived": "Pinnacle, derived", "sharp+model": "Pinnacle + model", consensus: "UK bookies' average", "market+model": "UK avg + model", model: "Our model alone", unknown: "Not recorded" };
+const SOURCE_NAMES = { sharp: "Pinnacle", "sharp-derived": "Pinnacle, derived", "sharp+model": "Pinnacle + model", consensus: "UK bookies' avg", "market+model": "UK avg + model", model: "Our model alone", unknown: "Not recorded" };
 const MARKET_NAMES = { ou: "Goals over/under", ts: "Team to score", tt: "Team goals", ah: "Handicap", dnb: "Draw no bet", "1x2": "Match result", dc: "Double chance", btts: "Both to score",
   "nfl-sp": "NFL spread", "nfl-tot": "NFL total", "nfl-ml": "NFL winner", "nba-sp": "NBA spread", "nba-tot": "NBA total", "nba-ml": "NBA winner", rec_yds: "Receiving yards", rush_yds: "Rushing yards", pass_yds: "Passing yards" };
 // Wins against what the prices said to expect. With few bets nearly everything is luck.
@@ -210,8 +251,8 @@ function page304() {
       : `<p class="tt-sub">Fills in as results arrive.</p>`}
     ${src ? `<div class="tt-day">Whose prices to trust</div><div class="tt-l tab th"><span>Fair price from</span><span>Legs</span><span>Said</span><span>Came</span></div>${src}` : ""}
     ${mk ? `<div class="tt-day">By market</div><div class="tt-l tab th"><span>Market</span><span>Legs</span><span>Said</span><span>Came</span></div>${mk}` : ""}
-    ${leagueRows ? `<div class="tt-day">Bookie league <span>today</span></div><div class="tt-l tab th"><span>Bookie</span><span>Legs</span><span>Best on</span><span>Avg edge</span></div>${leagueRows}
-      <p class="tt-note">"Best on" is how often it has the top price of your bookies. Average edge is before trust; under zero is the bookie's margin.</p>` : ""}
+    ${leagueRows ? `<div class="tt-day">Bookie league <span>today</span></div><div class="tt-l tab th"><span>Bookie</span><span>Legs</span><span>Best</span><span>Edge</span></div>${leagueRows}
+      <p class="tt-note">"Best" is how often it has the top price of your bookies. Edge is the average before trust; under zero is the bookie's margin.</p>` : ""}
     <div class="tt-foot"><span>${HIST?.generated_at ? `Record to ${up(fmtTime(HIST.generated_at))}` : ""}</span><span>More: Payout table</span></div>`;
 }
 

@@ -300,3 +300,9 @@ def test_builder_ranks_by_believed_edge():
     assert all(l.endswith("dc:1X") for l in best["legs"])
     assert best["ev_trust"] < best["ev"]
     assert math.isclose(best["ev_trust"], (1 + 0.8 * 0.02) ** 4 - 1, abs_tol=1e-4)
+
+
+def test_fetch_days_follow_the_weights():
+    from engine.budget import fetch_days
+    assert fetch_days({"weekday_weights": {"Mon": 0, "Tue": 1, "Wed": 0, "Thu": 1, "Fri": 1.15, "Sat": 1.9, "Sun": 1.9}}) == ["Tue", "Thu", "Fri", "Sat", "Sun"]
+    assert len(fetch_days({})) == 7      # no weights set = every day

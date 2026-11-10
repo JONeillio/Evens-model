@@ -452,6 +452,7 @@ class Run:
             "slips": slips,
             "windows": build_pools(legs, fixtures, slip_books, s),
             "budget": {k: self.log.get("plan", {}).get(k) for k in ("remaining", "planned_calls", "leagues_with_games", "chunks_fetched", "chunks_needed")},
+            "schedule": {"fetch_days": budget.fetch_days(s["budget"]), "refresh_utc": "07:15"},
             "notes": self.log["notes"],
             "track": settle.summary(hist),
         }

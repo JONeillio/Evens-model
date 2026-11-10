@@ -32,6 +32,13 @@ def remaining_weight(today: date, weights: dict) -> float:
     return total
 
 
+def fetch_days(cfg: dict) -> list[str]:
+    """The weekdays a morning run asks for new prices (weight above zero). The app uses
+    this to say when odds are next due on a quiet day."""
+    weights = cfg.get("weekday_weights", {})
+    return [d for d in DAY_NAMES if weights.get(d, 1) > 0]
+
+
 def allowance(usage: dict, now: datetime, cfg: dict, manual: bool = False) -> dict:
     weights = cfg.get("weekday_weights", {})
     today_w = weights.get(DAY_NAMES[now.weekday()], 1)
