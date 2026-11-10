@@ -15,7 +15,7 @@
 <main id="app">
   <!-- The machine (home) -->
   <section class="page" id="home" aria-label="The machine">
-    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home" aria-current="page">Slots</a><a class="room-btn" href="#table">Table <small>NFL</small></a><a class="room-btn" href="#telly">Telly</a><span class="room-thumb" aria-hidden="true"></span></nav>
+    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home" aria-current="page">Slots</a><a class="room-btn" href="#table">Table <small>NFL</small></a><span class="room-thumb" aria-hidden="true"></span></nav>
     <div class="cabinet" id="cabinet">
       <div class="bulbs" aria-hidden="true" data-bulbs="12"></div>
       <div class="marquee">
@@ -80,7 +80,7 @@
 
   <!-- The card table: NFL player props, Hold'em style. The dealer lays out hands near evens. -->
   <section class="page table-room" id="table" hidden aria-label="The card table">
-    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home">Slots</a><a class="room-btn" href="#table" aria-current="page">Table <small>NFL</small></a><a class="room-btn" href="#telly">Telly</a><span class="room-thumb" aria-hidden="true"></span></nav>
+    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home">Slots</a><a class="room-btn" href="#table" aria-current="page">Table <small>NFL</small></a><span class="room-thumb" aria-hidden="true"></span></nav>
     <div class="felt" id="felt">
       <div class="lamp" id="lamp" aria-hidden="true">
         <span class="lamp-cord"></span>
@@ -119,25 +119,6 @@
       <p class="hint" id="tPlayersHint"></p>
       <div id="tPlayers"></div>
     </section>
-  </section>
-
-  <!-- The telly (round 5): the pub TV in the corner. Teletext pages for a quick look at what's on. -->
-  <section class="page telly-room" id="telly" hidden aria-label="The telly">
-    <nav class="rooms" aria-label="Rooms"><a class="room-btn" href="#home">Slots</a><a class="room-btn" href="#table">Table <small>NFL</small></a><a class="room-btn" href="#telly" aria-current="page">Telly</a><span class="room-thumb" aria-hidden="true"></span></nav>
-    <div class="tv">
-      <span class="tv-bracket" aria-hidden="true"></span>
-      <div class="tv-screen" id="ttScreen">
-        <div class="tt-top" aria-hidden="true"><span id="ttPage">P302</span><span class="tt-brand">Evenstext</span><span id="ttClock"></span></div>
-        <div id="ttBody" aria-live="polite"></div>
-      </div>
-      <div class="tv-chin" aria-hidden="true"><span class="tv-grille"></span><span class="tv-name">Bandit Colour 21</span><span class="tv-lamp"></span></div>
-    </div>
-    <div class="fastext" role="group" aria-label="Teletext pages">
-      <button class="fx red" data-tt="302" aria-pressed="true">What's on</button>
-      <button class="fx green" data-tt="303" aria-pressed="false">Your bets</button>
-      <button class="fx yellow" data-tt="304" aria-pressed="false">The form</button>
-      <button class="fx cyan" data-href="#home">Slots</button>
-    </div>
   </section>
 
   <!-- Play: today's slips -->
@@ -202,6 +183,5 @@
 </div>
 
 <script src="app.js"></script>
-<script src="telly.js"></script>
 </body>
 </html>

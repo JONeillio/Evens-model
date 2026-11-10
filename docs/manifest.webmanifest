@@ -30,19 +30,5 @@
    "sizes": "any",
    "type": "image/svg+xml"
   }
- ],
- "shortcuts": [
-  {
-   "name": "What's on",
-   "short_name": "What's on",
-   "description": "The telly: every kick-off coming up and the best slip for it",
-   "url": "./#telly"
-  },
-  {
-   "name": "My bets",
-   "short_name": "My bets",
-   "description": "Placed bets with live scores",
-   "url": "./#winnings"
-  }
  ]
 }
