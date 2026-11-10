@@ -452,6 +452,18 @@
   "bet365",
   "williamhill"
  ],
+ "trust": {
+  "sharp": 0.8,
+  "sharp-derived": 0.7,
+  "sharp+model": 0.5,
+  "consensus": 0.4,
+  "market+model": 0.4,
+  "model": 0.25,
+  "other": 0.4,
+  "soft_cap": 0.03,
+  "beyond_cap": 0.25
+ },
+ "_trust_readme": "How much of a claimed edge to believe, by where the fair chance came from (engine/trust.py). A positive edge counts in full up to soft_cap, then at beyond_cap, all times the source's trust; edges at or below zero are left alone. Set after the first weekend's results (legs claiming +13% returned about +2%). Revisit once the app's 'Did the edge show up?' table has a few hundred legs per row.",
  "lenient_max_age_hours": 18,
  "_lenient_readme": "OddsPapi flags Bet365 and William Hill match markets as not active even when current; keep their prices if they changed in the last 18 hours. The app marks these as 'check price'."
 }

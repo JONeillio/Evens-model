@@ -20,6 +20,8 @@ from itertools import count
 from zoneinfo import ZoneInfo
 
 
+from .trust import believed
+
 def _ts(iso: str) -> datetime:
     return datetime.fromisoformat(iso.replace("Z", "+00:00"))
 
@@ -51,7 +53,9 @@ def slip_id(book: str, leg_ids) -> str:
     return hashlib.sha1(raw.encode()).hexdigest()[:12]
 
 
-def _eligible(legs, book, cfg):
+def _eligible(legs, book, cfg, trust=None):
+    """(leg, price, believed edge, believed value). The raw edge still gates entry;
+    ranking uses the edge after trust (engine/trust.py)."""
     out = []
     for leg in legs:
         price = leg["prices"].get(book)
@@ -64,7 +68,8 @@ def _eligible(legs, book, cfg):
         e = price * leg["p_win"] + leg["p_void"] - 1
         if e < cfg["leg_min_edge"]:
             continue
-        out.append((leg, price, e))
+        value, _ = believed(price, leg["p_win"], leg["p_void"], leg.get("source"), trust)
+        out.append((leg, price, value - 1, value))
     return out
 
 
@@ -75,12 +80,12 @@ def _pool(eligible, size, per_fixture=3, sweet=(1.14, 1.26), penalty=0.03):
                       reverse=True)
     seen: dict[str, int] = {}
     pool = []
-    for leg, price, e in eligible:
+    for leg, price, e, value in eligible:
         fid = leg["fixture_id"]
         if seen.get(fid, 0) >= per_fixture:
             continue
         seen[fid] = seen.get(fid, 0) + 1
-        pool.append((leg, price, e))
+        pool.append((leg, price, e, value))
         if len(pool) >= size:
             break
     return pool
@@ -88,7 +93,8 @@ def _pool(eligible, size, per_fixture=3, sweet=(1.14, 1.26), penalty=0.03):
 
 def search(pool, n_legs_options, target_min, target_max, keep=40, sweet=(1.14, 1.26), penalty=0.03):
     """Depth-first search over leg combinations, pruned on combined odds.
-    Ranked by EV less `penalty` x (1 - average sweet-spot fit)."""
+    Ranked by believed EV (after trust) less `penalty` x (1 - average sweet-spot fit).
+    Returns (score, tiebreak, combo, odds, hit, raw ev, believed ev)."""
     best: list = []  # min-heap of (ev, tiebreak, combo)
     tie = count()
     # Sort by price so we can stop extending once the odds overshoot the target.
@@ -97,13 +103,14 @@ def search(pool, n_legs_options, target_min, target_max, keep=40, sweet=(1.14, 1
     max_k = max(n_legs_options)
     ks = set(n_legs_options)
 
-    def dfs(start, chosen, fixtures, odds, value, hit):
+    def dfs(start, chosen, fixtures, odds, value, hit, believed_value):
         k = len(chosen)
         if k in ks and target_min <= odds <= target_max:
             ev = value - 1
+            ev_trust = believed_value - 1
             fit = sum(band_fit(c[1], *sweet) for c in chosen) / k
-            score = ev - penalty * (1 - fit)
-            entry = (score, next(tie), list(chosen), odds, hit, ev)
+            score = ev_trust - penalty * (1 - fit)
+            entry = (score, next(tie), list(chosen), odds, hit, ev, ev_trust)
             if len(best) < keep:
                 heapq.heappush(best, entry)
             elif score > best[0][0]:
@@ -111,7 +118,7 @@ def search(pool, n_legs_options, target_min, target_max, keep=40, sweet=(1.14, 1
         if k == max_k:
             return
         for i in range(start, n):
-            leg, price, _ = items[i]
+            leg, price, _, leg_value = items[i]
             new_odds = odds * price
             if new_odds > target_max:
                 break  # later items are pricier, so they overshoot too
@@ -122,15 +129,16 @@ def search(pool, n_legs_options, target_min, target_max, keep=40, sweet=(1.14, 1
             dfs(i + 1, chosen, fixtures,
                 new_odds,
                 value * (price * leg["p_win"] + leg["p_void"]),
-                hit * (leg["p_win"] + leg["p_void"]))
+                hit * (leg["p_win"] + leg["p_void"]),
+                believed_value * leg_value)
             chosen.pop()
             fixtures.discard(leg["fixture_id"])
 
-    dfs(0, [], set(), 1.0, 1.0, 1.0)
+    dfs(0, [], set(), 1.0, 1.0, 1.0, 1.0)
     return sorted(best, key=lambda e: e[0], reverse=True)
 
 
-def build_slips(legs, fixtures_by_id, books, cfg, tz):
+def build_slips(legs, fixtures_by_id, books, cfg, tz, trust=None):
     spread = timedelta(hours=cfg["kickoff_spread_hours"])
     kickoff = {fid: _ts(fx["kickoff"]) for fid, fx in fixtures_by_id.items()}
     anchors = sorted({kickoff[l["fixture_id"]] for l in legs})
@@ -143,12 +151,12 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
         sweet = tuple(cfg.get("sweet_spot", (1.14, 1.26)))
         penalty = cfg.get("fit_penalty", 0.03)
         for book in books:
-            pool = _pool(_eligible(in_window, book, cfg), cfg["pool_size"], sweet=sweet, penalty=penalty)
+            pool = _pool(_eligible(in_window, book, cfg, trust), cfg["pool_size"], sweet=sweet, penalty=penalty)
             results = search(pool, cfg["legs_options"], cfg["target_min"], cfg["target_max"], sweet=sweet, penalty=penalty)
             if not results and cfg.get("fallback_legs_options"):  # 3 or 6 legs only when 4-5 can't be done
                 results = search(pool, cfg["fallback_legs_options"], cfg["target_min"], cfg["target_max"],
                                  sweet=sweet, penalty=penalty)
-            for score, _, combo, odds, hit, ev in results:
+            for score, _, combo, odds, hit, ev, ev_trust in results:
                 if ev < cfg["slip_min_ev"]:
                     continue
                 leg_ids = [c[0]["id"] for c in combo]
@@ -164,6 +172,7 @@ def build_slips(legs, fixtures_by_id, books, cfg, tz):
                     "odds": round(odds, 3),
                     "hit_p": round(hit, 4),
                     "ev": round(ev, 4),
+                    "ev_trust": round(ev_trust, 4),
                     "score": round(score, 4),
                     "n_legs": len(combo),
                     "start": times[0].isoformat().replace("+00:00", "Z"),

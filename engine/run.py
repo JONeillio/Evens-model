@@ -23,6 +23,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from . import budget, builder, settle
+from .trust import DEFAULT as trust_defaults
 from .pools import build_pools
 from .catalog import prob_from_matrix, LEG_DEFS
 from .footballdata import FootballData
@@ -408,7 +409,7 @@ class Run:
 
         t0 = time.monotonic()
         slip_books = [b for b in books if b not in s.get("not_for_slips", [])]
-        slips = builder.build_slips(legs, fixtures, slip_books, s["slips"], s["timezone"])
+        slips = builder.build_slips(legs, fixtures, slip_books, s["slips"], s["timezone"], trust=s.get("trust"))
         self.log["builder_seconds"] = round(time.monotonic() - t0, 2)
 
         # Track record
@@ -445,6 +446,7 @@ class Run:
                        **({"check": True} if b in s.get("lenient_books", []) else {})} for b in books],
             "sharp_book": s["sharp_book"],
             "defaults": s["slips"],
+            "trust": {**trust_defaults, **{k: v for k, v in (s.get("trust") or {}).items() if not k.startswith("_")}},
             "fixtures": sorted(fixtures.values(), key=lambda f: (f["kickoff"], f["league"])),
             "legs": sorted(legs, key=lambda l: (fixtures[l["fixture_id"]]["kickoff"], -l["best_edge"])),
             "slips": slips,

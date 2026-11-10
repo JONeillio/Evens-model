@@ -40,6 +40,7 @@ def leg_snapshot(leg, fixture, price=None):
         "p_win": leg["p_win"],
         "p_void": leg["p_void"],
         "fd": fixture.get("fd"),
+        "source": leg.get("source"),
         "result": None,
         "score": None,
     }
@@ -89,6 +90,28 @@ def track_legs(history: dict, legs, fixtures_by_id, now: datetime):
         if _ts(fx["kickoff"]) <= now:
             continue
         pending[leg["id"]] = leg_snapshot(leg, fx)
+
+
+def edge_band(claimed: float) -> str:
+    """Claimed edge at the best price on offer, in four bands (the app names them)."""
+    return "big" if claimed > 0.05 else "some" if claimed > 0.01 else "flat" if claimed > -0.03 else "poor"
+
+
+def _evidence(history: dict, leg: dict, won: bool) -> None:
+    """Did the claimed edge turn up? Running sums per edge band, fair-price source and market,
+    so the app can show what we said, what the price implied and what happened."""
+    ev = history.setdefault("evidence", {})
+    claimed = leg["p_win"] * leg["price"] - 1
+    market = leg["key"].split(":")[1] if leg["key"].startswith("nfl-prop") else leg["key"].split(":")[0]
+    for group, key in (("edge", edge_band(claimed)), ("source", leg.get("source") or "unknown"), ("market", market)):
+        b = ev.setdefault(group, {}).setdefault(key, {"n": 0, "wins": 0, "p_sum": 0.0, "implied_sum": 0.0,
+                                                       "claimed_sum": 0.0, "return_sum": 0.0})
+        b["n"] += 1
+        b["wins"] += 1 if won else 0
+        b["p_sum"] = round(b["p_sum"] + leg["p_win"], 4)
+        b["implied_sum"] = round(b["implied_sum"] + 1 / leg["price"], 4)
+        b["claimed_sum"] = round(b["claimed_sum"] + claimed, 4)
+        b["return_sum"] = round(b["return_sum"] + (leg["price"] if won else 0) - 1, 4)
 
 
 def _prop_result(leg, results, prop_values):
@@ -143,12 +166,13 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: di
             if score:
                 leg["result"] = outcome(leg["key"], *score)
                 leg["score"] = f"{score[0]}-{score[1]}"
-        results = [l["result"] for l in slip["legs"]]
-        if "lost" in results:
+        # NB: not `results` - that name is the scores lookup used by every later slip and leg.
+        leg_outcomes = [l["result"] for l in slip["legs"]]
+        if "lost" in leg_outcomes:
             slip["status"] = "lost"
             slip["settled_odds"] = 0
             slip["profit_per_10"] = -10.0
-        elif all(r in ("won", "void") for r in results):
+        elif all(r in ("won", "void") for r in leg_outcomes):
             odds = 1.0
             for l in slip["legs"]:
                 if l["result"] == "won":
@@ -178,6 +202,7 @@ def settle(history: dict, fd, now: datetime, give_up_days: int = 10, results: di
                 b["wins"] += 1 if res == "won" else 0
                 b["p_sum"] = round(b["p_sum"] + leg["p_win"], 4)
                 b["price_sum"] = round(b["price_sum"] + leg["price"], 3)
+                _evidence(history, leg, res == "won")
             # Per-leg results for the app (player-prop hands on the card table settle from these).
             if leg["key"].startswith("nfl-"):
                 history.setdefault("leg_results", {})[lid] = {"r": res, "k": leg["kickoff"]}
@@ -199,6 +224,7 @@ def public_history(history: dict, generated_at: str) -> dict:
         "generated_at": generated_at,
         "summary": summary(history),
         "calibration": history.get("calibration", {}),
+        "evidence": history.get("evidence", {}),
         "slips": list(reversed(history["slips"][-150:])),
         "leg_results": {k: v["r"] for k, v in history.get("leg_results", {}).items()},
     }

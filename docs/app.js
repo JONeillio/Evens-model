@@ -2,7 +2,10 @@
    Data: data/latest.json (fixtures, legs, published slips, and leg pools per
    kick-off window and bookie) + data/history.json (the model's record)
    + data/live.json (scores during and after matches, every ~10 minutes).
-   Your slip, bets and settings live on this phone only (localStorage). */
+   Your slip, bets and settings live on this phone only (localStorage).
+   Round 5 (10 Nov 2026): edges are shown after trust (believed()), the ticket checks
+   the price at your other bookies, placed bets show their chance now and a fair
+   cash-out (betNow()), and a third room, The Telly (telly.js), shows what's on. */
 "use strict";
 
 // ---------- helpers ----------
@@ -58,7 +61,7 @@ const DEFAULTS = { monthlyLimit: 100, myBooks: null, minP: 0.68, maxLeg: 1.45 };
 let settings = Object.assign({}, DEFAULTS, store.get("settings", {}));
 // Round 2 preferences live in evens.prefs.
 // comps: which competitions go on the reels ([] = all). fav_book: your main bookie (null = any).
-const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26], comps: [], fav_book: null, day_range: "7" };
+const PREF_DEFAULTS = { odds_format: "fraction", sound: true, vibration: true, min_edge: 0.01, legs_per_slip: "mix", sweet_spot: [1.14, 1.26], comps: [], fav_book: null, day_range: "7", start_room: "home" };
 let prefs = Object.assign({}, PREF_DEFAULTS, store.get("prefs", {}));
 const savePrefs = () => store.set("prefs", prefs);
 let bets = store.get("bets", []);
@@ -93,10 +96,13 @@ async function load() {
   BOOKCHECK = Object.fromEntries(DATA.books.map((b) => [b.slug, !!b.check]));
   SLIP_BOOKS = DATA.books.filter((b) => b.slips !== false && !EXCHANGES.includes(b.slug)).map((b) => b.slug);
   WINDOWS = (DATA.windows || []).slice().sort((a, b) => a.start_utc.localeCompare(b.start_utc));
+  TRUST = Object.assign({}, TRUST_DEFAULT, DATA.trust || {});
+  applyTrust();
   $("#oddsStamp").textContent = `Odds checked ${fmtTime(DATA.odds_taken_at)}`;
   autoSettleBets();
   liveSettleBets();
   ensureSlip();
+  if (!location.hash && prefs.start_room === "telly") { location.hash = "#telly"; return; }
   route();
 }
 
@@ -111,6 +117,7 @@ async function refreshLive() {
   const won = liveSettleBets();
   const page = location.hash.slice(1) || "home";
   if (page === "winnings") renderBets();
+  if (page === "telly") renderTelly();
   if ((page === "home" || page === "") && !spinning) {
     renderMachine();
     if (watchingId && won.includes(watchingId)) jackpot();
@@ -202,6 +209,61 @@ function liveSettleBets() {
   });
   if (changed) saveBets();
   return newlyWon;
+}
+
+// ---------- round 5: chance now and a fair cash-out ----------
+// For a football leg in play: goals still to come are Poisson, at the match's expected
+// rate times the share of the game left; the leg is settled on every possible final
+// score (settleKey) and the chances added up. That simple model won't agree exactly
+// with the fair chance we had before kick-off, so the gap between them (in log-odds)
+// is carried over, fading as the game runs down. NFL, NBA and player legs have no
+// in-play model: they keep their pre-match chance until decided (marked "about").
+const POIS_MAX = 9;
+const poisRow = (lam) => { const out = [Math.exp(-lam)]; for (let k = 1; k <= POIS_MAX; k++) out.push((out[k - 1] * lam) / k); return out; };
+function scoreChance(key, h, a, lh, la) {
+  const ph = poisRow(lh), pa = poisRow(la);
+  let win = 0, vd = 0;
+  for (let i = 0; i <= POIS_MAX; i++) for (let j = 0; j <= POIS_MAX; j++) {
+    const r = settleKey(key, h + i, a + j);
+    if (r === "won") win += ph[i] * pa[j]; else if (r === "void") vd += ph[i] * pa[j];
+  }
+  return { win, vd };
+}
+const clampP = (p) => Math.min(1 - 1e-4, Math.max(1e-4, p));
+const logit = (p) => Math.log(clampP(p) / (1 - clampP(p)));
+const shareLeft = (sc) => (sc.s === "HT" ? 0.5 : Math.max(0.01, Math.min(1, 1 - (sc.min || 0) / 94)));
+// { p: chance of winning now, pv: chance of a void, st, approx }
+function legChanceNow(legId, pre) {
+  const { st, sc } = legNow(legId);
+  if (st === "won") return { p: 1, pv: 0, st };
+  if (st === "lost") return { p: 0, pv: 0, st };
+  if (st === "void") return { p: 0, pv: 1, st };
+  if (st === "wait" || st === "off" || !sc) return { p: pre, pv: 0, st };
+  const [fid, ...rest] = String(legId).split("|");
+  const key = rest.join("|");
+  if (key.split(":")[0].includes("-")) return { p: pre, pv: 0, st, approx: true };
+  const m = FIX[fid]?.model, lh = m?.xg_home || 1.45, la = m?.xg_away || 1.2, left = shareLeft(sc);
+  const start = scoreChance(key, 0, 0, lh, la), nowM = scoreChance(key, sc.h, sc.a, lh * left, la * left);
+  if (nowM.win + nowM.vd < 1e-6) return { p: 0, pv: 0, st };
+  if (nowM.win > 1 - 1e-6) return { p: 1, pv: 0, st };
+  const shift = (logit(pre) - logit(start.win)) * left;
+  const p = 1 / (1 + Math.exp(-(logit(nowM.win) + shift)));
+  return { p: Math.min(p, 1 - nowM.vd), pv: nowM.vd, st };
+}
+// A placed bet right now: its chance of paying, and what a fair cash-out would be.
+function betNow(b) {
+  let chance = 1, factor = 1, approx = false, started = false, dead = false;
+  (b.legIds || []).forEach((id, i) => {
+    const l = b.legs?.[i] || {}, price = l.price || 1;
+    const pre = l.p_win ?? LEGS[id]?.p_win ?? Math.min(0.97, 0.96 / price);
+    const c = legChanceNow(id, pre);
+    if (c.st !== "wait" && c.st !== "off") started = true;
+    if (c.approx) approx = true;
+    if (c.st === "lost") dead = true;
+    chance *= c.p + c.pv;
+    factor *= (c.p * price + c.pv) / price;   // against the odds you took: a void leg pays 1, not its price
+  });
+  return { chance, value: b.stake * b.odds * factor, was: b.hit_p ?? null, approx, started, dead };
 }
 
 // On the machine: an LED ticker of how your placed bets are doing right now.
@@ -308,6 +370,42 @@ function rangeAvailable(r) {
 const rangeName = (r = prefs.day_range) => (RANGES.find((x) => x[0] === r) || RANGES[2])[1];
 const booksFor = (w) => w.bookies.map((b) => b.bookie).filter((b) => myBooks().includes(b));
 
+// ---------- round 5: how much of a claimed edge to believe ----------
+// An edge is our fair chance times the bookie's price, minus 1. The first weekend's
+// results showed claimed edges above zero didn't turn up at face value (legs claiming
+// +13% returned about +2%), so a positive edge is shrunk before anything is ranked or
+// shown: trust(source) x (the first 3% in full + a quarter of the rest). Edges at or
+// below zero are left alone. Mirrors engine/trust.py; the numbers come in latest.json.
+const TRUST_DEFAULT = { sharp: 0.8, "sharp-derived": 0.7, "sharp+model": 0.5, consensus: 0.4, "market+model": 0.4, model: 0.25, other: 0.4, soft_cap: 0.03, beyond_cap: 0.25 };
+let TRUST = TRUST_DEFAULT;
+const trustOf = (src) => TRUST[src] ?? TRUST.other;
+const PINNACLE_BACKED = ["sharp", "sharp-derived", "sharp+model"];
+function believedEdge(edge, src) {
+  if (edge <= 0) return edge;
+  return trustOf(src) * (Math.min(edge, TRUST.soft_cap) + TRUST.beyond_cap * Math.max(0, edge - TRUST.soft_cap));
+}
+// { v: the leg's factor in a slip's value, p: the chance we believe, claimed: the raw edge }
+function believed(price, p, pVoid, src) {
+  const raw = price * p + (pVoid || 0) - 1, eh = believedEdge(raw, src);
+  return { v: 1 + eh, p: p - (raw - eh) / price, claimed: raw };
+}
+// Every pool leg carries the believed chance and edge from here on (fair_p, edge),
+// with the model's own claim kept beside them (fair_claimed, claimed).
+function applyTrust() {
+  for (const w of WINDOWS) for (const b of w.bookies) for (const f of b.fixtures) for (const l of f.legs) {
+    if (l.claimed != null) continue;
+    const t = believed(l.price, l.fair_p, l.p_void, l.fair_source);
+    l.claimed = t.claimed; l.fair_claimed = l.fair_p;
+    l.fair_p = t.p; l.edge = Math.round((t.v - 1) * 1e4) / 1e4;
+  }
+}
+// A published slip (Today's slips) after trust.
+function slipBelieved(s) {
+  let v = 1, h = 1;
+  s.legs.forEach((id) => { const l = LEGS[id]; if (!l) return; const t = believed(s.prices[id], l.p_win, l.p_void, l.source); v *= t.v; h *= t.p + (l.p_void || 0); });
+  return { ev: v - 1, chance: h };
+}
+
 // ---------- the shared slip ----------
 function resolve(s = slip) {
   if (!s) return [];
@@ -315,9 +413,14 @@ function resolve(s = slip) {
 }
 function numbers(s = slip) {
   const rs = resolve(s);
-  let o = 1, v = 1, h = 1;
-  rs.forEach(({ leg }) => { o *= leg.price; v *= leg.price * leg.fair_p + (leg.p_void || 0); h *= leg.fair_p + (leg.p_void || 0); });
-  return { legs: rs, odds: o, ev: v - 1, chance: h, ret: (s?.stake || 10) * o };
+  let o = 1, v = 1, h = 1, c = 1, pin = 0;
+  rs.forEach(({ leg }) => {
+    o *= leg.price; v *= leg.price * leg.fair_p + (leg.p_void || 0); h *= leg.fair_p + (leg.p_void || 0);
+    c *= leg.price * (leg.fair_claimed ?? leg.fair_p) + (leg.p_void || 0);
+    if (PINNACLE_BACKED.includes(leg.fair_source)) pin++;
+  });
+  // ev and chance are after trust; claimed is what the model said before it.
+  return { legs: rs, odds: o, ev: v - 1, chance: h, claimed: c - 1, pin, ret: (s?.stake || 10) * o };
 }
 
 // ---------- slip shape: 4–5 short legs (round 2, item 0) ----------
@@ -495,13 +598,13 @@ function spin() {
 }
 
 // ---------- router ----------
-const PAGES = ["home", "table", "play", "build", "winnings", "payout"];
+const PAGES = ["home", "table", "telly", "play", "build", "winnings", "payout"];
 function route() {
   const page = PAGES.includes(location.hash.slice(1)) ? location.hash.slice(1) : "home";
   PAGES.forEach((p) => ($("#" + p).hidden = p !== page));
   if (!DATA) return;
   roomTransition(page);
-  ({ home: renderMachine, table: renderTable, play: renderPlay, build: renderBuild, winnings: renderBets, payout: renderRecord })[page]();
+  ({ home: renderMachine, table: renderTable, telly: () => renderTelly(), play: renderPlay, build: renderBuild, winnings: renderBets, payout: renderRecord })[page]();
   window.scrollTo({ top: 0 });
 }
 window.addEventListener("hashchange", route);
@@ -606,8 +709,11 @@ function sweatReel(b, i) {
     live: st === "ahead" ? "▲ ON TRACK" : st === "behind" ? "▼ NEEDS IT" : "● LEVEL" }[cls];
   const label = l.label || "";
   const short = f ? shortLabel({ ...f, kickoff_utc: f.kickoff }, label) : label;
+  // Round 5: a leg in play shows its own chance now beside the minute ("63′ · 38%").
+  const inPlay = cls === "live" ? legChanceNow(id, l.p_win ?? 0.8) : null;
+  const chanceNow = inPlay && !inPlay.approx ? ` · ${pct(inPlay.p)}` : "";
   return `<div class="reel sweat ${cls}" data-i="${i}"><div class="face">
-    <span class="fxl"><span>${esc(codes)}</span><span>${esc(started ? clock : l.kickoff ? fmtTime(l.kickoff, false) : "")}</span></span>
+    <span class="fxl"><span>${esc(codes)}</span><span>${esc(started ? clock + chanceNow : l.kickoff ? fmtTime(l.kickoff, false) : "")}</span></span>
     <span class="lbl" data-short="${esc(short)}"><span class="t">${esc(label)}</span></span>
     ${started ? `<span class="sw-score num">${sc.h}–${sc.a}</span>` : ""}
     <span class="sw-badge">${esc(badge)}</span></div></div>`;
@@ -628,8 +734,11 @@ function renderSweat(b) {
   $("#mOdds").innerHTML = oddsH(b.odds);
   const toGo = pr.live + pr.waiting;
   const ret = b.status === "won" ? `Returned £${(b.returns ?? 0).toFixed(2)}` : b.status === "lost" || pr.gone ? `£${b.stake.toFixed(2)} gone` : `£${b.stake.toFixed(2)} returns £${(b.stake * b.odds).toFixed(2)}`;
-  $("#mStats").innerHTML = `${esc(ret)}<br>${b.status !== "pending" || pr.gone ? "Settled from the scores" : `${toGo} to go · ${pr.landed} in`}`;
-  clearStatus();
+  const now = betNow(b);
+  clearStatus();   // before the line below: it resets this slot to the machine's fair-price line
+  $("#mStats").innerHTML = b.status !== "pending" || pr.gone ? `${esc(ret)}<br>Settled from the scores`
+    : !now.started ? `${esc(ret)}<br>${toGo} to go · ${pr.landed} in`
+    : `Chance now ${now.approx ? "about " : ""}${pct(now.chance)} ${now.chance > now.was + 0.005 ? "▲" : now.chance < now.was - 0.005 ? "▼" : "●"} (was ${pct(now.was)})<br>Fair cash-out ${money(now.value)} · pays ${money(b.stake * b.odds)}`;
   $("#ticket").hidden = true;
   $("#watchBtn").hidden = true;
 }
@@ -800,6 +909,7 @@ function renderTicket(print) {
     }).join("")}
     ${BOOKCHECK[slip.bookie] ? `<div class="tk-check">${esc(bookName(slip.bookie))}'s prices reach us on a delay. Check each one in the ${esc(bookName(slip.bookie))} app before you place it.</div>` : ""}
     <div class="tk-foot num"><b>${oddsH(nums.odds)}</b><span>real chance ${pct(nums.chance)}</span><span>£${slip.stake} pays £${nums.ret.toFixed(2)}</span></div>
+    ${ticketNotes(nums)}
     <div class="tk-actions">
       <button class="tk-btn" id="tkCopy">${ticketState.copied ? "Copied ✓" : `Copy to ${esc(bookName(slip.bookie))}`}</button>
       <button class="tk-btn" id="tkShare">Share</button>
@@ -807,6 +917,7 @@ function renderTicket(print) {
     </div>`;
   $("#tkCopy").addEventListener("click", async () => { await copyText(ticketText()); ticketState.copied = true; buzz(10); renderTicket(); });
   $("#tkShare").addEventListener("click", shareTicket);
+  $("#tkSwitch")?.addEventListener("click", (e) => switchBookie(e.currentTarget.dataset.book));
   $("#tkPlaced")?.addEventListener("click", () => openPlaceSheet(currentSlipAsBet(), { onSaved: fileTicket }));
   if (print && !reducedMotion()) {
     t.classList.remove("printing"); void t.offsetWidth;
@@ -815,6 +926,49 @@ function renderTicket(print) {
     setTimeout(() => t.classList.remove("printing"), 700);
   }
 }
+// Round 5: what the bet is worth on average, how far the prices are checked, and
+// whether another of your bookies pays more for exactly these legs.
+const pence = (x) => (Math.abs(x) < 0.995 ? `${Math.round(Math.abs(x) * 100)}p` : `£${Math.abs(x).toFixed(2)}`);
+function worthLine(ev, stake) {
+  const w = stake * ev;
+  return Math.abs(w) < 0.005 ? `A fair bet: £${stake} is worth £${stake} on average`
+    : w > 0 ? `Worth about ${pence(w)} more than your £${stake}, on average` : `Costs about ${pence(w)} of your £${stake}, on average`;
+}
+function priceCheck() {
+  const mine = numbers().odds;
+  let best = null, priced = 0;
+  for (const bk of myBooks()) {
+    if (bk === slip.bookie) continue;
+    let o = 1, ok = true;
+    for (const l of slip.legs) { const r = findLeg(slip.window_id, bk, l.leg_id); if (!r) { ok = false; break; } o *= r.leg.price; }
+    if (!ok) continue;
+    priced++;
+    if (!best || o > best.odds) best = { bookie: bk, odds: o };
+  }
+  return { mine, best, priced };
+}
+function ticketNotes(nums) {
+  const n = nums.legs.length;
+  const trust = nums.pin === n ? "every leg checked against Pinnacle" : nums.pin ? `${nums.pin} of ${n} legs checked against Pinnacle` : "no Pinnacle price on these legs";
+  const claim = nums.claimed > 0.01 && nums.claimed - nums.ev > 0.01 ? ` Model claimed ${signedPct(nums.claimed)}.` : "";
+  const pc = priceCheck();
+  let shop = "";
+  if (pc.best && pc.best.odds > pc.mine * 1.01) {
+    shop = `<div class="tk-shop better"><span>Same legs pay <b>${pc.best.odds.toFixed(2)}</b> at ${esc(bookName(pc.best.bookie))} (${signedMoney(slip.stake * (pc.best.odds - pc.mine))} if it lands)</span><button class="tk-switch" id="tkSwitch" data-book="${esc(pc.best.bookie)}">Switch</button></div>`;
+  } else if (pc.priced) {
+    shop = `<div class="tk-shop"><span>✓ Best price of the ${pc.priced + 1} bookies that price all ${n} legs</span></div>`;
+  }
+  return `<div class="tk-worth ${nums.ev >= -0.0005 ? "pos" : "neg"}">${esc(worthLine(nums.ev, slip.stake))}<small>${esc(trust[0].toUpperCase() + trust.slice(1))}.${esc(claim)}</small></div>${shop}`;
+}
+function switchBookie(bk) {
+  if (!bk || spinning || !slip.legs.every((l) => findLeg(slip.window_id, bk, l.leg_id))) return;
+  const from = slip.bookie;
+  slip.bookie = bk; ticketState.copied = false; copied = false; saveSlip();
+  Sound.hold(); buzz(12);
+  renderMachine({ print: true });
+  flashStatus(`Same legs, now at ${bookName(bk)}`, { undo: () => { slip.bookie = from; saveSlip(); renderMachine({ print: true }); } });
+}
+
 function ticketText() {
   const nums = numbers();
   let lastDay = null;
@@ -1308,7 +1462,7 @@ function renderPlay() {
   const fav = prefs.fav_book;
   const slips = mergeTwins(DATA.slips.filter((s) => Date.parse(s.start) > Date.now() && mine.has(s.book)
       && s.legs.every((id) => inComps(LEGS[id]?.fixture_id)))
-    .sort((a, b) => (b.book === fav) - (a.book === fav) || b.ev - a.ev))
+    .sort((a, b) => (b.book === fav) - (a.book === fav) || slipBelieved(b).ev - slipBelieved(a).ev))
     .filter((s, i, arr) => arr.filter((x) => x.start === s.start).indexOf(s) < 3);
   const starts = [...new Set(slips.map((s) => s.start))].sort();
   if (!starts.includes(playWindow)) playWindow = starts[0] || null;
@@ -1319,7 +1473,7 @@ function renderPlay() {
     + (DATA.notes || []).filter((n) => !/^Refreshed/.test(n)).map((n) => `<div class="notice">${esc(n)}</div>`).join("");
   const shown = slips.filter((s) => s.start === playWindow);
   $("#slips").innerHTML = shown.length ? shown.map(slipCard).join("") +
-    `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets.</p>`
+    `<p class="hint">Real chance and edge use Pinnacle's prices with the margin taken out. Edge is the expected gain or loss per £1 over many bets, after trust: a big claimed edge is only partly believed.</p>`
     : `<div class="empty">No slips near evens for the coming kick-offs. Pull the lever or open Build a bet.</div>`;
   $("#slips").querySelectorAll("[data-slip]").forEach((card) => {
     const s = shown.find((x) => x.id === card.dataset.slip);
@@ -1344,9 +1498,9 @@ function slipCard(s) {
     ${rows}
     <div class="card-foot">
       <div><b class="num">${oddsH(s.odds)}</b><span>Combined odds</span></div>
-      <div><b class="num">${pct(s.hit_p)}</b><span>Real chance it lands</span></div>
+      <div><b class="num">${pct(slipBelieved(s).chance)}</b><span>Real chance it lands</span></div>
       <div><b class="num">£${(10 * s.odds).toFixed(2)}</b><span>£10 returns</span></div>
-      <div><b>${edgeTag(s.ev)}</b><span>Edge</span></div>
+      <div><b>${edgeTag(slipBelieved(s).ev)}</b><span>Edge${s.ev - slipBelieved(s).ev > 0.01 ? ` (model claimed ${signedPct(s.ev)})` : ""}</span></div>
     </div>
     <div class="card-actions"><button class="cbtn yellow" data-act="load">Load into the machine</button><button class="cbtn cyan" data-act="edit">Edit this slip</button></div>
   </article>`;
@@ -1484,11 +1638,19 @@ function betCard(b) {
     <div class="bet-top"><div><b>${esc(b.bookName)}</b> <span class="sub">${esc(b.label)}</span></div><span class="status ${b.status}">${esc(tag)}</span></div>
     <div class="sub num">£${b.stake.toFixed(2)} at ${odds(b.odds)}, real chance ${pct(b.hit_p)}</div>
     ${b.legs.map((l, i) => `<div class="sub bet-leg"><span>${esc(l.label)} <span class="num">${odds(l.price)}</span>, ${esc(l.match)}</span>${b.legIds?.[i] && LIVE ? legChip(b.legIds[i], l.kickoff) : ""}</div>`).join("")}
+    ${nowLine(b)}
     ${settled && b.settledBy === "scores" ? `<div class="sub">Settled from the scores. Tap Undo if your bookie disagrees.</div>` : ""}
     <div class="card-actions" style="padding:8px 0 0">${settled ? `<button class="cbtn plain" data-set="pending">Undo result</button>` :
       `<button class="cbtn green" data-set="won">Won</button><button class="cbtn red" data-set="lost">Lost</button><button class="cbtn plain" data-set="void">Void</button>`}
       <button class="cbtn plain" data-set="delete">Delete</button></div>
   </div>`;
+}
+
+function nowLine(b) {
+  if (b.status !== "pending" || !b.legIds?.length || !LIVE) return "";
+  const now = betNow(b);
+  if (!now.started || now.dead) return "";
+  return `<div class="sub now-line num"><b>Chance now ${now.approx ? "about " : ""}${pct(now.chance)}</b> (was ${pct(now.was)}). A fair cash-out is about <b>${money(now.value)}</b>; if your bookie offers less, the difference is their cut.</div>`;
 }
 
 // Monte Carlo: 50 slips, from your bets (5+) or today's suggestions.
@@ -1535,8 +1697,10 @@ function renderRecord() {
     <h3 class="sec">Does it know what it's saying?</h3>
     <p class="hint">Each dot is a group of legs. Across: how likely the model said they were. Up: how often they came in. On the dashed line means honest chances.</p>
     ${cal.length ? `<div class="chart" id="calChart"></div>` : `<p class="hint">Needs a weekend of results first.</p>`}
+    <p class="hint"><a href="#telly" id="toForm">Did the claimed edge show up? See The form on the telly ›</a></p>
     <h3 class="sec">Recent slips</h3>
     ${list.map(recordCard).join("") || `<p class="hint">None yet.</p>`}`;
+  $("#toForm").addEventListener("click", () => { ttPage = 304; });
   if (cal.length) calibrationChart($("#calChart"), cal);
 }
 function recordCard(h) {
@@ -1625,6 +1789,7 @@ $("#settingsBtn").addEventListener("click", () => {
       <div class="field"><label for="sEdge">Lowest edge a spin can land on <output id="oEdge">${signedPct(p.min_edge)}</output></label><input id="sEdge" type="range" min="-0.05" max="0.05" step="0.005" value="${p.min_edge}"></div>
       <div class="field"><label for="sMinP">Each leg at least this likely <output id="oMinP">${pct(draft.minP)}</output></label><input id="sMinP" type="range" min="0.6" max="0.95" step="0.01" value="${draft.minP}"></div>
       <div class="field"><label for="sMax">Highest price per leg <output id="oMax">${esc(odds(draft.maxLeg))}</output></label><input id="sMax" type="range" min="1.1" max="1.5" step="0.01" value="${draft.maxLeg}"></div>
+      <div class="field"><span class="lbl">Open the app on</span>${chipRow("start", [["home", "The slots"], ["telly", "The telly (what's on)"]], p.start_room || "home")}</div>
       <div class="field"><span class="lbl">Sound</span>${chipRow("snd", [["on", "On"], ["off", "Off"]], p.sound === false ? "off" : "on")}</div>
       <div class="field"><span class="lbl">Vibration</span>${chipRow("vib", [["on", "On"], ["off", "Off"]], p.vibration === false ? "off" : "on")}</div>
       <div class="field"><span class="lbl">Your bookie (the machine loads it first)</span>${chipRow("fav", [["", "Any"]].concat(SLIP_BOOKS.map((b) => [b, esc(bookName(b))])), p.fav_book || "")}</div>
@@ -1642,6 +1807,7 @@ $("#settingsBtn").addEventListener("click", () => {
     group("fmt", (v) => { p.odds_format = v; });
     group("legs", (v) => { p.legs_per_slip = v === "mix" ? "mix" : +v; });
     group("spot", (v) => { p.sweet_spot = SWEET_SPOTS.find((x) => x.id === v).range.slice(); });
+    group("start", (v) => { p.start_room = v; });
     group("snd", (v) => { p.sound = v === "on"; });
     group("vib", (v) => { p.vibration = v === "on"; });
     group("fav", (v) => { p.fav_book = v || null; });
@@ -1715,7 +1881,8 @@ function card(leg, book = table.book) {
   if (!price) return null;
   const [, stat, , line, side] = leg.key.split(":");
   const pr = projFor(leg);
-  const c = { id: leg.id, fid: leg.fixture_id, leg, book, price, p: leg.p_win, edge: price * leg.p_win - 1, stat, line: +line, side,
+  const t = believed(price, leg.p_win, 0, leg.source);   // round 5: the edge and chance after trust
+  const c = { id: leg.id, fid: leg.fixture_id, leg, book, price, p: t.p, edge: t.v - 1, claimed: t.claimed, stat, line: +line, side,
     player: leg.player, team: pr?.team || "", expected: pr?.expected, range: pr?.range, why: leg.why || pr?.why || "",
     statLine: leg.label.slice(leg.player.length + 1), conf: T_CONF[leg.source] || 0.5 };
   c.score = Math.exp(25 * c.edge) * c.conf * bandFit(c.price);
@@ -2258,23 +2425,25 @@ function startLamp() {
   requestAnimationFrame(step);
 }
 
-// ---------- switching rooms: tap Slots | Table, or swipe sideways from the middle ----------
+// ---------- switching rooms: tap Slots | Table | Telly, or swipe sideways from the middle ----------
+const ROOMS = ["home", "table", "telly"];
 let lastRoom = null;
 function roomTransition(page) {
-  const rooms = ["home", "table"];
+  const rooms = ROOMS;
   if (rooms.includes(page) && rooms.includes(lastRoom) && page !== lastRoom && !reducedMotion()) {
     const el = $("#" + page);
     el.classList.remove("enter-left", "enter-right"); void el.offsetWidth;
-    el.classList.add(page === "table" ? "enter-right" : "enter-left");
+    el.classList.add(rooms.indexOf(page) > rooms.indexOf(lastRoom) ? "enter-right" : "enter-left");
     setTimeout(() => el.classList.remove("enter-left", "enter-right"), 600);
     Sound.hold(); buzz(12);
   }
   document.body.classList.toggle("on-felt", page === "table");
+  document.body.classList.toggle("on-telly", page === "telly");
   lastRoom = page;
 }
 (function roomSwipe() {
   let x0 = null, y0 = null, locked = false;
-  ["home", "table"].forEach((id) => {
+  ROOMS.forEach((id) => {
     const el = $("#" + id);
     el.addEventListener("pointerdown", (e) => {
       // Not from the screen edges (Android's back gesture), not on the lever or reels.
@@ -2290,8 +2459,8 @@ function roomTransition(page) {
       if (x0 == null) return;
       const dx = e.clientX - x0;
       if (locked && Math.abs(dx) >= 70) {
-        if (id === "home" && dx < 0) location.hash = "#table";
-        if (id === "table" && dx > 0) location.hash = "#home";
+        const next = ROOMS[ROOMS.indexOf(id) + (dx < 0 ? 1 : -1)];
+        if (next) location.hash = "#" + next;
       }
       x0 = null; locked = false;
     });

@@ -240,3 +240,63 @@ def test_short_codes_and_clashes():
     assign_short_codes(fx)
     assert fx["a"]["home_short"] == "BRC" and fx["b"]["home_short"] == "BRR"
     assert fx["b"]["away_short"] != fx["c"]["home_short"]  # Barnet v Barnsley both BAR -> told apart
+
+
+# ---------- round 5: the record must not get stuck, and edges are believed with care ----------
+def test_one_stuck_slip_does_not_block_the_rest():
+    """A slip with a leg that never gets a result used to swap the scores lookup for a list,
+    so every later slip and every tracked leg went unsettled (21 of 26 slips on 9 Nov 2026)."""
+    now = datetime(2026, 11, 7, 8, tzinfo=timezone.utc)
+    fixtures = {f"F{i}": {"id": f"F{i}", "home": f"H{i}", "away": f"A{i}", "league": "L",
+                          "kickoff": "2026-11-07T15:00:00Z", "fd": None} for i in range(6)}
+    legs = {f"F{i}|1x2:1": {"id": f"F{i}|1x2:1", "fixture_id": f"F{i}", "key": "1x2:1", "label": "x", "source": "sharp",
+                             "best_price": 1.2, "p_win": 0.8, "p_void": 0.0} for i in range(6)}
+    ids = list(legs)
+    # One published slip per kick-off time, so give each its own.
+    mk = lambda sid, lids, hh: {"id": sid, "start": f"2026-11-07T{hh}:00:00Z", "label": "Sat", "book": "bet365", "odds": 1.44,
+                                "hit_p": 0.64, "ev": -0.08, "legs": lids, "prices": {k: 1.2 for k in lids}}
+    hist = settle.empty_history()
+    settle.publish(hist, [mk("stuck", ids[0:2], 12), mk("fine", ids[2:4], 13), mk("lost", ids[4:6], 14)], legs, fixtures, now)
+    settle.track_legs(hist, legs.values(), fixtures, now)
+    results = {"F1": (1, 0), "F2": (2, 0), "F3": (1, 0), "F4": (0, 1), "F5": (3, 1)}   # no score for F0
+    settle.settle(hist, None, now + timedelta(days=1), results=results)
+    status = {s["slip_id"]: s["status"] for s in hist["slips"]}
+    assert status == {"stuck": "pending", "fine": "won", "lost": "lost"}
+    assert sum(b["n"] for b in hist["calibration"].values()) == 5      # every leg with a score is counted
+    assert set(hist["legs_pending"]) == {"F0|1x2:1"}
+    ev = hist["evidence"]
+    assert ev["source"]["sharp"]["n"] == 5 and ev["source"]["sharp"]["wins"] == 4
+    assert ev["market"]["1x2"]["n"] == 5
+    assert ev["edge"]["poor"]["n"] == 5                                 # 0.8 x 1.2 - 1 = -4%
+    assert math.isclose(ev["edge"]["poor"]["return_sum"], 4 * 0.2 - 1, abs_tol=1e-6)
+    assert settle.public_history(hist, "x")["evidence"] == ev
+
+
+def test_trust_shrinks_only_positive_edges():
+    from engine.trust import believed, believed_edge
+    assert believed_edge(-0.04, "model") == -0.04                       # a bad price is never flattered
+    assert math.isclose(believed_edge(0.02, "sharp"), 0.016)            # 0.8 x 2%
+    assert math.isclose(believed_edge(0.15, "model"), 0.25 * (0.03 + 0.25 * 0.12))
+    assert believed_edge(0.15, "model") < believed_edge(0.04, "sharp")  # a modest Pinnacle edge beats a big model one
+    value, p = believed(1.25, 0.84, 0.0, "model")                       # claims +5%
+    assert math.isclose(value, 1 + believed_edge(0.05, "model")) and math.isclose(1.25 * p, value)
+    assert believed(1.2, 0.8, 0.0, "sharp") == (1.2 * 0.8, 0.8)
+
+
+def test_builder_ranks_by_believed_edge():
+    """Two ways to make the same slip shape: Pinnacle-backed legs at +2%, or model-only legs claiming +6%.
+    Raw EV prefers the model's; after trust the Pinnacle-backed slip ranks first."""
+    ko = "2026-11-07T15:00:00Z"
+    fixtures = {f"F{i}": {"id": f"F{i}", "kickoff": ko} for i in range(8)}
+    legs = []
+    for i in range(4):
+        legs.append({**_leg(f"F{i}", "dc:1X", 1.2, 1.02 / 1.2, ko), "source": "sharp"})
+    for i in range(4, 8):
+        legs.append({**_leg(f"F{i}", "ou:4.5:under", 1.2, 1.06 / 1.2, ko), "source": "model"})
+    cfg = {"legs_options": [4], "target_min": 1.85, "target_max": 2.3, "kickoff_spread_hours": 2.5,
+           "leg_min_price": 1.04, "leg_max_price": 1.45, "leg_min_fair_prob": 0.68, "leg_min_edge": -0.05,
+           "slip_min_ev": -0.2, "pool_size": 26, "top_per_window": 1}
+    best = builder.build_slips(legs, fixtures, ["bet365"], cfg, "Europe/London")[0]
+    assert all(l.endswith("dc:1X") for l in best["legs"])
+    assert best["ev_trust"] < best["ev"]
+    assert math.isclose(best["ev_trust"], (1 + 0.8 * 0.02) ** 4 - 1, abs_tol=1e-4)
