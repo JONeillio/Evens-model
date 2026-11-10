@@ -1,31 +1,17 @@
 {
- "started_at": "2026-11-09T08:32:07Z",
+ "started_at": "2026-11-10T06:45:41Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
-  "Saving requests for the rest of the month; showing the last odds.",
   "Reused odds snapshot from 2026-11-08T08:04:41Z."
  ],
- "usage_before": {
-  "plan": "free",
-  "limit": 250,
-  "used": 117,
-  "remaining": 133
- },
- "plan": {
-  "allowance": 0,
-  "remaining": 133,
-  "share": 0.0,
-  "weekday_weight": 0,
-  "fetch": false
- },
  "nfl": {
-  "prop_legs": 56,
-  "projections": 23
+  "prop_legs": 0,
+  "projections": 0
  },
  "builder_seconds": 0.0,
- "fixtures": 2,
- "legs": 134,
+ "fixtures": 0,
+ "legs": 0,
  "slips": 0,
  "books": [
   "bet365",
@@ -36,15 +22,6 @@
  ],
  "model_fixtures": 0,
  "fd_errors": [],
- "calls": [
-  {
-   "endpoint": "account",
-   "params": {},
-   "status": 200,
-   "seconds": 0.31,
-   "billable": false,
-   "note": ""
-  }
- ],
- "finished_at": "2026-11-09T08:32:52Z"
+ "calls": [],
+ "finished_at": "2026-11-10T06:45:49Z"
 }
