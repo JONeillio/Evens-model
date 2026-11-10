@@ -1313,7 +1313,7 @@
   }
  },
  "budget": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "api_football": 1,
   "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
@@ -1321,20 +1321,20 @@
   "api_football": {
    "ok": false,
    "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-09T00:01:29Z"
+   "at": "2026-11-10T11:42:50Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-09T23:35:44Z"
+   "at": "2026-11-10T11:42:50Z"
   }
  },
- "last_called_at": "2026-11-09T23:35:44Z",
+ "last_called_at": "2026-11-10T11:42:50Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-09",
+ "af_status_date": "2026-11-10",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -1599,19 +1599,34 @@
   "id1400003171516004": {},
   "id1100013273719572": {},
   "id1100013273719574": {},
-  "id1000001975802948": {}
+  "id1000001975802948": {},
+  "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-09T23:35:44Z",
-  "want": 35,
+  "at": "2026-11-10T11:42:50Z",
+  "want": 30,
   "live": false,
   "called": true,
   "calls": [
    {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-09",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
+    "results": 0
+   },
+   {
     "feed": "football_data",
     "endpoint": "matches",
     "from": "2026-11-08",
-    "to": "2026-11-10",
+    "to": "2026-11-11",
     "status": 200,
     "error": "",
     "results": 35
@@ -1619,7 +1634,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 35,
+   "checked": 30,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -1627,12 +1642,6 @@
     "Girona FC v UD Almeria (LaLiga 2)",
     "Estoril Praia v Maritimo Madeira (Liga Portugal)",
     "Carrarese Calcio v Sampdoria Genoa (Serie B)",
-    "Atlanta Hawks v Brooklyn Nets (NBA)",
-    "Cleveland Cavaliers v New York Knicks (NBA)",
-    "Oklahoma City Thunder v Washington Wizards (NBA)",
-    "Golden State Warriors v Orlando Magic (NBA)",
-    "Phoenix Suns v Houston Rockets (NBA)",
-    "Portland Trail Blazers v San Antonio Spurs (NBA)",
     "Stafford Rangers v Grimsby Town (FA Cup)",
     "Cray Wanderers v Stockport County FC (FA Cup)",
     "Atlanta Falcons v Cincinnati Bengals (NFL)",
@@ -1651,6 +1660,7 @@
     "Seattle Seahawks v Arizona Cardinals (NFL)",
     "Chicago Bears v Tampa Bay Buccaneers (NFL)",
     "Plymouth Parkway v Berkhamsted FC (FA Cup)",
+    "Minnesota Vikings v Buffalo Bills (NFL)",
     "Chicago Bulls v Philadelphia 76ers (NBA)",
     "Detroit Pistons v Los Angeles Lakers (NBA)",
     "Minnesota Timberwolves v Utah Jazz (NBA)",
@@ -1661,5 +1671,5 @@
    ]
   }
  },
- "af_last_at": "2026-11-09T00:01:29Z"
+ "af_last_at": "2026-11-10T11:42:50Z"
 }
