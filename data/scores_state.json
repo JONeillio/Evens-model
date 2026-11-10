@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-10T15:23:56Z"
+   "at": "2026-11-10T17:13:33Z"
   }
  },
- "last_called_at": "2026-11-10T15:23:56Z",
+ "last_called_at": "2026-11-10T17:13:33Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1603,8 +1603,8 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-10T15:23:56Z",
-  "want": 24,
+  "at": "2026-11-10T17:13:33Z",
+  "want": 22,
   "live": false,
   "called": true,
   "calls": [
@@ -1620,12 +1620,10 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 24,
+   "checked": 22,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Estoril Praia v Maritimo Madeira (Liga Portugal)",
-    "Carrarese Calcio v Sampdoria Genoa (Serie B)",
     "Oldham Athletic v Sheffield Wednesday (FA Cup)",
     "Carolina Panthers v Denver Broncos (NFL)",
     "Indianapolis Colts v Dallas Cowboys (NFL)",
