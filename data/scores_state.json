@@ -1326,10 +1326,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-10T13:48:13Z"
+   "at": "2026-11-10T15:23:56Z"
   }
  },
- "last_called_at": "2026-11-10T13:48:13Z",
+ "last_called_at": "2026-11-10T15:23:56Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1603,8 +1603,8 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-10T13:48:13Z",
-  "want": 29,
+  "at": "2026-11-10T15:23:56Z",
+  "want": 24,
   "live": false,
   "called": true,
   "calls": [
@@ -1620,17 +1620,12 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 29,
+   "checked": 24,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "AEK Athens v APO Levadiakos FC (Super League)",
-    "Girona FC v UD Almeria (LaLiga 2)",
     "Estoril Praia v Maritimo Madeira (Liga Portugal)",
     "Carrarese Calcio v Sampdoria Genoa (Serie B)",
-    "Cray Wanderers v Stockport County FC (FA Cup)",
-    "Atlanta Falcons v Cincinnati Bengals (NFL)",
-    "Wimborne Town v Crawley Town (FA Cup)",
     "Oldham Athletic v Sheffield Wednesday (FA Cup)",
     "Carolina Panthers v Denver Broncos (NFL)",
     "Indianapolis Colts v Dallas Cowboys (NFL)",
