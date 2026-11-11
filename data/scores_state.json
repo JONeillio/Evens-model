@@ -1,19 +1,5 @@
 {
  "fixtures": {
-  "id1000001872340012": {
-   "home": "Bristol City",
-   "away": "Norwich City",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-07T12:30:00Z"
-  },
-  "id1000001872340030": {
-   "home": "Wrexham AFC",
-   "away": "Wolverhampton Wanderers",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-07T12:30:00Z"
-  },
   "id1000005272723320": {
    "home": "Samsunspor",
    "away": "Konyaspor",
@@ -153,20 +139,6 @@
    "league": "Serie B",
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
-  },
-  "id1000001872340020": {
-   "home": "Portsmouth FC",
-   "away": "Stoke City",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-07T12:30:00Z"
-  },
-  "id1000001772221384": {
-   "home": "Leeds United",
-   "away": "Tottenham Hotspur",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-07T12:30:00Z"
   },
   "id1000018272037436": {
    "home": "Clermont Foot 63",
@@ -751,38 +723,6 @@
   }
  },
  "scores": {
-  "id1000001872340012": {
-   "s": "FT",
-   "min": 90,
-   "h": 0,
-   "a": 5,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
-  "id1000001872340030": {
-   "s": "FT",
-   "min": 90,
-   "h": 1,
-   "a": 1,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
-  "id1000001872340020": {
-   "s": "FT",
-   "min": 90,
-   "h": 1,
-   "a": 2,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
-  "id1000001772221384": {
-   "s": "FT",
-   "min": 90,
-   "h": 1,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T14:28:49Z"
-  },
   "id1000005272723320": {
    "s": "FT",
    "min": 90,
@@ -1326,10 +1266,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-11T11:45:50Z"
+   "at": "2026-11-11T12:43:10Z"
   }
  },
- "last_called_at": "2026-11-11T11:45:50Z",
+ "last_called_at": "2026-11-11T12:43:10Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1603,7 +1543,7 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-11T11:45:50Z",
+  "at": "2026-11-11T12:43:10Z",
   "want": 2,
   "live": false,
   "called": true,
