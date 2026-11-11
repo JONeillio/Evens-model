@@ -42,20 +42,6 @@
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
   },
-  "id1000001975837154": {
-   "home": "Altrincham FC",
-   "away": "Notts County",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-07T17:30:00Z"
-  },
-  "id1000001772221388": {
-   "home": "Nottingham Forest",
-   "away": "Manchester City",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-07T17:30:00Z"
-  },
   "id1000001975802962": {
    "home": "Peterborough United",
    "away": "Reading FC",
@@ -324,22 +310,6 @@
   }
  },
  "scores": {
-  "id1000001975837154": {
-   "s": "FT",
-   "min": 90,
-   "h": 2,
-   "a": 2,
-   "src": "af",
-   "at": "2026-11-07T19:25:33Z"
-  },
-  "id1000001772221388": {
-   "s": "FT",
-   "min": 90,
-   "h": 3,
-   "a": 1,
-   "src": "af",
-   "at": "2026-11-07T19:35:38Z"
-  },
   "id1000001975802962": {
    "s": "FT",
    "min": 90,
