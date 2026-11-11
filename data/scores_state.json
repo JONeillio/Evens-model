@@ -133,34 +133,6 @@
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
   },
-  "id1000005373093058": {
-   "home": "Cesena FC",
-   "away": "US Catanzaro",
-   "league": "Serie B",
-   "country": "Italy",
-   "kickoff": "2026-11-07T14:00:00Z"
-  },
-  "id1000005373093068": {
-   "home": "Calcio Padova",
-   "away": "Empoli FC",
-   "league": "Serie B",
-   "country": "Italy",
-   "kickoff": "2026-11-07T14:00:00Z"
-  },
-  "id1000003572513292": {
-   "home": "Borussia Dortmund",
-   "away": "SV 07 Elversberg",
-   "league": "Bundesliga",
-   "country": "Germany",
-   "kickoff": "2026-11-07T14:30:00Z"
-  },
-  "id1000003572513294": {
-   "home": "RB Leipzig",
-   "away": "FC Augsburg",
-   "league": "Bundesliga",
-   "country": "Germany",
-   "kickoff": "2026-11-07T14:30:00Z"
-  },
   "id1000001872340008": {
    "home": "Birmingham City",
    "away": "Swansea City",
@@ -709,38 +681,6 @@
   }
  },
  "scores": {
-  "id1000005373093058": {
-   "s": "FT",
-   "min": 90,
-   "h": 1,
-   "a": 0,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
-  },
-  "id1000005373093068": {
-   "s": "FT",
-   "min": 90,
-   "h": 2,
-   "a": 2,
-   "src": "af",
-   "at": "2026-11-07T16:01:02Z"
-  },
-  "id1000003572513292": {
-   "s": "FT",
-   "min": 90,
-   "h": 2,
-   "a": 1,
-   "src": "af",
-   "at": "2026-11-07T16:32:08Z"
-  },
-  "id1000003572513294": {
-   "s": "FT",
-   "min": 90,
-   "h": 5,
-   "a": 2,
-   "src": "af",
-   "at": "2026-11-07T16:32:08Z"
-  },
   "id1000001872340016": {
    "s": "FT",
    "min": 90,
