@@ -42,13 +42,6 @@
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
   },
-  "id1000001975802962": {
-   "home": "Peterborough United",
-   "away": "Reading FC",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-07T20:00:00Z"
-  },
   "id1100013273722402": {
    "home": "Indiana Pacers",
    "away": "Denver Nuggets",
@@ -310,14 +303,6 @@
   }
  },
  "scores": {
-  "id1000001975802962": {
-   "s": "FT",
-   "min": 90,
-   "h": 0,
-   "a": 5,
-   "src": "af",
-   "at": "2026-11-07T21:59:00Z"
-  },
   "id1000001772221374": {
    "s": "FT",
    "min": null,
