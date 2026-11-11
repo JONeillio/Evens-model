@@ -1,41 +1,24 @@
 {
- "started_at": "2026-11-10T08:20:13Z",
+ "started_at": "2026-11-11T08:22:09Z",
  "mode": "scheduled",
  "errors": [],
- "notes": [],
+ "notes": [
+  "Saving requests for the rest of the month; showing the last odds.",
+  "Reused odds snapshot from 2026-11-10T08:20:13Z."
+ ],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 117,
-  "remaining": 133
+  "used": 123,
+  "remaining": 127
  },
  "plan": {
-  "allowance": 6,
-  "remaining": 133,
-  "share": 6.1,
-  "weekday_weight": 1,
-  "fetch": true,
-  "leagues_with_games": 0,
-  "chunks_needed": 0,
-  "chunks_fetched": 0,
-  "matches_priced": 0,
-  "planned_calls": 6
+  "allowance": 0,
+  "remaining": 127,
+  "share": 0.0,
+  "weekday_weight": 0,
+  "fetch": false
  },
- "core": {
-  "competitions": [
-   "Premier League",
-   "Championship",
-   "FA Cup"
-  ],
-  "books": [
-   "pinnacle",
-   "bet365",
-   "paddypower",
-   "williamhill",
-   "unibet"
-  ]
- },
- "priority_picks": 0,
  "nfl": {
   "prop_legs": 0,
   "projections": 0
@@ -56,82 +39,10 @@
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.45,
-   "billable": false,
-   "note": ""
-  },
-  {
-   "endpoint": "fixtures",
-   "params": {
-    "sportId": 10,
-    "from": "2026-11-10T08:20:13Z",
-    "to": "2026-11-12T07:20:13Z"
-   },
-   "status": 200,
-   "seconds": 0.43,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "17,18,19",
-    "bookmaker": "pinnacle",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.35,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "17,18,19",
-    "bookmaker": "bet365",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
    "seconds": 0.46,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "17,18,19",
-    "bookmaker": "paddypower",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.53,
-   "billable": true,
-   "note": ""
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "17,18,19",
-    "bookmaker": "williamhill",
-    "oddsFormat": "decimal"
-   },
-   "status": 404,
-   "seconds": 0.14,
-   "billable": true,
-   "note": "{\"error\":{\"message\":\"No fixtures found for the specified tournament IDs and bookmaker.\",\"code\":\"FIXTURE_NOT_FOUND\",\"details\":\"Please check the provided tournament IDs and try again.\"}}"
-  },
-  {
-   "endpoint": "odds-by-tournaments",
-   "params": {
-    "tournamentIds": "17,18,19",
-    "bookmaker": "unibet",
-    "oddsFormat": "decimal"
-   },
-   "status": 200,
-   "seconds": 0.53,
-   "billable": true,
+   "billable": false,
    "note": ""
   }
  ],
- "finished_at": "2026-11-10T08:20:27Z"
+ "finished_at": "2026-11-11T08:22:12Z"
 }
