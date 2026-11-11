@@ -1313,28 +1313,28 @@
   }
  },
  "budget": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "api_football": 1,
-  "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
+  "af_blocked": "plan: Free plans do not have access to this date, try from 2026-11-10 to 2026-11-12."
  },
  "feeds": {
   "api_football": {
    "ok": false,
-   "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-10T11:42:50Z"
+   "note": "plan: Free plans do not have access to this date, try from 2026-11-10 to 2026-11-12.",
+   "at": "2026-11-11T00:24:22Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-10T23:14:24Z"
+   "at": "2026-11-11T00:24:22Z"
   }
  },
- "last_called_at": "2026-11-10T23:14:24Z",
+ "last_called_at": "2026-11-11T00:24:22Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-10",
+ "af_status_date": "2026-11-11",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -1603,11 +1603,25 @@
   "id1400003171516006": {}
  },
  "last_log": {
-  "at": "2026-11-10T23:14:24Z",
-  "want": 8,
+  "at": "2026-11-11T00:24:22Z",
+  "want": 7,
   "live": false,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-09",
+    "status": 200,
+    "error": "plan: Free plans do not have access to this date, try from 2026-11-10 to 2026-11-12.",
+    "results": 0
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -1620,14 +1634,13 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 8,
+   "checked": 7,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
     "Chicago Bears v Tampa Bay Buccaneers (NFL)",
     "Plymouth Parkway v Berkhamsted FC (FA Cup)",
     "Minnesota Vikings v Buffalo Bills (NFL)",
-    "Minnesota Timberwolves v Utah Jazz (NBA)",
     "Dallas Mavericks v Brooklyn Nets (NBA)",
     "Milwaukee Bucks v Boston Celtics (NBA)",
     "LA Clippers v New Orleans Pelicans (NBA)",
@@ -1635,5 +1648,5 @@
    ]
   }
  },
- "af_last_at": "2026-11-10T11:42:50Z"
+ "af_last_at": "2026-11-11T00:24:22Z"
 }
