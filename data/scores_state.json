@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001975802930": {
-   "home": "Oldham Athletic",
-   "away": "Sheffield Wednesday",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-08T17:15:00Z"
-  },
   "id1400003171515982": {
    "home": "Carolina Panthers",
    "away": "Denver Broncos",
