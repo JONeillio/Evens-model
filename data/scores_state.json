@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001772221390": {
-   "home": "Sunderland AFC",
-   "away": "Chelsea FC",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
   "id1000018572936122": {
    "home": "AEK Athens",
    "away": "APO Levadiakos FC",
@@ -41,41 +34,6 @@
    "league": "Serie B",
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
-  },
-  "id1000001772221374": {
-   "home": "Brighton & Hove Albion",
-   "away": "Brentford FC",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
-  "id1000001772221376": {
-   "home": "Crystal Palace",
-   "away": "Liverpool FC",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
-  "id1000001772221382": {
-   "home": "Ipswich Town",
-   "away": "AFC Bournemouth",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-08T14:00:00Z"
-  },
-  "id1000001975837146": {
-   "home": "Cray Wanderers",
-   "away": "Stockport County FC",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-08T14:15:00Z"
-  },
-  "id1400003171474296": {
-   "home": "Atlanta Falcons",
-   "away": "Cincinnati Bengals",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T14:30:00Z"
   },
   "id1000001975802964": {
    "home": "Wimborne Town",
@@ -254,38 +212,6 @@
   }
  },
  "scores": {
-  "id1000001772221374": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-08T16:08:05Z"
-  },
-  "id1000001772221390": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-08T16:13:08Z"
-  },
-  "id1000001772221376": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 3,
-   "src": "fd",
-   "at": "2026-11-08T16:03:03Z"
-  },
-  "id1000001772221382": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 2,
-   "src": "fd",
-   "at": "2026-11-08T16:08:05Z"
-  },
   "id1000003772041236": {
    "s": "FT",
    "min": null,
