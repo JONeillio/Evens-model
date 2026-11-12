@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171515996": {
-   "home": "Los Angeles Chargers",
-   "away": "Houston Texans",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T21:05:00Z"
-  },
   "id1400003171515998": {
    "home": "San Francisco 49ers",
    "away": "Las Vegas Raiders",
@@ -48,13 +41,6 @@
    "league": "NFL",
    "country": "USA",
    "kickoff": "2026-11-10T01:15:00Z"
-  },
-  "id1100013273719562": {
-   "home": "Chicago Bulls",
-   "away": "Philadelphia 76ers",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-08T20:30:00Z"
   },
   "id1100013273719564": {
    "home": "Detroit Pistons",
