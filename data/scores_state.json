@@ -1,19 +1,5 @@
 {
  "fixtures": {
-  "id1000005373093056": {
-   "home": "Carrarese Calcio",
-   "away": "Sampdoria Genoa",
-   "league": "Serie B",
-   "country": "Italy",
-   "kickoff": "2026-11-08T16:15:00Z"
-  },
-  "id1000001772221386": {
-   "home": "Manchester United",
-   "away": "Aston Villa",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-08T16:30:00Z"
-  },
   "id1000001975802930": {
    "home": "Oldham Athletic",
    "away": "Sheffield Wednesday",
@@ -176,16 +162,7 @@
    "kickoff": "2026-11-13T01:15:00Z"
   }
  },
- "scores": {
-  "id1000001772221386": {
-   "s": "FT",
-   "min": null,
-   "h": 4,
-   "a": 4,
-   "src": "fd",
-   "at": "2026-11-08T18:40:35Z"
-  }
- },
+ "scores": {},
  "budget": {
   "date": "2026-11-11",
   "api_football": 1,
