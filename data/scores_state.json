@@ -1,54 +1,5 @@
 {
  "fixtures": {
-  "id1400003171515982": {
-   "home": "Carolina Panthers",
-   "away": "Denver Broncos",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515984": {
-   "home": "Indianapolis Colts",
-   "away": "Dallas Cowboys",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515986": {
-   "home": "Kansas City Chiefs",
-   "away": "New York Jets",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515988": {
-   "home": "Miami Dolphins",
-   "away": "Detroit Lions",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515990": {
-   "home": "New Orleans Saints",
-   "away": "Cleveland Browns",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515992": {
-   "home": "Philadelphia Eagles",
-   "away": "New York Giants",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
-  "id1400003171515994": {
-   "home": "Washington Commanders",
-   "away": "Los Angeles Rams",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-08T18:00:00Z"
-  },
   "id1400003171515996": {
    "home": "Los Angeles Chargers",
    "away": "Houston Texans",
