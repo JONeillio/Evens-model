@@ -1,10 +1,9 @@
 {
- "started_at": "2026-11-11T08:22:09Z",
+ "started_at": "2026-11-12T08:22:41Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
-  "Saving requests for the rest of the month; showing the last odds.",
-  "Reused odds snapshot from 2026-11-10T08:20:13Z."
+  "Not covered today (saving requests): LaLiga 2"
  ],
  "usage_before": {
   "plan": "free",
@@ -13,22 +12,41 @@
   "remaining": 127
  },
  "plan": {
-  "allowance": 0,
+  "allowance": 6,
   "remaining": 127,
-  "share": 0.0,
-  "weekday_weight": 0,
-  "fetch": false
+  "share": 6.1,
+  "weekday_weight": 1,
+  "fetch": true,
+  "leagues_with_games": 1,
+  "chunks_needed": 1,
+  "chunks_fetched": 0,
+  "matches_priced": 0,
+  "planned_calls": 6
  },
+ "core": {
+  "competitions": [
+   "NFL"
+  ],
+  "books": [
+   "pinnacle",
+   "bet365",
+   "paddypower",
+   "williamhill",
+   "unibet"
+  ]
+ },
+ "priority_picks": 0,
  "nfl": {
-  "prop_legs": 0,
-  "projections": 0
+  "prop_legs": 52,
+  "projections": 33
  },
  "builder_seconds": 0.0,
- "fixtures": 0,
- "legs": 0,
+ "fixtures": 1,
+ "legs": 120,
  "slips": 0,
  "books": [
   "bet365",
+  "williamhill",
   "paddypower",
   "unibet"
  ],
@@ -39,10 +57,82 @@
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.46,
+   "seconds": 0.49,
    "billable": false,
+   "note": ""
+  },
+  {
+   "endpoint": "fixtures",
+   "params": {
+    "sportId": 10,
+    "from": "2026-11-12T08:22:41Z",
+    "to": "2026-11-14T07:22:41Z"
+   },
+   "status": 200,
+   "seconds": 0.47,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.63,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "bet365",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.84,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "paddypower",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.91,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "williamhill",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.5,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "31",
+    "bookmaker": "unibet",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.64,
+   "billable": true,
    "note": ""
   }
  ],
- "finished_at": "2026-11-11T08:22:12Z"
+ "finished_at": "2026-11-12T08:22:58Z"
 }
