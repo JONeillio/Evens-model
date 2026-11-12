@@ -1,46 +1,11 @@
 {
  "fixtures": {
-  "id1000018572936122": {
-   "home": "AEK Athens",
-   "away": "APO Levadiakos FC",
-   "league": "Super League",
-   "country": "Greece",
-   "kickoff": "2026-11-08T15:00:00Z"
-  },
-  "id1000005472477570": {
-   "home": "Girona FC",
-   "away": "UD Almeria",
-   "league": "LaLiga 2",
-   "country": "Spain",
-   "kickoff": "2026-11-08T15:15:00Z"
-  },
-  "id1000023872531004": {
-   "home": "Estoril Praia",
-   "away": "Maritimo Madeira",
-   "league": "Liga Portugal",
-   "country": "Portugal",
-   "kickoff": "2026-11-08T15:30:00Z"
-  },
-  "id1000003772041236": {
-   "home": "SC Cambuur",
-   "away": "PSV Eindhoven",
-   "league": "Eredivisie",
-   "country": "Netherlands",
-   "kickoff": "2026-11-08T15:45:00Z"
-  },
   "id1000005373093056": {
    "home": "Carrarese Calcio",
    "away": "Sampdoria Genoa",
    "league": "Serie B",
    "country": "Italy",
    "kickoff": "2026-11-08T16:15:00Z"
-  },
-  "id1000001975802964": {
-   "home": "Wimborne Town",
-   "away": "Crawley Town",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-08T15:00:00Z"
   },
   "id1000001772221386": {
    "home": "Manchester United",
@@ -212,14 +177,6 @@
   }
  },
  "scores": {
-  "id1000003772041236": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 5,
-   "src": "fd",
-   "at": "2026-11-08T17:54:43Z"
-  },
   "id1000001772221386": {
    "s": "FT",
    "min": null,
