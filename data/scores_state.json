@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001975802948": {
-   "home": "Plymouth Parkway",
-   "away": "Berkhamsted FC",
-   "league": "FA Cup",
-   "country": "England",
-   "kickoff": "2026-11-09T19:30:00Z"
-  },
   "id1400003171516006": {
    "home": "Minnesota Vikings",
    "away": "Buffalo Bills",
