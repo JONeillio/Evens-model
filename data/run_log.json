@@ -1,24 +1,24 @@
 {
- "started_at": "2026-11-14T08:06:06Z",
+ "started_at": "2026-11-15T08:11:05Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
-  "Not covered today (saving requests): League Two, League One, National League, Championship, LaLiga 2, League One, League Two"
+  "Not covered today (saving requests): LaLiga 2"
  ],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 136,
-  "remaining": 114
+  "used": 143,
+  "remaining": 107
  },
  "plan": {
-  "allowance": 11,
-  "remaining": 114,
-  "share": 11.7,
+  "allowance": 12,
+  "remaining": 107,
+  "share": 12.3,
   "weekday_weight": 1.9,
   "fetch": true,
-  "leagues_with_games": 7,
-  "chunks_needed": 2,
+  "leagues_with_games": 1,
+  "chunks_needed": 1,
   "chunks_fetched": 0,
   "matches_priced": 0,
   "planned_calls": 7
@@ -39,13 +39,13 @@
  },
  "priority_picks": 0,
  "nfl": {
-  "prop_legs": 690,
+  "prop_legs": 710,
   "projections": 339
  },
- "builder_seconds": 0.04,
- "fixtures": 18,
- "legs": 1875,
- "slips": 8,
+ "builder_seconds": 0.09,
+ "fixtures": 22,
+ "legs": 2116,
+ "slips": 15,
  "books": [
   "bet365",
   "williamhill",
@@ -60,7 +60,7 @@
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.22,
+   "seconds": 0.26,
    "billable": false,
    "note": ""
   },
@@ -68,8 +68,8 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-14T08:06:06Z",
-    "to": "2026-11-16T07:06:06Z"
+    "from": "2026-11-15T08:11:05Z",
+    "to": "2026-11-17T07:11:05Z"
    },
    "status": 200,
    "seconds": 0.55,
@@ -84,7 +84,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.55,
+   "seconds": 0.48,
    "billable": true,
    "note": ""
   },
@@ -96,7 +96,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.63,
+   "seconds": 0.73,
    "billable": true,
    "note": ""
   },
@@ -108,7 +108,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.75,
+   "seconds": 0.71,
    "billable": true,
    "note": ""
   },
@@ -120,7 +120,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.52,
+   "seconds": 0.59,
    "billable": true,
    "note": ""
   },
@@ -132,7 +132,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.61,
+   "seconds": 0.72,
    "billable": true,
    "note": ""
   },
@@ -144,10 +144,10 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.41,
+   "seconds": 0.42,
    "billable": true,
    "note": ""
   }
  ],
- "finished_at": "2026-11-14T08:06:23Z"
+ "finished_at": "2026-11-15T08:11:23Z"
 }
