@@ -275,10 +275,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-15T20:41:48Z"
+   "at": "2026-11-15T21:21:53Z"
   }
  },
- "last_called_at": "2026-11-15T20:41:48Z",
+ "last_called_at": "2026-11-15T21:21:53Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -573,11 +573,16 @@
   "id1400003171516018": {},
   "id1400003171516020": {},
   "id1400003171516022": {},
-  "id1100013273719644": {}
+  "id1100013273719644": {},
+  "id1400003171516024": {},
+  "id1400003171516026": {},
+  "id1400003171516028": {},
+  "id1100013273719646": {},
+  "id1100013273719648": {}
  },
  "last_log": {
-  "at": "2026-11-15T20:41:48Z",
-  "want": 23,
+  "at": "2026-11-15T21:21:53Z",
+  "want": 28,
   "live": true,
   "called": true,
   "calls": [
@@ -593,7 +598,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 23,
+   "checked": 28,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -619,7 +624,12 @@
     "New Orleans Saints v Carolina Panthers (NFL)",
     "New York Jets v Buffalo Bills (NFL)",
     "Tennessee Titans v Jacksonville Jaguars (NFL)",
-    "Philadelphia 76ers v Indiana Pacers (NBA)"
+    "Arizona Cardinals v Los Angeles Rams (NFL)",
+    "Las Vegas Raiders v Seattle Seahawks (NFL)",
+    "Dallas Cowboys v San Francisco 49ers (NFL)",
+    "Philadelphia 76ers v Indiana Pacers (NBA)",
+    "Phoenix Suns v Los Angeles Lakers (NBA)",
+    "LA Clippers v Charlotte Hornets (NBA)"
    ]
   }
  },
