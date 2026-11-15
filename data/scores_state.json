@@ -275,10 +275,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-15T23:49:33Z"
+   "at": "2026-11-15T23:54:36Z"
   }
  },
- "last_called_at": "2026-11-15T23:49:33Z",
+ "last_called_at": "2026-11-15T23:54:36Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -581,11 +581,12 @@
   "id1100013273719648": {},
   "id1100013273719650": {},
   "id1100013273719652": {},
-  "id1100013273719654": {}
+  "id1100013273719654": {},
+  "id1100013273719656": {}
  },
  "last_log": {
-  "at": "2026-11-15T23:49:33Z",
-  "want": 31,
+  "at": "2026-11-15T23:54:36Z",
+  "want": 32,
   "live": true,
   "called": true,
   "calls": [
@@ -593,7 +594,7 @@
     "feed": "football_data",
     "endpoint": "matches",
     "from": "2026-11-14",
-    "to": "2026-11-16",
+    "to": "2026-11-17",
     "status": 200,
     "error": "",
     "results": 2
@@ -601,7 +602,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 31,
+   "checked": 32,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -635,7 +636,8 @@
     "LA Clippers v Charlotte Hornets (NBA)",
     "Utah Jazz v San Antonio Spurs (NBA)",
     "Boston Celtics v Dallas Mavericks (NBA)",
-    "Toronto Raptors v New York Knicks (NBA)"
+    "Toronto Raptors v New York Knicks (NBA)",
+    "Washington Wizards v Houston Rockets (NBA)"
    ]
   }
  },
