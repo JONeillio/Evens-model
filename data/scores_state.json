@@ -275,10 +275,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-16T01:05:36Z"
+   "at": "2026-11-16T01:10:39Z"
   }
  },
- "last_called_at": "2026-11-16T01:05:36Z",
+ "last_called_at": "2026-11-16T01:10:39Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -583,11 +583,12 @@
   "id1100013273719652": {},
   "id1100013273719654": {},
   "id1100013273719656": {},
-  "id1100013273719658": {}
+  "id1100013273719658": {},
+  "id1400003171516030": {}
  },
  "last_log": {
-  "at": "2026-11-16T01:05:36Z",
-  "want": 28,
+  "at": "2026-11-16T01:10:39Z",
+  "want": 29,
   "live": true,
   "called": true,
   "calls": [
@@ -603,7 +604,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 28,
+   "checked": 29,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -627,6 +628,7 @@
     "Arizona Cardinals v Los Angeles Rams (NFL)",
     "Las Vegas Raiders v Seattle Seahawks (NFL)",
     "Dallas Cowboys v San Francisco 49ers (NFL)",
+    "Cincinnati Bengals v Pittsburgh Steelers (NFL)",
     "Philadelphia 76ers v Indiana Pacers (NBA)",
     "Phoenix Suns v Los Angeles Lakers (NBA)",
     "LA Clippers v Charlotte Hornets (NBA)",
