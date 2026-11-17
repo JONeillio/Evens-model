@@ -262,28 +262,28 @@
  },
  "scores": {},
  "budget": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "api_football": 1,
-  "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
+  "af_blocked": "plan: Free plans do not have access to this date, try from 2026-11-16 to 2026-11-18."
  },
  "feeds": {
   "api_football": {
    "ok": false,
-   "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-16T00:04:41Z"
+   "note": "plan: Free plans do not have access to this date, try from 2026-11-16 to 2026-11-18.",
+   "at": "2026-11-17T00:20:02Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-16T22:51:48Z"
+   "at": "2026-11-17T00:20:02Z"
   }
  },
- "last_called_at": "2026-11-16T22:51:48Z",
+ "last_called_at": "2026-11-17T00:20:02Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-16",
+ "af_status_date": "2026-11-17",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -588,11 +588,25 @@
   "id1100013273719660": {}
  },
  "last_log": {
-  "at": "2026-11-16T22:51:48Z",
-  "want": 26,
+  "at": "2026-11-17T00:20:02Z",
+  "want": 25,
   "live": false,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-15",
+    "status": 200,
+    "error": "plan: Free plans do not have access to this date, try from 2026-11-16 to 2026-11-18.",
+    "results": 0
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -605,11 +619,10 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 26,
+   "checked": 25,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "New Orleans Pelicans v Denver Nuggets (NBA)",
     "Cleveland Cavaliers v Dallas Mavericks (NBA)",
     "Miami Heat v Detroit Pistons (NBA)",
     "Memphis Grizzlies v Brooklyn Nets (NBA)",
@@ -638,5 +651,5 @@
    ]
   }
  },
- "af_last_at": "2026-11-16T00:04:41Z"
+ "af_last_at": "2026-11-17T00:20:02Z"
 }
