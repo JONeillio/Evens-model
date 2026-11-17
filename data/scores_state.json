@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516008": {
-   "home": "New York Giants",
-   "away": "Washington Commanders",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-13T01:15:00Z"
-  },
   "id1100013273696984": {
    "home": "Indiana Pacers",
    "away": "New York Knicks",
@@ -275,10 +268,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-17T00:20:02Z"
+   "at": "2026-11-17T11:41:00Z"
   }
  },
- "last_called_at": "2026-11-17T00:20:02Z",
+ "last_called_at": "2026-11-17T11:41:00Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -585,33 +578,20 @@
   "id1100013273719656": {},
   "id1100013273719658": {},
   "id1400003171516030": {},
-  "id1100013273719660": {}
+  "id1100013273719660": {},
+  "id1400003171516032": {}
  },
  "last_log": {
-  "at": "2026-11-17T00:20:02Z",
-  "want": 25,
+  "at": "2026-11-17T11:41:00Z",
+  "want": 22,
   "live": false,
   "called": true,
   "calls": [
    {
-    "feed": "api_football",
-    "endpoint": "status",
-    "status": 200,
-    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
-   },
-   {
-    "feed": "api_football",
-    "endpoint": "fixtures",
-    "date": "2026-11-15",
-    "status": 200,
-    "error": "plan: Free plans do not have access to this date, try from 2026-11-16 to 2026-11-18.",
-    "results": 0
-   },
-   {
     "feed": "football_data",
     "endpoint": "matches",
     "from": "2026-11-15",
-    "to": "2026-11-17",
+    "to": "2026-11-18",
     "status": 200,
     "error": "",
     "results": 0
@@ -619,14 +599,10 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 25,
+   "checked": 22,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Cleveland Cavaliers v Dallas Mavericks (NBA)",
-    "Miami Heat v Detroit Pistons (NBA)",
-    "Memphis Grizzlies v Brooklyn Nets (NBA)",
-    "Minnesota Timberwolves v Chicago Bulls (NBA)",
     "Detroit Lions v New England Patriots (NFL)",
     "Atlanta Falcons v Kansas City Chiefs (NFL)",
     "Cleveland Browns v Houston Texans (NFL)",
@@ -639,6 +615,7 @@
     "Las Vegas Raiders v Seattle Seahawks (NFL)",
     "Dallas Cowboys v San Francisco 49ers (NFL)",
     "Cincinnati Bengals v Pittsburgh Steelers (NFL)",
+    "Baltimore Ravens v Los Angeles Chargers (NFL)",
     "Philadelphia 76ers v Indiana Pacers (NBA)",
     "Phoenix Suns v Los Angeles Lakers (NBA)",
     "LA Clippers v Charlotte Hornets (NBA)",
