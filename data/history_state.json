@@ -2500,58 +2500,58 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 547,
-   "wins": 474,
-   "p_sum": 478.9486,
-   "price_sum": 606.621
+   "n": 559,
+   "wins": 485,
+   "p_sum": 489.4522,
+   "price_sum": 619.966
   },
   "0.75": {
-   "n": 537,
-   "wins": 412,
-   "p_sum": 415.863,
-   "price_sum": 656.028
+   "n": 546,
+   "wins": 421,
+   "p_sum": 422.8055,
+   "price_sum": 666.918
   },
   "0.70": {
-   "n": 497,
-   "wins": 376,
-   "p_sum": 360.5759,
-   "price_sum": 648.473
+   "n": 509,
+   "wins": 384,
+   "p_sum": 369.2495,
+   "price_sum": 664.321
   },
   "0.90": {
-   "n": 508,
-   "wins": 464,
-   "p_sum": 470.7155,
-   "price_sum": 538.821
+   "n": 524,
+   "wins": 479,
+   "p_sum": 485.561,
+   "price_sum": 555.721
   },
   "0.65": {
-   "n": 448,
-   "wins": 322,
-   "p_sum": 302.5968,
-   "price_sum": 620.144
+   "n": 463,
+   "wins": 332,
+   "p_sum": 312.7353,
+   "price_sum": 640.714
   },
   "0.80": {
-   "n": 547,
-   "wins": 455,
-   "p_sum": 451.5579,
-   "price_sum": 637.707
+   "n": 560,
+   "wins": 467,
+   "p_sum": 462.2786,
+   "price_sum": 653.087
   },
   "0.95": {
-   "n": 228,
-   "wins": 212,
-   "p_sum": 219.2481,
-   "price_sum": 235.585
+   "n": 238,
+   "wins": 222,
+   "p_sum": 228.8339,
+   "price_sum": 245.895
   },
   "0.55": {
-   "n": 180,
-   "wins": 109,
-   "p_sum": 103.8414,
-   "price_sum": 269.922
+   "n": 186,
+   "wins": 111,
+   "p_sum": 107.3169,
+   "price_sum": 278.887
   },
   "0.60": {
-   "n": 457,
-   "wins": 303,
-   "p_sum": 286.2968,
-   "price_sum": 671.969
+   "n": 467,
+   "wins": 309,
+   "p_sum": 292.5527,
+   "price_sum": 686.737
   }
  },
  "legs_pending": {
@@ -28627,1551 +28627,6 @@
    "result": null,
    "score": null
   },
-  "id1400003171516032|nfl-ml:1": {
-   "id": "id1400003171516032|nfl-ml:1",
-   "key": "nfl-ml:1",
-   "label": "Baltimore Ravens to win",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.469,
-   "p_win": 0.6659,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+0.5": {
-   "id": "id1400003171516032|nfl-sp:1:+0.5",
-   "key": "nfl-sp:1:+0.5",
-   "label": "Baltimore Ravens +0.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.41,
-   "p_win": 0.6847,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+1.5": {
-   "id": "id1400003171516032|nfl-sp:1:+1.5",
-   "key": "nfl-sp:1:+1.5",
-   "label": "Baltimore Ravens +1.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.37,
-   "p_win": 0.7047,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+10.5": {
-   "id": "id1400003171516032|nfl-sp:1:+10.5",
-   "key": "nfl-sp:1:+10.5",
-   "label": "Baltimore Ravens +10.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.035,
-   "p_win": 0.9518,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+11.5": {
-   "id": "id1400003171516032|nfl-sp:1:+11.5",
-   "key": "nfl-sp:1:+11.5",
-   "label": "Baltimore Ravens +11.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.027,
-   "p_win": 0.9611,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+12.5": {
-   "id": "id1400003171516032|nfl-sp:1:+12.5",
-   "key": "nfl-sp:1:+12.5",
-   "label": "Baltimore Ravens +12.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.025,
-   "p_win": 0.9639,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+2.5": {
-   "id": "id1400003171516032|nfl-sp:1:+2.5",
-   "key": "nfl-sp:1:+2.5",
-   "label": "Baltimore Ravens +2.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.35,
-   "p_win": 0.7277,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+3.5": {
-   "id": "id1400003171516032|nfl-sp:1:+3.5",
-   "key": "nfl-sp:1:+3.5",
-   "label": "Baltimore Ravens +3.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.25,
-   "p_win": 0.8016,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+4.5": {
-   "id": "id1400003171516032|nfl-sp:1:+4.5",
-   "key": "nfl-sp:1:+4.5",
-   "label": "Baltimore Ravens +4.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.2,
-   "p_win": 0.8141,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+5.5": {
-   "id": "id1400003171516032|nfl-sp:1:+5.5",
-   "key": "nfl-sp:1:+5.5",
-   "label": "Baltimore Ravens +5.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.18,
-   "p_win": 0.8347,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+6.5": {
-   "id": "id1400003171516032|nfl-sp:1:+6.5",
-   "key": "nfl-sp:1:+6.5",
-   "label": "Baltimore Ravens +6.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.15,
-   "p_win": 0.8531,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+7.5": {
-   "id": "id1400003171516032|nfl-sp:1:+7.5",
-   "key": "nfl-sp:1:+7.5",
-   "label": "Baltimore Ravens +7.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.064,
-   "p_win": 0.9205,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+8.5": {
-   "id": "id1400003171516032|nfl-sp:1:+8.5",
-   "key": "nfl-sp:1:+8.5",
-   "label": "Baltimore Ravens +8.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.05,
-   "p_win": 0.9344,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:+9.5": {
-   "id": "id1400003171516032|nfl-sp:1:+9.5",
-   "key": "nfl-sp:1:+9.5",
-   "label": "Baltimore Ravens +9.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.047,
-   "p_win": 0.9383,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:-0.5": {
-   "id": "id1400003171516032|nfl-sp:1:-0.5",
-   "key": "nfl-sp:1:-0.5",
-   "label": "Baltimore Ravens -0.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.42,
-   "p_win": 0.6791,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:-1.5": {
-   "id": "id1400003171516032|nfl-sp:1:-1.5",
-   "key": "nfl-sp:1:-1.5",
-   "label": "Baltimore Ravens -1.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.5,
-   "p_win": 0.6483,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:1:-2.5": {
-   "id": "id1400003171516032|nfl-sp:1:-2.5",
-   "key": "nfl-sp:1:-2.5",
-   "label": "Baltimore Ravens -2.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.55,
-   "p_win": 0.6145,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+10.5": {
-   "id": "id1400003171516032|nfl-sp:2:+10.5",
-   "key": "nfl-sp:2:+10.5",
-   "label": "Los Angeles Chargers +10.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.36,
-   "p_win": 0.7061,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+11.5": {
-   "id": "id1400003171516032|nfl-sp:2:+11.5",
-   "key": "nfl-sp:2:+11.5",
-   "label": "Los Angeles Chargers +11.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.321,
-   "p_win": 0.7397,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+12.5": {
-   "id": "id1400003171516032|nfl-sp:2:+12.5",
-   "key": "nfl-sp:2:+12.5",
-   "label": "Los Angeles Chargers +12.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.29,
-   "p_win": 0.7528,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+13.5": {
-   "id": "id1400003171516032|nfl-sp:2:+13.5",
-   "key": "nfl-sp:2:+13.5",
-   "label": "Los Angeles Chargers +13.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.25,
-   "p_win": 0.7785,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+14.5": {
-   "id": "id1400003171516032|nfl-sp:2:+14.5",
-   "key": "nfl-sp:2:+14.5",
-   "label": "Los Angeles Chargers +14.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.2,
-   "p_win": 0.8151,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+15.5": {
-   "id": "id1400003171516032|nfl-sp:2:+15.5",
-   "key": "nfl-sp:2:+15.5",
-   "label": "Los Angeles Chargers +15.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.17,
-   "p_win": 0.8351,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+16.5": {
-   "id": "id1400003171516032|nfl-sp:2:+16.5",
-   "key": "nfl-sp:2:+16.5",
-   "label": "Los Angeles Chargers +16.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.17,
-   "p_win": 0.8512,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+17.5": {
-   "id": "id1400003171516032|nfl-sp:2:+17.5",
-   "key": "nfl-sp:2:+17.5",
-   "label": "Los Angeles Chargers +17.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.11,
-   "p_win": 0.8747,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+18.5": {
-   "id": "id1400003171516032|nfl-sp:2:+18.5",
-   "key": "nfl-sp:2:+18.5",
-   "label": "Los Angeles Chargers +18.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.098,
-   "p_win": 0.8864,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+19.5": {
-   "id": "id1400003171516032|nfl-sp:2:+19.5",
-   "key": "nfl-sp:2:+19.5",
-   "label": "Los Angeles Chargers +19.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.087,
-   "p_win": 0.8972,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+20.5": {
-   "id": "id1400003171516032|nfl-sp:2:+20.5",
-   "key": "nfl-sp:2:+20.5",
-   "label": "Los Angeles Chargers +20.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.066,
-   "p_win": 0.9186,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+21.5": {
-   "id": "id1400003171516032|nfl-sp:2:+21.5",
-   "key": "nfl-sp:2:+21.5",
-   "label": "Los Angeles Chargers +21.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.054,
-   "p_win": 0.931,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+22.5": {
-   "id": "id1400003171516032|nfl-sp:2:+22.5",
-   "key": "nfl-sp:2:+22.5",
-   "label": "Los Angeles Chargers +22.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.047,
-   "p_win": 0.9383,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+23.5": {
-   "id": "id1400003171516032|nfl-sp:2:+23.5",
-   "key": "nfl-sp:2:+23.5",
-   "label": "Los Angeles Chargers +23.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.039,
-   "p_win": 0.9475,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+24.5": {
-   "id": "id1400003171516032|nfl-sp:2:+24.5",
-   "key": "nfl-sp:2:+24.5",
-   "label": "Los Angeles Chargers +24.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.03,
-   "p_win": 0.9577,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+7.5": {
-   "id": "id1400003171516032|nfl-sp:2:+7.5",
-   "key": "nfl-sp:2:+7.5",
-   "label": "Los Angeles Chargers +7.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.53,
-   "p_win": 0.6338,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+8.5": {
-   "id": "id1400003171516032|nfl-sp:2:+8.5",
-   "key": "nfl-sp:2:+8.5",
-   "label": "Los Angeles Chargers +8.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.461,
-   "p_win": 0.661,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-sp:2:+9.5": {
-   "id": "id1400003171516032|nfl-sp:2:+9.5",
-   "key": "nfl-sp:2:+9.5",
-   "label": "Los Angeles Chargers +9.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.42,
-   "p_win": 0.6793,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:19.5:over": {
-   "id": "id1400003171516032|nfl-tot:19.5:over",
-   "key": "nfl-tot:19.5:over",
-   "label": "Over 19.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.021,
-   "p_win": 0.9688,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:20.5:over": {
-   "id": "id1400003171516032|nfl-tot:20.5:over",
-   "key": "nfl-tot:20.5:over",
-   "label": "Over 20.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.026,
-   "p_win": 0.9623,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:21.5:over": {
-   "id": "id1400003171516032|nfl-tot:21.5:over",
-   "key": "nfl-tot:21.5:over",
-   "label": "Over 21.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.03,
-   "p_win": 0.9577,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:22.5:over": {
-   "id": "id1400003171516032|nfl-tot:22.5:over",
-   "key": "nfl-tot:22.5:over",
-   "label": "Over 22.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.038,
-   "p_win": 0.9486,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:23.5:over": {
-   "id": "id1400003171516032|nfl-tot:23.5:over",
-   "key": "nfl-tot:23.5:over",
-   "label": "Over 23.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.066,
-   "p_win": 0.9186,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:24.5:over": {
-   "id": "id1400003171516032|nfl-tot:24.5:over",
-   "key": "nfl-tot:24.5:over",
-   "label": "Over 24.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.079,
-   "p_win": 0.9053,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:25.5:over": {
-   "id": "id1400003171516032|nfl-tot:25.5:over",
-   "key": "nfl-tot:25.5:over",
-   "label": "Over 25.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.09,
-   "p_win": 0.8942,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:26.5:over": {
-   "id": "id1400003171516032|nfl-tot:26.5:over",
-   "key": "nfl-tot:26.5:over",
-   "label": "Over 26.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.14,
-   "p_win": 0.8589,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:27.5:over": {
-   "id": "id1400003171516032|nfl-tot:27.5:over",
-   "key": "nfl-tot:27.5:over",
-   "label": "Over 27.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.17,
-   "p_win": 0.8476,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:28.5:over": {
-   "id": "id1400003171516032|nfl-tot:28.5:over",
-   "key": "nfl-tot:28.5:over",
-   "label": "Over 28.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.19,
-   "p_win": 0.8409,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:29.5:over": {
-   "id": "id1400003171516032|nfl-tot:29.5:over",
-   "key": "nfl-tot:29.5:over",
-   "label": "Over 29.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.23,
-   "p_win": 0.8004,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:30.5:over": {
-   "id": "id1400003171516032|nfl-tot:30.5:over",
-   "key": "nfl-tot:30.5:over",
-   "label": "Over 30.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.29,
-   "p_win": 0.7611,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:31.5:over": {
-   "id": "id1400003171516032|nfl-tot:31.5:over",
-   "key": "nfl-tot:31.5:over",
-   "label": "Over 31.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.33,
-   "p_win": 0.7423,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:32.5:over": {
-   "id": "id1400003171516032|nfl-tot:32.5:over",
-   "key": "nfl-tot:32.5:over",
-   "label": "Over 32.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.37,
-   "p_win": 0.7121,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:33.5:over": {
-   "id": "id1400003171516032|nfl-tot:33.5:over",
-   "key": "nfl-tot:33.5:over",
-   "label": "Over 33.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.45,
-   "p_win": 0.6718,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:34.5:over": {
-   "id": "id1400003171516032|nfl-tot:34.5:over",
-   "key": "nfl-tot:34.5:over",
-   "label": "Over 34.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.5,
-   "p_win": 0.6458,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:35.5:over": {
-   "id": "id1400003171516032|nfl-tot:35.5:over",
-   "key": "nfl-tot:35.5:over",
-   "label": "Over 35.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.57,
-   "p_win": 0.6168,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:42.5:under": {
-   "id": "id1400003171516032|nfl-tot:42.5:under",
-   "key": "nfl-tot:42.5:under",
-   "label": "Under 42.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.57,
-   "p_win": 0.6097,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:43.5:under": {
-   "id": "id1400003171516032|nfl-tot:43.5:under",
-   "key": "nfl-tot:43.5:under",
-   "label": "Under 43.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.5,
-   "p_win": 0.6515,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:44.5:under": {
-   "id": "id1400003171516032|nfl-tot:44.5:under",
-   "key": "nfl-tot:44.5:under",
-   "label": "Under 44.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.44,
-   "p_win": 0.6813,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:45.5:under": {
-   "id": "id1400003171516032|nfl-tot:45.5:under",
-   "key": "nfl-tot:45.5:under",
-   "label": "Under 45.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.37,
-   "p_win": 0.7078,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:46.5:under": {
-   "id": "id1400003171516032|nfl-tot:46.5:under",
-   "key": "nfl-tot:46.5:under",
-   "label": "Under 46.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.35,
-   "p_win": 0.7327,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:47.5:under": {
-   "id": "id1400003171516032|nfl-tot:47.5:under",
-   "key": "nfl-tot:47.5:under",
-   "label": "Under 47.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.28,
-   "p_win": 0.7651,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:48.5:under": {
-   "id": "id1400003171516032|nfl-tot:48.5:under",
-   "key": "nfl-tot:48.5:under",
-   "label": "Under 48.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.25,
-   "p_win": 0.7882,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:49.5:under": {
-   "id": "id1400003171516032|nfl-tot:49.5:under",
-   "key": "nfl-tot:49.5:under",
-   "label": "Under 49.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.21,
-   "p_win": 0.815,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:50.5:under": {
-   "id": "id1400003171516032|nfl-tot:50.5:under",
-   "key": "nfl-tot:50.5:under",
-   "label": "Under 50.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.18,
-   "p_win": 0.8454,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:51.5:under": {
-   "id": "id1400003171516032|nfl-tot:51.5:under",
-   "key": "nfl-tot:51.5:under",
-   "label": "Under 51.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.15,
-   "p_win": 0.851,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:52.5:under": {
-   "id": "id1400003171516032|nfl-tot:52.5:under",
-   "key": "nfl-tot:52.5:under",
-   "label": "Under 52.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.1,
-   "p_win": 0.8841,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:53.5:under": {
-   "id": "id1400003171516032|nfl-tot:53.5:under",
-   "key": "nfl-tot:53.5:under",
-   "label": "Under 53.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.083,
-   "p_win": 0.9012,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:54.5:under": {
-   "id": "id1400003171516032|nfl-tot:54.5:under",
-   "key": "nfl-tot:54.5:under",
-   "label": "Under 54.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.066,
-   "p_win": 0.9186,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:55.5:under": {
-   "id": "id1400003171516032|nfl-tot:55.5:under",
-   "key": "nfl-tot:55.5:under",
-   "label": "Under 55.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.053,
-   "p_win": 0.9314,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:56.5:under": {
-   "id": "id1400003171516032|nfl-tot:56.5:under",
-   "key": "nfl-tot:56.5:under",
-   "label": "Under 56.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.048,
-   "p_win": 0.9372,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:57.5:under": {
-   "id": "id1400003171516032|nfl-tot:57.5:under",
-   "key": "nfl-tot:57.5:under",
-   "label": "Under 57.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.035,
-   "p_win": 0.9518,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-tot:58.5:under": {
-   "id": "id1400003171516032|nfl-tot:58.5:under",
-   "key": "nfl-tot:58.5:under",
-   "label": "Under 58.5 points",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.031,
-   "p_win": 0.9566,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0032764:69.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0032764:69.5:over",
-   "key": "nfl-prop:rush_yds:00-0032764:69.5:over",
-   "label": "Derrick Henry 70+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.53,
-   "p_win": 0.59,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0032764:49.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0032764:49.5:over",
-   "key": "nfl-prop:rush_yds:00-0032764:49.5:over",
-   "label": "Derrick Henry 50+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.17,
-   "p_win": 0.8111,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0032764:39.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0032764:39.5:over",
-   "key": "nfl-prop:rush_yds:00-0032764:39.5:over",
-   "label": "Derrick Henry 40+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.1,
-   "p_win": 0.8999,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0032764:59.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0032764:59.5:over",
-   "key": "nfl-prop:rush_yds:00-0032764:59.5:over",
-   "label": "Derrick Henry 60+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.308,
-   "p_win": 0.715,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0032764:29.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0032764:29.5:over",
-   "key": "nfl-prop:rush_yds:00-0032764:29.5:over",
-   "label": "Derrick Henry 30+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.05,
-   "p_win": 0.9459,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0034753:14.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0034753:14.5:over",
-   "key": "nfl-prop:rec_yds:00-0034753:14.5:over",
-   "label": "Mark Andrews 15+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.4,
-   "p_win": 0.6033,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0034753:4.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0034753:4.5:over",
-   "key": "nfl-prop:rec_yds:00-0034753:4.5:over",
-   "label": "Mark Andrews 5+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.1,
-   "p_win": 0.7816,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0034753:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0034753:9.5:over",
-   "key": "nfl-prop:rec_yds:00-0034753:9.5:over",
-   "label": "Mark Andrews 10+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.263,
-   "p_win": 0.6895,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0034975:4.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0034975:4.5:over",
-   "key": "nfl-prop:rec_yds:00-0034975:4.5:over",
-   "label": "Justice Hill 5+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.29,
-   "p_win": 0.7188,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0036355:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0036355:9.5:over",
-   "key": "nfl-prop:rush_yds:00-0036355:9.5:over",
-   "label": "Justin Herbert 10+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.238,
-   "p_win": 0.6946,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0036355:14.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0036355:14.5:over",
-   "key": "nfl-prop:rush_yds:00-0036355:14.5:over",
-   "label": "Justin Herbert 15+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.44,
-   "p_win": 0.5808,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:149.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:149.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:149.5:over",
-   "label": "Justin Herbert 150+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.179,
-   "p_win": 0.7339,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:124.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:124.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:124.5:over",
-   "label": "Justin Herbert 125+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.07,
-   "p_win": 0.8619,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:174.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:174.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:174.5:over",
-   "label": "Justin Herbert 175+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.42,
-   "p_win": 0.5999,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:159.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:159.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:159.5:over",
-   "label": "Justin Herbert 160+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.238,
-   "p_win": 0.6735,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:169.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:169.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:169.5:over",
-   "label": "Justin Herbert 170+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.308,
-   "p_win": 0.6333,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:pass_yds:00-0036355:179.5:over": {
-   "id": "id1400003171516032|nfl-prop:pass_yds:00-0036355:179.5:over",
-   "key": "nfl-prop:pass_yds:00-0036355:179.5:over",
-   "label": "Justin Herbert 180+ passing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.435,
-   "p_win": 0.5534,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0036550:14.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0036550:14.5:over",
-   "key": "nfl-prop:rec_yds:00-0036550:14.5:over",
-   "label": "Rashod Bateman 15+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.4,
-   "p_win": 0.6156,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0036550:4.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0036550:4.5:over",
-   "key": "nfl-prop:rec_yds:00-0036550:4.5:over",
-   "label": "Rashod Bateman 5+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.11,
-   "p_win": 0.7871,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0036550:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0036550:9.5:over",
-   "key": "nfl-prop:rec_yds:00-0036550:9.5:over",
-   "label": "Rashod Bateman 10+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.29,
-   "p_win": 0.6982,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:49.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:49.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:49.5:over",
-   "label": "Zay Flowers 50+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.34,
-   "p_win": 0.671,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:19.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:19.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:19.5:over",
-   "label": "Zay Flowers 20+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.05,
-   "p_win": 0.9101,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:29.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:29.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:29.5:over",
-   "label": "Zay Flowers 30+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.1,
-   "p_win": 0.8427,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:59.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:59.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:59.5:over",
-   "label": "Zay Flowers 60+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.57,
-   "p_win": 0.5751,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:39.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:39.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:39.5:over",
-   "label": "Zay Flowers 40+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.18,
-   "p_win": 0.7626,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039064:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039064:9.5:over",
-   "key": "nfl-prop:rec_yds:00-0039064:9.5:over",
-   "label": "Zay Flowers 10+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.05,
-   "p_win": 0.9541,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0039391:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0039391:9.5:over",
-   "key": "nfl-prop:rush_yds:00-0039391:9.5:over",
-   "label": "Kimani Vidal 10+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.308,
-   "p_win": 0.6846,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0039391:14.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0039391:14.5:over",
-   "key": "nfl-prop:rush_yds:00-0039391:14.5:over",
-   "label": "Kimani Vidal 15+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.57,
-   "p_win": 0.5763,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0040666:24.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0040666:24.5:over",
-   "key": "nfl-prop:rush_yds:00-0040666:24.5:over",
-   "label": "Omarion Hampton 25+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.44,
-   "p_win": 0.6348,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0040666:14.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0040666:14.5:over",
-   "key": "nfl-prop:rush_yds:00-0040666:14.5:over",
-   "label": "Omarion Hampton 15+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.13,
-   "p_win": 0.817,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0040666:19.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0040666:19.5:over",
-   "key": "nfl-prop:rush_yds:00-0040666:19.5:over",
-   "label": "Omarion Hampton 20+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.25,
-   "p_win": 0.7328,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rush_yds:00-0040666:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rush_yds:00-0040666:9.5:over",
-   "key": "nfl-prop:rush_yds:00-0040666:9.5:over",
-   "label": "Omarion Hampton 10+ rushing yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.08,
-   "p_win": 0.891,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0040870:4.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0040870:4.5:over",
-   "key": "nfl-prop:rec_yds:00-0040870:4.5:over",
-   "label": "Ja'Kobi Lane 5+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.14,
-   "p_win": 0.7655,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0040870:9.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0040870:9.5:over",
-   "key": "nfl-prop:rec_yds:00-0040870:9.5:over",
-   "label": "Ja'Kobi Lane 10+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.323,
-   "p_win": 0.6525,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
   "id1100013273719644|nba-ml:1": {
    "id": "id1100013273719644|nba-ml:1",
    "key": "nba-ml:1",
@@ -38406,40 +36861,25 @@
    "source": "consensus",
    "result": null,
    "score": null
-  },
-  "id1400003171516032|nfl-prop:rec_yds:00-0039915:19.5:over": {
-   "id": "id1400003171516032|nfl-prop:rec_yds:00-0039915:19.5:over",
-   "key": "nfl-prop:rec_yds:00-0039915:19.5:over",
-   "label": "Ladd McConkey 20+ receiving yds",
-   "match": "Baltimore Ravens v Los Angeles Chargers",
-   "league": "NFL",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "price": 1.25,
-   "p_win": 0.6634,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "market+model",
-   "result": null,
-   "score": null
   }
  },
  "evidence": {
   "edge": {
    "poor": {
-    "n": 1832,
-    "wins": 1394,
-    "p_sum": 1327.5317,
-    "implied_sum": 1460.2403,
-    "claimed_sum": -166.3207,
-    "return_sum": -79.984
+    "n": 1875,
+    "wins": 1422,
+    "p_sum": 1357.3325,
+    "implied_sum": 1493.0208,
+    "claimed_sum": -170.1948,
+    "return_sum": -86.569
    },
    "flat": {
-    "n": 2004,
-    "wins": 1650,
-    "p_sum": 1668.2939,
-    "implied_sum": 1695.0712,
-    "claimed_sum": -31.5791,
-    "return_sum": -48.626
+    "n": 2064,
+    "wins": 1705,
+    "p_sum": 1719.6347,
+    "implied_sum": 1747.3081,
+    "claimed_sum": -32.618,
+    "return_sum": -45.32
    },
    "some": {
     "n": 84,
@@ -38468,12 +36908,12 @@
     "return_sum": 2.684
    },
    "sharp": {
-    "n": 510,
-    "wins": 397,
-    "p_sum": 381.0279,
-    "implied_sum": 393.9021,
-    "claimed_sum": -16.452,
-    "return_sum": 7.192
+    "n": 516,
+    "wins": 401,
+    "p_sum": 385.2661,
+    "implied_sum": 398.2451,
+    "claimed_sum": -16.602,
+    "return_sum": 6.502
    },
    "unknown": {
     "n": 43,
@@ -38484,12 +36924,12 @@
     "return_sum": 3.41
    },
    "consensus": {
-    "n": 1761,
-    "wins": 1452,
-    "p_sum": 1462.9859,
-    "implied_sum": 1488.3834,
-    "claimed_sum": -30.4493,
-    "return_sum": -34.941
+    "n": 1824,
+    "wins": 1509,
+    "p_sum": 1515.2319,
+    "implied_sum": 1541.6999,
+    "claimed_sum": -31.7514,
+    "return_sum": -30.784
    },
    "sharp-derived": {
     "n": 2,
@@ -38500,12 +36940,12 @@
     "return_sum": 0.07
    },
    "sharp+model": {
-    "n": 1492,
-    "wins": 1114,
-    "p_sum": 1092.8333,
-    "implied_sum": 1204.2655,
-    "claimed_sum": -139.1606,
-    "return_sum": -116.912
+    "n": 1526,
+    "wins": 1136,
+    "p_sum": 1117.4907,
+    "implied_sum": 1231.6234,
+    "claimed_sum": -142.6217,
+    "return_sum": -123.658
    },
    "market+model": {
     "n": 42,
@@ -38574,52 +37014,52 @@
     "return_sum": 0.05
    },
    "nfl-ml": {
-    "n": 21,
+    "n": 22,
     "wins": 20,
-    "p_sum": 14.8219,
-    "implied_sum": 15.1648,
-    "claimed_sum": -0.4848,
-    "return_sum": 6.953
+    "p_sum": 15.4878,
+    "implied_sum": 15.8455,
+    "claimed_sum": -0.5066,
+    "return_sum": 5.953
    },
    "nfl-sp": {
-    "n": 910,
-    "wins": 735,
-    "p_sum": 748.438,
-    "implied_sum": 761.5534,
-    "claimed_sum": -15.993,
-    "return_sum": -28.941
+    "n": 944,
+    "wins": 763,
+    "p_sum": 776.2745,
+    "implied_sum": 790.022,
+    "claimed_sum": -16.7767,
+    "return_sum": -30.21
    },
    "nfl-tot": {
-    "n": 917,
-    "wins": 757,
-    "p_sum": 750.2019,
-    "implied_sum": 763.9693,
-    "claimed_sum": -16.5343,
-    "return_sum": -2.034
+    "n": 951,
+    "wins": 790,
+    "p_sum": 778.1837,
+    "implied_sum": 792.4795,
+    "claimed_sum": -17.1808,
+    "return_sum": 3.702
    },
    "rush_yds": {
-    "n": 315,
-    "wins": 231,
-    "p_sum": 234.716,
-    "implied_sum": 255.8879,
-    "claimed_sum": -26.6541,
-    "return_sum": -31.622
+    "n": 328,
+    "wins": 237,
+    "p_sum": 244.2898,
+    "implied_sum": 266.2311,
+    "claimed_sum": -27.6719,
+    "return_sum": -37.044
    },
    "rec_yds": {
-    "n": 854,
-    "wins": 637,
-    "p_sum": 628.8535,
-    "implied_sum": 684.9494,
-    "claimed_sum": -70.1056,
-    "return_sum": -63.367
+    "n": 869,
+    "wins": 652,
+    "p_sum": 639.8812,
+    "implied_sum": 697.2079,
+    "claimed_sum": -71.6446,
+    "return_sum": -59.761
    },
    "pass_yds": {
-    "n": 365,
-    "wins": 279,
-    "p_sum": 259.3229,
-    "implied_sum": 295.6069,
-    "claimed_sum": -45.1226,
-    "return_sum": -21.042
+    "n": 371,
+    "wins": 280,
+    "p_sum": 263.3788,
+    "implied_sum": 300.3631,
+    "claimed_sum": -46.0269,
+    "return_sum": -25.972
    }
   }
  },
@@ -52363,6 +50803,422 @@
   "id1400003171516030|nfl-prop:rec_yds:00-0036894:14.5:over": {
    "r": "won",
    "k": "2026-11-16T01:20:00Z"
+  },
+  "id1400003171516032|nfl-ml:1": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+0.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+1.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+10.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+11.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+12.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+2.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+3.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+4.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+5.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+6.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+7.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+8.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:+9.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:-0.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:-1.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:1:-2.5": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+10.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+11.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+12.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+13.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+14.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+15.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+16.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+17.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+18.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+19.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+20.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+21.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+22.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+23.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+24.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+7.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+8.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-sp:2:+9.5": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:19.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:20.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:21.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:22.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:23.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:24.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:25.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:26.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:27.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:28.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:29.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:30.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:31.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:32.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:33.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:34.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:35.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:42.5:under": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:43.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:44.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:45.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:46.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:47.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:48.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:49.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:50.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:51.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:52.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:53.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:54.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:55.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:56.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:57.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-tot:58.5:under": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0032764:69.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0032764:49.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0032764:39.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0032764:59.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0032764:29.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0034753:14.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0034753:4.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0034753:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0034975:4.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0036355:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0036355:14.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:149.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:124.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:174.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:159.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:169.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:pass_yds:00-0036355:179.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0036550:14.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0036550:4.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0036550:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:49.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:19.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:29.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:59.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:39.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039064:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0039391:9.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0039391:14.5:over": {
+   "r": "lost",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0040666:24.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0040666:14.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0040666:19.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rush_yds:00-0040666:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0040870:4.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0040870:9.5:over": {
+   "r": "won",
+   "k": "2026-11-17T01:15:00Z"
+  },
+  "id1400003171516032|nfl-prop:rec_yds:00-0039915:19.5:over": {
+   "r": "void",
+   "k": "2026-11-17T01:15:00Z"
   }
  }
 }
