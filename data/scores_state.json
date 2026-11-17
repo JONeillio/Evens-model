@@ -268,10 +268,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-17T13:54:37Z"
+   "at": "2026-11-17T15:39:17Z"
   }
  },
- "last_called_at": "2026-11-17T13:54:37Z",
+ "last_called_at": "2026-11-17T15:39:17Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -582,8 +582,8 @@
   "id1400003171516032": {}
  },
  "last_log": {
-  "at": "2026-11-17T13:54:37Z",
-  "want": 22,
+  "at": "2026-11-17T15:39:17Z",
+  "want": 21,
   "live": false,
   "called": true,
   "calls": [
@@ -599,11 +599,10 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 22,
+   "checked": 21,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Detroit Lions v New England Patriots (NFL)",
     "Atlanta Falcons v Kansas City Chiefs (NFL)",
     "Cleveland Browns v Houston Texans (NFL)",
     "Green Bay Packers v Minnesota Vikings (NFL)",
