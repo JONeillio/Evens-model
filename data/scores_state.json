@@ -1,19 +1,5 @@
 {
  "fixtures": {
-  "id1100013273696984": {
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-14T00:00:00Z"
-  },
-  "id1100013273696986": {
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-14T00:00:00Z"
-  },
   "id1100013273696988": {
    "home": "Miami Heat",
    "away": "Cleveland Cavaliers",
