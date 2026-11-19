@@ -1,26 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516024": {
-   "home": "Arizona Cardinals",
-   "away": "Los Angeles Rams",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-15T21:05:00Z"
-  },
-  "id1400003171516026": {
-   "home": "Las Vegas Raiders",
-   "away": "Seattle Seahawks",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-15T21:05:00Z"
-  },
-  "id1400003171516028": {
-   "home": "Dallas Cowboys",
-   "away": "San Francisco 49ers",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-15T21:25:00Z"
-  },
   "id1400003171516030": {
    "home": "Cincinnati Bengals",
    "away": "Pittsburgh Steelers",
@@ -34,13 +13,6 @@
    "league": "NFL",
    "country": "USA",
    "kickoff": "2026-11-17T01:15:00Z"
-  },
-  "id1100013273719646": {
-   "home": "Phoenix Suns",
-   "away": "Los Angeles Lakers",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-15T21:00:00Z"
   },
   "id1100013273719648": {
    "home": "LA Clippers",
