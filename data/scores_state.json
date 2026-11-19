@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171488892": {
-   "home": "Detroit Lions",
-   "away": "New England Patriots",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-15T14:30:00Z"
-  },
   "id1400003171516010": {
    "home": "Atlanta Falcons",
    "away": "Kansas City Chiefs",
