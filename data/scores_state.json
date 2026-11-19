@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1100013273719634": {
-   "home": "New Orleans Pelicans",
-   "away": "Denver Nuggets",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-15T00:00:00Z"
-  },
   "id1100013273719636": {
    "home": "Cleveland Cavaliers",
    "away": "Dallas Mavericks",
