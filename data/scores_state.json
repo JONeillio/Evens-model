@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516030": {
-   "home": "Cincinnati Bengals",
-   "away": "Pittsburgh Steelers",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-16T01:20:00Z"
-  },
   "id1400003171516032": {
    "home": "Baltimore Ravens",
    "away": "Los Angeles Chargers",
@@ -14,31 +7,227 @@
    "country": "USA",
    "kickoff": "2026-11-17T01:15:00Z"
   },
-  "id1100013273719658": {
-   "home": "Milwaukee Bucks",
-   "away": "Atlanta Hawks",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-16T01:00:00Z"
-  },
-  "id1100013273719660": {
-   "home": "Sacramento Kings",
-   "away": "Oklahoma City Thunder",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-16T02:00:00Z"
-  },
   "id1400003171516034": {
    "home": "Houston Texans",
    "away": "Indianapolis Colts",
    "league": "NFL",
    "country": "USA",
    "kickoff": "2026-11-20T01:15:00Z"
+  },
+  "id1100013273697002": {
+   "home": "Atlanta Hawks",
+   "away": "Charlotte Hornets",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T00:00:00Z"
+  },
+  "id1100013273697020": {
+   "home": "Brooklyn Nets",
+   "away": "Orlando Magic",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T00:30:00Z"
+  },
+  "id1100013273697022": {
+   "home": "Cleveland Cavaliers",
+   "away": "Indiana Pacers",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T00:30:00Z"
+  },
+  "id1100013273697024": {
+   "home": "Detroit Pistons",
+   "away": "Toronto Raptors",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T00:30:00Z"
+  },
+  "id1100013273697004": {
+   "home": "Chicago Bulls",
+   "away": "Washington Wizards",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T01:00:00Z"
+  },
+  "id1100013273697006": {
+   "home": "Oklahoma City Thunder",
+   "away": "New Orleans Pelicans",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T01:00:00Z"
+  },
+  "id1100013273697008": {
+   "home": "Utah Jazz",
+   "away": "Phoenix Suns",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T02:30:00Z"
+  },
+  "id1100013273697010": {
+   "home": "Los Angeles Lakers",
+   "away": "Sacramento Kings",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T03:00:00Z"
+  },
+  "id1100013273697012": {
+   "home": "Denver Nuggets",
+   "away": "Houston Rockets",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-21T03:00:00Z"
+  },
+  "id1000001872340040": {
+   "home": "Millwall FC",
+   "away": "Queens Park Rangers",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T12:30:00Z"
+  },
+  "id1000001872340042": {
+   "home": "Norwich City",
+   "away": "Cardiff City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T12:30:00Z"
+  },
+  "id1000001872340046": {
+   "home": "Southampton FC",
+   "away": "Derby County",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T12:30:00Z"
+  },
+  "id1000001772221406": {
+   "home": "Manchester City",
+   "away": "Fulham FC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T12:30:00Z"
+  },
+  "id1000001872340032": {
+   "home": "Bolton Wanderers",
+   "away": "Portsmouth FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340036": {
+   "home": "Lincoln City",
+   "away": "Wrexham AFC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340038": {
+   "home": "Middlesbrough FC",
+   "away": "Bristol City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340044": {
+   "home": "Sheffield United",
+   "away": "Watford FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340048": {
+   "home": "Stoke City",
+   "away": "Birmingham City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340050": {
+   "home": "Swansea City",
+   "away": "West Bromwich Albion",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340052": {
+   "home": "West Ham United",
+   "away": "Preston North End",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001872340054": {
+   "home": "Wolverhampton Wanderers",
+   "away": "Charlton Athletic",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221392": {
+   "home": "Aston Villa",
+   "away": "Sunderland AFC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221394": {
+   "home": "AFC Bournemouth",
+   "away": "Nottingham Forest",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221398": {
+   "home": "Chelsea FC",
+   "away": "Leeds United",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221400": {
+   "home": "Coventry City",
+   "away": "Crystal Palace",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221410": {
+   "home": "Tottenham Hotspur",
+   "away": "Ipswich Town",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T15:00:00Z"
+  },
+  "id1000001772221408": {
+   "home": "Newcastle United",
+   "away": "Arsenal FC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-21T17:30:00Z"
+  },
+  "id1000001872340034": {
+   "home": "Burnley FC",
+   "away": "Blackburn Rovers",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-22T12:00:00Z"
+  },
+  "id1000001772221402": {
+   "home": "Hull City",
+   "away": "Brighton & Hove Albion",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-22T14:00:00Z"
+  },
+  "id1000001772221404": {
+   "home": "Liverpool FC",
+   "away": "Manchester United",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-22T16:30:00Z"
   }
  },
  "scores": {},
  "budget": {
-  "date": "2026-11-18",
+  "date": "2026-11-20",
   "api_football": 1,
   "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
@@ -46,20 +235,20 @@
   "api_football": {
    "ok": false,
    "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-18T11:50:59Z"
+   "at": "2026-11-20T11:47:43Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-18T23:19:58Z"
+   "at": "2026-11-20T11:47:43Z"
   }
  },
- "last_called_at": "2026-11-18T23:19:58Z",
+ "last_called_at": "2026-11-20T11:47:43Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-18",
+ "af_status_date": "2026-11-20",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -362,22 +551,37 @@
   "id1100013273719658": {},
   "id1400003171516030": {},
   "id1100013273719660": {},
-  "id1400003171516032": {}
+  "id1400003171516032": {},
+  "id1400003171516034": {}
  },
  "last_log": {
-  "at": "2026-11-18T23:19:58Z",
+  "at": "2026-11-20T11:47:43Z",
   "want": 1,
   "live": false,
   "called": true,
   "calls": [
    {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-20",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
+    "results": 0
+   },
+   {
     "feed": "football_data",
     "endpoint": "matches",
-    "from": "2026-11-17",
-    "to": "2026-11-18",
+    "from": "2026-11-20",
+    "to": "2026-11-21",
     "status": 200,
     "error": "",
-    "results": 0
+    "results": 4
    }
   ],
   "changed": 0,
@@ -386,9 +590,9 @@
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Baltimore Ravens v Los Angeles Chargers (NFL)"
+    "Houston Texans v Indianapolis Colts (NFL)"
    ]
   }
  },
- "af_last_at": "2026-11-18T11:50:59Z"
+ "af_last_at": "2026-11-20T11:47:43Z"
 }
