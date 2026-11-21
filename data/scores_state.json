@@ -227,7 +227,7 @@
  },
  "scores": {},
  "budget": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "api_football": 1,
   "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
@@ -235,20 +235,20 @@
   "api_football": {
    "ok": false,
    "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-20T11:47:43Z"
+   "at": "2026-11-21T00:00:26Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-20T23:55:24Z"
+   "at": "2026-11-21T00:00:26Z"
   }
  },
- "last_called_at": "2026-11-20T23:55:24Z",
+ "last_called_at": "2026-11-21T00:00:26Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-20",
+ "af_status_date": "2026-11-21",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -556,11 +556,25 @@
   "id1100013273697002": {}
  },
  "last_log": {
-  "at": "2026-11-20T23:55:24Z",
+  "at": "2026-11-21T00:00:26Z",
   "want": 2,
   "live": true,
   "called": true,
   "calls": [
+   {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-20",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
+    "results": 0
+   },
    {
     "feed": "football_data",
     "endpoint": "matches",
@@ -582,5 +596,5 @@
    ]
   }
  },
- "af_last_at": "2026-11-20T11:47:43Z"
+ "af_last_at": "2026-11-21T00:00:26Z"
 }
