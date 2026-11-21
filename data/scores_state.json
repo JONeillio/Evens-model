@@ -353,36 +353,36 @@
  },
  "scores": {
   "id1000001772221406": {
-   "s": "NS",
+   "s": "LIVE",
    "min": null,
-   "h": null,
-   "a": null,
+   "h": 0,
+   "a": 1,
    "src": "fd",
-   "at": "2026-11-21T12:49:34Z"
+   "at": "2026-11-21T12:54:37Z"
   },
   "id1000001872340040": {
    "s": "NS",
    "min": null,
-   "h": null,
-   "a": null,
+   "h": 0,
+   "a": 0,
    "src": "fd",
-   "at": "2026-11-21T12:49:34Z"
+   "at": "2026-11-21T12:54:37Z"
   },
   "id1000001872340042": {
    "s": "NS",
    "min": null,
-   "h": null,
-   "a": null,
+   "h": 0,
+   "a": 0,
    "src": "fd",
-   "at": "2026-11-21T12:49:34Z"
+   "at": "2026-11-21T12:54:37Z"
   },
   "id1000001872340046": {
    "s": "NS",
    "min": null,
-   "h": null,
-   "a": null,
+   "h": 0,
+   "a": 0,
    "src": "fd",
-   "at": "2026-11-21T12:49:34Z"
+   "at": "2026-11-21T12:54:37Z"
   }
  },
  "budget": {
@@ -399,10 +399,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-21T12:49:34Z"
+   "at": "2026-11-21T12:54:37Z"
   }
  },
- "last_called_at": "2026-11-21T12:49:34Z",
+ "last_called_at": "2026-11-21T12:54:37Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -735,7 +735,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-21T12:49:34Z",
+  "at": "2026-11-21T12:54:37Z",
   "want": 14,
   "live": true,
   "called": true,
