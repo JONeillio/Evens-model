@@ -511,10 +511,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-21T17:36:27Z"
+   "at": "2026-11-21T17:41:30Z"
   }
  },
- "last_called_at": "2026-11-21T17:36:27Z",
+ "last_called_at": "2026-11-21T17:41:30Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -889,7 +889,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-21T17:36:27Z",
+  "at": "2026-11-21T17:41:30Z",
   "want": 12,
   "live": true,
   "called": true,
@@ -904,7 +904,7 @@
     "results": 49
    }
   ],
-  "changed": 1,
+  "changed": 0,
   "coverage": {
    "checked": 12,
    "api_football": 0,
