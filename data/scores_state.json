@@ -459,10 +459,10 @@
   "id1000001772221394": {
    "s": "LIVE",
    "min": null,
-   "h": 0,
+   "h": 1,
    "a": 0,
    "src": "fd",
-   "at": "2026-11-21T15:14:01Z"
+   "at": "2026-11-21T15:29:09Z"
   },
   "id1000001772221398": {
    "s": "LIVE",
@@ -503,10 +503,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-21T15:24:06Z"
+   "at": "2026-11-21T15:29:09Z"
   }
  },
- "last_called_at": "2026-11-21T15:24:06Z",
+ "last_called_at": "2026-11-21T15:29:09Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -878,7 +878,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-21T15:24:06Z",
+  "at": "2026-11-21T15:29:09Z",
   "want": 23,
   "live": true,
   "called": true,
@@ -893,7 +893,7 @@
     "results": 49
    }
   ],
-  "changed": 4,
+  "changed": 1,
   "coverage": {
    "checked": 23,
    "api_football": 0,
