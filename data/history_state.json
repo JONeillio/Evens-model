@@ -3053,40 +3053,40 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 573,
-   "wins": 496,
-   "p_sum": 501.6978,
-   "price_sum": 635.57
+   "n": 576,
+   "wins": 498,
+   "p_sum": 504.2736,
+   "price_sum": 638.96
   },
   "0.75": {
-   "n": 566,
-   "wins": 432,
-   "p_sum": 438.3556,
-   "price_sum": 691.095
+   "n": 569,
+   "wins": 434,
+   "p_sum": 440.7038,
+   "price_sum": 694.795
   },
   "0.70": {
-   "n": 530,
-   "wins": 396,
-   "p_sum": 384.564,
-   "price_sum": 691.272
+   "n": 534,
+   "wins": 400,
+   "p_sum": 387.4626,
+   "price_sum": 696.242
   },
   "0.90": {
-   "n": 540,
-   "wins": 494,
-   "p_sum": 500.3405,
-   "price_sum": 572.641
+   "n": 545,
+   "wins": 498,
+   "p_sum": 504.9301,
+   "price_sum": 577.901
   },
   "0.65": {
-   "n": 482,
-   "wins": 340,
-   "p_sum": 325.5439,
-   "price_sum": 666.638
+   "n": 486,
+   "wins": 342,
+   "p_sum": 328.2739,
+   "price_sum": 672.248
   },
   "0.80": {
-   "n": 577,
-   "wins": 481,
-   "p_sum": 476.3818,
-   "price_sum": 672.698
+   "n": 582,
+   "wins": 486,
+   "p_sum": 480.5378,
+   "price_sum": 678.498
   },
   "0.95": {
    "n": 247,
@@ -3095,16 +3095,16 @@
    "price_sum": 255.175
   },
   "0.55": {
-   "n": 195,
-   "wins": 113,
-   "p_sum": 112.4917,
-   "price_sum": 292.353
+   "n": 197,
+   "wins": 114,
+   "p_sum": 113.6887,
+   "price_sum": 295.523
   },
   "0.60": {
-   "n": 485,
-   "wins": 318,
-   "p_sum": 303.8317,
-   "price_sum": 713.122
+   "n": 490,
+   "wins": 321,
+   "p_sum": 306.9522,
+   "price_sum": 720.482
   }
  },
  "legs_pending": {
@@ -32538,158 +32538,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221392|ah:2:+1.5": {
-   "id": "id1000001772221392|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Sunderland AFC +1.5 (handicap)",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.36,
-   "p_win": 0.695,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|dnb:1": {
-   "id": "id1000001772221392|dnb:1",
-   "key": "dnb:1",
-   "label": "Aston Villa (draw no bet)",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.3,
-   "p_win": 0.5561,
-   "p_void": 0.2468,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ou:0.5:over": {
-   "id": "id1000001772221392|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9337,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ou:1.5:over": {
-   "id": "id1000001772221392|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.22,
-   "p_win": 0.7794,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ou:3.5:under": {
-   "id": "id1000001772221392|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.41,
-   "p_win": 0.6792,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ou:4.5:under": {
-   "id": "id1000001772221392|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.8443,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ts:1:yes": {
-   "id": "id1000001772221392|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Aston Villa to score",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.8517,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221392|ts:2:yes": {
-   "id": "id1000001772221392|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Sunderland AFC to score",
-   "match": "Aston Villa v Sunderland AFC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.44,
-   "p_win": 0.6588,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Aston Villa",
-    "away": "Sunderland"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001772221394|ah:2:+1.5": {
    "id": "id1000001772221394|ah:2:+1.5",
    "key": "ah:2:+1.5",
@@ -33507,310 +33355,6 @@
    "result": null,
    "score": null
   },
-  "id1000001872340038|1x2:1": {
-   "id": "id1000001872340038|1x2:1",
-   "key": "1x2:1",
-   "label": "Middlesbrough FC to win",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.4,
-   "p_win": 0.7022,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|dnb:1": {
-   "id": "id1000001872340038|dnb:1",
-   "key": "dnb:1",
-   "label": "Middlesbrough FC (draw no bet)",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.7085,
-   "p_void": 0.175,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|ou:1.5:over": {
-   "id": "id1000001872340038|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.8389,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|ou:3.5:under": {
-   "id": "id1000001872340038|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.6,
-   "p_win": 0.5985,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|ou:4.5:under": {
-   "id": "id1000001872340038|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.23,
-   "p_win": 0.7879,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|ts:1:yes": {
-   "id": "id1000001872340038|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Middlesbrough FC to score",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.07,
-   "p_win": 0.9146,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340038|ts:2:yes": {
-   "id": "id1000001872340038|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Bristol City to score",
-   "match": "Middlesbrough FC v Bristol City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.57,
-   "p_win": 0.5985,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Middlesbrough",
-    "away": "Bristol City"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|1x2:1": {
-   "id": "id1000001872340044|1x2:1",
-   "key": "1x2:1",
-   "label": "Sheffield United to win",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.58,
-   "p_win": 0.6186,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ah:2:+1.5": {
-   "id": "id1000001872340044|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Watford FC +1.5 (handicap)",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.46,
-   "p_win": 0.6418,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|dnb:1": {
-   "id": "id1000001872340044|dnb:1",
-   "key": "dnb:1",
-   "label": "Sheffield United (draw no bet)",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.22,
-   "p_win": 0.6247,
-   "p_void": 0.2199,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ou:0.5:over": {
-   "id": "id1000001872340044|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9224,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ou:1.5:over": {
-   "id": "id1000001872340044|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7809,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ou:3.5:under": {
-   "id": "id1000001872340044|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.4,
-   "p_win": 0.697,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ou:4.5:under": {
-   "id": "id1000001872340044|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.13,
-   "p_win": 0.8558,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ts:1:yes": {
-   "id": "id1000001872340044|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Sheffield United to score",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.12,
-   "p_win": 0.8683,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340044|ts:2:yes": {
-   "id": "id1000001872340044|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Watford FC to score",
-   "match": "Sheffield United v Watford FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.6,
-   "p_win": 0.6043,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Sheffield United",
-    "away": "Watford"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001872340048|ou:0.5:over": {
    "id": "id1000001872340048|ou:0.5:over",
    "key": "ou:0.5:over",
@@ -34129,158 +33673,6 @@
     "div": "E1",
     "home": "West Ham",
     "away": "Preston"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|1x2:1": {
-   "id": "id1000001872340054|1x2:1",
-   "key": "1x2:1",
-   "label": "Wolverhampton Wanderers to win",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.33,
-   "p_win": 0.7406,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|dc:12": {
-   "id": "id1000001872340054|dc:12",
-   "key": "dc:12",
-   "label": "Either team to win",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.15,
-   "p_win": 0.8397,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp-derived",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|dc:1X": {
-   "id": "id1000001872340054|dc:1X",
-   "key": "dc:1X",
-   "label": "Wolverhampton Wanderers or draw",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.07,
-   "p_win": 0.9034,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp-derived",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|dnb:1": {
-   "id": "id1000001872340054|dnb:1",
-   "key": "dnb:1",
-   "label": "Wolverhampton Wanderers (draw no bet)",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.1,
-   "p_win": 0.7473,
-   "p_void": 0.1621,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|ou:1.5:over": {
-   "id": "id1000001872340054|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.17,
-   "p_win": 0.8192,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|ou:3.5:under": {
-   "id": "id1000001872340054|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.5,
-   "p_win": 0.6311,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|ou:4.5:under": {
-   "id": "id1000001872340054|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.2,
-   "p_win": 0.8139,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340054|ts:1:yes": {
-   "id": "id1000001872340054|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Wolverhampton Wanderers to score",
-   "match": "Wolverhampton Wanderers v Charlton Athletic",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.06,
-   "p_win": 0.9155,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Charlton"
    },
    "source": "sharp",
    "result": null,
@@ -59860,20 +59252,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 1954,
-    "wins": 1461,
-    "p_sum": 1413.8607,
-    "implied_sum": 1555.352,
-    "claimed_sum": -177.5212,
-    "return_sum": -117.155
+    "n": 1975,
+    "wins": 1476,
+    "p_sum": 1429.5731,
+    "implied_sum": 1572.2082,
+    "claimed_sum": -178.9215,
+    "return_sum": -119.765
    },
    "flat": {
-    "n": 2126,
-    "wins": 1755,
-    "p_sum": 1771.1919,
-    "implied_sum": 1799.7709,
-    "claimed_sum": -33.6955,
-    "return_sum": -48.17
+    "n": 2136,
+    "wins": 1763,
+    "p_sum": 1779.0952,
+    "implied_sum": 1807.8657,
+    "claimed_sum": -33.929,
+    "return_sum": -48.16
    },
    "some": {
     "n": 86,
@@ -59894,20 +59286,20 @@
   },
   "source": {
    "model": {
-    "n": 102,
-    "wins": 93,
-    "p_sum": 88.8319,
-    "implied_sum": 90.4919,
-    "claimed_sum": -1.5515,
-    "return_sum": 2.844
+    "n": 106,
+    "wins": 95,
+    "p_sum": 92.3117,
+    "implied_sum": 94.1306,
+    "claimed_sum": -1.7263,
+    "return_sum": 1.014
    },
    "sharp": {
-    "n": 542,
-    "wins": 422,
-    "p_sum": 404.9654,
-    "implied_sum": 418.8167,
-    "claimed_sum": -17.7039,
-    "return_sum": 7.296
+    "n": 567,
+    "wins": 441,
+    "p_sum": 423.3582,
+    "implied_sum": 438.3248,
+    "claimed_sum": -19.0952,
+    "return_sum": 6.306
    },
    "unknown": {
     "n": 43,
@@ -59926,12 +59318,12 @@
     "return_sum": -41.172
    },
    "sharp-derived": {
-    "n": 2,
-    "wins": 2,
-    "p_sum": 1.8574,
-    "implied_sum": 1.9328,
-    "claimed_sum": -0.0773,
-    "return_sum": 0.07
+    "n": 4,
+    "wins": 4,
+    "p_sum": 3.6005,
+    "implied_sum": 3.737,
+    "claimed_sum": -0.145,
+    "return_sum": 0.29
    },
    "sharp+model": {
     "n": 1579,
@@ -59952,44 +59344,44 @@
   },
   "market": {
    "ou": {
-    "n": 307,
-    "wins": 257,
-    "p_sum": 251.5271,
-    "implied_sum": 256.6946,
-    "claimed_sum": -6.0577,
-    "return_sum": 1.081
+    "n": 321,
+    "wins": 268,
+    "p_sum": 262.5093,
+    "implied_sum": 268.1117,
+    "claimed_sum": -6.591,
+    "return_sum": 0.881
    },
    "dnb": {
-    "n": 29,
-    "wins": 24,
-    "p_sum": 20.3078,
-    "implied_sum": 24.908,
-    "claimed_sum": -5.4664,
-    "return_sum": -1.274
+    "n": 32,
+    "wins": 27,
+    "p_sum": 22.3883,
+    "implied_sum": 27.514,
+    "claimed_sum": -6.0746,
+    "return_sum": -0.814
    },
    "ah": {
-    "n": 90,
-    "wins": 77,
-    "p_sum": 72.121,
-    "implied_sum": 74.1678,
-    "claimed_sum": -2.588,
-    "return_sum": 3.54
+    "n": 92,
+    "wins": 78,
+    "p_sum": 73.4578,
+    "implied_sum": 75.588,
+    "claimed_sum": -2.7058,
+    "return_sum": 2.9
    },
    "ts": {
-    "n": 141,
-    "wins": 110,
-    "p_sum": 110.3677,
-    "implied_sum": 113.8804,
-    "claimed_sum": -4.4384,
-    "return_sum": -3.56
+    "n": 148,
+    "wins": 113,
+    "p_sum": 115.7794,
+    "implied_sum": 119.4848,
+    "claimed_sum": -4.6908,
+    "return_sum": -7.31
    },
    "1x2": {
-    "n": 21,
-    "wins": 18,
-    "p_sum": 15.3621,
-    "implied_sum": 15.4804,
-    "claimed_sum": -0.1679,
-    "return_sum": 3.49
+    "n": 24,
+    "wins": 21,
+    "p_sum": 17.4235,
+    "implied_sum": 17.5795,
+    "claimed_sum": -0.2224,
+    "return_sum": 4.8
    },
    "btts": {
     "n": 2,
@@ -60000,12 +59392,12 @@
     "return_sum": 0.98
    },
    "dc": {
-    "n": 1,
-    "wins": 1,
-    "p_sum": 0.941,
-    "implied_sum": 0.9524,
-    "claimed_sum": -0.012,
-    "return_sum": 0.05
+    "n": 3,
+    "wins": 3,
+    "p_sum": 2.6841,
+    "implied_sum": 2.7566,
+    "claimed_sum": -0.0797,
+    "return_sum": 0.27
    },
    "nfl-ml": {
     "n": 23,
