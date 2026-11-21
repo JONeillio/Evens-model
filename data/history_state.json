@@ -2775,8 +2775,8 @@
       "away": "Crystal Palace"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-2"
     },
     {
      "id": "id1000001772221394|ou:3.5:under",
@@ -2794,8 +2794,8 @@
       "away": "Nott'm Forest"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     }
    ],
    "status": "pending",
@@ -2867,8 +2867,8 @@
       "away": "Crystal Palace"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-2"
     },
     {
      "id": "id1000001772221394|ou:3.5:under",
@@ -2886,8 +2886,8 @@
       "away": "Nott'm Forest"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     }
    ],
    "status": "pending",
@@ -3053,46 +3053,46 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 576,
-   "wins": 498,
-   "p_sum": 504.2736,
-   "price_sum": 638.96
+   "n": 581,
+   "wins": 503,
+   "p_sum": 508.6391,
+   "price_sum": 644.52
   },
   "0.75": {
-   "n": 569,
-   "wins": 434,
-   "p_sum": 440.7038,
-   "price_sum": 694.795
+   "n": 578,
+   "wins": 441,
+   "p_sum": 447.727,
+   "price_sum": 705.935
   },
   "0.70": {
-   "n": 534,
-   "wins": 400,
-   "p_sum": 387.4626,
-   "price_sum": 696.242
+   "n": 543,
+   "wins": 406,
+   "p_sum": 393.9946,
+   "price_sum": 708.032
   },
   "0.90": {
-   "n": 545,
-   "wins": 498,
-   "p_sum": 504.9301,
-   "price_sum": 577.901
+   "n": 551,
+   "wins": 504,
+   "p_sum": 510.482,
+   "price_sum": 584.181
   },
   "0.65": {
-   "n": 486,
+   "n": 487,
    "wins": 342,
-   "p_sum": 328.2739,
-   "price_sum": 672.248
+   "p_sum": 328.9428,
+   "price_sum": 673.648
   },
   "0.80": {
-   "n": 582,
-   "wins": 486,
-   "p_sum": 480.5378,
-   "price_sum": 678.498
+   "n": 585,
+   "wins": 489,
+   "p_sum": 482.9991,
+   "price_sum": 682.098
   },
   "0.95": {
-   "n": 247,
-   "wins": 231,
-   "p_sum": 237.4719,
-   "price_sum": 255.175
+   "n": 248,
+   "wins": 232,
+   "p_sum": 238.4229,
+   "price_sum": 256.195
   },
   "0.55": {
    "n": 197,
@@ -3101,10 +3101,10 @@
    "price_sum": 295.523
   },
   "0.60": {
-   "n": 490,
-   "wins": 321,
-   "p_sum": 306.9522,
-   "price_sum": 720.482
+   "n": 496,
+   "wins": 324,
+   "p_sum": 310.7304,
+   "price_sum": 729.312
   }
  },
  "legs_pending": {
@@ -32538,139 +32538,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221394|ah:2:+1.5": {
-   "id": "id1000001772221394|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Nottingham Forest +1.5 (handicap)",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.29,
-   "p_win": 0.7456,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ou:0.5:over": {
-   "id": "id1000001772221394|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.04,
-   "p_win": 0.918,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ou:1.5:over": {
-   "id": "id1000001772221394|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.29,
-   "p_win": 0.7323,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ou:3.5:under": {
-   "id": "id1000001772221394|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.34,
-   "p_win": 0.7496,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ou:4.5:under": {
-   "id": "id1000001772221394|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.11,
-   "p_win": 0.8779,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ts:1:yes": {
-   "id": "id1000001772221394|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "AFC Bournemouth to score",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.2,
-   "p_win": 0.8057,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221394|ts:2:yes": {
-   "id": "id1000001772221394|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Nottingham Forest to score",
-   "match": "AFC Bournemouth v Nottingham Forest",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.48,
-   "p_win": 0.6345,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Bournemouth",
-    "away": "Nott'm Forest"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001772221398|ah:2:+1.5": {
    "id": "id1000001772221398|ah:2:+1.5",
    "key": "ah:2:+1.5",
@@ -32804,443 +32671,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221400|ah:1:+1.5": {
-   "id": "id1000001772221400|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Coventry City +1.5 (handicap)",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.12,
-   "p_win": 0.8748,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ah:2:+1.5": {
-   "id": "id1000001772221400|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Crystal Palace +1.5 (handicap)",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.738,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ou:0.5:over": {
-   "id": "id1000001772221400|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9495,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ou:1.5:over": {
-   "id": "id1000001772221400|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.23,
-   "p_win": 0.8255,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ou:3.5:under": {
-   "id": "id1000001772221400|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.4,
-   "p_win": 0.6689,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ou:4.5:under": {
-   "id": "id1000001772221400|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.14,
-   "p_win": 0.7937,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ts:1:yes": {
-   "id": "id1000001772221400|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Coventry City to score",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.23,
-   "p_win": 0.7922,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221400|ts:2:yes": {
-   "id": "id1000001772221400|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Crystal Palace to score",
-   "match": "Coventry City v Crystal Palace",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7691,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Coventry",
-    "away": "Crystal Palace"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|1x2:1": {
-   "id": "id1000001772221410|1x2:1",
-   "key": "1x2:1",
-   "label": "Tottenham Hotspur to win",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.53,
-   "p_win": 0.6403,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ah:2:+1.5": {
-   "id": "id1000001772221410|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Ipswich Town +1.5 (handicap)",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.58,
-   "p_win": 0.6048,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|dnb:1": {
-   "id": "id1000001772221410|dnb:1",
-   "key": "dnb:1",
-   "label": "Tottenham Hotspur (draw no bet)",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.2,
-   "p_win": 0.6457,
-   "p_void": 0.2069,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ou:0.5:over": {
-   "id": "id1000001772221410|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.02,
-   "p_win": 0.951,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ou:1.5:over": {
-   "id": "id1000001772221410|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.17,
-   "p_win": 0.8301,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ou:3.5:under": {
-   "id": "id1000001772221410|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.54,
-   "p_win": 0.6239,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ou:4.5:under": {
-   "id": "id1000001772221410|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.21,
-   "p_win": 0.7877,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ts:1:yes": {
-   "id": "id1000001772221410|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Tottenham Hotspur to score",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.1,
-   "p_win": 0.8903,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221410|ts:2:yes": {
-   "id": "id1000001772221410|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Ipswich Town to score",
-   "match": "Tottenham Hotspur v Ipswich Town",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.5,
-   "p_win": 0.629,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Tottenham",
-    "away": "Ipswich"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ou:0.5:over": {
-   "id": "id1000001872340032|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.04,
-   "p_win": 0.9338,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ou:1.5:over": {
-   "id": "id1000001872340032|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7757,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ou:3.5:under": {
-   "id": "id1000001872340032|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.34,
-   "p_win": 0.703,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ou:4.5:under": {
-   "id": "id1000001872340032|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.11,
-   "p_win": 0.8582,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ts:1:yes": {
-   "id": "id1000001872340032|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Bolton Wanderers to score",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.3,
-   "p_win": 0.7389,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340032|ts:2:yes": {
-   "id": "id1000001872340032|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Portsmouth FC to score",
-   "match": "Bolton Wanderers v Portsmouth FC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.23,
-   "p_win": 0.788,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Bolton",
-    "away": "Portsmouth"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001872340036|ou:0.5:over": {
    "id": "id1000001872340036|ou:0.5:over",
    "key": "ou:0.5:over",
@@ -33355,120 +32785,6 @@
    "result": null,
    "score": null
   },
-  "id1000001872340048|ou:0.5:over": {
-   "id": "id1000001872340048|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.06,
-   "p_win": 0.9018,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340048|ou:1.5:over": {
-   "id": "id1000001872340048|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.36,
-   "p_win": 0.7012,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340048|ou:3.5:under": {
-   "id": "id1000001872340048|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.26,
-   "p_win": 0.7834,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340048|ou:4.5:under": {
-   "id": "id1000001872340048|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.07,
-   "p_win": 0.9069,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340048|ts:1:yes": {
-   "id": "id1000001872340048|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Stoke City to score",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.4,
-   "p_win": 0.7014,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340048|ts:2:yes": {
-   "id": "id1000001872340048|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Birmingham City to score",
-   "match": "Stoke City v Birmingham City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.33,
-   "p_win": 0.722,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Stoke",
-    "away": "Birmingham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001872340050|ou:0.5:over": {
    "id": "id1000001872340050|ou:0.5:over",
    "key": "ou:0.5:over",
@@ -33578,101 +32894,6 @@
     "div": "E1",
     "home": "Swansea",
     "away": "West Brom"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340052|1x2:1": {
-   "id": "id1000001872340052|1x2:1",
-   "key": "1x2:1",
-   "label": "West Ham United to win",
-   "match": "West Ham United v Preston North End",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7778,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "West Ham",
-    "away": "Preston"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340052|dnb:1": {
-   "id": "id1000001872340052|dnb:1",
-   "key": "dnb:1",
-   "label": "West Ham United (draw no bet)",
-   "match": "West Ham United v Preston North End",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.07,
-   "p_win": 0.7832,
-   "p_void": 0.1342,
-   "fd": {
-    "div": "E1",
-    "home": "West Ham",
-    "away": "Preston"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340052|ou:1.5:over": {
-   "id": "id1000001872340052|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "West Ham United v Preston North End",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.12,
-   "p_win": 0.8643,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "West Ham",
-    "away": "Preston"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340052|ou:4.5:under": {
-   "id": "id1000001872340052|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "West Ham United v Preston North End",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.32,
-   "p_win": 0.7556,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "West Ham",
-    "away": "Preston"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340052|ts:1:yes": {
-   "id": "id1000001872340052|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "West Ham United to score",
-   "match": "West Ham United v Preston North End",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.04,
-   "p_win": 0.9419,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "West Ham",
-    "away": "Preston"
    },
    "source": "sharp",
    "result": null,
@@ -59252,28 +58473,28 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 1975,
-    "wins": 1476,
-    "p_sum": 1429.5731,
-    "implied_sum": 1572.2082,
-    "claimed_sum": -178.9215,
-    "return_sum": -119.765
+    "n": 1998,
+    "wins": 1491,
+    "p_sum": 1446.7231,
+    "implied_sum": 1590.4594,
+    "claimed_sum": -180.2908,
+    "return_sum": -124.485
    },
    "flat": {
-    "n": 2136,
-    "wins": 1763,
-    "p_sum": 1779.0952,
-    "implied_sum": 1807.8657,
-    "claimed_sum": -33.929,
-    "return_sum": -48.16
+    "n": 2152,
+    "wins": 1778,
+    "p_sum": 1792.4517,
+    "implied_sum": 1821.5107,
+    "claimed_sum": -34.2576,
+    "return_sum": -46.38
    },
    "some": {
-    "n": 86,
-    "wins": 60,
-    "p_sum": 70.3669,
-    "implied_sum": 68.7101,
-    "claimed_sum": 2.0758,
-    "return_sum": -11.305
+    "n": 87,
+    "wins": 61,
+    "p_sum": 71.1924,
+    "implied_sum": 69.5231,
+    "claimed_sum": 2.0912,
+    "return_sum": -11.075
    },
    "big": {
     "n": 29,
@@ -59286,20 +58507,20 @@
   },
   "source": {
    "model": {
-    "n": 106,
-    "wins": 95,
-    "p_sum": 92.3117,
-    "implied_sum": 94.1306,
-    "claimed_sum": -1.7263,
-    "return_sum": 1.014
+    "n": 119,
+    "wins": 107,
+    "p_sum": 103.6004,
+    "implied_sum": 105.9252,
+    "claimed_sum": -2.286,
+    "return_sum": 1.254
    },
    "sharp": {
-    "n": 567,
-    "wins": 441,
-    "p_sum": 423.3582,
-    "implied_sum": 438.3248,
-    "claimed_sum": -19.0952,
-    "return_sum": 6.306
+    "n": 594,
+    "wins": 460,
+    "p_sum": 443.4015,
+    "implied_sum": 459.2394,
+    "claimed_sum": -20.2181,
+    "return_sum": 3.356
    },
    "unknown": {
     "n": 43,
@@ -59344,44 +58565,44 @@
   },
   "market": {
    "ou": {
-    "n": 321,
-    "wins": 268,
-    "p_sum": 262.5093,
-    "implied_sum": 268.1117,
-    "claimed_sum": -6.591,
-    "return_sum": 0.881
+    "n": 343,
+    "wins": 287,
+    "p_sum": 280.4013,
+    "implied_sum": 286.6481,
+    "claimed_sum": -7.355,
+    "return_sum": 1.431
    },
    "dnb": {
-    "n": 32,
-    "wins": 27,
-    "p_sum": 22.3883,
-    "implied_sum": 27.514,
-    "claimed_sum": -6.0746,
-    "return_sum": -0.814
+    "n": 33,
+    "wins": 28,
+    "p_sum": 23.034,
+    "implied_sum": 28.3473,
+    "claimed_sum": -6.2998,
+    "return_sum": -0.614
    },
    "ah": {
-    "n": 92,
-    "wins": 78,
-    "p_sum": 73.4578,
-    "implied_sum": 75.588,
-    "claimed_sum": -2.7058,
-    "return_sum": 2.9
+    "n": 96,
+    "wins": 80,
+    "p_sum": 76.421,
+    "implied_sum": 78.7662,
+    "claimed_sum": -2.9673,
+    "return_sum": 1.16
    },
    "ts": {
-    "n": 148,
-    "wins": 113,
-    "p_sum": 115.7794,
-    "implied_sum": 119.4848,
-    "claimed_sum": -4.6908,
-    "return_sum": -7.31
+    "n": 159,
+    "wins": 121,
+    "p_sum": 124.1924,
+    "implied_sum": 128.1925,
+    "claimed_sum": -5.0746,
+    "return_sum": -8.56
    },
    "1x2": {
-    "n": 24,
-    "wins": 21,
-    "p_sum": 17.4235,
-    "implied_sum": 17.5795,
-    "claimed_sum": -0.2224,
-    "return_sum": 4.8
+    "n": 26,
+    "wins": 22,
+    "p_sum": 18.8416,
+    "implied_sum": 19.0331,
+    "claimed_sum": -0.2704,
+    "return_sum": 4.33
    },
    "btts": {
     "n": 2,
