@@ -425,12 +425,12 @@
    "at": "2026-11-21T17:05:43Z"
   },
   "id1000001872340050": {
-   "s": "LIVE",
+   "s": "FT",
    "min": null,
    "h": 2,
    "a": 3,
    "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
+   "at": "2026-11-21T17:10:45Z"
   },
   "id1000001872340052": {
    "s": "FT",
@@ -465,12 +465,12 @@
    "at": "2026-11-21T17:05:43Z"
   },
   "id1000001772221398": {
-   "s": "LIVE",
+   "s": "FT",
    "min": null,
    "h": 1,
    "a": 4,
    "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
+   "at": "2026-11-21T17:10:45Z"
   },
   "id1000001772221400": {
    "s": "FT",
@@ -503,10 +503,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-21T17:05:43Z"
+   "at": "2026-11-21T17:10:45Z"
   }
  },
- "last_called_at": "2026-11-21T17:05:43Z",
+ "last_called_at": "2026-11-21T17:10:45Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -878,8 +878,8 @@
   }
  },
  "last_log": {
-  "at": "2026-11-21T17:05:43Z",
-  "want": 19,
+  "at": "2026-11-21T17:10:45Z",
+  "want": 13,
   "live": true,
   "called": true,
   "calls": [
@@ -893,11 +893,11 @@
     "results": 49
    }
   ],
-  "changed": 6,
+  "changed": 2,
   "coverage": {
-   "checked": 19,
+   "checked": 13,
    "api_football": 0,
-   "football_data": 9,
+   "football_data": 3,
    "unmatched": [
     "Houston Texans v Indianapolis Colts (NFL)",
     "Atlanta Hawks v Charlotte Hornets (NBA)",

@@ -2737,8 +2737,8 @@
       "away": "Leeds"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "lost",
+     "score": "1-4"
     },
     {
      "id": "id1000001872340046|ou:4.5:under",
@@ -2798,9 +2798,9 @@
      "score": "2-0"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "lost",
+   "settled_odds": 0,
+   "profit_per_10": -10.0
   },
   {
    "key": "2026-11-21T15:00:00Z",
@@ -2829,8 +2829,8 @@
       "away": "Leeds"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "lost",
+     "score": "1-4"
     },
     {
      "id": "id1000001772221408|ou:4.5:under",
@@ -2890,9 +2890,9 @@
      "score": "2-0"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "lost",
+   "settled_odds": 0,
+   "profit_per_10": -10.0
   },
   {
    "key": "2026-11-22T16:30:00Z",
@@ -3053,40 +3053,40 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 581,
-   "wins": 503,
-   "p_sum": 508.6391,
-   "price_sum": 644.52
+   "n": 584,
+   "wins": 504,
+   "p_sum": 511.264,
+   "price_sum": 647.79
   },
   "0.75": {
-   "n": 578,
-   "wins": 441,
-   "p_sum": 447.727,
-   "price_sum": 705.935
+   "n": 581,
+   "wins": 444,
+   "p_sum": 450.0037,
+   "price_sum": 709.705
   },
   "0.70": {
-   "n": 543,
-   "wins": 406,
-   "p_sum": 393.9946,
-   "price_sum": 708.032
+   "n": 547,
+   "wins": 408,
+   "p_sum": 396.9308,
+   "price_sum": 713.292
   },
   "0.90": {
-   "n": 551,
-   "wins": 504,
-   "p_sum": 510.482,
-   "price_sum": 584.181
+   "n": 552,
+   "wins": 505,
+   "p_sum": 511.4078,
+   "price_sum": 585.221
   },
   "0.65": {
-   "n": 487,
-   "wins": 342,
-   "p_sum": 328.9428,
-   "price_sum": 673.648
+   "n": 488,
+   "wins": 343,
+   "p_sum": 329.6251,
+   "price_sum": 675.048
   },
   "0.80": {
-   "n": 585,
-   "wins": 489,
-   "p_sum": 482.9991,
-   "price_sum": 682.098
+   "n": 586,
+   "wins": 490,
+   "p_sum": 483.8089,
+   "price_sum": 683.298
   },
   "0.95": {
    "n": 248,
@@ -32538,139 +32538,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221398|ah:2:+1.5": {
-   "id": "id1000001772221398|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Leeds United +1.5 (handicap)",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.24,
-   "p_win": 0.7648,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ou:0.5:over": {
-   "id": "id1000001772221398|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.04,
-   "p_win": 0.9258,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ou:1.5:over": {
-   "id": "id1000001772221398|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7605,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ou:3.5:under": {
-   "id": "id1000001772221398|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.37,
-   "p_win": 0.7175,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ou:4.5:under": {
-   "id": "id1000001772221398|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.13,
-   "p_win": 0.8617,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ts:1:yes": {
-   "id": "id1000001772221398|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Chelsea FC to score",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.2,
-   "p_win": 0.8098,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221398|ts:2:yes": {
-   "id": "id1000001772221398|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Leeds United to score",
-   "match": "Chelsea FC v Leeds United",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.4,
-   "p_win": 0.6823,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Chelsea",
-    "away": "Leeds"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001872340036|ou:0.5:over": {
    "id": "id1000001872340036|ou:0.5:over",
    "key": "ou:0.5:over",
@@ -32780,120 +32647,6 @@
     "div": "E1",
     "home": "Lincoln",
     "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ou:0.5:over": {
-   "id": "id1000001872340050|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.05,
-   "p_win": 0.8871,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ou:1.5:over": {
-   "id": "id1000001872340050|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.3,
-   "p_win": 0.749,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ou:3.5:under": {
-   "id": "id1000001872340050|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.29,
-   "p_win": 0.7304,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ou:4.5:under": {
-   "id": "id1000001872340050|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.09,
-   "p_win": 0.8761,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ts:1:yes": {
-   "id": "id1000001872340050|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Swansea City to score",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.28,
-   "p_win": 0.7514,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340050|ts:2:yes": {
-   "id": "id1000001872340050|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "West Bromwich Albion to score",
-   "match": "Swansea City v West Bromwich Albion",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.3,
-   "p_win": 0.7393,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Swansea",
-    "away": "West Brom"
    },
    "source": "sharp",
    "result": null,
@@ -58473,20 +58226,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 1998,
-    "wins": 1491,
-    "p_sum": 1446.7231,
-    "implied_sum": 1590.4594,
-    "claimed_sum": -180.2908,
-    "return_sum": -124.485
+    "n": 2007,
+    "wins": 1498,
+    "p_sum": 1453.8408,
+    "implied_sum": 1597.9372,
+    "claimed_sum": -180.7223,
+    "return_sum": -124.925
    },
    "flat": {
-    "n": 2152,
-    "wins": 1778,
-    "p_sum": 1792.4517,
-    "implied_sum": 1821.5107,
-    "claimed_sum": -34.2576,
-    "return_sum": -46.38
+    "n": 2156,
+    "wins": 1780,
+    "p_sum": 1795.5897,
+    "implied_sum": 1824.7281,
+    "claimed_sum": -34.3554,
+    "return_sum": -47.88
    },
    "some": {
     "n": 87,
@@ -58507,20 +58260,20 @@
   },
   "source": {
    "model": {
-    "n": 119,
-    "wins": 107,
-    "p_sum": 103.6004,
-    "implied_sum": 105.9252,
-    "claimed_sum": -2.286,
-    "return_sum": 1.254
+    "n": 122,
+    "wins": 109,
+    "p_sum": 106.275,
+    "implied_sum": 108.7241,
+    "claimed_sum": -2.418,
+    "return_sum": 0.344
    },
    "sharp": {
-    "n": 594,
-    "wins": 460,
-    "p_sum": 443.4015,
-    "implied_sum": 459.2394,
-    "claimed_sum": -20.2181,
-    "return_sum": 3.356
+    "n": 604,
+    "wins": 467,
+    "p_sum": 450.9826,
+    "implied_sum": 467.1356,
+    "claimed_sum": -20.6154,
+    "return_sum": 2.326
    },
    "unknown": {
     "n": 43,
@@ -58565,12 +58318,12 @@
   },
   "market": {
    "ou": {
-    "n": 343,
-    "wins": 287,
-    "p_sum": 280.4013,
-    "implied_sum": 286.6481,
-    "claimed_sum": -7.355,
-    "return_sum": 1.431
+    "n": 351,
+    "wins": 291,
+    "p_sum": 286.9094,
+    "implied_sum": 293.4387,
+    "claimed_sum": -7.6826,
+    "return_sum": -1.929
    },
    "dnb": {
     "n": 33,
@@ -58581,20 +58334,20 @@
     "return_sum": -0.614
    },
    "ah": {
-    "n": 96,
-    "wins": 80,
-    "p_sum": 76.421,
-    "implied_sum": 78.7662,
-    "claimed_sum": -2.9673,
-    "return_sum": 1.16
+    "n": 97,
+    "wins": 81,
+    "p_sum": 77.1858,
+    "implied_sum": 79.5727,
+    "claimed_sum": -3.0189,
+    "return_sum": 1.4
    },
    "ts": {
-    "n": 159,
-    "wins": 121,
-    "p_sum": 124.1924,
-    "implied_sum": 128.1925,
-    "claimed_sum": -5.0746,
-    "return_sum": -8.56
+    "n": 163,
+    "wins": 125,
+    "p_sum": 127.1752,
+    "implied_sum": 131.2906,
+    "claimed_sum": -5.2247,
+    "return_sum": -7.38
    },
    "1x2": {
     "n": 26,
