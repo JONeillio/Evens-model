@@ -2756,8 +2756,8 @@
       "away": "Derby"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     },
     {
      "id": "id1000001772221400|ou:1.5:over",
@@ -3053,40 +3053,40 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 572,
-   "wins": 495,
-   "p_sum": 500.7996,
-   "price_sum": 634.48
+   "n": 573,
+   "wins": 496,
+   "p_sum": 501.6978,
+   "price_sum": 635.57
   },
   "0.75": {
-   "n": 562,
-   "wins": 430,
-   "p_sum": 435.2256,
-   "price_sum": 686.125
+   "n": 566,
+   "wins": 432,
+   "p_sum": 438.3556,
+   "price_sum": 691.095
   },
   "0.70": {
-   "n": 525,
-   "wins": 392,
-   "p_sum": 380.9317,
-   "price_sum": 684.982
+   "n": 530,
+   "wins": 396,
+   "p_sum": 384.564,
+   "price_sum": 691.272
   },
   "0.90": {
-   "n": 535,
-   "wins": 489,
-   "p_sum": 495.7157,
-   "price_sum": 567.381
+   "n": 540,
+   "wins": 494,
+   "p_sum": 500.3405,
+   "price_sum": 572.641
   },
   "0.65": {
-   "n": 479,
-   "wins": 337,
-   "p_sum": 323.5006,
-   "price_sum": 662.488
+   "n": 482,
+   "wins": 340,
+   "p_sum": 325.5439,
+   "price_sum": 666.638
   },
   "0.80": {
-   "n": 574,
-   "wins": 478,
-   "p_sum": 473.9078,
-   "price_sum": 669.178
+   "n": 577,
+   "wins": 481,
+   "p_sum": 476.3818,
+   "price_sum": 672.698
   },
   "0.95": {
    "n": 247,
@@ -3095,16 +3095,16 @@
    "price_sum": 255.175
   },
   "0.55": {
-   "n": 194,
-   "wins": 112,
-   "p_sum": 111.9397,
-   "price_sum": 290.993
+   "n": 195,
+   "wins": 113,
+   "p_sum": 112.4917,
+   "price_sum": 292.353
   },
   "0.60": {
-   "n": 483,
-   "wins": 316,
-   "p_sum": 302.5642,
-   "price_sum": 710.022
+   "n": 485,
+   "wins": 318,
+   "p_sum": 303.8317,
+   "price_sum": 713.122
   }
  },
  "legs_pending": {
@@ -32538,481 +32538,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221406|1x2:1": {
-   "id": "id1000001772221406|1x2:1",
-   "key": "1x2:1",
-   "label": "Manchester City to win",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.4,
-   "p_win": 0.7186,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|dnb:1": {
-   "id": "id1000001772221406|dnb:1",
-   "key": "dnb:1",
-   "label": "Manchester City (draw no bet)",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.14,
-   "p_win": 0.7243,
-   "p_void": 0.1702,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|ou:0.5:over": {
-   "id": "id1000001772221406|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.02,
-   "p_win": 0.9231,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|ou:1.5:over": {
-   "id": "id1000001772221406|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.11,
-   "p_win": 0.7484,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|ou:4.5:under": {
-   "id": "id1000001772221406|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.3,
-   "p_win": 0.7339,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|ts:1:yes": {
-   "id": "id1000001772221406|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Manchester City to score",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.06,
-   "p_win": 0.9348,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221406|ts:2:yes": {
-   "id": "id1000001772221406|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Fulham FC to score",
-   "match": "Manchester City v Fulham FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.52,
-   "p_win": 0.6392,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Man City",
-    "away": "Fulham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ou:0.5:over": {
-   "id": "id1000001872340040|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.03,
-   "p_win": 0.9449,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ou:1.5:over": {
-   "id": "id1000001872340040|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.22,
-   "p_win": 0.7927,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ou:3.5:under": {
-   "id": "id1000001872340040|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.38,
-   "p_win": 0.6783,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ou:4.5:under": {
-   "id": "id1000001872340040|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.13,
-   "p_win": 0.842,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ts:1:yes": {
-   "id": "id1000001872340040|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Millwall FC to score",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.25,
-   "p_win": 0.7796,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340040|ts:2:yes": {
-   "id": "id1000001872340040|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Queens Park Rangers to score",
-   "match": "Millwall FC v Queens Park Rangers",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.25,
-   "p_win": 0.7752,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Millwall",
-    "away": "QPR"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|ah:2:+1.5": {
-   "id": "id1000001872340042|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Cardiff City +1.5 (handicap)",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.41,
-   "p_win": 0.6705,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|dnb:1": {
-   "id": "id1000001872340042|dnb:1",
-   "key": "dnb:1",
-   "label": "Norwich City (draw no bet)",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.36,
-   "p_win": 0.552,
-   "p_void": 0.2212,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|ou:1.5:over": {
-   "id": "id1000001872340042|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.09,
-   "p_win": 0.8982,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|ou:4.5:under": {
-   "id": "id1000001872340042|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.36,
-   "p_win": 0.6945,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|ts:1:yes": {
-   "id": "id1000001872340042|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Norwich City to score",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.08,
-   "p_win": 0.911,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340042|ts:2:yes": {
-   "id": "id1000001872340042|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Cardiff City to score",
-   "match": "Norwich City v Cardiff City",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.25,
-   "p_win": 0.7825,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Norwich",
-    "away": "Cardiff"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|1x2:1": {
-   "id": "id1000001872340046|1x2:1",
-   "key": "1x2:1",
-   "label": "Southampton FC to win",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.36,
-   "p_win": 0.7126,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|dnb:1": {
-   "id": "id1000001872340046|dnb:1",
-   "key": "dnb:1",
-   "label": "Southampton FC (draw no bet)",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.12,
-   "p_win": 0.7188,
-   "p_void": 0.1754,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|ou:1.5:over": {
-   "id": "id1000001872340046|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.17,
-   "p_win": 0.822,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|ou:3.5:under": {
-   "id": "id1000001872340046|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.58,
-   "p_win": 0.6283,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|ou:4.5:under": {
-   "id": "id1000001872340046|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.22,
-   "p_win": 0.81,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340046|ts:1:yes": {
-   "id": "id1000001872340046|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Southampton FC to score",
-   "match": "Southampton FC v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-21T12:30:00Z",
-   "price": 1.07,
-   "p_win": 0.911,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001772221392|ah:2:+1.5": {
    "id": "id1000001772221392|ah:2:+1.5",
    "key": "ah:2:+1.5",
@@ -60335,20 +59860,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 1941,
-    "wins": 1449,
-    "p_sum": 1404.1967,
-    "implied_sum": 1544.8095,
-    "claimed_sum": -176.4478,
-    "return_sum": -119.125
+    "n": 1954,
+    "wins": 1461,
+    "p_sum": 1413.8607,
+    "implied_sum": 1555.352,
+    "claimed_sum": -177.5212,
+    "return_sum": -117.155
    },
    "flat": {
-    "n": 2115,
-    "wins": 1746,
-    "p_sum": 1762.2338,
-    "implied_sum": 1790.6539,
-    "claimed_sum": -33.5084,
-    "return_sum": -48.07
+    "n": 2126,
+    "wins": 1755,
+    "p_sum": 1771.1919,
+    "implied_sum": 1799.7709,
+    "claimed_sum": -33.6955,
+    "return_sum": -48.17
    },
    "some": {
     "n": 86,
@@ -60369,20 +59894,20 @@
   },
   "source": {
    "model": {
-    "n": 99,
-    "wins": 90,
-    "p_sum": 86.2155,
-    "implied_sum": 87.6397,
-    "claimed_sum": -1.297,
-    "return_sum": 2.684
+    "n": 102,
+    "wins": 93,
+    "p_sum": 88.8319,
+    "implied_sum": 90.4919,
+    "claimed_sum": -1.5515,
+    "return_sum": 2.844
    },
    "sharp": {
-    "n": 521,
-    "wins": 404,
-    "p_sum": 388.9597,
-    "implied_sum": 402.0094,
-    "claimed_sum": -16.6979,
-    "return_sum": 5.586
+    "n": 542,
+    "wins": 422,
+    "p_sum": 404.9654,
+    "implied_sum": 418.8167,
+    "claimed_sum": -17.7039,
+    "return_sum": 7.296
    },
    "unknown": {
     "n": 43,
@@ -60427,44 +59952,44 @@
   },
   "market": {
    "ou": {
-    "n": 295,
-    "wins": 246,
-    "p_sum": 242.0108,
-    "implied_sum": 246.6839,
-    "claimed_sum": -5.4781,
-    "return_sum": -0.309
+    "n": 307,
+    "wins": 257,
+    "p_sum": 251.5271,
+    "implied_sum": 256.6946,
+    "claimed_sum": -6.0577,
+    "return_sum": 1.081
    },
    "dnb": {
-    "n": 27,
-    "wins": 22,
-    "p_sum": 19.037,
-    "implied_sum": 23.2798,
-    "claimed_sum": -5.0222,
-    "return_sum": -1.754
+    "n": 29,
+    "wins": 24,
+    "p_sum": 20.3078,
+    "implied_sum": 24.908,
+    "claimed_sum": -5.4664,
+    "return_sum": -1.274
    },
    "ah": {
-    "n": 89,
-    "wins": 76,
-    "p_sum": 71.4505,
-    "implied_sum": 73.4586,
-    "claimed_sum": -2.5334,
-    "return_sum": 3.13
+    "n": 90,
+    "wins": 77,
+    "p_sum": 72.121,
+    "implied_sum": 74.1678,
+    "claimed_sum": -2.588,
+    "return_sum": 3.54
    },
    "ts": {
-    "n": 134,
-    "wins": 104,
-    "p_sum": 104.6344,
-    "implied_sum": 108.0186,
-    "claimed_sum": -4.2812,
-    "return_sum": -3.79
+    "n": 141,
+    "wins": 110,
+    "p_sum": 110.3677,
+    "implied_sum": 113.8804,
+    "claimed_sum": -4.4384,
+    "return_sum": -3.56
    },
    "1x2": {
-    "n": 19,
-    "wins": 17,
-    "p_sum": 13.9309,
-    "implied_sum": 14.0308,
-    "claimed_sum": -0.143,
-    "return_sum": 4.13
+    "n": 21,
+    "wins": 18,
+    "p_sum": 15.3621,
+    "implied_sum": 15.4804,
+    "claimed_sum": -0.1679,
+    "return_sum": 3.49
    },
    "btts": {
     "n": 2,
