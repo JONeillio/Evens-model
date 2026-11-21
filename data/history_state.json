@@ -3053,10 +3053,10 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 584,
-   "wins": 504,
-   "p_sum": 511.264,
-   "price_sum": 647.79
+   "n": 585,
+   "wins": 505,
+   "p_sum": 512.1451,
+   "price_sum": 648.9
   },
   "0.75": {
    "n": 581,
@@ -3065,22 +3065,22 @@
    "price_sum": 709.705
   },
   "0.70": {
-   "n": 547,
-   "wins": 408,
-   "p_sum": 396.9308,
-   "price_sum": 713.292
+   "n": 548,
+   "wins": 409,
+   "p_sum": 397.6317,
+   "price_sum": 714.492
   },
   "0.90": {
-   "n": 552,
-   "wins": 505,
-   "p_sum": 511.4078,
-   "price_sum": 585.221
+   "n": 554,
+   "wins": 507,
+   "p_sum": 513.2141,
+   "price_sum": 587.411
   },
   "0.65": {
-   "n": 488,
+   "n": 489,
    "wins": 343,
-   "p_sum": 329.6251,
-   "price_sum": 675.048
+   "p_sum": 330.2899,
+   "price_sum": 676.498
   },
   "0.80": {
    "n": 586,
@@ -3101,10 +3101,10 @@
    "price_sum": 295.523
   },
   "0.60": {
-   "n": 496,
-   "wins": 324,
-   "p_sum": 310.7304,
-   "price_sum": 729.312
+   "n": 499,
+   "wins": 326,
+   "p_sum": 312.6101,
+   "price_sum": 733.982
   }
  },
  "legs_pending": {
@@ -32652,177 +32652,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221408|1x2:2": {
-   "id": "id1000001772221408|1x2:2",
-   "key": "1x2:2",
-   "label": "Arsenal FC to win",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.6,
-   "p_win": 0.6223,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ah:1:+1.5": {
-   "id": "id1000001772221408|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Newcastle United +1.5 (handicap)",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.53,
-   "p_win": 0.6377,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|dnb:2": {
-   "id": "id1000001772221408|dnb:2",
-   "key": "dnb:2",
-   "label": "Arsenal FC (draw no bet)",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.22,
-   "p_win": 0.6259,
-   "p_void": 0.2259,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ou:0.5:over": {
-   "id": "id1000001772221408|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.03,
-   "p_win": 0.9037,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ou:1.5:over": {
-   "id": "id1000001772221408|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.2,
-   "p_win": 0.7009,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ou:3.5:under": {
-   "id": "id1000001772221408|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.45,
-   "p_win": 0.6648,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ou:4.5:under": {
-   "id": "id1000001772221408|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.16,
-   "p_win": 0.9026,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ts:1:yes": {
-   "id": "id1000001772221408|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Newcastle United to score",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.54,
-   "p_win": 0.6197,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221408|ts:2:yes": {
-   "id": "id1000001772221408|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Arsenal FC to score",
-   "match": "Newcastle United v Arsenal FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-21T17:30:00Z",
-   "price": 1.11,
-   "p_win": 0.8811,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Newcastle",
-    "away": "Arsenal"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000001872340034|ah:2:+1.5": {
    "id": "id1000001872340034|ah:2:+1.5",
    "key": "ah:2:+1.5",
@@ -58226,28 +58055,28 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2007,
-    "wins": 1498,
-    "p_sum": 1453.8408,
-    "implied_sum": 1597.9372,
-    "claimed_sum": -180.7223,
-    "return_sum": -124.925
+    "n": 2011,
+    "wins": 1501,
+    "p_sum": 1456.7299,
+    "implied_sum": 1601.0805,
+    "claimed_sum": -181.0321,
+    "return_sum": -125.155
    },
    "flat": {
-    "n": 2156,
-    "wins": 1780,
-    "p_sum": 1795.5897,
-    "implied_sum": 1824.7281,
-    "claimed_sum": -34.3554,
-    "return_sum": -47.88
+    "n": 2159,
+    "wins": 1782,
+    "p_sum": 1797.7308,
+    "implied_sum": 1826.9076,
+    "claimed_sum": -34.406,
+    "return_sum": -48.24
    },
    "some": {
-    "n": 87,
-    "wins": 61,
-    "p_sum": 71.1924,
-    "implied_sum": 69.5231,
-    "claimed_sum": 2.0912,
-    "return_sum": -11.075
+    "n": 88,
+    "wins": 62,
+    "p_sum": 72.095,
+    "implied_sum": 70.3852,
+    "claimed_sum": 2.1382,
+    "return_sum": -10.915
    },
    "big": {
     "n": 29,
@@ -58260,20 +58089,20 @@
   },
   "source": {
    "model": {
-    "n": 122,
-    "wins": 109,
-    "p_sum": 106.275,
-    "implied_sum": 108.7241,
-    "claimed_sum": -2.418,
-    "return_sum": 0.344
+    "n": 125,
+    "wins": 112,
+    "p_sum": 108.7822,
+    "implied_sum": 111.3904,
+    "claimed_sum": -2.5991,
+    "return_sum": 0.734
    },
    "sharp": {
-    "n": 604,
-    "wins": 467,
-    "p_sum": 450.9826,
-    "implied_sum": 467.1356,
-    "claimed_sum": -20.6154,
-    "return_sum": 2.326
+    "n": 609,
+    "wins": 470,
+    "p_sum": 454.4082,
+    "implied_sum": 470.6542,
+    "claimed_sum": -20.7477,
+    "return_sum": 1.506
    },
    "unknown": {
     "n": 43,
@@ -58318,12 +58147,12 @@
   },
   "market": {
    "ou": {
-    "n": 351,
-    "wins": 291,
-    "p_sum": 286.9094,
-    "implied_sum": 293.4387,
-    "claimed_sum": -7.6826,
-    "return_sum": -1.929
+    "n": 355,
+    "wins": 294,
+    "p_sum": 290.0814,
+    "implied_sum": 296.7947,
+    "claimed_sum": -7.8997,
+    "return_sum": -2.539
    },
    "dnb": {
     "n": 33,
@@ -58334,28 +58163,28 @@
     "return_sum": -0.614
    },
    "ah": {
-    "n": 97,
-    "wins": 81,
-    "p_sum": 77.1858,
-    "implied_sum": 79.5727,
-    "claimed_sum": -3.0189,
-    "return_sum": 1.4
+    "n": 98,
+    "wins": 82,
+    "p_sum": 77.8235,
+    "implied_sum": 80.2263,
+    "claimed_sum": -3.0432,
+    "return_sum": 1.93
    },
    "ts": {
-    "n": 163,
-    "wins": 125,
-    "p_sum": 127.1752,
-    "implied_sum": 131.2906,
-    "claimed_sum": -5.2247,
-    "return_sum": -7.38
+    "n": 165,
+    "wins": 127,
+    "p_sum": 128.676,
+    "implied_sum": 132.8409,
+    "claimed_sum": -5.2924,
+    "return_sum": -6.73
    },
    "1x2": {
-    "n": 26,
+    "n": 27,
     "wins": 22,
-    "p_sum": 18.8416,
-    "implied_sum": 19.0331,
-    "claimed_sum": -0.2704,
-    "return_sum": 4.33
+    "p_sum": 19.4639,
+    "implied_sum": 19.6581,
+    "claimed_sum": -0.2747,
+    "return_sum": 3.33
    },
    "btts": {
     "n": 2,
