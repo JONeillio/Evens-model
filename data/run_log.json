@@ -1,27 +1,27 @@
 {
- "started_at": "2026-11-21T08:16:38Z",
+ "started_at": "2026-11-22T08:16:42Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
-  "Not covered today (saving requests): League Two, League One, Premiership, National League, Serie A, LaLiga, Bundesliga, Ligue 1, Eredivisie, Super Lig, Pro League, 2. Bundesliga, Super League, Championship, LaLiga 2, Serie B, League One, League Two, Ligue 2"
+  "Not covered today (saving requests): Super League, Super Lig, Pro League, 2. Bundesliga, LaLiga 2, Serie B, Ligue 2"
  ],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 169,
-  "remaining": 81
+  "used": 176,
+  "remaining": 74
  },
  "plan": {
-  "allowance": 13,
-  "remaining": 81,
-  "share": 13.4,
+  "allowance": 14,
+  "remaining": 74,
+  "share": 14.8,
   "weekday_weight": 1.9,
   "fetch": true,
-  "leagues_with_games": 19,
-  "chunks_needed": 4,
-  "chunks_fetched": 0,
-  "matches_priced": 0,
-  "planned_calls": 7
+  "leagues_with_games": 12,
+  "chunks_needed": 3,
+  "chunks_fetched": 1,
+  "matches_priced": 6,
+  "planned_calls": 14
  },
  "core": {
   "competitions": [
@@ -41,28 +41,39 @@
  },
  "priority_picks": 0,
  "nfl": {
-  "prop_legs": 634,
+  "prop_legs": 656,
   "projections": 337
  },
- "builder_seconds": 0.19,
- "fixtures": 40,
- "legs": 1806,
- "slips": 15,
+ "builder_seconds": 0.08,
+ "fixtures": 37,
+ "legs": 1731,
+ "slips": 53,
  "books": [
-  "bet365",
   "williamhill",
   "paddypower",
+  "betfred",
   "ladbrokes",
-  "unibet"
+  "coral",
+  "betway",
+  "888sport",
+  "unibet",
+  "betmgm.co.uk",
+  "livescorebet",
+  "virginbet",
+  "betuk",
+  "grosvenor",
+  "sportingbet",
+  "betfair-ex",
+  "matchbook"
  ],
- "model_fixtures": 22,
+ "model_fixtures": 16,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.21,
+   "seconds": 0.35,
    "billable": false,
    "note": ""
   },
@@ -70,11 +81,11 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-21T08:16:38Z",
-    "to": "2026-11-23T07:16:38Z"
+    "from": "2026-11-22T08:16:42Z",
+    "to": "2026-11-24T07:16:42Z"
    },
    "status": 200,
-   "seconds": 0.56,
+   "seconds": 0.62,
    "billable": true,
    "note": ""
   },
@@ -86,7 +97,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.5,
+   "seconds": 0.6,
    "billable": true,
    "note": ""
   },
@@ -98,7 +109,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.9,
+   "seconds": 0.7,
    "billable": true,
    "note": ""
   },
@@ -110,7 +121,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.58,
+   "seconds": 0.71,
    "billable": true,
    "note": ""
   },
@@ -122,7 +133,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.35,
+   "seconds": 0.64,
    "billable": true,
    "note": ""
   },
@@ -134,7 +145,7 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.83,
+   "seconds": 0.78,
    "billable": true,
    "note": ""
   },
@@ -146,10 +157,82 @@
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.72,
+   "seconds": 0.65,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "23,8,34,35,37",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.57,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000000872478718"
+   },
+   "status": 200,
+   "seconds": 1.14,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002371945424"
+   },
+   "status": 200,
+   "seconds": 1.47,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000003772041262"
+   },
+   "status": 200,
+   "seconds": 1.1,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000003772041248"
+   },
+   "status": 200,
+   "seconds": 1.28,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002371945408"
+   },
+   "status": 200,
+   "seconds": 1.14,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000003472036304"
+   },
+   "status": 200,
+   "seconds": 1.34,
    "billable": true,
    "note": ""
   }
  ],
- "finished_at": "2026-11-21T08:17:06Z"
+ "finished_at": "2026-11-22T08:17:31Z"
 }
