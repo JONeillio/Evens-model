@@ -730,10 +730,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-22T17:49:52Z"
+   "at": "2026-11-22T17:54:54Z"
   }
  },
- "last_called_at": "2026-11-22T17:49:52Z",
+ "last_called_at": "2026-11-22T17:54:54Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1138,11 +1138,18 @@
   },
   "id1000001772221404": {
    "fd": "560645"
-  }
+  },
+  "id1400003171516036": {},
+  "id1400003171516038": {},
+  "id1400003171516040": {},
+  "id1400003171516042": {},
+  "id1400003171516044": {},
+  "id1400003171516046": {},
+  "id1400003171516054": {}
  },
  "last_log": {
-  "at": "2026-11-22T17:49:52Z",
-  "want": 17,
+  "at": "2026-11-22T17:54:54Z",
+  "want": 24,
   "live": true,
   "called": true,
   "calls": [
@@ -1156,9 +1163,9 @@
     "results": 69
    }
   ],
-  "changed": 1,
+  "changed": 0,
   "coverage": {
-   "checked": 17,
+   "checked": 24,
    "api_football": 0,
    "football_data": 2,
    "unmatched": [
@@ -1176,7 +1183,14 @@
     "Dallas Mavericks v LA Clippers (NBA)",
     "Minnesota Timberwolves v Memphis Grizzlies (NBA)",
     "San Antonio Spurs v New Orleans Pelicans (NBA)",
-    "Sacramento Kings v Boston Celtics (NBA)"
+    "Sacramento Kings v Boston Celtics (NBA)",
+    "Buffalo Bills v Miami Dolphins (NFL)",
+    "Carolina Panthers v Baltimore Ravens (NFL)",
+    "Chicago Bears v New Orleans Saints (NFL)",
+    "Dallas Cowboys v Tennessee Titans (NFL)",
+    "Detroit Lions v Tampa Bay Buccaneers (NFL)",
+    "Kansas City Chiefs v Arizona Cardinals (NFL)",
+    "Philadelphia Eagles v Pittsburgh Steelers (NFL)"
    ]
   }
  },
