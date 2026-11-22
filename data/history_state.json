@@ -2921,8 +2921,8 @@
       "away": "Man United"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "4-0"
     },
     {
      "id": "id1400003171516046|nfl-sp:2:+25.5",
@@ -3740,22 +3740,22 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 595,
-   "wins": 514,
-   "p_sum": 520.8393,
-   "price_sum": 660.276
+   "n": 596,
+   "wins": 515,
+   "p_sum": 521.7272,
+   "price_sum": 661.376
   },
   "0.75": {
-   "n": 585,
-   "wins": 448,
-   "p_sum": 453.049,
-   "price_sum": 714.695
+   "n": 586,
+   "wins": 449,
+   "p_sum": 453.8081,
+   "price_sum": 715.955
   },
   "0.70": {
-   "n": 558,
+   "n": 559,
    "wins": 416,
-   "p_sum": 404.9728,
-   "price_sum": 727.935
+   "p_sum": 405.6831,
+   "price_sum": 729.285
   },
   "0.90": {
    "n": 564,
@@ -3764,28 +3764,28 @@
    "price_sum": 599.154
   },
   "0.65": {
-   "n": 496,
+   "n": 497,
    "wins": 346,
-   "p_sum": 334.9757,
-   "price_sum": 686.448
+   "p_sum": 335.6326,
+   "price_sum": 687.888
   },
   "0.80": {
-   "n": 593,
-   "wins": 496,
-   "p_sum": 489.6296,
-   "price_sum": 691.49
+   "n": 594,
+   "wins": 497,
+   "p_sum": 490.4793,
+   "price_sum": 692.63
   },
   "0.95": {
-   "n": 253,
-   "wins": 237,
-   "p_sum": 243.2602,
-   "price_sum": 261.325
+   "n": 254,
+   "wins": 238,
+   "p_sum": 244.218,
+   "price_sum": 262.345
   },
   "0.55": {
-   "n": 199,
-   "wins": 116,
-   "p_sum": 114.8372,
-   "price_sum": 298.473
+   "n": 200,
+   "wins": 117,
+   "p_sum": 115.4194,
+   "price_sum": 299.773
   },
   "0.60": {
    "n": 502,
@@ -33334,139 +33334,6 @@
     "div": "E1",
     "home": "Lincoln",
     "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ah:2:+1.5": {
-   "id": "id1000001772221404|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Manchester United +1.5 (handicap)",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.44,
-   "p_win": 0.6569,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|dnb:1": {
-   "id": "id1000001772221404|dnb:1",
-   "key": "dnb:1",
-   "label": "Liverpool FC (draw no bet)",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.3,
-   "p_win": 0.5822,
-   "p_void": 0.2201,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ou:0.5:over": {
-   "id": "id1000001772221404|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.02,
-   "p_win": 0.9578,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ou:1.5:over": {
-   "id": "id1000001772221404|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.14,
-   "p_win": 0.8497,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ou:4.5:under": {
-   "id": "id1000001772221404|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.26,
-   "p_win": 0.7591,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ts:1:yes": {
-   "id": "id1000001772221404|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Liverpool FC to score",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.1,
-   "p_win": 0.8879,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221404|ts:2:yes": {
-   "id": "id1000001772221404|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Manchester United to score",
-   "match": "Liverpool FC v Manchester United",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T16:30:00Z",
-   "price": 1.35,
-   "p_win": 0.7103,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Liverpool",
-    "away": "Man United"
    },
    "source": "sharp",
    "result": null,
@@ -66694,20 +66561,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2032,
-    "wins": 1517,
-    "p_sum": 1472.5141,
-    "implied_sum": 1618.252,
-    "claimed_sum": -182.718,
-    "return_sum": -126.148
+    "n": 2037,
+    "wins": 1520,
+    "p_sum": 1476.0723,
+    "implied_sum": 1622.1272,
+    "claimed_sum": -183.1311,
+    "return_sum": -127.448
    },
    "flat": {
-    "n": 2185,
-    "wins": 1804,
-    "p_sum": 1818.9437,
-    "implied_sum": 1848.3433,
-    "claimed_sum": -34.6764,
-    "return_sum": -47.915
+    "n": 2187,
+    "wins": 1806,
+    "p_sum": 1820.7894,
+    "implied_sum": 1850.2328,
+    "claimed_sum": -34.7227,
+    "return_sum": -47.795
    },
    "some": {
     "n": 94,
@@ -66728,20 +66595,20 @@
   },
   "source": {
    "model": {
-    "n": 142,
-    "wins": 128,
-    "p_sum": 123.7248,
-    "implied_sum": 126.1778,
-    "claimed_sum": -2.2124,
-    "return_sum": 2.39
+    "n": 145,
+    "wins": 131,
+    "p_sum": 126.2914,
+    "implied_sum": 128.8291,
+    "claimed_sum": -2.3102,
+    "return_sum": 2.81
    },
    "sharp": {
-    "n": 645,
-    "wins": 498,
-    "p_sum": 481.5296,
-    "implied_sum": 498.8165,
-    "claimed_sum": -22.0605,
-    "return_sum": 1.542
+    "n": 649,
+    "wins": 500,
+    "p_sum": 484.3669,
+    "implied_sum": 501.9299,
+    "claimed_sum": -22.4221,
+    "return_sum": -0.058
    },
    "unknown": {
     "n": 43,
@@ -66786,36 +66653,36 @@
   },
   "market": {
    "ou": {
-    "n": 381,
-    "wins": 317,
-    "p_sum": 311.7583,
-    "implied_sum": 318.1897,
-    "claimed_sum": -7.3804,
-    "return_sum": -0.523
+    "n": 384,
+    "wins": 320,
+    "p_sum": 314.3249,
+    "implied_sum": 320.841,
+    "claimed_sum": -7.4782,
+    "return_sum": -0.103
    },
    "dnb": {
-    "n": 37,
-    "wins": 31,
-    "p_sum": 25.8555,
-    "implied_sum": 31.7469,
-    "claimed_sum": -6.997,
-    "return_sum": -1.044
+    "n": 38,
+    "wins": 32,
+    "p_sum": 26.4377,
+    "implied_sum": 32.5161,
+    "claimed_sum": -7.2401,
+    "return_sum": -0.744
    },
    "ah": {
-    "n": 109,
+    "n": 110,
     "wins": 91,
-    "p_sum": 86.6218,
-    "implied_sum": 89.191,
-    "claimed_sum": -3.2557,
-    "return_sum": 2.04
+    "p_sum": 87.2787,
+    "implied_sum": 89.8854,
+    "claimed_sum": -3.3098,
+    "return_sum": 1.04
    },
    "ts": {
-    "n": 179,
-    "wins": 139,
-    "p_sum": 139.8375,
-    "implied_sum": 144.2599,
-    "claimed_sum": -5.6332,
-    "return_sum": -5.674
+    "n": 181,
+    "wins": 140,
+    "p_sum": 141.4357,
+    "implied_sum": 145.9097,
+    "claimed_sum": -5.6976,
+    "return_sum": -6.574
    },
    "1x2": {
     "n": 30,
