@@ -3130,8 +3130,8 @@
       "away": "Angers"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "4-0"
     }
    ],
    "status": "pending",
@@ -3214,8 +3214,8 @@
       "away": "Angers"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "4-0"
     }
    ],
    "status": "pending",
@@ -3283,8 +3283,8 @@
       "away": "Angers"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "4-0"
     },
     {
      "id": "id1000002371945408|ou:3.5:under",
@@ -3302,8 +3302,8 @@
       "away": "Udinese"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "1-1"
     }
    ],
    "status": "pending",
@@ -3740,28 +3740,28 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 588,
-   "wins": 508,
-   "p_sum": 514.7614,
-   "price_sum": 652.28
+   "n": 591,
+   "wins": 511,
+   "p_sum": 517.3322,
+   "price_sum": 655.866
   },
   "0.75": {
-   "n": 582,
-   "wins": 445,
-   "p_sum": 450.7846,
-   "price_sum": 710.925
+   "n": 585,
+   "wins": 448,
+   "p_sum": 453.049,
+   "price_sum": 714.695
   },
   "0.70": {
-   "n": 551,
-   "wins": 411,
-   "p_sum": 399.8577,
-   "price_sum": 718.425
+   "n": 556,
+   "wins": 415,
+   "p_sum": 403.5235,
+   "price_sum": 725.175
   },
   "0.90": {
-   "n": 557,
-   "wins": 510,
-   "p_sum": 516.0021,
-   "price_sum": 590.791
+   "n": 562,
+   "wins": 515,
+   "p_sum": 520.6656,
+   "price_sum": 596.854
   },
   "0.65": {
    "n": 493,
@@ -3770,16 +3770,16 @@
    "price_sum": 682.308
   },
   "0.80": {
-   "n": 589,
-   "wins": 493,
-   "p_sum": 486.3313,
-   "price_sum": 686.738
+   "n": 592,
+   "wins": 495,
+   "p_sum": 488.8246,
+   "price_sum": 690.25
   },
   "0.95": {
-   "n": 251,
-   "wins": 235,
-   "p_sum": 241.2978,
-   "price_sum": 259.275
+   "n": 252,
+   "wins": 236,
+   "p_sum": 242.2736,
+   "price_sum": 260.295
   },
   "0.55": {
    "n": 198,
@@ -3788,10 +3788,10 @@
    "price_sum": 296.903
   },
   "0.60": {
-   "n": 499,
-   "wins": 326,
-   "p_sum": 312.6101,
-   "price_sum": 733.982
+   "n": 500,
+   "wins": 327,
+   "p_sum": 313.2222,
+   "price_sum": 735.553
   }
  },
  "legs_pending": {
@@ -66246,424 +66246,6 @@
    "result": null,
    "score": null
   },
-  "id1000002371945408|ah:1:+1.5": {
-   "id": "id1000002371945408|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Bologna FC +1.5 (handicap)",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.06,
-   "p_win": 0.917,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ah:2:+1.5": {
-   "id": "id1000002371945408|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Udinese Calcio +1.5 (handicap)",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.39,
-   "p_win": 0.7054,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|dnb:1": {
-   "id": "id1000002371945408|dnb:1",
-   "key": "dnb:1",
-   "label": "Bologna FC (draw no bet)",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.34,
-   "p_win": 0.5599,
-   "p_void": 0.2591,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ou:0.5:over": {
-   "id": "id1000002371945408|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.58,
-   "p_win": 0.9438,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ou:3.5:under": {
-   "id": "id1000002371945408|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.36,
-   "p_win": 0.7338,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ou:4.5:under": {
-   "id": "id1000002371945408|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.133,
-   "p_win": 0.8512,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ts:1:yes": {
-   "id": "id1000002371945408|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Bologna FC to score",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.182,
-   "p_win": 0.8342,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945408|ts:2:yes": {
-   "id": "id1000002371945408|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Udinese Calcio to score",
-   "match": "Bologna FC v Udinese Calcio",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.571,
-   "p_win": 0.6121,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Bologna",
-    "away": "Udinese"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ah:1:+1.5": {
-   "id": "id1000002371945424|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Sassuolo Calcio +1.5 (handicap)",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.17,
-   "p_win": 0.8262,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ah:2:+1.5": {
-   "id": "id1000002371945424|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Genoa CFC +1.5 (handicap)",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.16,
-   "p_win": 0.8329,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ou:0.5:over": {
-   "id": "id1000002371945424|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.33,
-   "p_win": 0.9423,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ou:3.5:under": {
-   "id": "id1000002371945424|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.36,
-   "p_win": 0.7314,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ou:4.5:under": {
-   "id": "id1000002371945424|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.133,
-   "p_win": 0.8558,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ts:1:yes": {
-   "id": "id1000002371945424|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Sassuolo Calcio to score",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.3,
-   "p_win": 0.746,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000002371945424|ts:2:yes": {
-   "id": "id1000002371945424|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Genoa CFC to score",
-   "match": "Sassuolo Calcio v Genoa CFC",
-   "league": "Serie A",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.3,
-   "p_win": 0.7531,
-   "p_void": 0.0,
-   "fd": {
-    "div": "I1",
-    "home": "Sassuolo",
-    "away": "Genoa"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|1x2:1": {
-   "id": "id1000003472036304|1x2:1",
-   "key": "1x2:1",
-   "label": "Paris FC to win",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.34,
-   "p_win": 0.7492,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|ah:1:+1.5": {
-   "id": "id1000003472036304|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Paris FC +1.5 (handicap)",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.02,
-   "p_win": 0.9758,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|dnb:1": {
-   "id": "id1000003472036304|dnb:1",
-   "key": "dnb:1",
-   "label": "Paris FC (draw no bet)",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.12,
-   "p_win": 0.7551,
-   "p_void": 0.1517,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|ou:0.5:over": {
-   "id": "id1000003472036304|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9264,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|ou:1.5:over": {
-   "id": "id1000003472036304|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.35,
-   "p_win": 0.7562,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|ou:4.5:under": {
-   "id": "id1000003472036304|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.32,
-   "p_win": 0.8638,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000003472036304|ts:1:yes": {
-   "id": "id1000003472036304|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Paris FC to score",
-   "match": "Paris FC v Angers SCO",
-   "league": "Ligue 1",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.063,
-   "p_win": 0.934,
-   "p_void": 0.0,
-   "fd": {
-    "div": "F1",
-    "home": "Paris FC",
-    "away": "Angers"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1000000872478718|ah:1:+1.5": {
    "id": "id1000000872478718|ah:1:+1.5",
    "key": "ah:1:+1.5",
@@ -67388,54 +66970,54 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2018,
-    "wins": 1507,
-    "p_sum": 1461.8866,
-    "implied_sum": 1606.6604,
-    "claimed_sum": -181.571,
-    "return_sum": -124.665
+    "n": 2026,
+    "wins": 1513,
+    "p_sum": 1468.2923,
+    "implied_sum": 1613.4119,
+    "claimed_sum": -181.9728,
+    "return_sum": -125.518
    },
    "flat": {
-    "n": 2169,
-    "wins": 1790,
-    "p_sum": 1806.276,
-    "implied_sum": 1835.5728,
-    "claimed_sum": -34.5447,
-    "return_sum": -49.34
+    "n": 2178,
+    "wins": 1799,
+    "p_sum": 1813.6099,
+    "implied_sum": 1842.9888,
+    "claimed_sum": -34.6425,
+    "return_sum": -47.265
    },
    "some": {
-    "n": 91,
-    "wins": 65,
-    "p_sum": 74.5286,
-    "implied_sum": 72.7686,
-    "claimed_sum": 2.201,
-    "return_sum": -10.055
+    "n": 92,
+    "wins": 66,
+    "p_sum": 75.2848,
+    "implied_sum": 73.5093,
+    "claimed_sum": 2.2219,
+    "return_sum": -9.705
    },
    "big": {
-    "n": 30,
-    "wins": 26,
-    "p_sum": 26.1979,
-    "implied_sum": 23.4939,
-    "claimed_sum": 3.5262,
-    "return_sum": 2.756
+    "n": 33,
+    "wins": 29,
+    "p_sum": 28.9478,
+    "implied_sum": 25.6363,
+    "claimed_sum": 4.4109,
+    "return_sum": 3.986
    }
   },
   "source": {
    "model": {
-    "n": 128,
-    "wins": 115,
-    "p_sum": 111.6021,
-    "implied_sum": 114.2496,
-    "claimed_sum": -2.6397,
-    "return_sum": 0.884
+    "n": 139,
+    "wins": 125,
+    "p_sum": 121.2935,
+    "implied_sum": 123.5094,
+    "claimed_sum": -1.9457,
+    "return_sum": 2.0
    },
    "sharp": {
-    "n": 625,
-    "wins": 483,
-    "p_sum": 466.7886,
-    "implied_sum": 483.5144,
-    "claimed_sum": -21.3506,
-    "return_sum": 1.506
+    "n": 635,
+    "wins": 492,
+    "p_sum": 474.3429,
+    "implied_sum": 491.3052,
+    "claimed_sum": -21.6386,
+    "return_sum": 3.192
    },
    "unknown": {
     "n": 43,
@@ -67480,44 +67062,44 @@
   },
   "market": {
    "ou": {
-    "n": 365,
-    "wins": 302,
-    "p_sum": 298.455,
-    "implied_sum": 305.1764,
-    "claimed_sum": -7.9061,
-    "return_sum": -3.129
+    "n": 374,
+    "wins": 311,
+    "p_sum": 306.0597,
+    "implied_sum": 312.2662,
+    "claimed_sum": -7.1196,
+    "return_sum": -0.533
    },
    "dnb": {
-    "n": 35,
-    "wins": 30,
-    "p_sum": 24.4417,
-    "implied_sum": 30.0065,
-    "claimed_sum": -6.62,
-    "return_sum": -0.164
+    "n": 36,
+    "wins": 31,
+    "p_sum": 25.1968,
+    "implied_sum": 30.8994,
+    "claimed_sum": -6.7743,
+    "return_sum": -0.044
    },
    "ah": {
-    "n": 101,
-    "wins": 84,
-    "p_sum": 80.1473,
-    "implied_sum": 82.5932,
-    "claimed_sum": -3.0999,
-    "return_sum": 1.32
+    "n": 106,
+    "wins": 88,
+    "p_sum": 84.4046,
+    "implied_sum": 86.9532,
+    "claimed_sum": -3.2192,
+    "return_sum": 0.95
    },
    "ts": {
-    "n": 170,
-    "wins": 132,
-    "p_sum": 132.8021,
-    "implied_sum": 137.0686,
-    "claimed_sum": -5.4185,
-    "return_sum": -5.74
+    "n": 175,
+    "wins": 136,
+    "p_sum": 136.6815,
+    "implied_sum": 141.0302,
+    "claimed_sum": -5.5293,
+    "return_sum": -5.624
    },
    "1x2": {
-    "n": 28,
-    "wins": 23,
-    "p_sum": 20.3067,
-    "implied_sum": 20.4914,
-    "claimed_sum": -0.2633,
-    "return_sum": 3.53
+    "n": 29,
+    "wins": 24,
+    "p_sum": 21.0559,
+    "implied_sum": 21.2377,
+    "claimed_sum": -0.2594,
+    "return_sum": 3.87
    },
    "btts": {
     "n": 2,
