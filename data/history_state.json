@@ -3077,8 +3077,8 @@
       "away": "Brighton"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     },
     {
      "id": "id1000001872340034|ts:1:yes",
@@ -3134,9 +3134,9 @@
      "score": "4-0"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "won",
+   "settled_odds": 2.049,
+   "profit_per_10": 10.49
   },
   {
    "key": "2026-11-22T13:30:00Z",
@@ -3180,8 +3180,8 @@
       "away": "Brighton"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     },
     {
      "id": "id1000003772041248|1x2:1",
@@ -3264,8 +3264,8 @@
       "away": "Brighton"
      },
      "source": "model",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-0"
     },
     {
      "id": "id1000003472036304|ou:4.5:under",
@@ -3740,10 +3740,10 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 591,
-   "wins": 511,
-   "p_sum": 517.3322,
-   "price_sum": 655.866
+   "n": 593,
+   "wins": 512,
+   "p_sum": 519.0815,
+   "price_sum": 657.986
   },
   "0.75": {
    "n": 585,
@@ -3758,16 +3758,16 @@
    "price_sum": 725.175
   },
   "0.90": {
-   "n": 562,
-   "wins": 515,
-   "p_sum": 520.6656,
-   "price_sum": 596.854
+   "n": 563,
+   "wins": 516,
+   "p_sum": 521.605,
+   "price_sum": 598.024
   },
   "0.65": {
-   "n": 493,
-   "wins": 345,
-   "p_sum": 332.9953,
-   "price_sum": 682.308
+   "n": 496,
+   "wins": 346,
+   "p_sum": 334.9757,
+   "price_sum": 686.448
   },
   "0.80": {
    "n": 592,
@@ -3782,16 +3782,16 @@
    "price_sum": 260.295
   },
   "0.55": {
-   "n": 198,
-   "wins": 115,
-   "p_sum": 114.2488,
-   "price_sum": 296.903
+   "n": 199,
+   "wins": 116,
+   "p_sum": 114.8372,
+   "price_sum": 298.473
   },
   "0.60": {
-   "n": 500,
-   "wins": 327,
-   "p_sum": 313.2222,
-   "price_sum": 735.553
+   "n": 502,
+   "wins": 329,
+   "p_sum": 314.4476,
+   "price_sum": 738.333
   }
  },
  "legs_pending": {
@@ -33334,177 +33334,6 @@
     "div": "E1",
     "home": "Lincoln",
     "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|1x2:2": {
-   "id": "id1000001772221402|1x2:2",
-   "key": "1x2:2",
-   "label": "Brighton & Hove Albion to win",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.5,
-   "p_win": 0.6523,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ah:1:+1.5": {
-   "id": "id1000001772221402|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Hull City +1.5 (handicap)",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.58,
-   "p_win": 0.601,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|dnb:2": {
-   "id": "id1000001772221402|dnb:2",
-   "key": "dnb:2",
-   "label": "Brighton & Hove Albion (draw no bet)",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.18,
-   "p_win": 0.6587,
-   "p_void": 0.2118,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ou:0.5:over": {
-   "id": "id1000001772221402|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.02,
-   "p_win": 0.8675,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ou:1.5:over": {
-   "id": "id1000001772221402|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.2,
-   "p_win": 0.6244,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ou:3.5:under": {
-   "id": "id1000001772221402|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.46,
-   "p_win": 0.6694,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ou:4.5:under": {
-   "id": "id1000001772221402|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.17,
-   "p_win": 0.9394,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ts:1:yes": {
-   "id": "id1000001772221402|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Hull City to score",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.57,
-   "p_win": 0.5884,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221402|ts:2:yes": {
-   "id": "id1000001772221402|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Brighton & Hove Albion to score",
-   "match": "Hull City v Brighton & Hove Albion",
-   "league": "Premier League",
-   "kickoff": "2026-11-22T14:00:00Z",
-   "price": 1.1,
-   "p_win": 0.8818,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Hull",
-    "away": "Brighton"
    },
    "source": "sharp",
    "result": null,
@@ -66970,20 +66799,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2026,
-    "wins": 1513,
-    "p_sum": 1468.2923,
-    "implied_sum": 1613.4119,
-    "claimed_sum": -181.9728,
-    "return_sum": -125.518
+    "n": 2032,
+    "wins": 1517,
+    "p_sum": 1472.5141,
+    "implied_sum": 1618.252,
+    "claimed_sum": -182.718,
+    "return_sum": -126.148
    },
    "flat": {
-    "n": 2178,
-    "wins": 1799,
-    "p_sum": 1813.6099,
-    "implied_sum": 1842.9888,
-    "claimed_sum": -34.6425,
-    "return_sum": -47.265
+    "n": 2180,
+    "wins": 1800,
+    "p_sum": 1814.9316,
+    "implied_sum": 1844.3404,
+    "claimed_sum": -34.6867,
+    "return_sum": -47.805
    },
    "some": {
     "n": 92,
@@ -66994,30 +66823,30 @@
     "return_sum": -9.705
    },
    "big": {
-    "n": 33,
-    "wins": 29,
-    "p_sum": 28.9478,
-    "implied_sum": 25.6363,
-    "claimed_sum": 4.4109,
-    "return_sum": 3.986
+    "n": 34,
+    "wins": 30,
+    "p_sum": 29.8872,
+    "implied_sum": 26.491,
+    "claimed_sum": 4.51,
+    "return_sum": 4.156
    }
   },
   "source": {
    "model": {
-    "n": 139,
-    "wins": 125,
-    "p_sum": 121.2935,
-    "implied_sum": 123.5094,
-    "claimed_sum": -1.9457,
-    "return_sum": 2.0
+    "n": 142,
+    "wins": 128,
+    "p_sum": 123.7248,
+    "implied_sum": 126.1778,
+    "claimed_sum": -2.2124,
+    "return_sum": 2.39
    },
    "sharp": {
-    "n": 635,
-    "wins": 492,
-    "p_sum": 474.3429,
-    "implied_sum": 491.3052,
-    "claimed_sum": -21.6386,
-    "return_sum": 3.192
+    "n": 641,
+    "wins": 495,
+    "p_sum": 478.3945,
+    "implied_sum": 495.6832,
+    "claimed_sum": -22.0622,
+    "return_sum": 1.802
    },
    "unknown": {
     "n": 43,
@@ -67062,44 +66891,44 @@
   },
   "market": {
    "ou": {
-    "n": 374,
-    "wins": 311,
-    "p_sum": 306.0597,
-    "implied_sum": 312.2662,
-    "claimed_sum": -7.1196,
-    "return_sum": -0.533
+    "n": 378,
+    "wins": 315,
+    "p_sum": 309.1604,
+    "implied_sum": 315.6195,
+    "claimed_sum": -7.4091,
+    "return_sum": 0.317
    },
    "dnb": {
-    "n": 36,
+    "n": 37,
     "wins": 31,
-    "p_sum": 25.1968,
-    "implied_sum": 30.8994,
-    "claimed_sum": -6.7743,
-    "return_sum": -0.044
+    "p_sum": 25.8555,
+    "implied_sum": 31.7469,
+    "claimed_sum": -6.997,
+    "return_sum": -1.044
    },
    "ah": {
-    "n": 106,
-    "wins": 88,
-    "p_sum": 84.4046,
-    "implied_sum": 86.9532,
-    "claimed_sum": -3.2192,
-    "return_sum": 0.95
+    "n": 107,
+    "wins": 89,
+    "p_sum": 85.0056,
+    "implied_sum": 87.5861,
+    "claimed_sum": -3.2696,
+    "return_sum": 1.53
    },
    "ts": {
-    "n": 175,
-    "wins": 136,
-    "p_sum": 136.6815,
-    "implied_sum": 141.0302,
-    "claimed_sum": -5.5293,
-    "return_sum": -5.624
+    "n": 177,
+    "wins": 137,
+    "p_sum": 138.1517,
+    "implied_sum": 142.5762,
+    "claimed_sum": -5.6355,
+    "return_sum": -6.054
    },
    "1x2": {
-    "n": 29,
+    "n": 30,
     "wins": 24,
-    "p_sum": 21.0559,
-    "implied_sum": 21.2377,
-    "claimed_sum": -0.2594,
-    "return_sum": 3.87
+    "p_sum": 21.7082,
+    "implied_sum": 21.9044,
+    "claimed_sum": -0.2809,
+    "return_sum": 2.87
    },
    "btts": {
     "n": 2,
