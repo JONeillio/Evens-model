@@ -3096,8 +3096,8 @@
       "away": "Blackburn"
      },
      "source": "sharp",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "2-2"
     },
     {
      "id": "id1000003772041248|1x2:1",
@@ -3740,22 +3740,22 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 585,
-   "wins": 505,
-   "p_sum": 512.1451,
-   "price_sum": 648.9
+   "n": 586,
+   "wins": 506,
+   "p_sum": 512.9993,
+   "price_sum": 650.02
   },
   "0.75": {
-   "n": 581,
-   "wins": 444,
-   "p_sum": 450.0037,
-   "price_sum": 709.705
+   "n": 582,
+   "wins": 445,
+   "p_sum": 450.7846,
+   "price_sum": 710.925
   },
   "0.70": {
-   "n": 548,
-   "wins": 409,
-   "p_sum": 397.6317,
-   "price_sum": 714.492
+   "n": 549,
+   "wins": 410,
+   "p_sum": 398.3685,
+   "price_sum": 715.792
   },
   "0.90": {
    "n": 554,
@@ -3764,22 +3764,22 @@
    "price_sum": 587.411
   },
   "0.65": {
-   "n": 489,
-   "wins": 343,
-   "p_sum": 330.2899,
-   "price_sum": 676.498
+   "n": 491,
+   "wins": 344,
+   "p_sum": 331.667,
+   "price_sum": 679.278
   },
   "0.80": {
-   "n": 586,
-   "wins": 490,
-   "p_sum": 483.8089,
-   "price_sum": 683.298
+   "n": 587,
+   "wins": 491,
+   "p_sum": 484.6409,
+   "price_sum": 684.468
   },
   "0.95": {
-   "n": 248,
-   "wins": 232,
-   "p_sum": 238.4229,
-   "price_sum": 256.195
+   "n": 249,
+   "wins": 233,
+   "p_sum": 239.375,
+   "price_sum": 257.225
   },
   "0.55": {
    "n": 197,
@@ -33334,139 +33334,6 @@
     "div": "E1",
     "home": "Lincoln",
     "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ah:2:+1.5": {
-   "id": "id1000001872340034|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Blackburn Rovers +1.5 (handicap)",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.3,
-   "p_win": 0.7368,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ou:0.5:over": {
-   "id": "id1000001872340034|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9521,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ou:1.5:over": {
-   "id": "id1000001872340034|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.22,
-   "p_win": 0.7809,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ou:3.5:under": {
-   "id": "id1000001872340034|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.38,
-   "p_win": 0.6932,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ou:4.5:under": {
-   "id": "id1000001872340034|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.12,
-   "p_win": 0.8542,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ts:1:yes": {
-   "id": "id1000001872340034|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Burnley FC to score",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.17,
-   "p_win": 0.832,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340034|ts:2:yes": {
-   "id": "id1000001872340034|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Blackburn Rovers to score",
-   "match": "Burnley FC v Blackburn Rovers",
-   "league": "Championship",
-   "kickoff": "2026-11-22T12:00:00Z",
-   "price": 1.4,
-   "p_win": 0.6839,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Burnley",
-    "away": "Blackburn"
    },
    "source": "sharp",
    "result": null,
@@ -67763,20 +67630,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2011,
-    "wins": 1501,
-    "p_sum": 1456.7299,
-    "implied_sum": 1601.0805,
-    "claimed_sum": -181.0321,
-    "return_sum": -125.155
+    "n": 2016,
+    "wins": 1505,
+    "p_sum": 1460.4789,
+    "implied_sum": 1605.0012,
+    "claimed_sum": -181.2508,
+    "return_sum": -125.115
    },
    "flat": {
-    "n": 2159,
-    "wins": 1782,
-    "p_sum": 1797.7308,
-    "implied_sum": 1826.9076,
-    "claimed_sum": -34.406,
-    "return_sum": -48.24
+    "n": 2161,
+    "wins": 1784,
+    "p_sum": 1799.5149,
+    "implied_sum": 1828.7332,
+    "claimed_sum": -34.4519,
+    "return_sum": -48.04
    },
    "some": {
     "n": 88,
@@ -67797,20 +67664,20 @@
   },
   "source": {
    "model": {
-    "n": 125,
-    "wins": 112,
-    "p_sum": 108.7822,
-    "implied_sum": 111.3904,
-    "claimed_sum": -2.5991,
-    "return_sum": 0.734
+    "n": 126,
+    "wins": 113,
+    "p_sum": 109.7343,
+    "implied_sum": 112.3613,
+    "claimed_sum": -2.6184,
+    "return_sum": 0.764
    },
    "sharp": {
-    "n": 609,
-    "wins": 470,
-    "p_sum": 454.4082,
-    "implied_sum": 470.6542,
-    "claimed_sum": -20.7477,
-    "return_sum": 1.506
+    "n": 615,
+    "wins": 475,
+    "p_sum": 458.9892,
+    "implied_sum": 475.4296,
+    "claimed_sum": -20.993,
+    "return_sum": 1.716
    },
    "unknown": {
     "n": 43,
@@ -67855,12 +67722,12 @@
   },
   "market": {
    "ou": {
-    "n": 355,
-    "wins": 294,
-    "p_sum": 290.0814,
-    "implied_sum": 296.7947,
-    "claimed_sum": -7.8997,
-    "return_sum": -2.539
+    "n": 359,
+    "wins": 297,
+    "p_sum": 293.3618,
+    "implied_sum": 300.2028,
+    "claimed_sum": -8.053,
+    "return_sum": -3.169
    },
    "dnb": {
     "n": 33,
@@ -67871,20 +67738,20 @@
     "return_sum": -0.614
    },
    "ah": {
-    "n": 98,
-    "wins": 82,
-    "p_sum": 77.8235,
-    "implied_sum": 80.2263,
-    "claimed_sum": -3.0432,
-    "return_sum": 1.93
+    "n": 99,
+    "wins": 83,
+    "p_sum": 78.5603,
+    "implied_sum": 80.9955,
+    "claimed_sum": -3.0854,
+    "return_sum": 2.23
    },
    "ts": {
-    "n": 165,
-    "wins": 127,
-    "p_sum": 128.676,
-    "implied_sum": 132.8409,
-    "claimed_sum": -5.2924,
-    "return_sum": -6.73
+    "n": 167,
+    "wins": 129,
+    "p_sum": 130.1919,
+    "implied_sum": 134.4099,
+    "claimed_sum": -5.3615,
+    "return_sum": -6.16
    },
    "1x2": {
     "n": 27,
