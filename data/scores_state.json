@@ -393,12 +393,12 @@
    "at": "2026-11-21T17:05:43Z"
   },
   "id1000001872340036": {
-   "s": "NS",
+   "s": "LIVE",
    "min": null,
-   "h": null,
-   "a": null,
+   "h": 0,
+   "a": 1,
    "src": "fd",
-   "at": "2026-11-22T01:04:09Z"
+   "at": "2026-11-22T01:09:12Z"
   },
   "id1000001872340038": {
    "s": "FT",
@@ -511,10 +511,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-22T01:04:09Z"
+   "at": "2026-11-22T01:09:12Z"
   }
  },
- "last_called_at": "2026-11-22T01:04:09Z",
+ "last_called_at": "2026-11-22T01:09:12Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -894,7 +894,7 @@
   "id1100013273719728": {}
  },
  "last_log": {
-  "at": "2026-11-22T01:04:09Z",
+  "at": "2026-11-22T01:09:12Z",
   "want": 16,
   "live": true,
   "called": true,
