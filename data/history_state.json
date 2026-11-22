@@ -3161,8 +3161,8 @@
      "p_void": 0.0,
      "fd": null,
      "source": "consensus",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-2"
     },
     {
      "id": "id1000001772221402|ou:4.5:under",
@@ -3218,9 +3218,9 @@
      "score": "4-0"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "won",
+   "settled_odds": 1.909,
+   "profit_per_10": 9.09
   },
   {
    "key": "2026-11-22T14:00:00Z",
@@ -3245,8 +3245,8 @@
      "p_void": 0.0,
      "fd": null,
      "source": "consensus",
-     "result": null,
-     "score": null
+     "result": "won",
+     "score": "3-2"
     },
     {
      "id": "id1000001772221402|ou:4.5:under",
@@ -3306,9 +3306,9 @@
      "score": "1-1"
     }
    ],
-   "status": "pending",
-   "settled_odds": null,
-   "profit_per_10": null
+   "status": "won",
+   "settled_odds": 2.135,
+   "profit_per_10": 11.35
   },
   {
    "key": "2026-11-22T20:30:00Z",
@@ -3740,10 +3740,10 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 593,
-   "wins": 512,
-   "p_sum": 519.0815,
-   "price_sum": 657.986
+   "n": 595,
+   "wins": 514,
+   "p_sum": 520.8393,
+   "price_sum": 660.276
   },
   "0.75": {
    "n": 585,
@@ -3752,16 +3752,16 @@
    "price_sum": 714.695
   },
   "0.70": {
-   "n": 556,
-   "wins": 415,
-   "p_sum": 403.5235,
-   "price_sum": 725.175
+   "n": 558,
+   "wins": 416,
+   "p_sum": 404.9728,
+   "price_sum": 727.935
   },
   "0.90": {
-   "n": 563,
-   "wins": 516,
-   "p_sum": 521.605,
-   "price_sum": 598.024
+   "n": 564,
+   "wins": 517,
+   "p_sum": 522.5062,
+   "price_sum": 599.154
   },
   "0.65": {
    "n": 496,
@@ -3770,16 +3770,16 @@
    "price_sum": 686.448
   },
   "0.80": {
-   "n": 592,
-   "wins": 495,
-   "p_sum": 488.8246,
-   "price_sum": 690.25
+   "n": 593,
+   "wins": 496,
+   "p_sum": 489.6296,
+   "price_sum": 691.49
   },
   "0.95": {
-   "n": 252,
-   "wins": 236,
-   "p_sum": 242.2736,
-   "price_sum": 260.295
+   "n": 253,
+   "wins": 237,
+   "p_sum": 243.2602,
+   "price_sum": 261.325
   },
   "0.55": {
    "n": 199,
@@ -66075,111 +66075,6 @@
    "result": null,
    "score": null
   },
-  "id1000000872478718|ah:1:+1.5": {
-   "id": "id1000000872478718|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Racing Santander +1.5 (handicap)",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.36,
-   "p_win": 0.7392,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ah:2:+1.5": {
-   "id": "id1000000872478718|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Real Sociedad San Sebastian +1.5 (handicap)",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.15,
-   "p_win": 0.877,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ou:0.5:over": {
-   "id": "id1000000872478718|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.03,
-   "p_win": 0.9866,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ou:1.5:over": {
-   "id": "id1000000872478718|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.13,
-   "p_win": 0.9012,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "consensus",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ou:4.5:under": {
-   "id": "id1000000872478718|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.4,
-   "p_win": 0.7101,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ts:1:yes": {
-   "id": "id1000000872478718|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Racing Santander to score",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.24,
-   "p_win": 0.805,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000000872478718|ts:2:yes": {
-   "id": "id1000000872478718|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Real Sociedad San Sebastian to score",
-   "match": "Racing Santander v Real Sociedad San Sebastian",
-   "league": "LaLiga",
-   "kickoff": "2026-11-22T15:15:00Z",
-   "price": 1.14,
-   "p_win": 0.8808,
-   "p_void": 0.0,
-   "fd": null,
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1400003171516036|nfl-prop:rec_yds:00-0037261:24.5:over": {
    "id": "id1400003171516036|nfl-prop:rec_yds:00-0037261:24.5:over",
    "key": "nfl-prop:rec_yds:00-0037261:24.5:over",
@@ -66807,20 +66702,20 @@
     "return_sum": -126.148
    },
    "flat": {
-    "n": 2180,
-    "wins": 1800,
-    "p_sum": 1814.9316,
-    "implied_sum": 1844.3404,
-    "claimed_sum": -34.6867,
-    "return_sum": -47.805
+    "n": 2185,
+    "wins": 1804,
+    "p_sum": 1818.9437,
+    "implied_sum": 1848.3433,
+    "claimed_sum": -34.6764,
+    "return_sum": -47.915
    },
    "some": {
-    "n": 92,
-    "wins": 66,
-    "p_sum": 75.2848,
-    "implied_sum": 73.5093,
-    "claimed_sum": 2.2219,
-    "return_sum": -9.705
+    "n": 94,
+    "wins": 68,
+    "p_sum": 77.1726,
+    "implied_sum": 75.3652,
+    "claimed_sum": 2.2565,
+    "return_sum": -9.545
    },
    "big": {
     "n": 34,
@@ -66841,12 +66736,12 @@
     "return_sum": 2.39
    },
    "sharp": {
-    "n": 641,
-    "wins": 495,
-    "p_sum": 478.3945,
-    "implied_sum": 495.6832,
-    "claimed_sum": -22.0622,
-    "return_sum": 1.802
+    "n": 645,
+    "wins": 498,
+    "p_sum": 481.5296,
+    "implied_sum": 498.8165,
+    "claimed_sum": -22.0605,
+    "return_sum": 1.542
    },
    "unknown": {
     "n": 43,
@@ -66857,12 +66752,12 @@
     "return_sum": 3.41
    },
    "consensus": {
-    "n": 1879,
-    "wins": 1547,
-    "p_sum": 1560.3194,
-    "implied_sum": 1587.6043,
-    "claimed_sum": -32.7709,
-    "return_sum": -40.882
+    "n": 1882,
+    "wins": 1550,
+    "p_sum": 1563.0842,
+    "implied_sum": 1590.3298,
+    "claimed_sum": -32.7277,
+    "return_sum": -40.572
    },
    "sharp-derived": {
     "n": 4,
@@ -66891,12 +66786,12 @@
   },
   "market": {
    "ou": {
-    "n": 378,
-    "wins": 315,
-    "p_sum": 309.1604,
-    "implied_sum": 315.6195,
-    "claimed_sum": -7.4091,
-    "return_sum": 0.317
+    "n": 381,
+    "wins": 317,
+    "p_sum": 311.7583,
+    "implied_sum": 318.1897,
+    "claimed_sum": -7.3804,
+    "return_sum": -0.523
    },
    "dnb": {
     "n": 37,
@@ -66907,20 +66802,20 @@
     "return_sum": -1.044
    },
    "ah": {
-    "n": 107,
-    "wins": 89,
-    "p_sum": 85.0056,
-    "implied_sum": 87.5861,
-    "claimed_sum": -3.2696,
-    "return_sum": 1.53
+    "n": 109,
+    "wins": 91,
+    "p_sum": 86.6218,
+    "implied_sum": 89.191,
+    "claimed_sum": -3.2557,
+    "return_sum": 2.04
    },
    "ts": {
-    "n": 177,
-    "wins": 137,
-    "p_sum": 138.1517,
-    "implied_sum": 142.5762,
-    "claimed_sum": -5.6355,
-    "return_sum": -6.054
+    "n": 179,
+    "wins": 139,
+    "p_sum": 139.8375,
+    "implied_sum": 144.2599,
+    "claimed_sum": -5.6332,
+    "return_sum": -5.674
    },
    "1x2": {
     "n": 30,
