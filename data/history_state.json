@@ -3740,34 +3740,34 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 738,
-   "wins": 639,
-   "p_sum": 645.7805,
-   "price_sum": 819.035
+   "n": 739,
+   "wins": 640,
+   "p_sum": 646.6715,
+   "price_sum": 820.185
   },
   "0.75": {
-   "n": 773,
-   "wins": 598,
-   "p_sum": 598.7315,
-   "price_sum": 943.72
+   "n": 774,
+   "wins": 599,
+   "p_sum": 599.5222,
+   "price_sum": 944.92
   },
   "0.70": {
-   "n": 732,
-   "wins": 544,
-   "p_sum": 531.1265,
-   "price_sum": 957.227
+   "n": 735,
+   "wins": 545,
+   "p_sum": 533.3217,
+   "price_sum": 960.967
   },
   "0.90": {
-   "n": 662,
-   "wins": 603,
-   "p_sum": 613.3675,
-   "price_sum": 702.737
+   "n": 664,
+   "wins": 605,
+   "p_sum": 615.1935,
+   "price_sum": 704.867
   },
   "0.65": {
-   "n": 648,
+   "n": 649,
    "wins": 453,
-   "p_sum": 437.6734,
-   "price_sum": 896.371
+   "p_sum": 438.3711,
+   "price_sum": 897.791
   },
   "0.80": {
    "n": 783,
@@ -36885,158 +36885,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221396|ah:1:+1.5": {
-   "id": "id1000001772221396|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Brentford FC +1.5 (handicap)",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.1,
-   "p_win": 0.9157,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ah:2:+1.5": {
-   "id": "id1000001772221396|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Everton FC +1.5 (handicap)",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.22,
-   "p_win": 0.7415,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ou:0.5:over": {
-   "id": "id1000001772221396|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.03,
-   "p_win": 0.9103,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ou:1.5:over": {
-   "id": "id1000001772221396|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.22,
-   "p_win": 0.7206,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ou:3.5:under": {
-   "id": "id1000001772221396|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.42,
-   "p_win": 0.6977,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ou:4.5:under": {
-   "id": "id1000001772221396|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.15,
-   "p_win": 0.891,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ts:1:yes": {
-   "id": "id1000001772221396|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Brentford FC to score",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.2,
-   "p_win": 0.7907,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221396|ts:2:yes": {
-   "id": "id1000001772221396|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Everton FC to score",
-   "match": "Brentford FC v Everton FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-23T20:00:00Z",
-   "price": 1.3,
-   "p_win": 0.7331,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Brentford",
-    "away": "Everton"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1400003171516056|nfl-ml:2": {
    "id": "id1400003171516056|nfl-ml:2",
    "key": "nfl-ml:2",
@@ -48297,28 +48145,28 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2617,
-    "wins": 1956,
-    "p_sum": 1892.7491,
-    "implied_sum": 2080.8649,
-    "claimed_sum": -236.2978,
-    "return_sum": -157.667
+    "n": 2622,
+    "wins": 1959,
+    "p_sum": 1896.6453,
+    "implied_sum": 2085.0777,
+    "claimed_sum": -236.6747,
+    "return_sum": -159.217
    },
    "flat": {
-    "n": 2776,
-    "wins": 2280,
-    "p_sum": 2294.1418,
-    "implied_sum": 2331.5295,
-    "claimed_sum": -44.4704,
-    "return_sum": -55.366
+    "n": 2778,
+    "wins": 2281,
+    "p_sum": 2295.7552,
+    "implied_sum": 2333.1428,
+    "claimed_sum": -44.4724,
+    "return_sum": -56.266
    },
    "some": {
-    "n": 120,
-    "wins": 87,
-    "p_sum": 97.034,
-    "implied_sum": 94.8509,
-    "claimed_sum": 2.7641,
-    "return_sum": -10.325
+    "n": 121,
+    "wins": 88,
+    "p_sum": 97.925,
+    "implied_sum": 95.7205,
+    "claimed_sum": 2.7887,
+    "return_sum": -10.175
    },
    "big": {
     "n": 41,
@@ -48331,20 +48179,20 @@
   },
   "source": {
    "model": {
-    "n": 147,
-    "wins": 133,
-    "p_sum": 128.0903,
-    "implied_sum": 130.7071,
-    "claimed_sum": -2.3946,
-    "return_sum": 2.94
+    "n": 152,
+    "wins": 137,
+    "p_sum": 132.2694,
+    "implied_sum": 135.0961,
+    "claimed_sum": -2.6414,
+    "return_sum": 2.44
    },
    "sharp": {
-    "n": 711,
-    "wins": 546,
-    "p_sum": 528.5675,
-    "implied_sum": 546.9868,
-    "claimed_sum": -23.6213,
-    "return_sum": 0.812
+    "n": 714,
+    "wins": 547,
+    "p_sum": 530.789,
+    "implied_sum": 549.2935,
+    "claimed_sum": -23.7288,
+    "return_sum": -0.988
    },
    "unknown": {
     "n": 43,
@@ -48389,12 +48237,12 @@
   },
   "market": {
    "ou": {
-    "n": 388,
-    "wins": 323,
-    "p_sum": 317.6071,
-    "implied_sum": 324.248,
-    "claimed_sum": -7.6236,
-    "return_sum": -0.713
+    "n": 392,
+    "wins": 326,
+    "p_sum": 320.8267,
+    "implied_sum": 327.6124,
+    "claimed_sum": -7.7916,
+    "return_sum": -1.313
    },
    "dnb": {
     "n": 38,
@@ -48405,20 +48253,20 @@
     "return_sum": -0.744
    },
    "ah": {
-    "n": 110,
-    "wins": 91,
-    "p_sum": 87.2787,
-    "implied_sum": 89.8854,
-    "claimed_sum": -3.3098,
-    "return_sum": 1.04
+    "n": 112,
+    "wins": 92,
+    "p_sum": 88.9359,
+    "implied_sum": 91.6142,
+    "claimed_sum": -3.3979,
+    "return_sum": 0.14
    },
    "ts": {
-    "n": 183,
-    "wins": 141,
-    "p_sum": 142.8588,
-    "implied_sum": 147.4023,
-    "claimed_sum": -5.7908,
-    "return_sum": -7.224
+    "n": 185,
+    "wins": 142,
+    "p_sum": 144.3826,
+    "implied_sum": 149.0048,
+    "claimed_sum": -5.889,
+    "return_sum": -8.024
    },
    "1x2": {
     "n": 30,
