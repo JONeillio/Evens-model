@@ -730,10 +730,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-23T11:45:24Z"
+   "at": "2026-11-23T12:48:37Z"
   }
  },
- "last_called_at": "2026-11-23T11:45:24Z",
+ "last_called_at": "2026-11-23T12:48:37Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1159,8 +1159,8 @@
   "id1100013273719744": {}
  },
  "last_log": {
-  "at": "2026-11-23T11:45:24Z",
-  "want": 25,
+  "at": "2026-11-23T12:48:37Z",
+  "want": 24,
   "live": false,
   "called": true,
   "calls": [
@@ -1174,11 +1174,11 @@
     "results": 75
    }
   ],
-  "changed": 1,
+  "changed": 0,
   "coverage": {
-   "checked": 25,
+   "checked": 24,
    "api_football": 0,
-   "football_data": 1,
+   "football_data": 0,
    "unmatched": [
     "Philadelphia 76ers v Milwaukee Bucks (NBA)",
     "New York Knicks v Portland Trail Blazers (NBA)",
@@ -1205,8 +1205,7 @@
     "New York Knicks v Indiana Pacers (NBA)",
     "Golden State Warriors v Boston Celtics (NBA)"
    ]
-  },
-  "history_updated": true
+  }
  },
  "af_last_at": "2026-11-23T00:01:26Z"
 }
