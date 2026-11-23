@@ -3740,28 +3740,28 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 737,
-   "wins": 638,
-   "p_sum": 644.9014,
-   "price_sum": 817.965
+   "n": 738,
+   "wins": 639,
+   "p_sum": 645.7805,
+   "price_sum": 819.035
   },
   "0.75": {
-   "n": 772,
-   "wins": 597,
-   "p_sum": 597.9494,
-   "price_sum": 942.46
+   "n": 773,
+   "wins": 598,
+   "p_sum": 598.7315,
+   "price_sum": 943.72
   },
   "0.70": {
-   "n": 729,
-   "wins": 543,
-   "p_sum": 529.0022,
-   "price_sum": 953.187
+   "n": 732,
+   "wins": 544,
+   "p_sum": 531.1265,
+   "price_sum": 957.227
   },
   "0.90": {
-   "n": 661,
-   "wins": 602,
-   "p_sum": 612.4477,
-   "price_sum": 701.677
+   "n": 662,
+   "wins": 603,
+   "p_sum": 613.3675,
+   "price_sum": 702.737
   },
   "0.65": {
    "n": 648,
@@ -33225,120 +33225,6 @@
    "result": null,
    "score": null
   },
-  "id1000001872340036|ou:0.5:over": {
-   "id": "id1000001872340036|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.06,
-   "p_win": 0.9198,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340036|ou:1.5:over": {
-   "id": "id1000001872340036|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.36,
-   "p_win": 0.7012,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340036|ou:3.5:under": {
-   "id": "id1000001872340036|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.26,
-   "p_win": 0.7821,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340036|ou:4.5:under": {
-   "id": "id1000001872340036|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.07,
-   "p_win": 0.8791,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340036|ts:1:yes": {
-   "id": "id1000001872340036|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Lincoln City to score",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.33,
-   "p_win": 0.7217,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340036|ts:2:yes": {
-   "id": "id1000001872340036|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Wrexham AFC to score",
-   "match": "Lincoln City v Wrexham AFC",
-   "league": "Championship",
-   "kickoff": "2026-11-21T15:00:00Z",
-   "price": 1.35,
-   "p_win": 0.7014,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Lincoln",
-    "away": "Wrexham"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1100013273719720|nba-ml:1": {
    "id": "id1100013273719720|nba-ml:1",
    "key": "nba-ml:1",
@@ -48411,20 +48297,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2613,
-    "wins": 1954,
-    "p_sum": 1889.7457,
-    "implied_sum": 2077.7024,
-    "claimed_sum": -236.0988,
-    "return_sum": -156.087
+    "n": 2617,
+    "wins": 1956,
+    "p_sum": 1892.7491,
+    "implied_sum": 2080.8649,
+    "claimed_sum": -236.2978,
+    "return_sum": -157.667
    },
    "flat": {
-    "n": 2774,
-    "wins": 2278,
-    "p_sum": 2292.4399,
-    "implied_sum": 2329.7924,
-    "claimed_sum": -44.4308,
-    "return_sum": -55.686
+    "n": 2776,
+    "wins": 2280,
+    "p_sum": 2294.1418,
+    "implied_sum": 2331.5295,
+    "claimed_sum": -44.4704,
+    "return_sum": -55.366
    },
    "some": {
     "n": 120,
@@ -48445,20 +48331,20 @@
   },
   "source": {
    "model": {
-    "n": 145,
-    "wins": 131,
-    "p_sum": 126.2914,
-    "implied_sum": 128.8291,
-    "claimed_sum": -2.3102,
-    "return_sum": 2.81
+    "n": 147,
+    "wins": 133,
+    "p_sum": 128.0903,
+    "implied_sum": 130.7071,
+    "claimed_sum": -2.3946,
+    "return_sum": 2.94
    },
    "sharp": {
-    "n": 707,
-    "wins": 544,
-    "p_sum": 525.6611,
-    "implied_sum": 543.9652,
-    "claimed_sum": -23.4671,
-    "return_sum": 2.202
+    "n": 711,
+    "wins": 546,
+    "p_sum": 528.5675,
+    "implied_sum": 546.9868,
+    "claimed_sum": -23.6213,
+    "return_sum": 0.812
    },
    "unknown": {
     "n": 43,
@@ -48503,12 +48389,12 @@
   },
   "market": {
    "ou": {
-    "n": 384,
-    "wins": 320,
-    "p_sum": 314.3249,
-    "implied_sum": 320.841,
-    "claimed_sum": -7.4782,
-    "return_sum": -0.103
+    "n": 388,
+    "wins": 323,
+    "p_sum": 317.6071,
+    "implied_sum": 324.248,
+    "claimed_sum": -7.6236,
+    "return_sum": -0.713
    },
    "dnb": {
     "n": 38,
@@ -48527,12 +48413,12 @@
     "return_sum": 1.04
    },
    "ts": {
-    "n": 181,
-    "wins": 140,
-    "p_sum": 141.4357,
-    "implied_sum": 145.9097,
-    "claimed_sum": -5.6976,
-    "return_sum": -6.574
+    "n": 183,
+    "wins": 141,
+    "p_sum": 142.8588,
+    "implied_sum": 147.4023,
+    "claimed_sum": -5.7908,
+    "return_sum": -7.224
    },
    "1x2": {
     "n": 30,
