@@ -730,10 +730,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-23T00:47:16Z"
+   "at": "2026-11-23T00:52:20Z"
   }
  },
- "last_called_at": "2026-11-23T00:47:16Z",
+ "last_called_at": "2026-11-23T00:52:20Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1153,11 +1153,12 @@
   "id1100013273719734": {},
   "id1100013273719736": {},
   "id1100013273719738": {},
-  "id1100013273719740": {}
+  "id1100013273719740": {},
+  "id1100013273719742": {}
  },
  "last_log": {
-  "at": "2026-11-23T00:47:16Z",
-  "want": 27,
+  "at": "2026-11-23T00:52:20Z",
+  "want": 28,
   "live": true,
   "called": true,
   "calls": [
@@ -1173,7 +1174,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 27,
+   "checked": 28,
    "api_football": 0,
    "football_data": 1,
    "unmatched": [
@@ -1202,7 +1203,8 @@
     "Miami Heat v Oklahoma City Thunder (NBA)",
     "Washington Wizards v Orlando Magic (NBA)",
     "Chicago Bulls v Denver Nuggets (NBA)",
-    "Utah Jazz v Dallas Mavericks (NBA)"
+    "Utah Jazz v Dallas Mavericks (NBA)",
+    "New York Knicks v Indiana Pacers (NBA)"
    ]
   }
  },
