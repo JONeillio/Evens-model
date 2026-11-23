@@ -730,10 +730,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-23T00:27:05Z"
+   "at": "2026-11-23T00:32:08Z"
   }
  },
- "last_called_at": "2026-11-23T00:27:05Z",
+ "last_called_at": "2026-11-23T00:32:08Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1156,8 +1156,8 @@
   "id1100013273719740": {}
  },
  "last_log": {
-  "at": "2026-11-23T00:27:05Z",
-  "want": 30,
+  "at": "2026-11-23T00:32:08Z",
+  "want": 27,
   "live": true,
   "called": true,
   "calls": [
@@ -1173,13 +1173,10 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 30,
+   "checked": 27,
    "api_football": 0,
    "football_data": 1,
    "unmatched": [
-    "Brooklyn Nets v Orlando Magic (NBA)",
-    "Cleveland Cavaliers v Indiana Pacers (NBA)",
-    "Detroit Pistons v Toronto Raptors (NBA)",
     "Chicago Bulls v Washington Wizards (NBA)",
     "Oklahoma City Thunder v New Orleans Pelicans (NBA)",
     "Utah Jazz v Phoenix Suns (NBA)",
