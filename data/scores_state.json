@@ -780,9 +780,9 @@
    "s": "LIVE",
    "min": null,
    "h": 0,
-   "a": 0,
+   "a": 1,
    "src": "fd",
-   "at": "2026-11-24T20:16:10Z"
+   "at": "2026-11-24T20:36:21Z"
   },
   "id1000001872340066": {
    "s": "LIVE",
@@ -803,10 +803,10 @@
   "id1000001872340070": {
    "s": "LIVE",
    "min": null,
-   "h": 0,
+   "h": 1,
    "a": 0,
    "src": "fd",
-   "at": "2026-11-24T20:16:10Z"
+   "at": "2026-11-24T20:36:21Z"
   }
  },
  "budget": {
@@ -823,10 +823,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-24T20:31:18Z"
+   "at": "2026-11-24T20:36:21Z"
   }
  },
- "last_called_at": "2026-11-24T20:31:18Z",
+ "last_called_at": "2026-11-24T20:36:21Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1280,7 +1280,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-24T20:31:18Z",
+  "at": "2026-11-24T20:36:21Z",
   "want": 19,
   "live": true,
   "called": true,
@@ -1295,7 +1295,7 @@
     "results": 49
    }
   ],
-  "changed": 0,
+  "changed": 2,
   "coverage": {
    "checked": 19,
    "api_football": 0,
