@@ -801,12 +801,12 @@
    "at": "2026-11-24T21:52:05Z"
   },
   "id1000001872340070": {
-   "s": "LIVE",
+   "s": "NS",
    "min": null,
-   "h": 3,
-   "a": 0,
+   "h": null,
+   "a": null,
    "src": "fd",
-   "at": "2026-11-24T21:43:29Z"
+   "at": "2026-11-24T21:57:08Z"
   }
  },
  "budget": {
@@ -823,10 +823,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-24T21:52:05Z"
+   "at": "2026-11-24T21:57:08Z"
   }
  },
- "last_called_at": "2026-11-24T21:52:05Z",
+ "last_called_at": "2026-11-24T21:57:08Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1280,8 +1280,8 @@
   }
  },
  "last_log": {
-  "at": "2026-11-24T21:52:05Z",
-  "want": 11,
+  "at": "2026-11-24T21:57:08Z",
+  "want": 9,
   "live": true,
   "called": true,
   "calls": [
@@ -1295,11 +1295,11 @@
     "results": 49
    }
   ],
-  "changed": 2,
+  "changed": 1,
   "coverage": {
-   "checked": 11,
+   "checked": 9,
    "api_football": 0,
-   "football_data": 3,
+   "football_data": 1,
    "unmatched": [
     "San Francisco 49ers v Minnesota Vikings (NFL)",
     "Washington Commanders v Cincinnati Bengals (NFL)",
@@ -1310,8 +1310,7 @@
     "New York Knicks v Indiana Pacers (NBA)",
     "Golden State Warriors v Boston Celtics (NBA)"
    ]
-  },
-  "history_updated": true
+  }
  },
  "af_last_at": "2026-11-24T11:48:15Z"
 }
