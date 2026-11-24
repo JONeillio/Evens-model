@@ -3819,34 +3819,34 @@
    "price_sum": 845.553
   },
   "0.75": {
-   "n": 798,
-   "wins": 615,
-   "p_sum": 618.0839,
-   "price_sum": 973.993
+   "n": 799,
+   "wins": 616,
+   "p_sum": 618.8385,
+   "price_sum": 975.083
   },
   "0.70": {
-   "n": 762,
-   "wins": 566,
-   "p_sum": 552.9764,
-   "price_sum": 995.825
+   "n": 763,
+   "wins": 567,
+   "p_sum": 553.7249,
+   "price_sum": 997.145
   },
   "0.90": {
-   "n": 683,
-   "wins": 623,
-   "p_sum": 632.7895,
-   "price_sum": 724.943
+   "n": 685,
+   "wins": 625,
+   "p_sum": 634.6452,
+   "price_sum": 727.033
   },
   "0.65": {
-   "n": 674,
-   "wins": 469,
-   "p_sum": 455.3156,
-   "price_sum": 931.959
+   "n": 675,
+   "wins": 470,
+   "p_sum": 455.9727,
+   "price_sum": 933.459
   },
   "0.80": {
-   "n": 806,
-   "wins": 681,
-   "p_sum": 665.8496,
-   "price_sum": 939.029
+   "n": 808,
+   "wins": 683,
+   "p_sum": 667.4924,
+   "price_sum": 941.409
   },
   "0.95": {
    "n": 293,
@@ -35953,120 +35953,6 @@
    "result": null,
    "score": null
   },
-  "id1000001872340070|1x2:1": {
-   "id": "id1000001872340070|1x2:1",
-   "key": "1x2:1",
-   "label": "Wolverhampton Wanderers to win",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.32,
-   "p_win": 0.7485,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340070|dnb:1": {
-   "id": "id1000001872340070|dnb:1",
-   "key": "dnb:1",
-   "label": "Wolverhampton Wanderers (draw no bet)",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.09,
-   "p_win": 0.7546,
-   "p_void": 0.161,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340070|ou:1.5:over": {
-   "id": "id1000001872340070|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.2,
-   "p_win": 0.812,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340070|ou:3.5:under": {
-   "id": "id1000001872340070|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.5,
-   "p_win": 0.6571,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340070|ou:4.5:under": {
-   "id": "id1000001872340070|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.18,
-   "p_win": 0.8308,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340070|ts:1:yes": {
-   "id": "id1000001872340070|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Wolverhampton Wanderers to score",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.07,
-   "p_win": 0.9129,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1100013273719744|nba-ml:2": {
    "id": "id1100013273719744|nba-ml:2",
    "key": "nba-ml:2",
@@ -36997,25 +36883,6 @@
    "result": null,
    "score": null
   },
-  "id1000001872340070|ou:0.5:over": {
-   "id": "id1000001872340070|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Wolverhampton Wanderers v Derby County",
-   "league": "Championship",
-   "kickoff": "2026-11-24T20:00:00Z",
-   "price": 1.02,
-   "p_win": 0.9428,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Wolves",
-    "away": "Derby"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
   "id1000001872340072|ah:1:+1.5": {
    "id": "id1000001872340072|ah:1:+1.5",
    "key": "ah:1:+1.5",
@@ -37495,20 +37362,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2715,
-    "wins": 2030,
-    "p_sum": 1964.229,
-    "implied_sum": 2159.4919,
-    "claimed_sum": -245.2025,
-    "return_sum": -162.413
+    "n": 2717,
+    "wins": 2032,
+    "p_sum": 1965.9264,
+    "implied_sum": 2161.3897,
+    "claimed_sum": -245.4183,
+    "return_sum": -162.303
    },
    "flat": {
-    "n": 2861,
-    "wins": 2350,
-    "p_sum": 2363.5848,
-    "implied_sum": 2402.1406,
-    "claimed_sum": -45.8459,
-    "return_sum": -56.576
+    "n": 2866,
+    "wins": 2355,
+    "p_sum": 2367.5461,
+    "implied_sum": 2406.1803,
+    "claimed_sum": -45.9407,
+    "return_sum": -55.306
    },
    "some": {
     "n": 122,
@@ -37529,20 +37396,20 @@
   },
   "source": {
    "model": {
-    "n": 160,
-    "wins": 145,
-    "p_sum": 139.3999,
-    "implied_sum": 142.5838,
-    "claimed_sum": -3.0287,
-    "return_sum": 3.01
+    "n": 161,
+    "wins": 146,
+    "p_sum": 140.3427,
+    "implied_sum": 143.5642,
+    "claimed_sum": -3.067,
+    "return_sum": 3.03
    },
    "sharp": {
-    "n": 758,
-    "wins": 582,
-    "p_sum": 563.6057,
-    "implied_sum": 583.7019,
-    "claimed_sum": -25.7479,
-    "return_sum": 0.362
+    "n": 764,
+    "wins": 588,
+    "p_sum": 568.3216,
+    "implied_sum": 588.659,
+    "claimed_sum": -26.0203,
+    "return_sum": 1.722
    },
    "unknown": {
     "n": 43,
@@ -37587,20 +37454,20 @@
   },
   "market": {
    "ou": {
-    "n": 417,
-    "wins": 349,
-    "p_sum": 340.9556,
-    "implied_sum": 348.6011,
-    "claimed_sum": -8.8349,
-    "return_sum": 1.407
+    "n": 421,
+    "wins": 353,
+    "p_sum": 344.1983,
+    "implied_sum": 351.929,
+    "claimed_sum": -8.9329,
+    "return_sum": 2.307
    },
    "dnb": {
-    "n": 40,
-    "wins": 33,
-    "p_sum": 27.7776,
-    "implied_sum": 34.2041,
-    "claimed_sum": -7.6524,
-    "return_sum": -1.574
+    "n": 41,
+    "wins": 34,
+    "p_sum": 28.5322,
+    "implied_sum": 35.1215,
+    "claimed_sum": -7.8299,
+    "return_sum": -1.484
    },
    "ah": {
     "n": 117,
@@ -37611,20 +37478,20 @@
     "return_sum": 1.66
    },
    "ts": {
-    "n": 199,
-    "wins": 153,
-    "p_sum": 155.0324,
-    "implied_sum": 160.1036,
-    "claimed_sum": -6.4646,
-    "return_sum": -7.684
+    "n": 200,
+    "wins": 154,
+    "p_sum": 155.9453,
+    "implied_sum": 161.0382,
+    "claimed_sum": -6.4878,
+    "return_sum": -7.614
    },
    "1x2": {
-    "n": 32,
-    "wins": 25,
-    "p_sum": 23.0366,
-    "implied_sum": 23.2383,
-    "claimed_sum": -0.2886,
-    "return_sum": 2.34
+    "n": 33,
+    "wins": 26,
+    "p_sum": 23.7851,
+    "implied_sum": 23.9959,
+    "claimed_sum": -0.3006,
+    "return_sum": 2.66
    },
    "btts": {
     "n": 2,
