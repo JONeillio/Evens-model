@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001772221408": {
-   "home": "Newcastle United",
-   "away": "Arsenal FC",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T17:30:00Z"
-  },
   "id1000001872340034": {
    "home": "Burnley FC",
    "away": "Blackburn Rovers",
@@ -27,13 +20,6 @@
    "league": "Premier League",
    "country": "England",
    "kickoff": "2026-11-22T16:30:00Z"
-  },
-  "id1100013273719720": {
-   "home": "Philadelphia 76ers",
-   "away": "Milwaukee Bucks",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-21T18:00:00Z"
   },
   "id1100013273719722": {
    "home": "New York Knicks",
@@ -338,14 +324,6 @@
   }
  },
  "scores": {
-  "id1000001772221408": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 2,
-   "src": "fd",
-   "at": "2026-11-21T19:38:27Z"
-  },
   "id1000001872340034": {
    "s": "FT",
    "min": null,
@@ -505,10 +483,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-25T16:39:29Z"
+   "at": "2026-11-25T18:11:23Z"
   }
  },
- "last_called_at": "2026-11-25T16:39:29Z",
+ "last_called_at": "2026-11-25T18:11:23Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -962,7 +940,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-25T16:39:29Z",
+  "at": "2026-11-25T18:11:23Z",
   "want": 1,
   "live": false,
   "called": true,
