@@ -1,96 +1,5 @@
 {
  "fixtures": {
-  "id1000001872340032": {
-   "home": "Bolton Wanderers",
-   "away": "Portsmouth FC",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340036": {
-   "home": "Lincoln City",
-   "away": "Wrexham AFC",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340038": {
-   "home": "Middlesbrough FC",
-   "away": "Bristol City",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340044": {
-   "home": "Sheffield United",
-   "away": "Watford FC",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340048": {
-   "home": "Stoke City",
-   "away": "Birmingham City",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340050": {
-   "home": "Swansea City",
-   "away": "West Bromwich Albion",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340052": {
-   "home": "West Ham United",
-   "away": "Preston North End",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001872340054": {
-   "home": "Wolverhampton Wanderers",
-   "away": "Charlton Athletic",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001772221392": {
-   "home": "Aston Villa",
-   "away": "Sunderland AFC",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001772221394": {
-   "home": "AFC Bournemouth",
-   "away": "Nottingham Forest",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001772221398": {
-   "home": "Chelsea FC",
-   "away": "Leeds United",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001772221400": {
-   "home": "Coventry City",
-   "away": "Crystal Palace",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
-  "id1000001772221410": {
-   "home": "Tottenham Hotspur",
-   "away": "Ipswich Town",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-21T15:00:00Z"
-  },
   "id1000001772221408": {
    "home": "Newcastle United",
    "away": "Arsenal FC",
@@ -429,110 +338,6 @@
   }
  },
  "scores": {
-  "id1000001872340032": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 1,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
-  "id1000001872340036": {
-   "s": "FT",
-   "min": null,
-   "h": 0,
-   "a": 1,
-   "src": "fd",
-   "at": "2026-11-23T11:45:24Z"
-  },
-  "id1000001872340038": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
-  },
-  "id1000001872340044": {
-   "s": "FT",
-   "min": null,
-   "h": 4,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
-  },
-  "id1000001872340048": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
-  "id1000001872340050": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 3,
-   "src": "fd",
-   "at": "2026-11-21T17:10:45Z"
-  },
-  "id1000001872340052": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 1,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
-  "id1000001872340054": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 1,
-   "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
-  },
-  "id1000001772221392": {
-   "s": "FT",
-   "min": null,
-   "h": 0,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:00:40Z"
-  },
-  "id1000001772221394": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
-  "id1000001772221398": {
-   "s": "FT",
-   "min": null,
-   "h": 1,
-   "a": 4,
-   "src": "fd",
-   "at": "2026-11-21T17:10:45Z"
-  },
-  "id1000001772221400": {
-   "s": "FT",
-   "min": null,
-   "h": 3,
-   "a": 2,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
-  "id1000001772221410": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-21T17:05:43Z"
-  },
   "id1000001772221408": {
    "s": "FT",
    "min": null,
@@ -700,10 +505,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-25T14:23:07Z"
+   "at": "2026-11-25T15:30:11Z"
   }
  },
- "last_called_at": "2026-11-25T14:23:07Z",
+ "last_called_at": "2026-11-25T15:30:11Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -1157,7 +962,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-25T14:23:07Z",
+  "at": "2026-11-25T15:30:11Z",
   "want": 1,
   "live": false,
   "called": true,
