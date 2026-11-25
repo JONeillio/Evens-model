@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1100013273697002": {
-   "home": "Atlanta Hawks",
-   "away": "Charlotte Hornets",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-21T00:00:00Z"
-  },
   "id1100013273697020": {
    "home": "Brooklyn Nets",
    "away": "Orlando Magic",
