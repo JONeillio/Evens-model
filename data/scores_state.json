@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001772221404": {
-   "home": "Liverpool FC",
-   "away": "Manchester United",
-   "league": "Premier League",
-   "country": "England",
-   "kickoff": "2026-11-22T16:30:00Z"
-  },
   "id1400003171516036": {
    "home": "Buffalo Bills",
    "away": "Miami Dolphins",
@@ -366,14 +359,6 @@
   }
  },
  "scores": {
-  "id1000001772221404": {
-   "s": "FT",
-   "min": null,
-   "h": 4,
-   "a": 0,
-   "src": "fd",
-   "at": "2026-11-22T18:30:43Z"
-  },
   "id1000001772221396": {
    "s": "FT",
    "min": null,
