@@ -285,5 +285,33 @@
   "week": 11,
   "flip": false,
   "seen": "2026-11-23T08:41:22Z"
+ },
+ "id1400003171506882": {
+  "game_id": "2026_12_CHI_DET",
+  "season": 2026,
+  "week": 12,
+  "flip": false,
+  "seen": "2026-11-26T08:34:53Z"
+ },
+ "id1400003171451906": {
+  "game_id": "2026_12_PHI_DAL",
+  "season": 2026,
+  "week": 12,
+  "flip": false,
+  "seen": "2026-11-26T08:34:53Z"
+ },
+ "id1400003171516058": {
+  "game_id": "2026_12_KC_BUF",
+  "season": 2026,
+  "week": 12,
+  "flip": false,
+  "seen": "2026-11-26T08:34:53Z"
+ },
+ "id1400003171516060": {
+  "game_id": "2026_12_DEN_PIT",
+  "season": 2026,
+  "week": 12,
+  "flip": false,
+  "seen": "2026-11-26T08:34:53Z"
  }
 }
