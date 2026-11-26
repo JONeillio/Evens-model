@@ -21,41 +21,6 @@
    "country": "England",
    "kickoff": "2026-11-22T16:30:00Z"
   },
-  "id1100013273719722": {
-   "home": "New York Knicks",
-   "away": "Portland Trail Blazers",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-22T00:30:00Z"
-  },
-  "id1100013273719724": {
-   "home": "Dallas Mavericks",
-   "away": "LA Clippers",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-22T01:00:00Z"
-  },
-  "id1100013273719726": {
-   "home": "Minnesota Timberwolves",
-   "away": "Memphis Grizzlies",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-22T01:00:00Z"
-  },
-  "id1100013273719728": {
-   "home": "San Antonio Spurs",
-   "away": "New Orleans Pelicans",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-22T01:00:00Z"
-  },
-  "id1100013273719730": {
-   "home": "Sacramento Kings",
-   "away": "Boston Celtics",
-   "league": "NBA",
-   "country": "USA",
-   "kickoff": "2026-11-22T03:00:00Z"
-  },
   "id1400003171516036": {
    "home": "Buffalo Bills",
    "away": "Miami Dolphins",
@@ -321,6 +286,139 @@
    "league": "Championship",
    "country": "England",
    "kickoff": "2026-11-25T20:00:00Z"
+  },
+  "id1400003171506882": {
+   "home": "Detroit Lions",
+   "away": "Chicago Bears",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-26T18:00:00Z"
+  },
+  "id1400003171451906": {
+   "home": "Dallas Cowboys",
+   "away": "Philadelphia Eagles",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-26T21:30:00Z"
+  },
+  "id1400003171516058": {
+   "home": "Buffalo Bills",
+   "away": "Kansas City Chiefs",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-27T01:20:00Z"
+  },
+  "id1000001872340094": {
+   "home": "Southampton FC",
+   "away": "Middlesbrough FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-27T20:00:00Z"
+  },
+  "id1400003171516060": {
+   "home": "Pittsburgh Steelers",
+   "away": "Denver Broncos",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-27T20:00:00Z"
+  },
+  "id1000001772221428": {
+   "home": "Nottingham Forest",
+   "away": "Chelsea FC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-27T20:00:00Z"
+  },
+  "id1000001872340082": {
+   "home": "Blackburn Rovers",
+   "away": "Charlton Athletic",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T12:30:00Z"
+  },
+  "id1000001872340086": {
+   "home": "Lincoln City",
+   "away": "Wolverhampton Wanderers",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T12:30:00Z"
+  },
+  "id1000001872340090": {
+   "home": "Preston North End",
+   "away": "Norwich City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T12:30:00Z"
+  },
+  "id1000001872340080": {
+   "home": "Birmingham City",
+   "away": "Bolton Wanderers",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340084": {
+   "home": "Derby County",
+   "away": "Watford FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340088": {
+   "home": "Millwall FC",
+   "away": "Burnley FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340092": {
+   "home": "Queens Park Rangers",
+   "away": "Sheffield United",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340098": {
+   "home": "West Bromwich Albion",
+   "away": "Bristol City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340100": {
+   "home": "West Ham United",
+   "away": "Stoke City",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001872340102": {
+   "home": "Wrexham AFC",
+   "away": "Portsmouth FC",
+   "league": "Championship",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001772221424": {
+   "home": "Leeds United",
+   "away": "Coventry City",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001772221426": {
+   "home": "Manchester United",
+   "away": "Brentford FC",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000001772221422": {
+   "home": "Ipswich Town",
+   "away": "Aston Villa",
+   "league": "Premier League",
+   "country": "England",
+   "kickoff": "2026-11-28T17:30:00Z"
   }
  },
  "scores": {
