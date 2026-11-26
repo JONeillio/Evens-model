@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516050": {
-   "home": "Los Angeles Chargers",
-   "away": "New York Jets",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T21:05:00Z"
-  },
   "id1400003171516048": {
    "home": "New York Giants",
    "away": "Jacksonville Jaguars",
@@ -422,10 +415,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-26T20:44:35Z"
+   "at": "2026-11-26T21:23:53Z"
   }
  },
- "last_called_at": "2026-11-26T20:44:35Z",
+ "last_called_at": "2026-11-26T21:23:53Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -889,11 +882,12 @@
   "id1000001872340076": {
    "fd": "561962"
   },
-  "id1400003171506882": {}
+  "id1400003171506882": {},
+  "id1400003171451906": {}
  },
  "last_log": {
-  "at": "2026-11-26T20:44:35Z",
-  "want": 1,
+  "at": "2026-11-26T21:23:53Z",
+  "want": 2,
   "live": true,
   "called": true,
   "calls": [
@@ -909,11 +903,12 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 1,
+   "checked": 2,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Detroit Lions v Chicago Bears (NFL)"
+    "Detroit Lions v Chicago Bears (NFL)",
+    "Dallas Cowboys v Philadelphia Eagles (NFL)"
    ]
   }
  },
