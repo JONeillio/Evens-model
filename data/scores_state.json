@@ -1,54 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516036": {
-   "home": "Buffalo Bills",
-   "away": "Miami Dolphins",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516038": {
-   "home": "Carolina Panthers",
-   "away": "Baltimore Ravens",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516040": {
-   "home": "Chicago Bears",
-   "away": "New Orleans Saints",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516042": {
-   "home": "Dallas Cowboys",
-   "away": "Tennessee Titans",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516044": {
-   "home": "Detroit Lions",
-   "away": "Tampa Bay Buccaneers",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516046": {
-   "home": "Kansas City Chiefs",
-   "away": "Arizona Cardinals",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
-  "id1400003171516054": {
-   "home": "Philadelphia Eagles",
-   "away": "Pittsburgh Steelers",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-22T18:00:00Z"
-  },
   "id1400003171516050": {
    "home": "Los Angeles Chargers",
    "away": "New York Jets",
@@ -465,7 +416,7 @@
   }
  },
  "budget": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "api_football": 1,
   "af_blocked": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
@@ -473,20 +424,20 @@
   "api_football": {
    "ok": false,
    "note": "access: Your account is suspended, check on https://dashboard.api-football.com.",
-   "at": "2026-11-25T11:51:25Z"
+   "at": "2026-11-26T18:24:22Z"
   },
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-25T23:10:03Z"
+   "at": "2026-11-26T18:24:22Z"
   }
  },
- "last_called_at": "2026-11-25T23:10:03Z",
+ "last_called_at": "2026-11-26T18:24:22Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
  },
- "af_status_date": "2026-11-25",
+ "af_status_date": "2026-11-26",
  "links": {
   "id1000001872340012": {
    "af": "1563253",
@@ -944,22 +895,37 @@
   },
   "id1000001872340076": {
    "fd": "561962"
-  }
+  },
+  "id1400003171506882": {}
  },
  "last_log": {
-  "at": "2026-11-25T23:10:03Z",
+  "at": "2026-11-26T18:24:22Z",
   "want": 1,
-  "live": false,
+  "live": true,
   "called": true,
   "calls": [
    {
+    "feed": "api_football",
+    "endpoint": "status",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com."
+   },
+   {
+    "feed": "api_football",
+    "endpoint": "fixtures",
+    "date": "2026-11-26",
+    "status": 200,
+    "error": "access: Your account is suspended, check on https://dashboard.api-football.com.",
+    "results": 0
+   },
+   {
     "feed": "football_data",
     "endpoint": "matches",
-    "from": "2026-11-24",
-    "to": "2026-11-25",
+    "from": "2026-11-26",
+    "to": "2026-11-27",
     "status": 200,
     "error": "",
-    "results": 19
+    "results": 1
    }
   ],
   "changed": 0,
@@ -968,9 +934,9 @@
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
-    "Washington Commanders v Cincinnati Bengals (NFL)"
+    "Detroit Lions v Chicago Bears (NFL)"
    ]
   }
  },
- "af_last_at": "2026-11-25T11:51:25Z"
+ "af_last_at": "2026-11-26T18:24:22Z"
 }
