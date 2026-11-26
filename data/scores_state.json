@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1000001872340034": {
-   "home": "Burnley FC",
-   "away": "Blackburn Rovers",
-   "league": "Championship",
-   "country": "England",
-   "kickoff": "2026-11-22T12:00:00Z"
-  },
   "id1000001772221402": {
    "home": "Hull City",
    "away": "Brighton & Hove Albion",
@@ -422,14 +415,6 @@
   }
  },
  "scores": {
-  "id1000001872340034": {
-   "s": "FT",
-   "min": null,
-   "h": 2,
-   "a": 2,
-   "src": "fd",
-   "at": "2026-11-22T14:12:48Z"
-  },
   "id1000003772041248": {
    "s": "FT",
    "min": null,
