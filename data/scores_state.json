@@ -479,10 +479,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-27T22:17:09Z"
+   "at": "2026-11-27T22:32:21Z"
   }
  },
- "last_called_at": "2026-11-27T22:17:09Z",
+ "last_called_at": "2026-11-27T22:32:21Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -958,7 +958,7 @@
   }
  },
  "last_log": {
-  "at": "2026-11-27T22:17:09Z",
+  "at": "2026-11-27T22:32:21Z",
   "want": 4,
   "live": true,
   "called": true,
