@@ -4303,28 +4303,28 @@
  ],
  "calibration": {
   "0.85": {
-   "n": 820,
-   "wins": 708,
-   "p_sum": 717.5474,
-   "price_sum": 909.793
+   "n": 822,
+   "wins": 710,
+   "p_sum": 719.2917,
+   "price_sum": 912.123
   },
   "0.75": {
-   "n": 862,
-   "wins": 656,
-   "p_sum": 667.5579,
-   "price_sum": 1051.824
+   "n": 867,
+   "wins": 661,
+   "p_sum": 671.4365,
+   "price_sum": 1057.924
   },
   "0.70": {
-   "n": 816,
-   "wins": 604,
-   "p_sum": 592.1825,
-   "price_sum": 1066.182
+   "n": 819,
+   "wins": 605,
+   "p_sum": 594.382,
+   "price_sum": 1069.962
   },
   "0.90": {
-   "n": 736,
-   "wins": 665,
-   "p_sum": 681.884,
-   "price_sum": 780.849
+   "n": 737,
+   "wins": 666,
+   "p_sum": 682.817,
+   "price_sum": 781.889
   },
   "0.65": {
    "n": 719,
@@ -4333,16 +4333,16 @@
    "price_sum": 994.893
   },
   "0.80": {
-   "n": 869,
-   "wins": 728,
-   "p_sum": 717.8453,
-   "price_sum": 1012.125
+   "n": 872,
+   "wins": 729,
+   "p_sum": 720.3475,
+   "price_sum": 1015.605
   },
   "0.95": {
-   "n": 313,
-   "wins": 294,
-   "p_sum": 300.7276,
-   "price_sum": 323.161
+   "n": 314,
+   "wins": 295,
+   "p_sum": 301.6842,
+   "price_sum": 324.186
   },
   "0.55": {
    "n": 284,
@@ -4351,10 +4351,10 @@
    "price_sum": 426.555
   },
   "0.60": {
-   "n": 739,
-   "wins": 481,
-   "p_sum": 462.6161,
-   "price_sum": 1089.488
+   "n": 740,
+   "wins": 482,
+   "p_sum": 463.2313,
+   "price_sum": 1091.038
   }
  },
  "legs_pending": {
@@ -24533,272 +24533,6 @@
    "result": null,
    "score": null
   },
-  "id1000001772221428|ah:1:+1.5": {
-   "id": "id1000001772221428|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Nottingham Forest +1.5 (handicap)",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.11,
-   "p_win": 0.8545,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ah:2:+1.5": {
-   "id": "id1000001772221428|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Chelsea FC +1.5 (handicap)",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.15,
-   "p_win": 0.7884,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ou:0.5:over": {
-   "id": "id1000001772221428|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.04,
-   "p_win": 0.933,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ou:1.5:over": {
-   "id": "id1000001772221428|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7611,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ou:3.5:under": {
-   "id": "id1000001772221428|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.38,
-   "p_win": 0.7216,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ou:4.5:under": {
-   "id": "id1000001772221428|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.14,
-   "p_win": 0.8334,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ts:1:yes": {
-   "id": "id1000001772221428|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Nottingham Forest to score",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7649,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001772221428|ts:2:yes": {
-   "id": "id1000001772221428|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Chelsea FC to score",
-   "match": "Nottingham Forest v Chelsea FC",
-   "league": "Premier League",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.28,
-   "p_win": 0.7417,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E0",
-    "home": "Nott'm Forest",
-    "away": "Chelsea"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ah:1:+1.5": {
-   "id": "id1000001872340094|ah:1:+1.5",
-   "key": "ah:1:+1.5",
-   "label": "Southampton FC +1.5 (handicap)",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.22,
-   "p_win": 0.8898,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ah:2:+1.5": {
-   "id": "id1000001872340094|ah:2:+1.5",
-   "key": "ah:2:+1.5",
-   "label": "Middlesbrough FC +1.5 (handicap)",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.12,
-   "p_win": 0.7362,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ou:1.5:over": {
-   "id": "id1000001872340094|ou:1.5:over",
-   "key": "ou:1.5:over",
-   "label": "Over 1.5 goals",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.17,
-   "p_win": 0.8315,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ou:4.5:under": {
-   "id": "id1000001872340094|ou:4.5:under",
-   "key": "ou:4.5:under",
-   "label": "Under 4.5 goals",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.2,
-   "p_win": 0.7948,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ts:1:yes": {
-   "id": "id1000001872340094|ts:1:yes",
-   "key": "ts:1:yes",
-   "label": "Southampton FC to score",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.25,
-   "p_win": 0.7694,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ts:2:yes": {
-   "id": "id1000001872340094|ts:2:yes",
-   "key": "ts:2:yes",
-   "label": "Middlesbrough FC to score",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.17,
-   "p_win": 0.8373,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
   "id1400003171516060|nfl-ml:2": {
    "id": "id1400003171516060|nfl-ml:2",
    "key": "nfl-ml:2",
@@ -28034,44 +27768,6 @@
    "p_void": 0.0,
    "fd": null,
    "source": "sharp+model",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ou:0.5:over": {
-   "id": "id1000001872340094|ou:0.5:over",
-   "key": "ou:0.5:over",
-   "label": "Over 0.5 goals",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.025,
-   "p_win": 0.9566,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
-   "result": null,
-   "score": null
-  },
-  "id1000001872340094|ou:3.5:under": {
-   "id": "id1000001872340094|ou:3.5:under",
-   "key": "ou:3.5:under",
-   "label": "Under 3.5 goals",
-   "match": "Southampton FC v Middlesbrough FC",
-   "league": "Championship",
-   "kickoff": "2026-11-27T20:00:00Z",
-   "price": 1.55,
-   "p_win": 0.6152,
-   "p_void": 0.0,
-   "fd": {
-    "div": "E1",
-    "home": "Southampton",
-    "away": "Middlesbrough"
-   },
-   "source": "sharp",
    "result": null,
    "score": null
   },
@@ -39282,20 +38978,20 @@
  "evidence": {
   "edge": {
    "poor": {
-    "n": 2910,
-    "wins": 2161,
-    "p_sum": 2106.8911,
-    "implied_sum": 2316.0591,
-    "claimed_sum": -262.4956,
-    "return_sum": -194.824
+    "n": 2920,
+    "wins": 2169,
+    "p_sum": 2114.5507,
+    "implied_sum": 2324.2594,
+    "claimed_sum": -263.1397,
+    "return_sum": -194.784
    },
    "flat": {
-    "n": 3083,
-    "wins": 2516,
-    "p_sum": 2547.4585,
-    "implied_sum": 2589.251,
-    "claimed_sum": -49.6614,
-    "return_sum": -80.124
+    "n": 3088,
+    "wins": 2519,
+    "p_sum": 2551.7385,
+    "implied_sum": 2593.6221,
+    "claimed_sum": -49.7623,
+    "return_sum": -81.889
    },
    "some": {
     "n": 124,
@@ -39306,30 +39002,30 @@
     "return_sum": -10.567
    },
    "big": {
-    "n": 41,
-    "wins": 36,
-    "p_sum": 35.6467,
-    "implied_sum": 31.9072,
-    "claimed_sum": 4.9616,
-    "return_sum": 5.073
+    "n": 42,
+    "wins": 37,
+    "p_sum": 36.5365,
+    "implied_sum": 32.7269,
+    "claimed_sum": 5.0472,
+    "return_sum": 5.293
    }
   },
   "source": {
    "model": {
-    "n": 165,
-    "wins": 150,
-    "p_sum": 144.0427,
-    "implied_sum": 147.4479,
-    "claimed_sum": -3.2564,
-    "return_sum": 3.15
+    "n": 170,
+    "wins": 153,
+    "p_sum": 148.145,
+    "implied_sum": 151.8082,
+    "claimed_sum": -3.541,
+    "return_sum": 1.63
    },
    "sharp": {
-    "n": 800,
-    "wins": 613,
-    "p_sum": 595.0621,
-    "implied_sum": 616.1996,
-    "claimed_sum": -27.0447,
-    "return_sum": -1.638
+    "n": 811,
+    "wins": 622,
+    "p_sum": 603.7892,
+    "implied_sum": 625.2304,
+    "claimed_sum": -27.4196,
+    "return_sum": -1.623
    },
    "unknown": {
     "n": 43,
@@ -39374,12 +39070,12 @@
   },
   "market": {
    "ou": {
-    "n": 437,
-    "wins": 367,
-    "p_sum": 357.2689,
-    "implied_sum": 365.5132,
-    "claimed_sum": -9.5273,
-    "return_sum": 2.697
+    "n": 445,
+    "wins": 373,
+    "p_sum": 363.7161,
+    "implied_sum": 372.1853,
+    "claimed_sum": -9.7989,
+    "return_sum": 1.932
    },
    "dnb": {
     "n": 41,
@@ -39390,20 +39086,20 @@
     "return_sum": -1.484
    },
    "ah": {
-    "n": 118,
-    "wins": 97,
-    "p_sum": 93.3338,
-    "implied_sum": 96.3075,
-    "claimed_sum": -3.7716,
-    "return_sum": 0.66
+    "n": 122,
+    "wins": 100,
+    "p_sum": 96.6027,
+    "implied_sum": 99.7906,
+    "claimed_sum": -4.0063,
+    "return_sum": 0.14
    },
    "ts": {
-    "n": 208,
-    "wins": 160,
-    "p_sum": 162.0689,
-    "implied_sum": 167.3772,
-    "claimed_sum": -6.7598,
-    "return_sum": -7.994
+    "n": 212,
+    "wins": 163,
+    "p_sum": 165.1822,
+    "implied_sum": 170.6131,
+    "claimed_sum": -6.9129,
+    "return_sum": -8.214
    },
    "1x2": {
     "n": 33,
