@@ -1,24 +1,24 @@
 {
- "started_at": "2026-11-26T08:34:53Z",
+ "started_at": "2026-11-27T08:33:31Z",
  "mode": "scheduled",
  "errors": [],
  "notes": [
-  "Not covered today (saving requests): League One, Bundesliga, Serie A, Ligue 1, National League, LaLiga, Conference League, Europa League, Eredivisie, Scottish Cup, Liga Portugal, Super Lig, 2. Bundesliga, Pro League, LaLiga 2"
+  "Not covered today (saving requests): League Two, League One, Premiership, National League, Bundesliga, Ligue 1, LaLiga, Serie A, Scottish Cup, Liga Portugal, Eredivisie, 2. Bundesliga, Pro League, Super Lig, Super League, LaLiga 2, Serie B"
  ],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 197,
-  "remaining": 53
+  "used": 204,
+  "remaining": 46
  },
  "plan": {
-  "allowance": 8,
-  "remaining": 53,
-  "share": 8.1,
-  "weekday_weight": 1,
+  "allowance": 9,
+  "remaining": 46,
+  "share": 9.5,
+  "weekday_weight": 1.15,
   "fetch": true,
-  "leagues_with_games": 15,
-  "chunks_needed": 3,
+  "leagues_with_games": 17,
+  "chunks_needed": 4,
   "chunks_fetched": 0,
   "matches_priced": 0,
   "planned_calls": 7
@@ -26,8 +26,8 @@
  "core": {
   "competitions": [
    "Premier League",
-   "NFL",
-   "Championship"
+   "Championship",
+   "NBA"
   ],
   "books": [
    "pinnacle",
@@ -40,13 +40,13 @@
  },
  "priority_picks": 0,
  "nfl": {
-  "prop_legs": 242,
-  "projections": 111
+  "prop_legs": 0,
+  "projections": 0
  },
- "builder_seconds": 0.01,
- "fixtures": 19,
- "legs": 595,
- "slips": 6,
+ "builder_seconds": 0.09,
+ "fixtures": 33,
+ "legs": 845,
+ "slips": 17,
  "books": [
   "bet365",
   "williamhill",
@@ -54,14 +54,14 @@
   "ladbrokes",
   "unibet"
  ],
- "model_fixtures": 15,
+ "model_fixtures": 22,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 2.86,
+   "seconds": 0.45,
    "billable": false,
    "note": ""
   },
@@ -69,86 +69,86 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-26T08:34:53Z",
-    "to": "2026-11-28T07:34:53Z"
+    "from": "2026-11-27T08:33:31Z",
+    "to": "2026-11-29T07:33:31Z"
    },
    "status": 200,
-   "seconds": 11.26,
+   "seconds": 0.73,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "pinnacle",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.95,
+   "seconds": 0.75,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "bet365",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.19,
+   "seconds": 0.64,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "paddypower",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.63,
+   "seconds": 0.65,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "williamhill",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.02,
+   "seconds": 0.57,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "unibet",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.12,
+   "seconds": 1.06,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,31,18",
+    "tournamentIds": "17,18,132",
     "bookmaker": "ladbrokes",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.47,
+   "seconds": 0.74,
    "billable": true,
    "note": ""
   }
  ],
- "finished_at": "2026-11-26T08:35:36Z"
+ "finished_at": "2026-11-27T08:33:58Z"
 }
