@@ -1,12 +1,5 @@
 {
  "fixtures": {
-  "id1400003171516056": {
-   "home": "Washington Commanders",
-   "away": "Cincinnati Bengals",
-   "league": "NFL",
-   "country": "USA",
-   "kickoff": "2026-11-24T01:15:00Z"
-  },
   "id1000001872340056": {
    "home": "Bristol City",
    "away": "Wrexham AFC",
@@ -349,6 +342,160 @@
    "league": "Premier League",
    "country": "England",
    "kickoff": "2026-11-29T16:30:00Z"
+  },
+  "id1000017372740864": {
+   "home": "AFC Fylde",
+   "away": "Aldershot Town FC",
+   "league": "National League",
+   "country": "England",
+   "kickoff": "2026-11-28T12:30:00Z"
+  },
+  "id1000002472341408": {
+   "home": "Bromley FC",
+   "away": "Burton Albion",
+   "league": "League One",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000002472341428": {
+   "home": "Wycombe Wanderers",
+   "away": "Bradford City FC",
+   "league": "League One",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000002572342414": {
+   "home": "Fleetwood Town",
+   "away": "Accrington Stanley",
+   "league": "League Two",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000002572342420": {
+   "home": "Rotherham United",
+   "away": "Oldham Athletic",
+   "league": "League Two",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1000002572342428": {
+   "home": "Walsall FC",
+   "away": "Northampton Town",
+   "league": "League Two",
+   "country": "England",
+   "kickoff": "2026-11-28T15:00:00Z"
+  },
+  "id1100013273719768": {
+   "home": "Washington Wizards",
+   "away": "Orlando Magic",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-28T22:00:00Z"
+  },
+  "id1100013273719770": {
+   "home": "Charlotte Hornets",
+   "away": "Brooklyn Nets",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-28T23:00:00Z"
+  },
+  "id1100013273719772": {
+   "home": "Chicago Bulls",
+   "away": "Indiana Pacers",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-29T01:00:00Z"
+  },
+  "id1100013273719774": {
+   "home": "Milwaukee Bucks",
+   "away": "Oklahoma City Thunder",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-29T01:00:00Z"
+  },
+  "id1100013273719776": {
+   "home": "Houston Rockets",
+   "away": "Philadelphia 76ers",
+   "league": "NBA",
+   "country": "USA",
+   "kickoff": "2026-11-29T01:30:00Z"
+  },
+  "id1400003171516062": {
+   "home": "Cincinnati Bengals",
+   "away": "New Orleans Saints",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516066": {
+   "home": "Houston Texans",
+   "away": "Baltimore Ravens",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516068": {
+   "home": "Indianapolis Colts",
+   "away": "New York Giants",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516070": {
+   "home": "Miami Dolphins",
+   "away": "New York Jets",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516072": {
+   "home": "Minnesota Vikings",
+   "away": "Atlanta Falcons",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516074": {
+   "home": "Jacksonville Jaguars",
+   "away": "Tennessee Titans",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T18:00:00Z"
+  },
+  "id1400003171516080": {
+   "home": "Los Angeles Chargers",
+   "away": "New England Patriots",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T21:05:00Z"
+  },
+  "id1400003171516076": {
+   "home": "Arizona Cardinals",
+   "away": "Washington Commanders",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T21:25:00Z"
+  },
+  "id1400003171516078": {
+   "home": "San Francisco 49ers",
+   "away": "Seattle Seahawks",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-29T21:25:00Z"
+  },
+  "id1400003171516064": {
+   "home": "Cleveland Browns",
+   "away": "Las Vegas Raiders",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-11-30T01:20:00Z"
+  },
+  "id1400003171516082": {
+   "home": "Tampa Bay Buccaneers",
+   "away": "Carolina Panthers",
+   "league": "NFL",
+   "country": "USA",
+   "kickoff": "2026-12-01T01:15:00Z"
   }
  },
  "scores": {
@@ -479,10 +626,10 @@
   "football_data": {
    "ok": true,
    "note": "",
-   "at": "2026-11-28T01:04:30Z"
+   "at": "2026-11-28T11:39:32Z"
   }
  },
- "last_called_at": "2026-11-28T01:04:30Z",
+ "last_called_at": "2026-11-28T11:39:32Z",
  "af_status": {
   "ok": false,
   "note": "access: Your account is suspended, check on https://dashboard.api-football.com."
@@ -960,12 +1107,18 @@
   "id1100013273697060": {},
   "id1100013273697062": {},
   "id1100013273697064": {},
-  "id1100013273697042": {}
+  "id1100013273697042": {},
+  "id1100013273697044": {},
+  "id1100013273697046": {},
+  "id1100013273697048": {},
+  "id1100013273697050": {},
+  "id1100013273697052": {},
+  "id1100013273697054": {}
  },
  "last_log": {
-  "at": "2026-11-28T01:04:30Z",
-  "want": 9,
-  "live": true,
+  "at": "2026-11-28T11:39:32Z",
+  "want": 15,
+  "live": false,
   "called": true,
   "calls": [
    {
@@ -980,7 +1133,7 @@
   ],
   "changed": 0,
   "coverage": {
-   "checked": 9,
+   "checked": 15,
    "api_football": 0,
    "football_data": 0,
    "unmatched": [
@@ -992,7 +1145,13 @@
     "Toronto Raptors v Brooklyn Nets (NBA)",
     "Indiana Pacers v Philadelphia 76ers (NBA)",
     "Detroit Pistons v Milwaukee Bucks (NBA)",
-    "Boston Celtics v Atlanta Hawks (NBA)"
+    "Boston Celtics v Atlanta Hawks (NBA)",
+    "Minnesota Timberwolves v Memphis Grizzlies (NBA)",
+    "Phoenix Suns v Dallas Mavericks (NBA)",
+    "San Antonio Spurs v Los Angeles Lakers (NBA)",
+    "Utah Jazz v Denver Nuggets (NBA)",
+    "LA Clippers v New Orleans Pelicans (NBA)",
+    "Portland Trail Blazers v Golden State Warriors (NBA)"
    ]
   }
  },
