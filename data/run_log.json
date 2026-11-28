@@ -1,31 +1,30 @@
 {
- "started_at": "2026-11-27T08:33:31Z",
+ "started_at": "2026-11-28T08:18:13Z",
  "mode": "scheduled",
  "errors": [],
- "notes": [
-  "Not covered today (saving requests): League Two, League One, Premiership, National League, Bundesliga, Ligue 1, LaLiga, Serie A, Scottish Cup, Liga Portugal, Eredivisie, 2. Bundesliga, Pro League, Super Lig, Super League, LaLiga 2, Serie B"
- ],
+ "notes": [],
  "usage_before": {
   "plan": "free",
   "limit": 250,
-  "used": 204,
-  "remaining": 46
+  "used": 211,
+  "remaining": 39
  },
  "plan": {
-  "allowance": 9,
-  "remaining": 46,
-  "share": 9.5,
-  "weekday_weight": 1.15,
+  "allowance": 17,
+  "remaining": 39,
+  "share": 17.0,
+  "weekday_weight": 1.9,
   "fetch": true,
   "leagues_with_games": 17,
   "chunks_needed": 4,
-  "chunks_fetched": 0,
-  "matches_priced": 0,
-  "planned_calls": 7
+  "chunks_fetched": 4,
+  "matches_priced": 6,
+  "planned_calls": 17
  },
  "core": {
   "competitions": [
    "Premier League",
+   "NFL",
    "Championship",
    "NBA"
   ],
@@ -40,28 +39,42 @@
  },
  "priority_picks": 0,
  "nfl": {
-  "prop_legs": 0,
-  "projections": 0
+  "prop_legs": 533,
+  "projections": 304
  },
- "builder_seconds": 0.09,
- "fixtures": 33,
- "legs": 845,
- "slips": 17,
+ "builder_seconds": 0.1,
+ "fixtures": 42,
+ "legs": 1627,
+ "slips": 36,
  "books": [
   "bet365",
   "williamhill",
   "paddypower",
+  "betfred",
   "ladbrokes",
-  "unibet"
+  "coral",
+  "betway",
+  "888sport",
+  "unibet",
+  "betmgm.co.uk",
+  "livescorebet",
+  "midnite",
+  "virginbet",
+  "betuk",
+  "grosvenor",
+  "sportingbet",
+  "netbet.co.uk",
+  "betfair-ex",
+  "matchbook"
  ],
- "model_fixtures": 22,
+ "model_fixtures": 26,
  "fd_errors": [],
  "calls": [
   {
    "endpoint": "account",
    "params": {},
    "status": 200,
-   "seconds": 0.45,
+   "seconds": 0.38,
    "billable": false,
    "note": ""
   },
@@ -69,86 +82,194 @@
    "endpoint": "fixtures",
    "params": {
     "sportId": 10,
-    "from": "2026-11-27T08:33:31Z",
-    "to": "2026-11-29T07:33:31Z"
+    "from": "2026-11-28T08:18:13Z",
+    "to": "2026-11-30T07:18:13Z"
    },
    "status": 200,
-   "seconds": 0.73,
+   "seconds": 0.8,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "pinnacle",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.75,
+   "seconds": 0.76,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "bet365",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.64,
+   "seconds": 0.8,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "paddypower",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.65,
+   "seconds": 0.85,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "williamhill",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 0.57,
+   "seconds": 0.78,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "unibet",
     "oddsFormat": "decimal"
    },
    "status": 200,
-   "seconds": 1.06,
+   "seconds": 0.85,
    "billable": true,
    "note": ""
   },
   {
    "endpoint": "odds-by-tournaments",
    "params": {
-    "tournamentIds": "17,18,132",
+    "tournamentIds": "17,31,18,132",
     "bookmaker": "ladbrokes",
     "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.91,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "25,24,36,173,8",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.3,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "35,34,23,347,37",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.52,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "238,38,44,185,52",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.76,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds-by-tournaments",
+   "params": {
+    "tournamentIds": "54,53",
+    "bookmaker": "pinnacle",
+    "oddsFormat": "decimal"
+   },
+   "status": 200,
+   "seconds": 0.34,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000017372740864"
+   },
+   "status": 200,
+   "seconds": 1.08,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002472341408"
+   },
+   "status": 200,
+   "seconds": 0.83,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002472341428"
+   },
+   "status": 200,
+   "seconds": 0.84,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002572342414"
+   },
+   "status": 200,
+   "seconds": 0.7,
+   "billable": true,
+   "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002572342420"
    },
    "status": 200,
    "seconds": 0.74,
    "billable": true,
    "note": ""
+  },
+  {
+   "endpoint": "odds",
+   "params": {
+    "fixtureId": "id1000002572342428"
+   },
+   "status": 200,
+   "seconds": 0.81,
+   "billable": true,
+   "note": ""
   }
  ],
- "finished_at": "2026-11-27T08:33:58Z"
+ "finished_at": "2026-11-28T08:19:10Z"
 }
